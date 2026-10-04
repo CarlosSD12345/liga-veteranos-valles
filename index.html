@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga de Fútbol Veteranos del Vallès</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-900 border-b border-emerald-900/30 sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('clasificacion')">
+                <div class="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-900/40 text-2xl">
+                    ⚽
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg sm:text-xl tracking-tight text-white leading-tight">VETERANOS DEL VALLÈS</h1>
+                    <p class="text-xs text-emerald-400 font-medium">ASOC CLUB FUTBOL VETERANOS</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-1">
+                <button onclick="switchTab('clasificacion')" id="nav-clasificacion" class="px-4 py-2 rounded-lg text-sm font-semibold transition-all bg-emerald-600 text-white shadow-md shadow-emerald-900/30">Clasificación</button>
+                <button onclick="switchTab('jornadas')" id="nav-jornadas" class="px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800">Jornadas</button>
+                <button onclick="switchTab('fairplay')" id="nav-fairplay" class="px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800">Fair Play</button>
+                <button onclick="switchTab('arbitros')" id="nav-arbitros" class="px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800">Árbitros</button>
+            </nav>
+
+            <div class="hidden lg:block text-right">
+                <span class="inline-block px-3 py-1 bg-emerald-950 text-emerald-400 border border-emerald-800/50 rounded-full text-xs font-bold uppercase tracking-wider">Temporada Oficial</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="md:hidden bg-slate-900 border-b border-slate-800 sticky top-20 z-40 overflow-x-auto px-4 py-2 flex space-x-2 no-scrollbar">
+        <button onclick="switchTab('clasificacion')" id="mobnav-clasificacion" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-emerald-600 text-white">Clasificación</button>
+        <button onclick="switchTab('jornadas')" id="mobnav-jornadas" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300">Jornadas</button>
+        <button onclick="switchTab('fairplay')" id="mobnav-fairplay" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300">Fair Play</button>
+        <button onclick="switchTab('arbitros')" id="mobnav-arbitros" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300">Árbitros</button>
+    </div>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- TAB: CLASIFICACION -->
+        <section id="tab-clasificacion" class="space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-900/60 p-6 rounded-2xl border border-slate-800/80">
+                <div>
+                    <h2 class="text-2xl font-black text-white tracking-tight">Tabla Clasificatoria</h2>
+                    <p class="text-sm text-slate-400">17 equipos en competición • Criterio de desempate por Puntos y Fair Play</p>
+                </div>
+                <div class="flex items-center space-x-2 text-xs bg-emerald-950/60 text-emerald-300 border border-emerald-800/50 px-3 py-1.5 rounded-lg">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Jornada 2 Finalizada</span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-950/80 text-slate-400 text-xs font-bold uppercase tracking-wider border-b border-slate-800">
+                                <th class="py-4 px-4 text-center w-12">#</th>
+                                <th class="py-4 px-4">Equipo</th>
+                                <th class="py-4 px-3 text-center">PT</th>
+                                <th class="py-4 px-3 text-center">PJ</th>
+                                <th class="py-4 px-3 text-center">PG</th>
+                                <th class="py-4 px-3 text-center">PE</th>
+                                <th class="py-4 px-3 text-center">PP</th>
+                                <th class="py-4 px-3 text-center">GF</th>
+                                <th class="py-4 px-3 text-center">GC</th>
+                                <th class="py-4 px-3 text-center">DG</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clasificacion-tbody" class="divide-y divide-slate-800/60 text-sm">
+                            <!-- Inyectado por JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: JORNADAS -->
+        <section id="tab-jornadas" class="space-y-6 hidden">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-900/60 p-6 rounded-2xl border border-slate-800/80">
+                <div>
+                    <h2 class="text-2xl font-black text-white tracking-tight">Calendario de Jornadas</h2>
+                    <p class="text-sm text-slate-400">Total de 34 jornadas programadas para la temporada</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <label for="jornada-select" class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Seleccionar:</label>
+                    <select id="jornada-select" onchange="changeJornada(this.value)" class="bg-slate-800 border border-slate-700 text-white text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 font-medium">
+                        <!-- Opciones generadas -->
+                    </select>
+                </div>
+            </div>
+
+            <div id="jornada-content" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Partidos inyectados por JavaScript -->
+            </div>
+        </section>
+
+        <!-- TAB: FAIR PLAY -->
+        <section id="tab-fairplay" class="space-y-6 hidden">
+            <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800/80">
+                <h2 class="text-2xl font-black text-white tracking-tight">Clasificación Fair Play</h2>
+                <p class="text-sm text-slate-400">Baremo disciplinario basado en acumulación de tarjetas (Amarillas y Rojas)</p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-950/80 text-slate-400 text-xs font-bold uppercase tracking-wider border-b border-slate-800">
+                                <th class="py-4 px-4 text-center w-12">#</th>
+                                <th class="py-4 px-4">Equipo</th>
+                                <th class="py-4 px-4 text-center">🟨 Tarjetas Amarillas</th>
+                                <th class="py-4 px-4 text-center">🟥 Tarjetas Rojas</th>
+                                <th class="py-4 px-4 text-center">Puntuación Disciplinaria</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fairplay-tbody" class="divide-y divide-slate-800/60 text-sm">
+                            <!-- Inyectado por JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: ARBITROS -->
+        <section id="tab-arbitros" class="space-y-6 hidden">
+            <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800/80">
+                <h2 class="text-2xl font-black text-white tracking-tight">Colegio Oficial de Árbitros</h2>
+                <p class="text-sm text-slate-400">Listado oficial de colegiados asignados a la competición</p>
+            </div>
+
+            <div id="arbitros-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Árbitros inyectados por JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 mt-16 py-8 text-center">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <p class="text-sm font-semibold text-emerald-400 italic">"Ens divertim, competim i fem amics"</p>
+            <p class="text-xs text-slate-500 font-medium tracking-wide">ASOC CLUB FUTBOL VETERANOS DEL VALLES &bull; #VeteransDelVallès</p>
+        </div>
+    </footer>
+
+    <!-- Script con Datos y Lógica de la Liga -->
+    <script>
+        const ligaData = {
+            equipos: [
+                "Valles FC", "Veteranos Sabadell", "AC Granollers", "CF Mollet Veterans",
+                "Terrassa Masters", "Rubí Veterans", "Badia del Valles", "Sant Cugat Legends",
+                "Castellar Veterans", "Cerdanyola Classics", "Montcada Veterans", "Ripollet AC",
+                "Barberà Veterans", "Sant Quirze Veterans", "Palau Veterans", "Caldes Veterans", "Lliçà Veterans"
+            ],
+            arbitros: [
+                "Carlos", "Molina", "Humanes", "Portoles", "Utrera", 
+                "Julio", "Congost", "Fabregas", "Lleixa", "Puibert", 
+                "Salva", "Edu", "Exposito"
+            ],
+            fairplay: {
+                "Valles FC": { amarillas: 2, rojas: 0 },
+                "Veteranos Sabadell": { amarillas: 4, rojas: 1 },
+                "AC Granollers": { amarillas: 1, rojas: 0 },
+                "CF Mollet Veterans": { amarillas: 3, rojas: 0 },
+                "Terrassa Masters": { amarillas: 5, rojas: 1 },
+                "Rubí Veterans": { amarillas: 2, rojas: 0 },
+                "Badia del Valles": { amarillas: 6, rojas: 2 },
+                "Sant Cugat Legends": { amarillas: 1, rojas: 0 },
+                "Castellar Veterans": { amarillas: 3, rojas: 0 },
+                "Cerdanyola Classics": { amarillas: 4, rojas: 0 },
+                "Montcada Veterans": { amarillas: 2, rojas: 0 },
+                "Ripollet AC": { amarillas: 3, rojas: 1 },
+                "Barberà Veterans": { amarillas: 5, rojas: 0 },
+                "Sant Quirze Veterans": { amarillas: 2, rojas: 0 },
+                "Palau Veterans": { amarillas: 4, rojas: 1 },
+                "Caldes Veterans": { amarillas: 1, rojas: 0 },
+                "Lliçà Veterans": { amarillas: 3, rojas: 0 }
+            },
+            jornadas: [
+                // Jornada 1
+                {
+                    numero: 1,
+                    estado: "Jugada",
+                    partidos: [
+                        { local: "Valles FC", visitante: "Veteranos Sabadell", golesLocal: 2, golesVisitante: 1, arbitro: "Carlos" },
+                        { local: "AC Granollers", visitante: "CF Mollet Veterans", golesLocal: 1, golesVisitante: 1, arbitro: "Molina" },
+                        { local: "Terrassa Masters", visitante: "Rubí Veterans", golesLocal: 3, golesVisitante: 0, arbitro: "Humanes" },
+                        { local: "Badia del Valles", visitante: "Sant Cugat Legends", golesLocal: 0, golesVisitante: 2, arbitro: "Portoles" },
+                        { local: "Castellar Veterans", visitante: "Cerdanyola Classics", golesLocal: 2, golesVisitante: 2, arbitro: "Utrera" },
+                        { local: "Montcada Veterans", visitante: "Ripollet AC", golesLocal: 1, golesVisitante: 0, arbitro: "Julio" },
+                        { local: "Barberà Veterans", visitante: "Sant Quirze Veterans", golesLocal: 1, golesVisitante: 1, arbitro: "Congost" },
+                        { local: "Palau Veterans", visitante: "Caldes Veterans", golesLocal: 0, golesVisitante: 2, arbitro: "Fabregas" }
+                    ],
+                    descansa: "Lliçà Veterans"
+                },
+                // Jornada 2
+                {
+                    numero: 2,
+                    estado: "Jugada",
+                    partidos: [
+                        { local: "Lliçà Veterans", visitante: "Valles FC", golesLocal: 1, golesVisitante: 3, arbitro: "Lleixa" },
+                        { local: "Veteranos Sabadell", visitante: "AC Granollers", golesLocal: 2, golesVisitante: 2, arbitro: "Puibert" },
+                        { local: "CF Mollet Veterans", visitante: "Terrassa Masters", golesLocal: 1, golesVisitante: 0, arbitro: "Salva" },
+                        { local: "Rubí Veterans", visitante: "Badia del Valles", golesLocal: 4, golesVisitante: 1, arbitro: "Edu" },
+                        { local: "Sant Cugat Legends", visitante: "Castellar Veterans", golesLocal: 2, golesVisitante: 1, arbitro: "Exposito" },
+                        { local: "Cerdanyola Classics", visitante: "Montcada Veterans", golesLocal: 0, golesVisitante: 0, arbitro: "Carlos" },
+                        { local: "Ripollet AC", visitante: "Barberà Veterans", golesLocal: 1, golesVisitante: 2, arbitro: "Molina" },
+                        { local: "Sant Quirze Veterans", visitante: "Palau Veterans", golesLocal: 3, golesVisitante: 1, arbitro: "Humanes" }
+                    ],
+                    descansa: "Caldes Veterans"
+                },
+                // Jornada 3 (Aplazada por lluvia)
+                {
+                    numero: 3,
+                    estado: "Aplazada por Lluvia",
+                    partidos: [
+                        { local: "Caldes Veterans", visitante: "Lliçà Veterans", golesLocal: null, golesVisitante: null, arbitro: "Portoles" },
+                        { local: "Valles FC", visitante: "CF Mollet Veterans", golesLocal: null, golesVisitante: null, arbitro: "Utrera" },
+                        { local: "AC Granollers", visitante: "Rubí Veterans", golesLocal: null, golesVisitante: null, arbitro: "Julio" },
+                        { local: "Terrassa Masters", visitante: "Sant Cugat Legends", golesLocal: null, golesVisitante: null, arbitro: "Congost" },
+                        { local: "Badia del Valles", visitante: "Cerdanyola Classics", golesLocal: null, golesVisitante: null, arbitro: "Fabregas" },
+                        { local: "Castellar Veterans", visitante: "Ripollet AC", golesLocal: null, golesVisitante: null, arbitro: "Lleixa" },
+                        { local: "Montcada Veterans", visitante: "Sant Quirze Veterans", golesLocal: null, golesVisitante: null, arbitro: "Puibert" },
+                        { local: "Barberà Veterans", visitante: "Palau Veterans", golesLocal: null, golesVisitante: null, arbitro: "Salva" }
+                    ],
+                    descansa: "Veteranos Sabadell"
+                }
+            ]
+        };
+
+        // Rellenar hasta 34 jornadas de ejemplo vacías si hace falta
+        for (let i = 4; i <= 34; i++) {
+            ligaData.jornadas.push({
+                numero: i,
+                estado: "Pendiente",
+                partidos: [
+                    { local: ligaData.equipos[(i * 2) % 17], visitante: ligaData.equipos[(i * 2 + 1) % 17], golesLocal: null, golesVisitante: null, arbitro: ligaData.arbitros[i % ligaData.arbitros.length] }
+                ],
+                descansa: ligaData.equipos[i % 17]
+            });
+        }
+
+        function calcularClasificacion() {
+            const tabla = {};
+            ligaData.equipos.forEach(eq => {
+                tabla[eq] = { equipo: eq, pt: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, dg: 0 };
+            });
+
+            ligaData.jornadas.forEach(j => {
+                if (j.estado === "Jugada") {
+                    j.partidos.forEach(p => {
+                        if (p.golesLocal !== null && p.golesVisitante !== null) {
+                            const l = tabla[p.local];
+                            const v = tabla[p.visitante];
+                            
+                            l.pj++; v.pj++;
+                            l.gf += p.golesLocal; l.gc += p.golesVisitante;
+                            v.gf += p.golesVisitante; v.gc += p.golesLocal;
+
+                            if (p.golesLocal > p.golesVisitante) {
+                                l.pg++; l.pt += 3;
+                                v.pp++;
+                            } else if (p.golesLocal < p.golesVisitante) {
+                                v.pg++; v.pt += 3;
+                                l.pp++;
+                            } else {
+                                l.pe++; l.pt += 1;
+                                v.pe++; v.pt += 1;
+                            }
+                        }
+                    });
+                }
+            });
+
+            return Object.values(tabla).map(eq => {
+                eq.dg = eq.gf - eq.gc;
+                return eq;
+            }).sort((a, b) => b.pt - b.dg - a.pt); // Ordenación por puntos y diferencia
+        }
+
+        function renderClasificacion() {
+            const tbody = document.getElementById('clasificacion-tbody');
+            const datos = calcularClasificacion();
+            tbody.innerHTML = '';
+
+            datos.forEach((eq, index) => {
+                const tr = document.createElement('tr');
+                tr.className = index % 2 === 0 ? 'bg-slate-900/40 hover:bg-slate-800/50 transition-colors' : 'bg-slate-950/20 hover:bg-slate-800/50 transition-colors';
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 text-center font-bold text-xs text-slate-400">${index + 1}</td>
+                    <td class="py-3.5 px-4 font-bold text-white flex items-center space-x-2">
+                        <span class="w-2 h-2 rounded-full ${index === 0 ? 'bg-amber-400' : 'bg-slate-600'}"></span>
+                        <span>${eq.equipo}</span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center font-black text-emerald-400">${eq.pt}</td>
+                    <td class="py-3.5 px-3 text-center text-slate-300">${eq.pj}</td>
+                    <td class="py-3.5 px-3 text-center text-slate-300">${eq.pg}</td>
+                    <td class="py-3.5 px-3 text-center text-slate-300">${eq.pe}</td>
+                    <td class="py-3.5 px-3 text-center text-slate-300">${eq.pp}</td>
+                    <td class="py-3.5 px-3 text-center text-slate-300">${eq.gf}</td>
+                    <td class="py-3.5 px-3 text-center text-slate-300">${eq.gc}</td>
+                    <td class="py-3.5 px-3 text-center font-semibold ${eq.dg > 0 ? 'text-emerald-400' : eq.dg < 0 ? 'text-rose-400' : 'text-slate-400'}">${eq.dg > 0 ? '+' + eq.dg : eq.dg}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderJornadasSelect() {
+            const select = document.getElementById('jornada-select');
+            select.innerHTML = '';
+            ligaData.jornadas.forEach(j => {
+                const opt = document.createElement('option');
+                opt.value = j.numero;
+                opt.textContent = `Jornada ${j.numero} (${j.estado})`;
+                select.appendChild(opt);
+            });
+        }
+
+        function changeJornada(num) {
+            const jornada = ligaData.jornadas.find(j => j.numero == num);
+            const container = document.getElementById('jornada-content');
+            container.innerHTML = '';
+
+            if (!jornada) return;
+
+            let badgeColor = jornada.estado === 'Jugada' ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : jornada.estado.includes('Aplazada') ? 'bg-amber-950 text-amber-400 border-amber-800' : 'bg-slate-800 text-slate-300 border-slate-700';
+
+            const headerBanner = document.createElement('div');
+            headerBanner.className = 'col-span-full flex justify-between items-center bg-slate-900 border border-slate-800 p-4 rounded-xl';
+            headerBanner.innerHTML = `
+                <span class="font-bold text-white">Jornada ${jornada.numero}</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold border ${badgeColor}">${jornada.estado}</span>
+            `;
+            container.appendChild(headerBanner);
+
+            jornada.partidos.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'bg-slate-900 border border-slate-800/80 rounded-2xl p-5 flex flex-col justify-between shadow-lg';
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-4 text-xs text-slate-400 font-medium border-b border-slate-800 pb-2">
+                        <span>Árbitros: <strong class="text-slate-200">${p.arbitro}</strong></span>
+                        <span>Colegiado Oficial</span>
+                    </div>
+                    <div class="flex items-center justify-between my-2">
+                        <span class="font-bold text-white text-sm sm:text-base w-5/12 text-right">${p.local}</span>
+                        <div class="w-2/12 text-center">
+                            ${p.golesLocal !== null ? `<span class="bg-slate-950 border border-slate-800 text-emerald-400 font-black px-3 py-1.5 rounded-xl text-lg">${p.golesLocal} - ${p.golesVisitante}</span>` : `<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">VS</span>`}
+                        </div>
+                        <span class="font-bold text-white text-sm sm:text-base w-5/12 text-left">${p.visitante}</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800/50 text-right text-xs text-slate-500">
+                        Liga Veteranos del Vallès
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            if(jornada.descansa) {
+                const desc = document.createElement('div');
+                desc.className = 'col-span-full bg-slate-900/40 border border-dashed border-slate-800 p-4 rounded-xl text-center text-xs text-slate-400';
+                desc.innerHTML = `Descansa en esta jornada: <strong class="text-white">${jornada.descansa}</strong>`;
+                container.appendChild(desc);
+            }
+        }
+
+        function renderFairPlay() {
+            const tbody = document.getElementById('fairplay-tbody');
+            tbody.innerHTML = '';
+
+            const sortedFairPlay = Object.entries(ligaData.fairplay).sort((a, b) => {
+                const scoreA = (a[1].amarillas * 1) + (a[1].rojas * 3);
+                const scoreB = (b[1].amarillas * 1) + (b[1].rojas * 3);
+                return scoreA - scoreB;
+            });
+
+            sortedFairPlay.forEach(([eq, data], index) => {
+                const score = (data.amarillas * 1) + (data.rojas * 3);
+                const tr = document.createElement('tr');
+                tr.className = index % 2 === 0 ? 'bg-slate-900/40' : 'bg-slate-950/20';
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 text-center font-bold text-xs text-slate-400">${index + 1}</td>
+                    <td class="py-3.5 px-4 font-bold text-white">${eq}</td>
+                    <td class="py-3.5 px-4 text-center font-semibold text-amber-400">${data.amarillas} 🟨</td>
+                    <td class="py-3.5 px-4 text-center font-semibold text-rose-500">${data.rojas} 🟥</td>
+                    <td class="py-3.5 px-4 text-center font-black text-emerald-400">${score} pts</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderArbitros() {
+            const grid = document.getElementById('arbitros-grid');
+            grid.innerHTML = '';
+            ligaData.arbitros.forEach((arb, index) => {
+                const card = document.createElement('div');
+                card.className = 'bg-slate-900 border border-slate-800 p-5 rounded-2xl flex items-center space-x-4 shadow-md';
+                card.innerHTML = `
+                    <div class="w-12 h-12 rounded-xl bg-emerald-950 border border-emerald-800/50 flex items-center justify-center font-black text-emerald-400 text-lg">
+                        ${arb.charAt(0)}
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-base">${arb}</h3>
+                        <p class="text-xs text-slate-400">Colegiado Oficial Nº ${index + 1}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function switchTab(tabId) {
+            ['clasificacion', 'jornadas', 'fairplay', 'arbitros'].forEach(t => {
+                document.getElementById(`tab-${t}`).classList.add('hidden');
+                document.getElementById(`nav-${t}`).className = 'px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800';
+                document.getElementById(`mobnav-${t}`).className = 'px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300';
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.getElementById(`nav-${tabId}`).className = 'px-4 py-2 rounded-lg text-sm font-semibold transition-all bg-emerald-600 text-white shadow-md shadow-emerald-900/30';
+            document.getElementById(`mobnav-${tabId}`).className = 'px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-emerald-600 text-white';
+        }
+
+        // Inicializar aplicación
+        window.onload = function() {
+            renderClasificacion();
+            renderJornadasSelect();
+            changeJornada(1);
+            renderFairPlay();
+            renderArbitros();
+        };
+    </script>
+</body>
+</html>
