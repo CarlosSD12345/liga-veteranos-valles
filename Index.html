@@ -1,1 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga Veteranos Vallès</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1b4332">
+    <link rel="apple-touch-icon" href="escudos/logo_liga.png">
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --secondary-color: #2d6a4f;
+            --accent-color: #d8f3dc;
+            --bg-color: #0b1f15;
+            --card-bg: #132e22;
+            --text-color: #ffffff;
+            --text-muted: #b7c4bc;
+            --border-color: #214e38;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        header img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+        h1 {
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 15px auto;
+            padding: 0 10px;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        .tab-btn {
+            background-color: var(--card-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border-color: var(--secondary-color);
+        }
+        .view-section {
+            display: none;
+        }
+        .view-section.active {
+            display: block;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 12px 15px;
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+        th {
+            background-color: rgba(0,0,0,0.15);
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .team-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .team-logo {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+        .matchday-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .matchday-header {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+        .match-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        .match-row:last-child {
+            border-bottom: none;
+        }
+        .team-home, .team-away {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 40%;
+        }
+        .team-home {
+            justify-content: flex-end;
+            text-align: right;
+        }
+        .team-away {
+            justify-content: flex-start;
+            text-align: left;
+        }
+        .match-score {
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: var(--text-color);
+        }
+        .match-rest {
+            width: 100%;
+            text-align: center;
+            color: var(--text-muted);
+            font-style: italic;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
 
+    <header>
+        <img src="escudos/logo_liga.png" alt="Logo Liga" onerror="this.style.color='red'; this.outerHTML='<span style=\'font-size:10px;color:red;\'>[logo_liga.png]</span>'">
+        <h1>Asoc. Club Fútbol Veteranos del Vallès</h1>
+    </header>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchView('standings', event)">Clasificación</button>
+            <button class="tab-btn" onclick="switchView('calendar', event)">Calendario de Partidos</button>
+        </div>
+
+        <div id="standings-view" class="view-section active">
+            <div class="card">
+                <div class="card-header">Clasificación Oficial</div>
+                <div class="table-responsive">
+                    <table id="standings-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Equipo</th>
+                                <th>PJV</th>
+                                <th>G</th>
+                                <th>E</th>
+                                <th>P</th>
+                                <th>GF</th>
+                                <th>GC</th>
+                                <th>Ptos</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="calendar-view" class="view-section">
+            <div id="calendar-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const teamsMap = {
+            "U.E. Sabadellenca": { name: "U.E. Sabadellenca", logo: "escudos/sabadellenca.png" },
+            "V.C.F. Ripollet": { name: "V.C.F. Ripollet", logo: "escudos/ripollet_vcf.png" },
+            "C.E. Bigues i Riells": { name: "C.E. Bigues i Riells", logo: "escudos/bigues.png" },
+            "A.V. L'Ametlla del Vallès": { name: "L'Ametlla", logo: "escudos/ametlla.png" },
+            "C.F. Barberà": { name: "C.F. Barberà", logo: "escudos/barbera.png" },
+            "A.V. Pallejà": { name: "A.V. Pallejà", logo: "escudos/palleja.png" },
+            "U.E. Canovelles": { name: "U.E. Canovelles", logo: "escudos/canovelles.png" },
+            "C.F. Can Parellada": { name: "C.F. Can Parellada", logo: "escudos/can_parellada.png" },
+            "E.F.B Palau Solità i Plegamans": { name: "E.F.B. Palau", logo: "escudos/palau.png" },
+            "C.F. Cerdanyola": { name: "C.F. Cerdanyola", logo: "escudos/cerdanyola.png" },
+            "C.F. Sant Feliu de Codines": { name: "Sant Feliu de Codines", logo: "escudos/sant_feliu.png" },
+            "C.E. Sentmenat": { name: "C.E. Sentmenat", logo: "escudos/sentmenat.png" },
+            "U.E. Castellar": { name: "Castellar", logo: "escudos/castellar.png" },
+            "A.V. Ripollet": { name: "Agrupación V. Ripollet", logo: "escudos/ripollet_agrupacion.png" },
+            "U.D.A. Gramanet": { name: "Gramanet", logo: "escudos/gramanet.png" },
+            "C.E. Santa Eulàlia de Ronçana": { name: "Sta. Eulàlia de Ronçana", logo: "escudos/sta_eulalia.png" },
+            "Penya Decano": { name: "Penya Decano", logo: "escudos/penya_decano.png" }
+        };
+
+        const calendarData = [
+            {
+                matchday: 1,
+                date: "20-09-2026",
+                matches: [
+                    { home: "U.E. Sabadellenca", away: "V.C.F. Ripollet", score: "5 - 1" },
+                    { home: "C.E. Bigues i Riells", away: "A.V. L'Ametlla del Vallès", score: "3 - 16" },
+                    { home: "C.F. Barberà", away: "A.V. Pallejà", score: "4 - 1" },
+                    { home: "U.E. Canovelles", away: null, score: "DESCANSO" },
+                    { home: "C.F. Can Parellada", away: "E.F.B Palau Solità i Plegamans", score: "6 - 3" },
+                    { home: "C.F. Cerdanyola", away: "C.F. Sant Feliu de Codines", score: "4 - 1" },
+                    { home: "C.E. Sentmenat", away: "U.E. Castellar", score: "2 - 5" },
+                    { home: "A.V. Ripollet", away: "U.D.A. Gramanet", score: "3 - 1" },
+                    { home: "C.E. Santa Eulàlia de Ronçana", away: "Penya Decano", score: "3 - 2" }
+                ]
+            }
+        ];
+
+        function calculateStandings() {
+            let stats = {};
+            Object.keys(teamsMap).forEach(team => {
+                stats[team] = { name: team, logo: teamsMap[team].logo, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 };
+            });
+
+            calendarData.forEach(jornada => {
+                jornada.matches.forEach(m => {
+                    if (m.away !== null && m.score && m.score.includes("-")) {
+                        let parts = m.score.split("-");
+                        let goalsHome = parseInt(parts[0].trim());
+                        let goalsAway = parseInt(parts[1].trim());
+
+                        if (stats[m.home] && stats[m.away]) {
+                            stats[m.home].p++;
+                            stats[m.away].p++;
+                            stats[m.home].gf += goalsHome;
+                            stats[m.home].ga += goalsAway;
+                            stats[m.away].gf += goalsAway;
+                            stats[m.away].ga += goalsHome;
+
+                            if (goalsHome > goalsAway) {
+                                stats[m.home].w++;
+                                stats[m.home].pts += 3;
+                                stats[m.away].l++;
+                            } else if (goalsHome < goalsAway) {
+                                stats[m.away].w++;
+                                stats[m.away].pts += 3;
+                                stats[m.home].l++;
+                            } else {
+                                stats[m.home].d++;
+                                stats[m.home].pts += 1;
+                                stats[m.away].d++;
+                                stats[m.away].pts += 1;
+                            }
+                        }
+                    }
+                });
+            });
+
+            return Object.values(stats).sort((a, b) => {
+                if (b.pts !== a.pts) return b.pts - a.pts;
+                let diffA = a.gf - a.ga;
+                let diffB = b.gf - b.ga;
+                if (diffB !== diffA) return diffB - diffA;
+                return b.gf - a.gf;
+            });
+        }
+
+        function switchView(viewName, event) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            if (viewName === 'standings') {
+                document.getElementById('standings-view').classList.add('active');
+            } else {
+                document.getElementById('calendar-view').classList.add('active');
+            }
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+        }
+
+        function getTeamLogo(teamName) {
+            return teamsMap[teamName] ? teamsMap[teamName].logo : "escudos/logo_liga.png";
+        }
+
+        function renderStandings() {
+            const tbody = document.querySelector("#standings-table tbody");
+            tbody.innerHTML = "";
+            
+            let teamsData = calculateStandings();
+
+            teamsData.forEach((team, index) => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td><strong>${index + 1}</strong></td>
+                    <td>
+                        <div class="team-cell">
+                            <img src="${team.logo}" alt="Escudo" class="team-logo" onerror="this.style.color='red'; this.outerHTML='<span style=\'font-size:10px;color:red;\'>[' + this.src.split('/').pop() + ']</span>'">
+                            <span>${team.name}</span>
+                        </div>
+                    </td>
+                    <td>${team.p}</td>
+                    <td>${team.w}</td>
+                    <td>${team.d}</td>
+                    <td>${team.l}</td>
+                    <td>${team.gf}</td>
+                    <td>${team.ga}</td>
+                    <td><strong>${team.pts}</strong></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderCalendar() {
+            const container = document.getElementById("calendar-container");
+            container.innerHTML = "";
+
+            calendarData.forEach(jornada => {
+                let matchesHtml = "";
+                jornada.matches.forEach(m => {
+                    if (m.away === null) {
+                        matchesHtml += `
+                            <div class="match-row">
+                                <div class="match-rest"><strong>${m.home}</strong> (DESCANSO)</div>
+                            </div>
+                        `;
+                    } else {
+                        const homeLogo = getTeamLogo(m.home);
+                        const awayLogo = getTeamLogo(m.away);
+                        matchesHtml += `
+                            <div class="match-row">
+                                <div class="team-home">
+                                    <span>${m.home}</span>
+                                    <img src="${homeLogo}" alt="" class="team-logo" onerror="this.style.color='red'; this.outerHTML='<span style=\'font-size:10px;color:red;\'>[' + this.src.split('/').pop() + ']</span>'">
+                                </div>
+                                <div class="match-score">${m.score}</div>
+                                <div class="team-away">
+                                    <img src="${awayLogo}" alt="" class="team-logo" onerror="this.style.color='red'; this.outerHTML='<span style=\'font-size:10px;color:red;\'>[' + this.src.split('/').pop() + ']</span>'">
+                                    <span>${m.away}</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                const card = document.createElement("div");
+                card.className = "matchday-card";
+                card.innerHTML = `
+                    <div class="matchday-header">
+                        <span>Jornada ${jornada.matchday}</span>
+                        <span>${jornada.date}</span>
+                    </div>
+                    <div>${matchesHtml}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderStandings();
+            renderCalendar();
+        });
+    </script>
+</body>
+</html>
