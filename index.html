@@ -1,5 +1,251 @@
-<!DOCTYPE html><html lang="es"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Liga Veteranos Vallès</title>    <link rel="manifest" href="manifest.json">    <meta name="theme-color" content="#1b4332">    <link rel="apple-touch-icon" href="escudos/logo_liga.png">    <style>        :root {            --primary-color: #1b4332;            --secondary-color: #2d6a4f;            --accent-color: #d8f3dc;            --bg-color: #0b1f15;            --card-bg: #132e22;            --text-color: #ffffff;            --text-muted: #b7c4bc;            --border-color: #214e38;        }        body {            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;            background-color: var(--bg-color);            color: var(--text-color);            margin: 0;            padding: 0;            display: flex;            flex-direction: column;            align-items: center;            min-height: 100vh;        }        header {            width: 100%;            background-color: var(--primary-color);            padding: 15px 20px;            display: flex;            align-items: center;            justify-content: center;            gap: 15px;            box-shadow: 0 4px 6px rgba(0,0,0,0.3);            border-bottom: 2px solid var(--secondary-color);            box-sizing: border-box;        }        header img {            height: 55px;            width: auto;            object-fit: contain;        }        header h1 {            font-size: 1.5rem;            margin: 0;            color: var(--text-color);            font-weight: 700;            text-align: center;        }        .nav-tabs {            display: flex;            gap: 10px;            margin: 20px 0;        }        .tab-btn {            background-color: var(--secondary-color);            color: var(--text-color);            border: none;            padding: 10px 20px;            border-radius: 8px;            font-size: 1rem;            font-weight: 600;            cursor: pointer;            transition: background 0.2s;        }        .tab-btn.active, .tab-btn:hover {            background-color: var(--accent-color);            color: var(--primary-color);        }        .container {            width: 95%;            max-width: 1000px;            background-color: var(--card-bg);            border-radius: 12px;            box-shadow: 0 4px 12px rgba(0,0,0,0.4);            overflow: hidden;            border: 1px solid var(--border-color);            margin-bottom: 30px;        }        .table-header {            background-color: var(--secondary-color);            padding: 15px 20px;            font-size: 1.2rem;            font-weight: bold;        }        table {            width: 100%;            border-collapse: collapse;            text-align: left;        }        th, td {            padding: 12px 15px;            border-bottom: 1px solid var(--border-color);            font-size: 0.95rem;        }        th {            color: var(--text-muted);            font-weight: 600;            background-color: rgba(0,0,0,0.1);        }        tr:hover {            background-color: rgba(255,255,255,0.03);        }        .team-cell {            display: flex;            align-items: center;            gap: 10px;        }        .team-cell img {            width: 24px;            height: 24px;            object-fit: contain;        }        .text-center {            text-align: center;        }        .text-right {            text-align: right;        }    </style></head><body>
-    <header>        <img src="escudos/logo_liga.png" alt="Logo Liga">        <h1>Asoc. Club Fútbol Veteranos del Vallès</h1>    </header>
-    <div class="nav-tabs">        <button class="tab-btn active">Clasificación</button>        <button class="tab-btn">Calendario de Partidos</button>    </div>
-    <div class="container">        <div class="table-header">Clasificación Oficial</div>        <table>            <thead>                <tr>                    <th>Pos</th>                    <th>Equipo</th>                    <th class="text-center">PJV</th>                    <th class="text-center">G</th>                    <th class="text-center">E</th>                    <th class="text-center">P</th>                    <th class="text-center">GF</th>                    <th class="text-center">GC</th>                    <th class="text-right">Ptos</th>                </tr>            </thead>            <tbody>                <tr>                    <td><strong>1</strong></td>                    <td>                        <div class="team-cell">                            <img src="escudos/BARBERA.png" alt="Escudo"> A.V. L'Ametlla del Vallès                        </div>                    </td>                    <td class="text-center">1</td>                    <td class="text-center">1</td>                    <td class="text-center">0</td>                    <td class="text-center">0</td>                    <td class="text-center">16</td>                    <td class="text-center">3</td>                    <td class="text-right"><strong>3</strong></td>                </tr>                <tr>                    <td><strong>2</strong></td>                    <td>                        <div class="team-cell">                            <img src="escudos/BIGUES.png" alt="Escudo"> U.E. Sabadellenca                        </div>                    </td>                    <td class="text-center">1</td>                    <td class="text-center">1</td>                    <td class="text-center">0</td>                    <td class="text-center">0</td>                    <td class="text-center">5</td>                    <td class="text-center">1</td>                    <td class="text-right"><strong>3</strong></td>                </tr>                <tr>                    <td><strong>3</strong></td>                    <td>                        <div class="team-cell">                            <img src="escudos/CAN PARELLADA.png" alt="Escudo"> C.F. Can Parellada                        </div>                    </td>                    <td class="text-center">1</td>                    <td class="text-center">1</td>                    <td class="text-center">0</td>                    <td class="text-center">0</td>                    <td class="text-center">6</td>                    <td class="text-center">3</td>                    <td class="text-right"><strong>3</strong></td>                </tr>                <tr>                    <td><strong>4</strong></td>                    <td>                        <div class="team-cell">                            <img src="escudos/CANOVELLES.png" alt="Escudo"> U.E. Castellar                        </div>                    </td>                    <td class="text-center">1</td>                    <td class="text-center">1</td>                    <td class="text-center">0</td>                    <td class="text-center">0</td>                    <td class="text-center">5</td>                    <td class="text-center">2</td>                    <td class="text-right"><strong>3</strong></td>                </tr>                <tr>                    <td><strong>5</strong></td>                    <td>                        <div class="team-cell">                            <img src="escudos/CASTELLAR.png" alt="Escudo"> C.F. Barberà                        </div>                    </td>                    <td class="text-center">1</td>                    <td class="text-center">1</td>                    <td class="text-center">0</td>                    <td class="text-center">0</td>                    <td class="text-center">4</td>                    <td class="text-center">1</td>                    <td class="text-right"><strong>3</strong></td>                </tr>                <tr>                    <td><strong>6</strong></td>                    <td>                        <div class="team-cell">                            <img src="escudos/CERDANYOLA.png" alt="Escudo"> C.F. Cerdanyola                        </div>                    </td>                    <td class="text-center">1</td>                    <td class="text-center">1</td>                    <td class="text-center">0</td>                    <td class="text-center">0</td>                    <td class="text-center">4</td>                    <td class="text-center">1</td>                    <td class="text-right"><strong>3</strong></td>                </tr>            </tbody>        </table>    </div>
-</body></html>
+<!DOCTYPE html><html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga Veteranos Vallès</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1b4332">
+    <link rel="apple-touch-icon" href="escudos/logo_liga.png">
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --secondary-color: #2d6a4f;
+            --accent-color: #d8f3dc;
+            --bg-color: #0b1f15;
+            --card-bg: #132e22;
+            --text-color: #ffffff;
+            --text-muted: #b7c4bc;
+            --border-color: #214e38;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        header {
+            width: 100%;
+            background-color: var(--primary-color);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border-bottom: 2px solid var(--secondary-color);
+            box-sizing: border-box;
+        }
+        header img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--text-color);
+            font-weight: 700;
+            text-align: center;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .tab-btn {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        .container {
+            width: 95%;
+            max-width: 1000px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        .table-header {
+            background-color: var(--secondary-color);
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+        th {
+            color: var(--text-muted);
+            font-weight: 600;
+            background-color: rgba(0,0,0,0.1);
+        }
+        tr:hover {
+            background-color: rgba(255,255,255,0.03);
+        }
+        .team-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .team-cell img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-right {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="escudos/logo_liga.png" alt="Logo Liga">
+        <h1>Asoc. Club Fútbol Veteranos del Vallès</h1>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active">Clasificación</button>
+        <button class="tab-btn">Calendario de Partidos</button>
+    </div>
+
+    <div class="container">
+        <div class="table-header">Clasificación Oficial</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pos</th>
+                    <th>Equipo</th>
+                    <th class="text-center">PJV</th>
+                    <th class="text-center">G</th>
+                    <th class="text-center">E</th>
+                    <th class="text-center">P</th>
+                    <th class="text-center">GF</th>
+                    <th class="text-center">GC</th>
+                    <th class="text-right">Ptos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>
+                        <div class="team-cell">
+                            <img src="escudos/BARBERA.png" alt="Escudo"> A.V. L'Ametlla del Vallès
+                        </div>
+                    </td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">16</td>
+                    <td class="text-center">3</td>
+                    <td class="text-right"><strong>3</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>
+                        <div class="team-cell">
+                            <img src="escudos/BIGUES.png" alt="Escudo"> U.E. Sabadellenca
+                        </div>
+                    </td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">5</td>
+                    <td class="text-center">1</td>
+                    <td class="text-right"><strong>3</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>
+                        <div class="team-cell">
+                            <img src="escudos/CAN PARELLADA.png" alt="Escudo"> C.F. Can Parellada
+                        </div>
+                    </td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">6</td>
+                    <td class="text-center">3</td>
+                    <td class="text-right"><strong>3</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td>
+                        <div class="team-cell">
+                            <img src="escudos/CANOVELLES.png" alt="Escudo"> U.E. Castellar
+                        </div>
+                    </td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">5</td>
+                    <td class="text-center">2</td>
+                    <td class="text-right"><strong>3</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>5</strong></td>
+                    <td>
+                        <div class="team-cell">
+                            <img src="escudos/CASTELLAR.png" alt="Escudo"> C.F. Barberà
+                        </div>
+                    </td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">4</td>
+                    <td class="text-center">1</td>
+                    <td class="text-right"><strong>3</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>6</strong></td>
+                    <td>
+                        <div class="team-cell">
+                            <img src="escudos/CERDANYOLA.png" alt="Escudo"> C.F. Cerdanyola
+                        </div>
+                    </td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">4</td>
+                    <td class="text-center">1</td>
+                    <td class="text-right"><strong>3</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
