@@ -58,6 +58,30 @@
         tr:last-child td { border-bottom: none; }
         tr:hover { background-color: rgba(46, 204, 113, 0.05); }
         
+        /* Columnas fijas: posición (#) y equipo */
+        th.sticky-col, td.sticky-col {
+            position: sticky;
+            left: 0;
+            background-color: var(--card-bg);
+            z-index: 10;
+        }
+        th.sticky-col-2, td.sticky-col-2 {
+            position: sticky;
+            left: 40px;
+            background-color: var(--card-bg);
+            z-index: 10;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+        }
+        /* Asegurar que el header de la tabla también tenga fondo al hacer scroll */
+        thead th.sticky-col, thead th.sticky-col-2 {
+            background-color: var(--header-bg);
+            z-index: 20;
+        }
+        /* Efecto hover compatible con columnas fijas */
+        tr:hover td.sticky-col, tr:hover td.sticky-col-2 {
+            background-color: rgba(46, 204, 113, 0.05);
+        }
+        
         .team-info { display: flex; align-items: center; gap: 12px; }
         .team-logo { width: 28px; height: 28px; object-fit: contain; background: #fff; border-radius: 50%; padding: 2px; }
         .team-logo.large { width: 34px; height: 34px; }
@@ -90,8 +114,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th class="team-header">Equipo</th>
+                            <th class="sticky-col">#</th>
+                            <th class="sticky-col-2 team-header">Equipo</th>
                             <th>PJ</th>
                             <th>PTS</th>
                             <th>G</th>
@@ -105,8 +129,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">1</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/barbera.png" class="team-logo" alt="Escudo Barberà">
                                     Barberà
@@ -118,8 +142,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td>
                         </tr>
                         <tr>
-                            <td>2</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">2</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/can_parellada.png" class="team-logo" alt="Escudo Can Parellada">
                                     Can Parellada
@@ -131,8 +155,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td>
                         </tr>
                         <tr>
-                            <td>3</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">3</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/castellar.png" class="team-logo" alt="Escudo Castellar">
                                     Castellar
@@ -144,8 +168,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td>
                         </tr>
                         <tr>
-                            <td>4</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">4</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/sta_eulalia.png" class="team-logo" alt="Escudo Santa Eulàlia">
                                     Santa Eulàlia
@@ -157,8 +181,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td>
                         </tr>
                         <tr>
-                            <td>5</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">5</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/l_ametlla.png" class="team-logo" alt="Escudo L'Ametlla">
                                     L'Ametlla
@@ -170,8 +194,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td>
                         </tr>
                         <tr>
-                            <td>6</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">6</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/sabadellenca.png" class="team-logo" alt="Escudo Sabadellenca">
                                     Sabadellenca
@@ -183,8 +207,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td>
                         </tr>
                         <tr>
-                            <td>7</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">7</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/decano.png" class="team-logo" alt="Escudo Penya Decano">
                                     Penya Decano
@@ -196,8 +220,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td>
                         </tr>
                         <tr>
-                            <td>8</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">8</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/cerdanyola.png" class="team-logo" alt="Escudo Cerdanyola">
                                     Cerdanyola
@@ -209,8 +233,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td>
                         </tr>
                         <tr>
-                            <td>9</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">9</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/palleja.png" class="team-logo" alt="Escudo Pallejà">
                                     Pallejà
@@ -222,8 +246,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td>
                         </tr>
                         <tr>
-                            <td>10</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">10</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/agrup_ripollet.png" class="team-logo" alt="Escudo A.V. Ripollet">
                                     A.V. Ripollet
@@ -235,8 +259,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td>
                         </tr>
                         <tr>
-                            <td>11</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">11</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/gramanet.png" class="team-logo" alt="Escudo Gramanet">
                                     Gramanet
@@ -248,8 +272,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td>
                         </tr>
                         <tr>
-                            <td>12</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">12</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/sentmenat.png" class="team-logo large" alt="Escudo Sentmenat">
                                     Sentmenat
@@ -261,8 +285,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td>
                         </tr>
                         <tr>
-                            <td>13</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">13</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/st_feliu_codines.png" class="team-logo" alt="Escudo Sant Feliu">
                                     Sant Feliu
@@ -274,8 +298,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td>
                         </tr>
                         <tr>
-                            <td>14</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">14</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/vcf_ripollet.png" class="team-logo" alt="Escudo VCF Ripollet">
                                     VCF Ripollet
@@ -287,8 +311,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td>
                         </tr>
                         <tr>
-                            <td>15</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">15</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/canovelles.png" class="team-logo" alt="Escudo Canovelles">
                                     Canovelles
@@ -300,8 +324,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td>
                         </tr>
                         <tr>
-                            <td>16</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">16</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/palau_plegamans.png" class="team-logo" alt="Escudo Palau Plegamans">
                                     Palau Plegamans
@@ -313,8 +337,8 @@
                             <td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td>
                         </tr>
                         <tr>
-                            <td>17</td>
-                            <td class="team-cell">
+                            <td class="sticky-col">17</td>
+                            <td class="sticky-col-2 team-cell">
                                 <div class="team-info">
                                     <img src="escudos/bigues.png" class="team-logo" alt="Escudo Bigues">
                                     Bigues
