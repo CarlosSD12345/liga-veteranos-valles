@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liga de Fútbol Veteranos del Vallès</title>
     
-    <!-- Color de la barra del navegador en móviles -->
     <meta name="theme-color" content="#2ecc71">
-    <!-- Icono si alguien guarda la web en favoritos -->
     <link rel="apple-touch-icon" href="escudos/icono_512.png">
     
     <style>
@@ -37,7 +35,6 @@
         .section-content { display: none; }
         .section-content.active { display: block; }
         
-        /* TABLA - ARREGLADO PARA SAFARI Y CHROME */
         .table-responsive { 
             width: 100%; 
             overflow-x: auto; 
@@ -88,27 +85,77 @@
         .loss { background-color: #c0392b; }
         .none { background-color: #7f8c8d; }
         
-        /* CALENDARIO */
         .selector-container { margin-bottom: 20px; text-align: center; }
         #selector-jornada {
             background-color: var(--card-bg); color: var(--text-white); border: 1px solid var(--accent-green);
             padding: 10px 20px; border-radius: 8px; font-size: 1rem; font-weight: bold;
             width: 100%; max-width: 350px; cursor: pointer;
         }
+        
         .match-card {
-            background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px;
-            padding: 15px; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center;
+            background-color: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 10px;
+            padding: 15px; 
+            margin-bottom: 10px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
         }
-        .match-teams { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; }
-        .match-team { display: flex; flex-direction: column; align-items: center; width: 40%; text-align: center; }
-        .match-team img { width: 40px; height: 40px; margin-bottom: 5px; object-fit: contain; background: #fff; border-radius: 50%; padding: 2px; }
-        .match-team span { font-size: 0.85rem; font-weight: 600; line-height: 1.2; }
+        .match-teams { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+            margin-bottom: 10px; 
+            gap: 8px;
+        }
+        .match-team { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            flex: 1;
+            min-width: 0;
+            text-align: center; 
+        }
+        .match-team img { 
+            width: 45px; 
+            height: 45px; 
+            margin-bottom: 6px; 
+            object-fit: contain; 
+            background: #fff; 
+            border-radius: 50%; 
+            padding: 2px; 
+            flex-shrink: 0;
+        }
+        .match-team span { 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            line-height: 1.2; 
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
         .match-score {
-            background-color: var(--header-bg); padding: 5px 15px; border-radius: 8px;
-            font-weight: bold; font-size: 1.2rem; color: var(--accent-green); min-width: 60px; text-align: center;
+            background-color: var(--header-bg); 
+            padding: 8px 14px; 
+            border-radius: 8px;
+            font-weight: bold; 
+            font-size: 1.4rem; 
+            color: var(--accent-green); 
+            text-align: center;
+            white-space: nowrap;
+            flex-shrink: 0;
+            min-width: 70px;
         }
         .match-score.vs { color: var(--text-gray); font-size: 0.9rem; }
-        .match-info { font-size: 0.75rem; color: var(--text-gray); text-align: center; border-top: 1px solid var(--border-color); padding-top: 8px; width: 100%; }
+        .match-info { 
+            font-size: 0.75rem; 
+            color: var(--text-gray); 
+            text-align: center; 
+            border-top: 1px solid var(--border-color); 
+            padding-top: 8px; 
+            width: 100%; 
+        }
         
         .suspended-banner {
             background-color: var(--accent-red); color: white; padding: 15px; border-radius: 10px;
@@ -135,7 +182,6 @@
             <button class="tab-btn" onclick="switchTab('calendario', this)">Calendario de Partidos</button>
         </div>
 
-        <!-- SECCIÓN CLASIFICACIÓN -->
         <div id="clasificacion" class="section-content active">
             <div class="table-responsive">
                 <table>
@@ -177,7 +223,6 @@
             </div>
         </div>
 
-        <!-- SECCIÓN CALENDARIO -->
         <div id="calendario" class="section-content">
             <div class="selector-container">
                 <select id="selector-jornada" onchange="cargarJornada()"></select>
