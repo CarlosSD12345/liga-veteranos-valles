@@ -14,61 +14,25 @@
         body { background-color: #0b1d15; color: #ffffff; padding: 10px; }
         .container { max-width: 1000px; margin: 0 auto; }
         
-        /* HEADER COMPACTO */
-        header { 
-            text-align: center; 
-            padding: 10px;
-            background-color: #0b1d15;
-            margin-bottom: 15px;
-        }
+        header { text-align: center; padding: 10px; background-color: #0b1d15; margin-bottom: 15px; }
         header img { height: 60px; width: auto; }
         
-        .badge-jornada { 
-            display: inline-block; 
-            background-color: #2ecc71; 
-            color: #0b1d15; 
-            padding: 6px 15px; 
-            border-radius: 20px; 
-            font-weight: bold; 
-            font-size: 0.9rem; 
-            margin-top: 8px; 
-        }
+        .badge-jornada { display: inline-block; background-color: #2ecc71; color: #0b1d15; padding: 6px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-top: 8px; }
         
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .tab-btn { 
-            background-color: #11291e; 
-            color: #a3b8af; 
-            border: 1px solid #1f4733; 
-            padding: 8px 15px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-weight: bold; 
-            font-size: 0.9rem; 
-        }
+        .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
         .tab-btn.active { background-color: #2ecc71; color: #0b1d15; }
         
         .section-content { display: none; }
         .section-content.active { display: block; }
         
-        /* TABLA DIVIDIDA */
-        .tabla-container {
-            display: flex;
+        /* TABLA PARA PC */
+        .table-container {
             background-color: #11291e;
             border-radius: 12px;
             border: 1px solid #1f4733;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        
-        .tabla-fija {
-            flex-shrink: 0;
-            background-color: #11291e;
-            border-right: 2px solid #1f4733;
-        }
-        
-        .tabla-scroll {
-            flex: 1;
             overflow-x: auto;
+            margin-bottom: 20px;
         }
         
         table {
@@ -76,50 +40,98 @@
             border-collapse: collapse;
             text-align: center;
             font-size: 0.85rem;
+            min-width: 700px;
         }
         
-        th {
-            background-color: #173827;
-            color: #a3b8af;
-            padding: 10px 5px;
-            font-weight: 600;
-            font-size: 0.75rem;
-        }
-        
-        td {
-            padding: 8px 5px;
-            border-bottom: 1px solid #1f4733;
-        }
-        
+        th { background-color: #173827; color: #a3b8af; padding: 10px 5px; font-weight: 600; font-size: 0.75rem; }
+        td { padding: 8px 5px; border-bottom: 1px solid #1f4733; }
         tr:last-child td { border-bottom: none; }
-        
-        .tabla-fija td {
-            background-color: #11291e;
-            min-width: 150px;
-        }
         
         .team-info { display: flex; align-items: center; gap: 8px; }
         .team-logo { width: 24px; height: 24px; object-fit: contain; background: #fff; border-radius: 50%; padding: 2px; }
         .team-logo.large { width: 30px; height: 30px; }
         .pts-col { font-weight: bold; color: #2ecc71; }
         
-        .form-badge { 
-            display: inline-block; 
-            width: 20px; 
-            height: 20px; 
-            line-height: 20px; 
-            border-radius: 4px; 
-            font-size: 0.7rem; 
-            font-weight: bold; 
-            color: white; 
-            margin: 0 1px; 
-        }
+        .form-badge { display: inline-block; width: 20px; height: 20px; line-height: 20px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; color: white; margin: 0 1px; }
         .win { background-color: #27ae60; }
         .draw { background-color: #f39c12; }
         .loss { background-color: #c0392b; }
         .none { background-color: #7f8c8d; }
-
+        
+        /* TARJETAS PARA MÓVIL */
+        .team-cards { display: none; }
+        
+        .team-card {
+            background-color: #11291e;
+            border: 1px solid #1f4733;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .team-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .team-card-pos {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2ecc71;
+            width: 30px;
+        }
+        
+        .team-card-name {
+            flex: 1;
+            font-weight: 600;
+        }
+        
+        .team-card-pts {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+        
+        .team-card-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #1f4733;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            color: #a3b8af;
+            text-transform: uppercase;
+        }
+        
+        .stat-value {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        
+        .team-card-form {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
         footer { text-align: center; padding: 20px; color: #a3b8af; font-size: 0.8rem; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .table-container { display: none; }
+            .team-cards { display: block; }
+        }
     </style>
 </head>
 <body>
@@ -135,66 +147,342 @@
         </div>
 
         <div id="clasificacion" class="section-content active">
-            <div class="tabla-container">
-                <!-- TABLA FIJA -->
-                <div class="tabla-fija">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Equipo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td><div class="team-info"><img src="escudos/barbera.png" class="team-logo">Barberà</div></td></tr>
-                            <tr><td>2</td><td><div class="team-info"><img src="escudos/can_parellada.png" class="team-logo">Can Parellada</div></td></tr>
-                            <tr><td>3</td><td><div class="team-info"><img src="escudos/castellar.png" class="team-logo">Castellar</div></td></tr>
-                            <tr><td>4</td><td><div class="team-info"><img src="escudos/sta_eulalia.png" class="team-logo">Santa Eulàlia</div></td></tr>
-                            <tr><td>5</td><td><div class="team-info"><img src="escudos/l_ametlla.png" class="team-logo">L'Ametlla</div></td></tr>
-                            <tr><td>6</td><td><div class="team-info"><img src="escudos/sabadellenca.png" class="team-logo">Sabadellenca</div></td></tr>
-                            <tr><td>7</td><td><div class="team-info"><img src="escudos/decano.png" class="team-logo">Penya Decano</div></td></tr>
-                            <tr><td>8</td><td><div class="team-info"><img src="escudos/cerdanyola.png" class="team-logo">Cerdanyola</div></td></tr>
-                            <tr><td>9</td><td><div class="team-info"><img src="escudos/palleja.png" class="team-logo">Pallejà</div></td></tr>
-                            <tr><td>10</td><td><div class="team-info"><img src="escudos/agrup_ripollet.png" class="team-logo">A.V. Ripollet</div></td></tr>
-                            <tr><td>11</td><td><div class="team-info"><img src="escudos/gramanet.png" class="team-logo">Gramanet</div></td></tr>
-                            <tr><td>12</td><td><div class="team-info"><img src="escudos/sentmenat.png" class="team-logo large">Sentmenat</div></td></tr>
-                            <tr><td>13</td><td><div class="team-info"><img src="escudos/st_feliu_codines.png" class="team-logo">Sant Feliu</div></td></tr>
-                            <tr><td>14</td><td><div class="team-info"><img src="escudos/vcf_ripollet.png" class="team-logo">VCF Ripollet</div></td></tr>
-                            <tr><td>15</td><td><div class="team-info"><img src="escudos/canovelles.png" class="team-logo">Canovelles</div></td></tr>
-                            <tr><td>16</td><td><div class="team-info"><img src="escudos/palau_plegamans.png" class="team-logo">Palau Plegamans</div></td></tr>
-                            <tr><td>17</td><td><div class="team-info"><img src="escudos/bigues.png" class="team-logo">Bigues</div></td></tr>
-                        </tbody>
-                    </table>
+            <!-- TABLA PARA PC -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Equipo</th><th>PJ</th><th>PTS</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DIF</th><th>3 ÚLT.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><div class="team-info"><img src="escudos/barbera.png" class="team-logo">Barberà</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>2</td><td style="color:#2ecc71;">+6</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>2</td><td><div class="team-info"><img src="escudos/can_parellada.png" class="team-logo">Can Parellada</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>3</td><td><div class="team-info"><img src="escudos/castellar.png" class="team-logo">Castellar</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>4</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>4</td><td><div class="team-info"><img src="escudos/sta_eulalia.png" class="team-logo">Santa Eulàlia</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>5</td><td style="color:#2ecc71;">+3</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>5</td><td><div class="team-info"><img src="escudos/l_ametlla.png" class="team-logo">L'Ametlla</div></td><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>20</td><td>7</td><td style="color:#2ecc71;">+13</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>6</td><td><div class="team-info"><img src="escudos/sabadellenca.png" class="team-logo">Sabadellenca</div></td><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>7</td><td><div class="team-info"><img src="escudos/decano.png" class="team-logo">Penya Decano</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>8</td><td>6</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>8</td><td><div class="team-info"><img src="escudos/cerdanyola.png" class="team-logo">Cerdanyola</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>4</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>9</td><td><div class="team-info"><img src="escudos/palleja.png" class="team-logo">Pallejà</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>5</td><td style="color:#2ecc71;">+1</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>10</td><td><div class="team-info"><img src="escudos/agrup_ripollet.png" class="team-logo">A.V. Ripollet</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>7</td><td style="color:#e74c3c;">-1</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>11</td><td><div class="team-info"><img src="escudos/gramanet.png" class="team-logo">Gramanet</div></td><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>3</td><td>5</td><td style="color:#e74c3c;">-2</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>12</td><td><div class="team-info"><img src="escudos/sentmenat.png" class="team-logo large">Sentmenat</div></td><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>4</td><td>7</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>13</td><td><div class="team-info"><img src="escudos/st_feliu_codines.png" class="team-logo">Sant Feliu</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>3</td><td>7</td><td style="color:#e74c3c;">-4</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>14</td><td><div class="team-info"><img src="escudos/vcf_ripollet.png" class="team-logo">VCF Ripollet</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>10</td><td style="color:#e74c3c;">-6</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>15</td><td><div class="team-info"><img src="escudos/canovelles.png" class="team-logo">Canovelles</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>16</td><td><div class="team-info"><img src="escudos/palau_plegamans.png" class="team-logo">Palau Plegamans</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>3</td><td>6</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>17</td><td><div class="team-info"><img src="escudos/bigues.png" class="team-logo">Bigues</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>21</td><td style="color:#e74c3c;">-17</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- TARJETAS PARA MÓVIL -->
+            <div class="team-cards">
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">1</div>
+                        <img src="escudos/barbera.png" class="team-logo">
+                        <div class="team-card-name">Barberà</div>
+                        <div class="team-card-pts">6</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#2ecc71;">+6</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">8:2</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span>
+                    </div>
                 </div>
                 
-                <!-- TABLA SCROLL -->
-                <div class="tabla-scroll">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>PJ</th><th>PTS</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DIF</th><th>3 ÚLT.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>2</td><td style="color:#2ecc71;">+6</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>4</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>5</td><td style="color:#2ecc71;">+3</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>20</td><td>7</td><td style="color:#2ecc71;">+13</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>8</td><td>6</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>4</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>5</td><td style="color:#2ecc71;">+1</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>7</td><td style="color:#e74c3c;">-1</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>3</td><td>5</td><td style="color:#e74c3c;">-2</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>4</td><td>7</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>3</td><td>7</td><td style="color:#e74c3c;">-4</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>10</td><td style="color:#e74c3c;">-6</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>3</td><td>6</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>21</td><td style="color:#e74c3c;">-17</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
-                        </tbody>
-                    </table>
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">2</div>
+                        <img src="escudos/can_parellada.png" class="team-logo">
+                        <div class="team-card-name">Can Parellada</div>
+                        <div class="team-card-pts">6</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#2ecc71;">+4</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">9:5</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">3</div>
+                        <img src="escudos/castellar.png" class="team-logo">
+                        <div class="team-card-name">Castellar</div>
+                        <div class="team-card-pts">6</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#2ecc71;">+4</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">8:4</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">4</div>
+                        <img src="escudos/sta_eulalia.png" class="team-logo">
+                        <div class="team-card-name">Santa Eulàlia</div>
+                        <div class="team-card-pts">6</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#2ecc71;">+3</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">8:5</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">5</div>
+                        <img src="escudos/l_ametlla.png" class="team-logo">
+                        <div class="team-card-name">L'Ametlla</div>
+                        <div class="team-card-pts">4</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">1</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#2ecc71;">+13</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">20:7</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">6</div>
+                        <img src="escudos/sabadellenca.png" class="team-logo">
+                        <div class="team-card-name">Sabadellenca</div>
+                        <div class="team-card-pts">4</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">1</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#2ecc71;">+4</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">9:5</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">7</div>
+                        <img src="escudos/decano.png" class="team-logo">
+                        <div class="team-card-name">Penya Decano</div>
+                        <div class="team-card-pts">3</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">1</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#2ecc71;">+2</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">8:6</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">8</div>
+                        <img src="escudos/cerdanyola.png" class="team-logo">
+                        <div class="team-card-name">Cerdanyola</div>
+                        <div class="team-card-pts">3</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">1</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#2ecc71;">+2</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">6:4</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">9</div>
+                        <img src="escudos/palleja.png" class="team-logo">
+                        <div class="team-card-name">Pallejà</div>
+                        <div class="team-card-pts">3</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">1</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#2ecc71;">+1</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">6:5</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">10</div>
+                        <img src="escudos/agrup_ripollet.png" class="team-logo">
+                        <div class="team-card-name">A.V. Ripollet</div>
+                        <div class="team-card-pts">3</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">1</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#e74c3c;">-1</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">6:7</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">11</div>
+                        <img src="escudos/gramanet.png" class="team-logo">
+                        <div class="team-card-name">Gramanet</div>
+                        <div class="team-card-pts">1</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">0</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#e74c3c;">-2</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">3:5</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">12</div>
+                        <img src="escudos/sentmenat.png" class="team-logo large">
+                        <div class="team-card-name">Sentmenat</div>
+                        <div class="team-card-pts">1</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">0</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#e74c3c;">-3</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">4:7</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">13</div>
+                        <img src="escudos/st_feliu_codines.png" class="team-logo">
+                        <div class="team-card-name">Sant Feliu</div>
+                        <div class="team-card-pts">0</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">0</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#e74c3c;">-4</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">3:7</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">14</div>
+                        <img src="escudos/vcf_ripollet.png" class="team-logo">
+                        <div class="team-card-name">VCF Ripollet</div>
+                        <div class="team-card-pts">0</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">0</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#e74c3c;">-6</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">4:10</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">15</div>
+                        <img src="escudos/canovelles.png" class="team-logo">
+                        <div class="team-card-name">Canovelles</div>
+                        <div class="team-card-pts">0</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">1</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">0</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#e74c3c;">-3</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">1:4</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">16</div>
+                        <img src="escudos/palau_plegamans.png" class="team-logo">
+                        <div class="team-card-name">Palau Plegamans</div>
+                        <div class="team-card-pts">0</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">1</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">0</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#e74c3c;">-3</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">3:6</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-card-header">
+                        <div class="team-card-pos">17</div>
+                        <img src="escudos/bigues.png" class="team-logo">
+                        <div class="team-card-name">Bigues</div>
+                        <div class="team-card-pts">0</div>
+                    </div>
+                    <div class="team-card-stats">
+                        <div class="stat-item"><div class="stat-label">PJ</div><div class="stat-value">2</div></div>
+                        <div class="stat-item"><div class="stat-label">G</div><div class="stat-value">0</div></div>
+                        <div class="stat-item"><div class="stat-label">DIF</div><div class="stat-value" style="color:#e74c3c;">-17</div></div>
+                        <div class="stat-item"><div class="stat-label">GF:GC</div><div class="stat-value">4:21</div></div>
+                    </div>
+                    <div class="team-card-form">
+                        <span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span>
+                    </div>
                 </div>
             </div>
         </div>
