@@ -14,46 +14,19 @@
         body { background-color: #0b1d15; color: #ffffff; padding: 10px; }
         .container { max-width: 1000px; margin: 0 auto; }
         
-        /* HEADER COMPACTO */
-        header { 
-            text-align: center; 
-            padding: 10px;
-            background-color: #0b1d15;
-            margin-bottom: 15px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        header { text-align: center; padding: 10px; background-color: #0b1d15; margin-bottom: 15px; }
         header img { height: 50px; width: auto; }
         
-        .badge-jornada { 
-            display: inline-block; 
-            background-color: #2ecc71; 
-            color: #0b1d15; 
-            padding: 5px 12px; 
-            border-radius: 15px; 
-            font-weight: bold; 
-            font-size: 0.8rem; 
-            margin-top: 5px; 
-        }
+        .badge-jornada { display: inline-block; background-color: #2ecc71; color: #0b1d15; padding: 5px 12px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; margin-top: 5px; }
         
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .tab-btn { 
-            background-color: #11291e; 
-            color: #a3b8af; 
-            border: 1px solid #1f4733; 
-            padding: 8px 15px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-weight: bold; 
-            font-size: 0.85rem; 
-        }
+        .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; }
         .tab-btn.active { background-color: #2ecc71; color: #0b1d15; }
         
         .section-content { display: none; }
         .section-content.active { display: block; }
         
-        /* TABLA PARA PC */
+        /* TABLA PC */
         .table-wrapper {
             background-color: #11291e;
             border-radius: 12px;
@@ -85,9 +58,7 @@
         .loss { background-color: #c0392b; }
         .none { background-color: #7f8c8d; }
         
-        /* TARJETAS PARA MÓVIL */
-        .team-cards { display: none; }
-        
+        /* TARJETAS MÓVIL */
         .team-card {
             background-color: #11291e;
             border: 1px solid #1f4733;
@@ -103,24 +74,9 @@
             margin-bottom: 8px;
         }
         
-        .team-card-pos { 
-            font-size: 1rem; 
-            font-weight: bold; 
-            color: #2ecc71; 
-            width: 25px; 
-        }
-        
-        .team-card-name { 
-            flex: 1; 
-            font-weight: 600; 
-            font-size: 0.9rem;
-        }
-        
-        .team-card-pts { 
-            font-size: 1.3rem; 
-            font-weight: bold; 
-            color: #2ecc71; 
-        }
+        .team-card-pos { font-size: 1rem; font-weight: bold; color: #2ecc71; width: 25px; }
+        .team-card-name { flex: 1; font-weight: 600; font-size: 0.9rem; }
+        .team-card-pts { font-size: 1.3rem; font-weight: bold; color: #2ecc71; }
         
         .team-card-stats {
             display: grid;
@@ -135,25 +91,18 @@
         .stat-label { font-size: 0.65rem; color: #a3b8af; text-transform: uppercase; }
         .stat-value { font-size: 0.9rem; font-weight: bold; }
         
-        .team-card-form { 
-            display: flex; 
-            gap: 4px; 
-            justify-content: center; 
-            margin-top: 8px; 
-        }
+        .team-card-form { display: flex; gap: 4px; justify-content: center; margin-top: 8px; }
         
         footer { text-align: center; padding: 20px; color: #a3b8af; font-size: 0.75rem; }
         
-        /* RESPONSIVE: MÓVIL < 768px */
-        @media (max-width: 768px) {
-            .table-wrapper { display: none; }
-            .team-cards { display: block; }
-        }
+        /* POR DEFECTO: Ocultar tarjetas, mostrar tabla */
+        .team-cards { display: none !important; }
+        .table-wrapper { display: block !important; }
         
-        /* PC: > 768px */
-        @media (min-width: 769px) {
-            .table-wrapper { display: block; }
-            .team-cards { display: none; }
+        /* MÓVIL (< 768px): Ocultar tabla, mostrar tarjetas */
+        @media (max-width: 768px) {
+            .team-cards { display: block !important; }
+            .table-wrapper { display: none !important; }
         }
     </style>
 </head>
