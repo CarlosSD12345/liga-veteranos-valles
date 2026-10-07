@@ -1,0 +1,18 @@
+{
+  "name": "Liga Veteranos Vallès",
+  "short_name": "Veteranos Vallès",
+  "description": "Clasificación y calendario de la Liga de Fútbol Veteranos del Vallès",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b1d15",
+  "theme_color": "#2ecc71",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "escudos/icono_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
