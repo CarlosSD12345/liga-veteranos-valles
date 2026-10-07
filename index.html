@@ -36,6 +36,7 @@
         .section-content { display: none; }
         .section-content.active { display: block; }
         
+        /* TABLA - ARREGLADO PARA SAFARI Y CHROME */
         .table-responsive { 
             width: 100%; 
             overflow-x: auto; 
@@ -86,6 +87,7 @@
         .loss { background-color: #c0392b; }
         .none { background-color: #7f8c8d; }
         
+        /* CALENDARIO */
         .selector-container { margin-bottom: 20px; text-align: center; }
         #selector-jornada {
             background-color: var(--card-bg); color: var(--text-white); border: 1px solid var(--accent-green);
@@ -132,6 +134,7 @@
             <button class="tab-btn" onclick="switchTab('calendario', this)">Calendario de Partidos</button>
         </div>
 
+        <!-- SECCIÓN CLASIFICACIÓN -->
         <div id="clasificacion" class="section-content active">
             <div class="table-responsive">
                 <table>
@@ -165,7 +168,7 @@
                         <tr><td>12</td><td class="team-cell"><div class="team-info"><img src="escudos/sentmenat.png" class="team-logo large">Sentmenat</div></td><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>4</td><td>7</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
                         <tr><td>13</td><td class="team-cell"><div class="team-info"><img src="escudos/st_feliu_codines.png" class="team-logo">Sant Feliu</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>3</td><td>7</td><td style="color:var(--accent-red);">-4</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
                         <tr><td>14</td><td class="team-cell"><div class="team-info"><img src="escudos/palau_plegamans.png" class="team-logo">Palau Plegamans</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>3</td><td>6</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td>15</td><td class="team-cell"><div class="team-info"><img src="escudos/canovelles.png" class="team-logo">Canovelles</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>15</td><td class="team-cell"><div class="team-info"><img src="escudos/canovelles.png" class="team-logo">Canovelles</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge none">-</span></td></tr>
                         <tr><td>16</td><td class="team-cell"><div class="team-info"><img src="escudos/vcf_ripollet.png" class="team-logo">VCF Ripollet</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>10</td><td style="color:var(--accent-red);">-6</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
                         <tr><td>17</td><td class="team-cell"><div class="team-info"><img src="escudos/bigues.png" class="team-logo">Bigues</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>21</td><td style="color:var(--accent-red);">-17</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
                     </tbody>
@@ -173,6 +176,7 @@
             </div>
         </div>
 
+        <!-- SECCIÓN CALENDARIO -->
         <div id="calendario" class="section-content">
             <div class="selector-container">
                 <select id="selector-jornada" onchange="cargarJornada()"></select>
@@ -257,7 +261,7 @@
             let html = '';
             
             if (jornada.suspendida) {
-                html += `<div class="suspended-banner">️ JORNADA ${jornada.jornada} SUSPENDIDA POR LLUVIA</div>`;
+                html += `<div class="suspended-banner">🌧️ JORNADA ${jornada.jornada} SUSPENDIDA POR LLUVIA</div>`;
             }
 
             if (jornada.descanso) {
