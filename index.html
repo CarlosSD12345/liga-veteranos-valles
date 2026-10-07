@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liga de Fútbol Veteranos del Vallès</title>
+    
+    <!-- PWA: Icono y manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2ecc71">
+    <link rel="apple-touch-icon" href="escudos/icono_512.png">
+    
     <style>
         :root {
             --bg-color: #0b1d15;
@@ -17,10 +23,20 @@
             --border-color: #1f4733;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-white); padding: 20px; }
+        body { background-color: var(--bg-color); color: var(--text-white); padding: 20px; padding-top: 160px; }
         .container { max-width: 1000px; margin: 0 auto; }
         
-        header { text-align: center; padding: 15px 20px; background-color: var(--bg-color); border-radius: 12px; margin-bottom: 25px; }
+        header { 
+            text-align: center; 
+            padding: 15px 20px; 
+            background-color: var(--bg-color); 
+            border-radius: 12px; 
+            margin-bottom: 25px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
         header img { height: 90px; width: auto; object-fit: contain; margin-bottom: 10px; }
         
         .badge-jornada { display: inline-block; background-color: var(--accent-green); color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
@@ -337,6 +353,17 @@
             });
             document.getElementById(tabId).classList.add('active');
             btnElement.classList.add('active');
+        }
+    </script>
+
+    <!-- PWA: Registro del Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registrado', reg))
+                    .catch(err => console.log('Error al registrar SW', err));
+            });
         }
     </script>
 </body>
