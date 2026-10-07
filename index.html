@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liga de Fútbol Veteranos del Vallès</title>
     
-    <link rel="manifest" href="manifest.json">
+    <!-- Color de la barra del navegador en móviles -->
     <meta name="theme-color" content="#2ecc71">
+    <!-- Icono si alguien guarda la web en favoritos -->
     <link rel="apple-touch-icon" href="escudos/icono_512.png">
     
     <style>
@@ -36,6 +37,7 @@
         .section-content { display: none; }
         .section-content.active { display: block; }
         
+        /* TABLA - ARREGLADO PARA SAFARI Y CHROME */
         .table-responsive { 
             width: 100%; 
             overflow-x: auto; 
@@ -86,6 +88,7 @@
         .loss { background-color: #c0392b; }
         .none { background-color: #7f8c8d; }
         
+        /* CALENDARIO */
         .selector-container { margin-bottom: 20px; text-align: center; }
         #selector-jornada {
             background-color: var(--card-bg); color: var(--text-white); border: 1px solid var(--accent-green);
@@ -132,6 +135,7 @@
             <button class="tab-btn" onclick="switchTab('calendario', this)">Calendario de Partidos</button>
         </div>
 
+        <!-- SECCIÓN CLASIFICACIÓN -->
         <div id="clasificacion" class="section-content active">
             <div class="table-responsive">
                 <table>
@@ -173,6 +177,7 @@
             </div>
         </div>
 
+        <!-- SECCIÓN CALENDARIO -->
         <div id="calendario" class="section-content">
             <div class="selector-container">
                 <select id="selector-jornada" onchange="cargarJornada()"></select>
@@ -692,7 +697,7 @@
             let html = '';
             
             if (jornada.suspendida) {
-                html += `<div class="suspended-banner">️ JORNADA ${jornada.jornada} SUSPENDIDA POR LLUVIA</div>`;
+                html += `<div class="suspended-banner">🌧️ JORNADA ${jornada.jornada} SUSPENDIDA POR LLUVIA</div>`;
             }
 
             if (jornada.descanso) {
@@ -731,12 +736,6 @@
         }
 
         window.onload = initCalendario;
-    </script>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); });
-        }
     </script>
 </body>
 </html>
