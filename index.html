@@ -14,19 +14,46 @@
         body { background-color: #0b1d15; color: #ffffff; padding: 10px; }
         .container { max-width: 1000px; margin: 0 auto; }
         
-        header { text-align: center; padding: 10px; background-color: #0b1d15; margin-bottom: 15px; }
-        header img { height: 60px; width: auto; }
+        /* HEADER COMPACTO */
+        header { 
+            text-align: center; 
+            padding: 10px;
+            background-color: #0b1d15;
+            margin-bottom: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header img { height: 50px; width: auto; }
         
-        .badge-jornada { display: inline-block; background-color: #2ecc71; color: #0b1d15; padding: 6px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-top: 8px; }
+        .badge-jornada { 
+            display: inline-block; 
+            background-color: #2ecc71; 
+            color: #0b1d15; 
+            padding: 5px 12px; 
+            border-radius: 15px; 
+            font-weight: bold; 
+            font-size: 0.8rem; 
+            margin-top: 5px; 
+        }
         
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
+        .tab-btn { 
+            background-color: #11291e; 
+            color: #a3b8af; 
+            border: 1px solid #1f4733; 
+            padding: 8px 15px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 0.85rem; 
+        }
         .tab-btn.active { background-color: #2ecc71; color: #0b1d15; }
         
         .section-content { display: none; }
         .section-content.active { display: block; }
         
-        /* TABLA PC */
+        /* TABLA PARA PC */
         .table-wrapper {
             background-color: #11291e;
             border-radius: 12px;
@@ -37,60 +64,15 @@
         
         table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
+            border-collapse: collapse;
             text-align: center;
             font-size: 0.85rem;
             min-width: 700px;
         }
         
-        th {
-            background-color: #173827;
-            color: #a3b8af;
-            padding: 10px 5px;
-            font-weight: 600;
-            font-size: 0.75rem;
-            position: sticky;
-            top: 0;
-            z-index: 20;
-        }
-        
-        td {
-            padding: 8px 5px;
-            border-bottom: 1px solid #1f4733;
-            background-color: #11291e;
-        }
-        
+        th { background-color: #173827; color: #a3b8af; padding: 10px 5px; font-weight: 600; font-size: 0.75rem; }
+        td { padding: 8px 5px; border-bottom: 1px solid #1f4733; }
         tr:last-child td { border-bottom: none; }
-        
-        /* COLUMNAS FIJAS */
-        .col-pos {
-            position: sticky;
-            left: 0;
-            background-color: #11291e;
-            z-index: 10;
-            min-width: 40px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-        }
-        
-        .col-equipo {
-            position: sticky;
-            left: 40px;
-            background-color: #11291e;
-            z-index: 10;
-            text-align: left;
-            padding-left: 10px;
-            min-width: 160px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-        }
-        
-        th.col-pos, th.col-equipo {
-            background-color: #173827;
-            z-index: 25;
-        }
-        
-        tr:hover td { background-color: rgba(46, 204, 113, 0.05); }
-        tr:hover td.col-pos, tr:hover td.col-equipo { background-color: rgba(46, 204, 113, 0.1); }
         
         .team-info { display: flex; align-items: center; gap: 8px; }
         .team-logo { width: 24px; height: 24px; object-fit: contain; background: #fff; border-radius: 50%; padding: 2px; }
@@ -103,49 +85,75 @@
         .loss { background-color: #c0392b; }
         .none { background-color: #7f8c8d; }
         
-        /* TARJETAS MÓVIL */
+        /* TARJETAS PARA MÓVIL */
         .team-cards { display: none; }
         
         .team-card {
             background-color: #11291e;
             border: 1px solid #1f4733;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 8px;
         }
         
         .team-card-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 8px;
+            margin-bottom: 8px;
         }
         
-        .team-card-pos { font-size: 1.2rem; font-weight: bold; color: #2ecc71; width: 30px; }
-        .team-card-name { flex: 1; font-weight: 600; }
-        .team-card-pts { font-size: 1.5rem; font-weight: bold; color: #2ecc71; }
+        .team-card-pos { 
+            font-size: 1rem; 
+            font-weight: bold; 
+            color: #2ecc71; 
+            width: 25px; 
+        }
+        
+        .team-card-name { 
+            flex: 1; 
+            font-weight: 600; 
+            font-size: 0.9rem;
+        }
+        
+        .team-card-pts { 
+            font-size: 1.3rem; 
+            font-weight: bold; 
+            color: #2ecc71; 
+        }
         
         .team-card-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-            padding-top: 10px;
+            gap: 8px;
+            margin-top: 8px;
+            padding-top: 8px;
             border-top: 1px solid #1f4733;
         }
         
         .stat-item { text-align: center; }
-        .stat-label { font-size: 0.7rem; color: #a3b8af; text-transform: uppercase; }
-        .stat-value { font-size: 1rem; font-weight: bold; }
+        .stat-label { font-size: 0.65rem; color: #a3b8af; text-transform: uppercase; }
+        .stat-value { font-size: 0.9rem; font-weight: bold; }
         
-        .team-card-form { display: flex; gap: 5px; justify-content: center; margin-top: 10px; }
+        .team-card-form { 
+            display: flex; 
+            gap: 4px; 
+            justify-content: center; 
+            margin-top: 8px; 
+        }
         
-        footer { text-align: center; padding: 20px; color: #a3b8af; font-size: 0.8rem; }
+        footer { text-align: center; padding: 20px; color: #a3b8af; font-size: 0.75rem; }
         
-        /* RESPONSIVE */
+        /* RESPONSIVE: MÓVIL < 768px */
         @media (max-width: 768px) {
             .table-wrapper { display: none; }
             .team-cards { display: block; }
+        }
+        
+        /* PC: > 768px */
+        @media (min-width: 769px) {
+            .table-wrapper { display: block; }
+            .team-cards { display: none; }
         }
     </style>
 </head>
@@ -167,29 +175,27 @@
                 <table>
                     <thead>
                         <tr>
-                            <th class="col-pos">#</th>
-                            <th class="col-equipo">Equipo</th>
-                            <th>PJ</th><th>PTS</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DIF</th><th>3 ÚLT.</th>
+                            <th>#</th><th>Equipo</th><th>PJ</th><th>PTS</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DIF</th><th>3 ÚLT.</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="col-pos">1</td><td class="col-equipo"><div class="team-info"><img src="escudos/barbera.png" class="team-logo">Barberà</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>2</td><td style="color:#2ecc71;">+6</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                        <tr><td class="col-pos">2</td><td class="col-equipo"><div class="team-info"><img src="escudos/can_parellada.png" class="team-logo">Can Parellada</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                        <tr><td class="col-pos">3</td><td class="col-equipo"><div class="team-info"><img src="escudos/castellar.png" class="team-logo">Castellar</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>4</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                        <tr><td class="col-pos">4</td><td class="col-equipo"><div class="team-info"><img src="escudos/sta_eulalia.png" class="team-logo">Santa Eulàlia</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>5</td><td style="color:#2ecc71;">+3</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                        <tr><td class="col-pos">5</td><td class="col-equipo"><div class="team-info"><img src="escudos/l_ametlla.png" class="team-logo">L'Ametlla</div></td><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>20</td><td>7</td><td style="color:#2ecc71;">+13</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
-                        <tr><td class="col-pos">6</td><td class="col-equipo"><div class="team-info"><img src="escudos/sabadellenca.png" class="team-logo">Sabadellenca</div></td><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
-                        <tr><td class="col-pos">7</td><td class="col-equipo"><div class="team-info"><img src="escudos/decano.png" class="team-logo">Penya Decano</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>8</td><td>6</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td class="col-pos">8</td><td class="col-equipo"><div class="team-info"><img src="escudos/cerdanyola.png" class="team-logo">Cerdanyola</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>4</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
-                        <tr><td class="col-pos">9</td><td class="col-equipo"><div class="team-info"><img src="escudos/palleja.png" class="team-logo">Pallejà</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>5</td><td style="color:#2ecc71;">+1</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td class="col-pos">10</td><td class="col-equipo"><div class="team-info"><img src="escudos/agrup_ripollet.png" class="team-logo">A.V. Ripollet</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>7</td><td style="color:#e74c3c;">-1</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
-                        <tr><td class="col-pos">11</td><td class="col-equipo"><div class="team-info"><img src="escudos/gramanet.png" class="team-logo">Gramanet</div></td><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>3</td><td>5</td><td style="color:#e74c3c;">-2</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td class="col-pos">12</td><td class="col-equipo"><div class="team-info"><img src="escudos/sentmenat.png" class="team-logo large">Sentmenat</div></td><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>4</td><td>7</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td class="col-pos">13</td><td class="col-equipo"><div class="team-info"><img src="escudos/st_feliu_codines.png" class="team-logo">Sant Feliu</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>3</td><td>7</td><td style="color:#e74c3c;">-4</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td class="col-pos">14</td><td class="col-equipo"><div class="team-info"><img src="escudos/vcf_ripollet.png" class="team-logo">VCF Ripollet</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>10</td><td style="color:#e74c3c;">-6</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td class="col-pos">15</td><td class="col-equipo"><div class="team-info"><img src="escudos/canovelles.png" class="team-logo">Canovelles</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td class="col-pos">16</td><td class="col-equipo"><div class="team-info"><img src="escudos/palau_plegamans.png" class="team-logo">Palau Plegamans</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>3</td><td>6</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td class="col-pos">17</td><td class="col-equipo"><div class="team-info"><img src="escudos/bigues.png" class="team-logo">Bigues</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>21</td><td style="color:#e74c3c;">-17</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>1</td><td><div class="team-info"><img src="escudos/barbera.png" class="team-logo">Barberà</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>2</td><td style="color:#2ecc71;">+6</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>2</td><td><div class="team-info"><img src="escudos/can_parellada.png" class="team-logo">Can Parellada</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>3</td><td><div class="team-info"><img src="escudos/castellar.png" class="team-logo">Castellar</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>4</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>4</td><td><div class="team-info"><img src="escudos/sta_eulalia.png" class="team-logo">Santa Eulàlia</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>5</td><td style="color:#2ecc71;">+3</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>5</td><td><div class="team-info"><img src="escudos/l_ametlla.png" class="team-logo">L'Ametlla</div></td><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>20</td><td>7</td><td style="color:#2ecc71;">+13</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>6</td><td><div class="team-info"><img src="escudos/sabadellenca.png" class="team-logo">Sabadellenca</div></td><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>7</td><td><div class="team-info"><img src="escudos/decano.png" class="team-logo">Penya Decano</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>8</td><td>6</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>8</td><td><div class="team-info"><img src="escudos/cerdanyola.png" class="team-logo">Cerdanyola</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>4</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>9</td><td><div class="team-info"><img src="escudos/palleja.png" class="team-logo">Pallejà</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>5</td><td style="color:#2ecc71;">+1</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>10</td><td><div class="team-info"><img src="escudos/agrup_ripollet.png" class="team-logo">A.V. Ripollet</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>7</td><td style="color:#e74c3c;">-1</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>11</td><td><div class="team-info"><img src="escudos/gramanet.png" class="team-logo">Gramanet</div></td><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>3</td><td>5</td><td style="color:#e74c3c;">-2</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>12</td><td><div class="team-info"><img src="escudos/sentmenat.png" class="team-logo large">Sentmenat</div></td><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>4</td><td>7</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>13</td><td><div class="team-info"><img src="escudos/st_feliu_codines.png" class="team-logo">Sant Feliu</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>3</td><td>7</td><td style="color:#e74c3c;">-4</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>14</td><td><div class="team-info"><img src="escudos/vcf_ripollet.png" class="team-logo">VCF Ripollet</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>10</td><td style="color:#e74c3c;">-6</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>15</td><td><div class="team-info"><img src="escudos/canovelles.png" class="team-logo">Canovelles</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>16</td><td><div class="team-info"><img src="escudos/palau_plegamans.png" class="team-logo">Palau Plegamans</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>3</td><td>6</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>17</td><td><div class="team-info"><img src="escudos/bigues.png" class="team-logo">Bigues</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>21</td><td style="color:#e74c3c;">-17</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
                     </tbody>
                 </table>
             </div>
