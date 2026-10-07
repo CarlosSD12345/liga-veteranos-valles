@@ -36,7 +36,6 @@
         .section-content { display: none; }
         .section-content.active { display: block; }
         
-        /* TABLA - ARREGLADO PARA SAFARI Y CHROME */
         .table-responsive { 
             width: 100%; 
             overflow-x: auto; 
@@ -87,7 +86,6 @@
         .loss { background-color: #c0392b; }
         .none { background-color: #7f8c8d; }
         
-        /* CALENDARIO */
         .selector-container { margin-bottom: 20px; text-align: center; }
         #selector-jornada {
             background-color: var(--card-bg); color: var(--text-white); border: 1px solid var(--accent-green);
@@ -126,7 +124,7 @@
     <div class="container">
         <header>
             <img src="escudos/logo_liga.png" alt="Logo Liga">
-            <div class="badge-jornada">CLASIFICACIÓN POR PUNTOS</div>
+            <div class="badge-jornada">JORNADA 3 · CLASIFICACIÓN</div>
         </header>
 
         <div class="tabs">
@@ -134,7 +132,6 @@
             <button class="tab-btn" onclick="switchTab('calendario', this)">Calendario de Partidos</button>
         </div>
 
-        <!-- SECCIÓN CLASIFICACIÓN -->
         <div id="clasificacion" class="section-content active">
             <div class="table-responsive">
                 <table>
@@ -160,23 +157,22 @@
                         <tr><td>4</td><td class="team-cell"><div class="team-info"><img src="escudos/sta_eulalia.png" class="team-logo">Santa Eulàlia</div></td><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>5</td><td style="color:var(--accent-green);">+3</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
                         <tr><td>5</td><td class="team-cell"><div class="team-info"><img src="escudos/l_ametlla.png" class="team-logo">L'Ametlla</div></td><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>20</td><td>7</td><td style="color:var(--accent-green);">+13</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
                         <tr><td>6</td><td class="team-cell"><div class="team-info"><img src="escudos/sabadellenca.png" class="team-logo">Sabadellenca</div></td><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>9</td><td>5</td><td style="color:var(--accent-green);">+4</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
-                        <tr><td>7</td><td class="team-cell"><div class="team-info"><img src="escudos/decano.png" class="team-logo">Penya Decano</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>8</td><td>6</td><td style="color:var(--accent-green);">+2</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td>8</td><td class="team-cell"><div class="team-info"><img src="escudos/cerdanyola.png" class="team-logo">Cerdanyola</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>4</td><td style="color:var(--accent-green);">+2</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>7</td><td class="team-cell"><div class="team-info"><img src="escudos/cerdanyola.png" class="team-logo">Cerdanyola</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>4</td><td style="color:var(--accent-green);">+2</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
+                        <tr><td>8</td><td class="team-cell"><div class="team-info"><img src="escudos/decano.png" class="team-logo">Penya Decano</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>8</td><td>6</td><td style="color:var(--accent-green);">+2</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
                         <tr><td>9</td><td class="team-cell"><div class="team-info"><img src="escudos/palleja.png" class="team-logo">Pallejà</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>5</td><td style="color:var(--accent-green);">+1</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
                         <tr><td>10</td><td class="team-cell"><div class="team-info"><img src="escudos/agrup_ripollet.png" class="team-logo">A.V. Ripollet</div></td><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>7</td><td style="color:var(--accent-red);">-1</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
                         <tr><td>11</td><td class="team-cell"><div class="team-info"><img src="escudos/gramanet.png" class="team-logo">Gramanet</div></td><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>3</td><td>5</td><td style="color:var(--accent-red);">-2</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
                         <tr><td>12</td><td class="team-cell"><div class="team-info"><img src="escudos/sentmenat.png" class="team-logo large">Sentmenat</div></td><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>4</td><td>7</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
                         <tr><td>13</td><td class="team-cell"><div class="team-info"><img src="escudos/st_feliu_codines.png" class="team-logo">Sant Feliu</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>3</td><td>7</td><td style="color:var(--accent-red);">-4</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td>14</td><td class="team-cell"><div class="team-info"><img src="escudos/vcf_ripollet.png" class="team-logo">VCF Ripollet</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>10</td><td style="color:var(--accent-red);">-6</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>14</td><td class="team-cell"><div class="team-info"><img src="escudos/palau_plegamans.png" class="team-logo">Palau Plegamans</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>3</td><td>6</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
                         <tr><td>15</td><td class="team-cell"><div class="team-info"><img src="escudos/canovelles.png" class="team-logo">Canovelles</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
-                        <tr><td>16</td><td class="team-cell"><div class="team-info"><img src="escudos/palau_plegamans.png" class="team-logo">Palau Plegamans</div></td><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>3</td><td>6</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
+                        <tr><td>16</td><td class="team-cell"><div class="team-info"><img src="escudos/vcf_ripollet.png" class="team-logo">VCF Ripollet</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>10</td><td style="color:var(--accent-red);">-6</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
                         <tr><td>17</td><td class="team-cell"><div class="team-info"><img src="escudos/bigues.png" class="team-logo">Bigues</div></td><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>21</td><td style="color:var(--accent-red);">-17</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- SECCIÓN CALENDARIO -->
         <div id="calendario" class="section-content">
             <div class="selector-container">
                 <select id="selector-jornada" onchange="cargarJornada()"></select>
@@ -197,12 +193,9 @@
             btnElement.classList.add('active');
         }
 
-        // ==========================================
-        // DATOS DEL CALENDARIO (AQUÍ ACTUALIZARÁS CADA SEMANA)
-        // ==========================================
         const calendario = [
             {
-                jornada: 1, fecha: "20/09/2025", suspendida: false,
+                jornada: 1, fecha: "20/09/2026", suspendida: false,
                 partidos: [
                     { local: "U.E. Sabadellenca", imgLocal: "sabadellenca.png", visitante: "V.C.F. Ripollet", imgVisitante: "vcf_ripollet.png", campo: "CAMPOAMOR", hora: "08:00", golesLocal: 5, golesVisitante: 1 },
                     { local: "C.E. Bigues i Riells", imgLocal: "bigues.png", visitante: "A.V. L'Ametlla del Vallés", imgVisitante: "l_ametlla.png", campo: "MPAL BIGUES", hora: "08:15", golesLocal: 3, golesVisitante: 16 },
@@ -211,12 +204,12 @@
                     { local: "C.F. Cerdanyola", imgLocal: "cerdanyola.png", visitante: "C.F. Sant Feliu de Codines", imgVisitante: "st_feliu_codines.png", campo: "MPAL FONTETAS", hora: "08:15", golesLocal: 4, golesVisitante: 1 },
                     { local: "C.E. Sentmenat", imgLocal: "sentmenat.png", visitante: "U.E. Castellar", imgVisitante: "castellar.png", campo: "MPAL SENTMENAT", hora: "08:30", golesLocal: 2, golesVisitante: 5 },
                     { local: "A.V. Ripollet", imgLocal: "agrup_ripollet.png", visitante: "U.D.A. Gramanet", imgVisitante: "gramanet.png", campo: "MPAL RIPOLLET", hora: "08:00", golesLocal: 3, golesVisitante: 1 },
-                    { local: "C.E. Santa Eulàlia de Ronçana", imgLocal: "sta_eulalia.png", visitante: "Penya Decano", imgVisitante: "decano.png", campo: "MPAL SANTA EULALIA", hora: "08:00", golesLocal: 3, golesVisitante: 2 }
+                    { local: "C.E. Santa Eulàlia de Ronçana", imgLocal: "sta_eulalia.png", visitante: "Penya Decano", imgVisitante: "decano.png", campo: "MPAL SANTA EULALIA", hora: "18:30", golesLocal: 3, golesVisitante: 2 }
                 ],
                 descanso: "U.E. Canovelles"
             },
             {
-                jornada: 2, fecha: "27/09/2025", suspendida: false,
+                jornada: 2, fecha: "27/09/2026", suspendida: false,
                 partidos: [
                     { local: "V.C.F. Ripollet", imgLocal: "vcf_ripollet.png", visitante: "C.E. Santa Eulàlia de Ronçana", imgVisitante: "sta_eulalia.png", campo: "MPAL RIPOLLET", hora: "08:00", golesLocal: 3, golesVisitante: 5 },
                     { local: "A.V. L'Ametlla del Vallés", imgLocal: "l_ametlla.png", visitante: "U.E. Sabadellenca", imgVisitante: "sabadellenca.png", campo: "MPAL L'AMETLLA", hora: "08:30", golesLocal: 4, golesVisitante: 4 },
@@ -243,12 +236,8 @@
                 ],
                 descanso: "C.F. Sant Feliu de Codines"
             }
-            // AQUÍ PEGAREMOS LAS JORNADAS 4 A 34 EN EL SIGUIENTE PASO
         ];
 
-        // ==========================================
-        // LÓGICA PARA PINTAR EL CALENDARIO
-        // ==========================================
         function initCalendario() {
             const selector = document.getElementById('selector-jornada');
             calendario.forEach(j => {
