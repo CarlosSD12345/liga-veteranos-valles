@@ -10,120 +10,116 @@
     <link rel="apple-touch-icon" href="escudos/icono_512.png">
     
     <style>
-        :root {
-            --bg-color: #0b1d15;
-            --card-bg: #11291e;
-            --header-bg: #173827;
-            --accent-green: #2ecc71;
-            --accent-yellow: #f1c40f;
-            --accent-red: #e74c3c;
-            --text-white: #ffffff;
-            --text-gray: #a3b8af;
-            --border-color: #1f4733;
-        }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-white); padding: 20px; padding-top: 160px; }
+        body { background-color: #0b1d15; color: #ffffff; padding: 10px; }
         .container { max-width: 1000px; margin: 0 auto; }
         
+        /* HEADER COMPACTO */
         header { 
             text-align: center; 
-            padding: 15px 20px; 
-            background-color: var(--bg-color); 
-            border-radius: 12px; 
-            margin-bottom: 25px; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            padding: 10px;
+            background-color: #0b1d15;
+            margin-bottom: 15px;
         }
-        header img { height: 90px; width: auto; object-fit: contain; margin-bottom: 10px; }
+        header img { height: 60px; width: auto; }
         
-        .badge-jornada { display: inline-block; background-color: var(--accent-green); color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
+        .badge-jornada { 
+            display: inline-block; 
+            background-color: #2ecc71; 
+            color: #0b1d15; 
+            padding: 6px 15px; 
+            border-radius: 20px; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            margin-top: 8px; 
+        }
         
-        .tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
-        .tab-btn { background-color: var(--card-bg); color: var(--text-gray); border: 1px solid var(--border-color); padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: all 0.3s ease; }
-        .tab-btn.active { background-color: var(--accent-green); color: #0b1d15; border-color: var(--accent-green); }
-        .tab-btn:hover:not(.active) { background-color: var(--header-bg); }
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
+        .tab-btn { 
+            background-color: #11291e; 
+            color: #a3b8af; 
+            border: 1px solid #1f4733; 
+            padding: 8px 15px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+        }
+        .tab-btn.active { background-color: #2ecc71; color: #0b1d15; }
         
-        .section-content { display: none; animation: fadeIn 0.3s ease; }
+        .section-content { display: none; }
         .section-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* TABLA DIVIDIDA EN DOS */
+        /* TABLA DIVIDIDA */
         .tabla-container {
             display: flex;
-            background-color: var(--card-bg);
+            background-color: #11291e;
             border-radius: 12px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
+            border: 1px solid #1f4733;
             overflow: hidden;
+            margin-bottom: 20px;
         }
         
         .tabla-fija {
             flex-shrink: 0;
-            background-color: var(--card-bg);
-            border-right: 2px solid var(--border-color);
-            z-index: 10;
+            background-color: #11291e;
+            border-right: 2px solid #1f4733;
         }
         
         .tabla-scroll {
             flex: 1;
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
-            font-size: 0.95rem;
-            white-space: nowrap;
+            font-size: 0.85rem;
         }
         
         th {
-            background-color: var(--header-bg);
-            color: var(--text-gray);
-            padding: 12px 8px;
+            background-color: #173827;
+            color: #a3b8af;
+            padding: 10px 5px;
             font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            position: sticky;
-            top: 0;
-            z-index: 20;
+            font-size: 0.75rem;
         }
         
         td {
-            padding: 12px 8px;
-            border-bottom: 1px solid var(--border-color);
-            background-color: var(--card-bg);
+            padding: 8px 5px;
+            border-bottom: 1px solid #1f4733;
         }
         
         tr:last-child td { border-bottom: none; }
-        tr:hover td { background-color: rgba(46, 204, 113, 0.05); }
         
-        .tabla-fija th, .tabla-fija td {
-            background-color: var(--card-bg);
-            min-width: 200px;
+        .tabla-fija td {
+            background-color: #11291e;
+            min-width: 150px;
         }
         
-        .tabla-fija th {
-            background-color: var(--header-bg);
+        .team-info { display: flex; align-items: center; gap: 8px; }
+        .team-logo { width: 24px; height: 24px; object-fit: contain; background: #fff; border-radius: 50%; padding: 2px; }
+        .team-logo.large { width: 30px; height: 30px; }
+        .pts-col { font-weight: bold; color: #2ecc71; }
+        
+        .form-badge { 
+            display: inline-block; 
+            width: 20px; 
+            height: 20px; 
+            line-height: 20px; 
+            border-radius: 4px; 
+            font-size: 0.7rem; 
+            font-weight: bold; 
+            color: white; 
+            margin: 0 1px; 
         }
-        
-        .team-info { display: flex; align-items: center; gap: 12px; }
-        .team-logo { width: 28px; height: 28px; object-fit: contain; background: #fff; border-radius: 50%; padding: 2px; }
-        .team-logo.large { width: 34px; height: 34px; }
-        .pts-col { font-weight: bold; color: var(--accent-green); font-size: 1.1rem; }
-        
-        .form-badge { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; color: white; margin: 0 1px; text-align: center; }
         .win { background-color: #27ae60; }
         .draw { background-color: #f39c12; }
         .loss { background-color: #c0392b; }
         .none { background-color: #7f8c8d; }
 
-        footer { text-align: center; padding: 30px; color: var(--text-gray); font-size: 0.85rem; border-top: 1px solid var(--border-color); margin-top: 40px; }
+        footer { text-align: center; padding: 20px; color: #a3b8af; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -135,13 +131,12 @@
 
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('clasificacion', this)">Clasificación</button>
-            <button class="tab-btn" onclick="switchTab('calendario', this)">Calendario de Partidos</button>
+            <button class="tab-btn" onclick="switchTab('calendario', this)">Calendario</button>
         </div>
 
-        <!-- SECCIÓN CLASIFICACIÓN -->
         <div id="clasificacion" class="section-content active">
             <div class="tabla-container">
-                <!-- TABLA FIJA (izquierda) -->
+                <!-- TABLA FIJA -->
                 <div class="tabla-fija">
                     <table>
                         <thead>
@@ -151,88 +146,75 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>1</td><td><div class="team-info"><img src="escudos/barbera.png" class="team-logo" alt="Escudo Barberà">Barberà</div></td></tr>
-                            <tr><td>2</td><td><div class="team-info"><img src="escudos/can_parellada.png" class="team-logo" alt="Escudo Can Parellada">Can Parellada</div></td></tr>
-                            <tr><td>3</td><td><div class="team-info"><img src="escudos/castellar.png" class="team-logo" alt="Escudo Castellar">Castellar</div></td></tr>
-                            <tr><td>4</td><td><div class="team-info"><img src="escudos/sta_eulalia.png" class="team-logo" alt="Escudo Santa Eulàlia">Santa Eulàlia</div></td></tr>
-                            <tr><td>5</td><td><div class="team-info"><img src="escudos/l_ametlla.png" class="team-logo" alt="Escudo L'Ametlla">L'Ametlla</div></td></tr>
-                            <tr><td>6</td><td><div class="team-info"><img src="escudos/sabadellenca.png" class="team-logo" alt="Escudo Sabadellenca">Sabadellenca</div></td></tr>
-                            <tr><td>7</td><td><div class="team-info"><img src="escudos/decano.png" class="team-logo" alt="Escudo Penya Decano">Penya Decano</div></td></tr>
-                            <tr><td>8</td><td><div class="team-info"><img src="escudos/cerdanyola.png" class="team-logo" alt="Escudo Cerdanyola">Cerdanyola</div></td></tr>
-                            <tr><td>9</td><td><div class="team-info"><img src="escudos/palleja.png" class="team-logo" alt="Escudo Pallejà">Pallejà</div></td></tr>
-                            <tr><td>10</td><td><div class="team-info"><img src="escudos/agrup_ripollet.png" class="team-logo" alt="Escudo A.V. Ripollet">A.V. Ripollet</div></td></tr>
-                            <tr><td>11</td><td><div class="team-info"><img src="escudos/gramanet.png" class="team-logo" alt="Escudo Gramanet">Gramanet</div></td></tr>
-                            <tr><td>12</td><td><div class="team-info"><img src="escudos/sentmenat.png" class="team-logo large" alt="Escudo Sentmenat">Sentmenat</div></td></tr>
-                            <tr><td>13</td><td><div class="team-info"><img src="escudos/st_feliu_codines.png" class="team-logo" alt="Escudo Sant Feliu">Sant Feliu</div></td></tr>
-                            <tr><td>14</td><td><div class="team-info"><img src="escudos/vcf_ripollet.png" class="team-logo" alt="Escudo VCF Ripollet">VCF Ripollet</div></td></tr>
-                            <tr><td>15</td><td><div class="team-info"><img src="escudos/canovelles.png" class="team-logo" alt="Escudo Canovelles">Canovelles</div></td></tr>
-                            <tr><td>16</td><td><div class="team-info"><img src="escudos/palau_plegamans.png" class="team-logo" alt="Escudo Palau Plegamans">Palau Plegamans</div></td></tr>
-                            <tr><td>17</td><td><div class="team-info"><img src="escudos/bigues.png" class="team-logo" alt="Escudo Bigues">Bigues</div></td></tr>
+                            <tr><td>1</td><td><div class="team-info"><img src="escudos/barbera.png" class="team-logo">Barberà</div></td></tr>
+                            <tr><td>2</td><td><div class="team-info"><img src="escudos/can_parellada.png" class="team-logo">Can Parellada</div></td></tr>
+                            <tr><td>3</td><td><div class="team-info"><img src="escudos/castellar.png" class="team-logo">Castellar</div></td></tr>
+                            <tr><td>4</td><td><div class="team-info"><img src="escudos/sta_eulalia.png" class="team-logo">Santa Eulàlia</div></td></tr>
+                            <tr><td>5</td><td><div class="team-info"><img src="escudos/l_ametlla.png" class="team-logo">L'Ametlla</div></td></tr>
+                            <tr><td>6</td><td><div class="team-info"><img src="escudos/sabadellenca.png" class="team-logo">Sabadellenca</div></td></tr>
+                            <tr><td>7</td><td><div class="team-info"><img src="escudos/decano.png" class="team-logo">Penya Decano</div></td></tr>
+                            <tr><td>8</td><td><div class="team-info"><img src="escudos/cerdanyola.png" class="team-logo">Cerdanyola</div></td></tr>
+                            <tr><td>9</td><td><div class="team-info"><img src="escudos/palleja.png" class="team-logo">Pallejà</div></td></tr>
+                            <tr><td>10</td><td><div class="team-info"><img src="escudos/agrup_ripollet.png" class="team-logo">A.V. Ripollet</div></td></tr>
+                            <tr><td>11</td><td><div class="team-info"><img src="escudos/gramanet.png" class="team-logo">Gramanet</div></td></tr>
+                            <tr><td>12</td><td><div class="team-info"><img src="escudos/sentmenat.png" class="team-logo large">Sentmenat</div></td></tr>
+                            <tr><td>13</td><td><div class="team-info"><img src="escudos/st_feliu_codines.png" class="team-logo">Sant Feliu</div></td></tr>
+                            <tr><td>14</td><td><div class="team-info"><img src="escudos/vcf_ripollet.png" class="team-logo">VCF Ripollet</div></td></tr>
+                            <tr><td>15</td><td><div class="team-info"><img src="escudos/canovelles.png" class="team-logo">Canovelles</div></td></tr>
+                            <tr><td>16</td><td><div class="team-info"><img src="escudos/palau_plegamans.png" class="team-logo">Palau Plegamans</div></td></tr>
+                            <tr><td>17</td><td><div class="team-info"><img src="escudos/bigues.png" class="team-logo">Bigues</div></td></tr>
                         </tbody>
                     </table>
                 </div>
                 
-                <!-- TABLA CON SCROLL (derecha) -->
+                <!-- TABLA SCROLL -->
                 <div class="tabla-scroll">
                     <table>
                         <thead>
                             <tr>
-                                <th>PJ</th>
-                                <th>PTS</th>
-                                <th>G</th>
-                                <th>E</th>
-                                <th>P</th>
-                                <th>GF</th>
-                                <th>GC</th>
-                                <th>DIF</th>
-                                <th>3 ÚLTIMOS</th>
+                                <th>PJ</th><th>PTS</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DIF</th><th>3 ÚLT.</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>2</td><td style="color:var(--accent-green);">+6</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>9</td><td>5</td><td style="color:var(--accent-green);">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>4</td><td style="color:var(--accent-green);">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>5</td><td style="color:var(--accent-green);">+3</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>20</td><td>7</td><td style="color:var(--accent-green);">+13</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>9</td><td>5</td><td style="color:var(--accent-green);">+4</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>8</td><td>6</td><td style="color:var(--accent-green);">+2</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>4</td><td style="color:var(--accent-green);">+2</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>5</td><td style="color:var(--accent-green);">+1</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>7</td><td style="color:var(--accent-red);">-1</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>3</td><td>5</td><td style="color:var(--accent-red);">-2</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>4</td><td>7</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>3</td><td>7</td><td style="color:var(--accent-red);">-4</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>10</td><td style="color:var(--accent-red);">-6</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>3</td><td>6</td><td style="color:var(--accent-red);">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
-                            <tr><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>21</td><td style="color:var(--accent-red);">-17</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>2</td><td style="color:#2ecc71;">+6</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>4</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">6</td><td>2</td><td>0</td><td>0</td><td>8</td><td>5</td><td style="color:#2ecc71;">+3</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge win">G</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>20</td><td>7</td><td style="color:#2ecc71;">+13</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">4</td><td>1</td><td>1</td><td>0</td><td>9</td><td>5</td><td style="color:#2ecc71;">+4</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge win">G</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>8</td><td>6</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>4</td><td style="color:#2ecc71;">+2</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>5</td><td style="color:#2ecc71;">+1</td><td><span class="form-badge none">-</span><span class="form-badge win">G</span><span class="form-badge loss">P</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">3</td><td>1</td><td>0</td><td>1</td><td>6</td><td>7</td><td style="color:#e74c3c;">-1</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge win">G</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>3</td><td>5</td><td style="color:#e74c3c;">-2</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">1</td><td>0</td><td>1</td><td>1</td><td>4</td><td>7</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge draw">E</span><span class="form-badge loss">P</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>3</td><td>7</td><td style="color:#e74c3c;">-4</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>10</td><td style="color:#e74c3c;">-6</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
+                            <tr><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
+                            <tr><td>1</td><td class="pts-col">0</td><td>0</td><td>0</td><td>1</td><td>3</td><td>6</td><td style="color:#e74c3c;">-3</td><td><span class="form-badge none">-</span><span class="form-badge none">-</span><span class="form-badge loss">P</span></td></tr>
+                            <tr><td>2</td><td class="pts-col">0</td><td>0</td><td>0</td><td>2</td><td>4</td><td>21</td><td style="color:#e74c3c;">-17</td><td><span class="form-badge none">-</span><span class="form-badge loss">P</span><span class="form-badge loss">P</span></td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN CALENDARIO -->
         <div id="calendario" class="section-content">
-            <div class="tabla-container" style="padding: 40px; text-align: center;">
-                <h3 style="color: var(--accent-green); margin-bottom: 10px;">Próximamente</h3>
-                <p style="color: var(--text-gray);">Aquí mostraremos los partidos de la jornada y los resultados.</p>
+            <div style="background-color: #11291e; padding: 40px; text-align: center; border-radius: 12px; border: 1px solid #1f4733;">
+                <h3 style="color: #2ecc71; margin-bottom: 10px;">Próximamente</h3>
+                <p style="color: #a3b8af;">Aquí mostraremos los partidos de la jornada y los resultados.</p>
             </div>
         </div>
 
         <footer>
-            <p>© 2026 Liga de Fútbol Veteranos del Vallès. Todos los derechos reservados.</p>
+            <p>© 2026 Liga de Fútbol Veteranos del Vallès</p>
         </footer>
     </div>
 
     <script>
         function switchTab(tabId, btnElement) {
-            document.querySelectorAll('.section-content').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             btnElement.classList.add('active');
         }
@@ -241,9 +223,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('Service Worker registrado', reg))
-                    .catch(err => console.log('Error al registrar SW', err));
+                navigator.serviceWorker.register('./sw.js');
             });
         }
     </script>
