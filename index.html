@@ -233,9 +233,22 @@
         <footer>
             <p>© 2026 Liga de Fútbol Veteranos del Vallès. Todos los derechos reservados.</p>
             <p style="margin-top: 15px;">
-                <a href="#" onclick="abrirAdmin()" style="color: #1f4733; text-decoration: none; font-size: 0.7rem;">️ Admin</a>
+                <a href="#" onclick="abrirAdmin()" style="color: #1f4733; text-decoration: none; font-size: 0.7rem;">⚙️ Admin</a>
             </p>
         </footer>
+    </div>
+
+    <!-- PANEL DE ADMINISTRACIÓN OCULTO -->
+    <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.95); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
+        <div style="max-width: 400px; margin: 50px auto; background-color: #11291e; padding: 30px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
+            <h2 style="color: #2ecc71; margin-bottom: 20px;"> Acceso Restringido</h2>
+            <p style="color: #a3b8af; margin-bottom: 20px;">Introduce el código de administrador:</p>
+            
+            <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
+            
+            <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
+            <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
+        </div>
     </div>
 
     <script>
@@ -245,6 +258,33 @@
             document.getElementById(tabId).classList.add('active');
             btnElement.classList.add('active');
         }
+
+        // Funciones del panel de administración
+        function abrirAdmin() {
+            document.getElementById('panel-admin').style.display = 'block';
+            document.getElementById('codigo-admin').value = '';
+            document.getElementById('codigo-admin').focus();
+        }
+
+        function cerrarAdmin() {
+            document.getElementById('panel-admin').style.display = 'none';
+        }
+
+        function verificarCodigo() {
+            const codigo = document.getElementById('codigo-admin').value;
+            if (codigo === 'veteranos2026') {
+                alert('✅ ¡Código correcto! En el siguiente paso cargaremos aquí el formulario para editar los resultados.');
+                cerrarAdmin();
+            } else {
+                alert('❌ Código incorrecto. Inténtalo de nuevo.');
+            }
+        }
+
+        document.getElementById('codigo-admin').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                verificarCodigo();
+            }
+        });
 
         const calendario = [
             {
@@ -745,7 +785,7 @@
             let html = '';
             
             if (jornada.suspendida) {
-                html += `<div class="suspended-banner">️ JORNADA ${jornada.jornada} SUSPENDIDA POR LLUVIA</div>`;
+                html += `<div class="suspended-banner">🌧️ JORNADA ${jornada.jornada} SUSPENDIDA POR LLUVIA</div>`;
             }
 
             if (jornada.descanso) {
