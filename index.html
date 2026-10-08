@@ -183,7 +183,7 @@
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + p.visitante + '</span>';
                 html += '</div>';
                 html += '<div style="text-align:center; margin-top:8px;">';
-                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="suspendido-' + index + '" ' + checked + '> ️ Partido Suspendido</label>';
+                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="suspendido-' + index + '" ' + checked + '> ⏸️ Partido Suspendido</label>';
                 html += '</div></div>';
             });
             html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados en la Web</button>';
@@ -694,7 +694,11 @@
 
             Object.keys(stats).forEach(function(key) {
                 stats[key].dif = stats[key].gf - stats[key].gc;
-                stats[key].forma = stats[key].forma.slice(-3);
+                var ultimos = stats[key].forma.slice(-3);
+                while (ultimos.length < 3) {
+                    ultimos.unshift('-');
+                }
+                stats[key].forma = ultimos;
             });
 
             var clasificacion = Object.values(stats).sort(function(a, b) {
@@ -717,17 +721,13 @@
                 var difText = eq.dif > 0 ? '+' + eq.dif : eq.dif;
                 var formaHtml = '';
                 for (var i = 0; i < 3; i++) {
-                    if (eq.forma[i]) {
-                        var letra = eq.forma[i];
-                        var clase = 'none';
-                        if (letra === 'G') clase = 'win';
-                        else if (letra === 'E') clase = 'draw';
-                        else if (letra === 'P') clase = 'loss';
-                        else if (letra === 'S') clase = 'suspended';
-                        formaHtml += '<span class="form-badge ' + clase + '">' + letra + '</span>';
-                    } else {
-                        formaHtml += '<span class="form-badge none">-</span>';
-                    }
+                    var letra = eq.forma[i] || '-';
+                    var clase = 'none';
+                    if (letra === 'G') clase = 'win';
+                    else if (letra === 'E') clase = 'draw';
+                    else if (letra === 'P') clase = 'loss';
+                    else if (letra === 'S') clase = 'suspended';
+                    formaHtml += '<span class="form-badge ' + clase + '">' + letra + '</span>';
                 }
 
                 html += '<tr>';
@@ -771,7 +771,7 @@
             var contenedor = document.getElementById('contenedor-partidos');
             var html = '';
             if (jornada.suspendida) {
-                html += '<div class="suspended-banner">️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
+                html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
             }
             if (jornada.descanso) {
                 html += '<div class="descanso-banner">😴 Descansa: <strong>' + jornada.descanso + '</strong></div>';
