@@ -11,7 +11,7 @@
         .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; }
         table { width: 100%; border-collapse: collapse; background-color: #11291e; border-radius: 12px; overflow: hidden; }
         th { background-color: #173827; padding: 12px; text-align: center; }
-        td { padding: 12px; border-bottom: 1px solid #1f4733; text-align: center; white-space: nowrap; }
+        td { padding: 12px; border-bottom: 1px solid #1f4733; text-align: center; }
         .team { text-align: left; padding-left: 15px; }
         .pts { font-weight: bold; color: #2ecc71; }
         .badge-form { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin: 0 2px; }
@@ -20,6 +20,8 @@
         .loss { background-color: #c0392b; }
         .none { background-color: #7f8c8d; }
         .suspended { background-color: #3498db; }
+        .rest { background-color: #9b59b6; }
+        .col-forma { white-space: nowrap; min-width: 90px; }
     </style>
 </head>
 <body>
@@ -89,12 +91,19 @@
             });
 
             calendario.forEach(function(jornada) {
+                // Solo procesar jornadas jugadas (con resultados o suspendidas)
+                var jornadaJugada = jornada.suspendida || jornada.partidos.some(function(p) {
+                    return p.golesLocal !== null && p.golesVisitante !== null;
+                });
+                
+                if (!jornadaJugada) return; // Ignorar jornadas futuras
+                
                 equipos.forEach(function(eq) {
                     var nombre = eq.nombreCompleto;
                     if (jornada.suspendida) {
                         stats[nombre].forma.push('S');
                     } else if (jornada.descanso === nombre) {
-                        stats[nombre].forma.push('-');
+                        stats[nombre].forma.push('D');
                     } else {
                         var partido = null;
                         for (var i = 0; i < jornada.partidos.length; i++) {
@@ -113,8 +122,6 @@
                             if (gp > gr) { stats[nombre].pts += 3; stats[nombre].g++; stats[nombre].forma.push('G'); }
                             else if (gp < gr) { stats[nombre].p++; stats[nombre].forma.push('P'); }
                             else { stats[nombre].pts += 1; stats[nombre].e++; stats[nombre].forma.push('E'); }
-                        } else {
-                            stats[nombre].forma.push('-');
                         }
                     }
                 });
@@ -146,9 +153,10 @@
                     else if (letra === 'E') clase = 'draw';
                     else if (letra === 'P') clase = 'loss';
                     else if (letra === 'S') clase = 'suspended';
+                    else if (letra === 'D') clase = 'rest';
                     formaHtml += '<span class="badge-form ' + clase + '">' + letra + '</span>';
                 }
-                html += '<tr><td>' + (i+1) + '</td><td class="team">' + eq.nombre + '</td><td>' + eq.pj + '</td><td class="pts">' + eq.pts + '</td><td>' + eq.g + '</td><td>' + eq.e + '</td><td>' + eq.p + '</td><td>' + eq.gf + '</td><td>' + eq.gc + '</td><td>' + (eq.dif > 0 ? '+' + eq.dif : eq.dif) + '</td><td>' + formaHtml + '</td></tr>';
+                html += '<tr><td>' + (i+1) + '</td><td class="team">' + eq.nombre + '</td><td>' + eq.pj + '</td><td class="pts">' + eq.pts + '</td><td>' + eq.g + '</td><td>' + eq.e + '</td><td>' + eq.p + '</td><td>' + eq.gf + '</td><td>' + eq.gc + '</td><td>' + (eq.dif > 0 ? '+' + eq.dif : eq.dif) + '</td><td class="col-forma">' + formaHtml + '</td></tr>';
             });
             document.getElementById('tabla').innerHTML = html;
         }
