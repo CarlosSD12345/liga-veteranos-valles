@@ -238,20 +238,96 @@
         </footer>
     </div>
 
-    <!-- PANEL DE ADMINISTRACIÓN OCULTO -->
-    <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.95); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
-        <div style="max-width: 400px; margin: 50px auto; background-color: #11291e; padding: 30px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
-            <h2 style="color: #2ecc71; margin-bottom: 20px;"> Acceso Restringido</h2>
-            <p style="color: #a3b8af; margin-bottom: 20px;">Introduce el código de administrador:</p>
+        <!-- PANEL DE ADMINISTRACIÓN OCULTO -->
+    <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
+        <div style="max-width: 400px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
             
-            <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
-            
-            <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
-            <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
+            <!-- PANTALLA 1: CÓDIGO -->
+            <div id="pantalla-codigo">
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🔒 Acceso Restringido</h2>
+                <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
+                <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
+                <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
+            </div>
+
+            <!-- PANTALLA 2: TOKEN DE GITHUB -->
+            <div id="pantalla-token" style="display: none;">
+                <h2 style="color: #2ecc71; margin-bottom: 10px;">️ Configuración</h2>
+                <p style="color: #a3b8af; margin-bottom: 15px; font-size: 0.9rem;">Pega aquí tu Token de GitHub para poder guardar los cambios:</p>
+                <input type="password" id="input-token" placeholder="ghp_..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; text-align: center;">
+                <button onclick="guardarToken()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Guardar Token</button>
+            </div>
+
+            <!-- PANTALLA 3: PANEL DE CONTROL (PRÓXIMO PASO) -->
+            <div id="pantalla-control" style="display: none;">
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
+                <p style="color: #a3b8af; margin-bottom: 20px;">¡Conectado con GitHub!</p>
+                <p style="color: white; margin-bottom: 20px;">En el siguiente paso añadiremos aquí los campos para poner los goles.</p>
+                <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Salir</button>
+            </div>
+
         </div>
     </div>
 
     <script>
+        // Variables de las pantallas
+        const pantallaCodigo = document.getElementById('pantalla-codigo');
+        const pantallaToken = document.getElementById('pantalla-token');
+        const pantallaControl = document.getElementById('pantalla-control');
+
+        function abrirAdmin() {
+            document.getElementById('panel-admin').style.display = 'block';
+            document.getElementById('codigo-admin').value = '';
+            
+            // Comprobamos si ya hay un token guardado en el móvil
+            if (localStorage.getItem('github_token')) {
+                mostrarControl();
+            } else {
+                pantallaCodigo.style.display = 'block';
+                pantallaToken.style.display = 'none';
+                pantallaControl.style.display = 'none';
+            }
+        }
+
+        function cerrarAdmin() {
+            document.getElementById('panel-admin').style.display = 'none';
+        }
+
+        function verificarCodigo() {
+            const codigo = document.getElementById('codigo-admin').value;
+            if (codigo === '46602900') {
+                pantallaCodigo.style.display = 'none';
+                pantallaToken.style.display = 'block';
+            } else {
+                alert('❌ Código incorrecto.');
+            }
+        }
+
+        function guardarToken() {
+            const token = document.getElementById('input-token').value.trim();
+            if (token.length > 10) {
+                localStorage.setItem('github_token', token);
+                alert('✅ Token guardado correctamente en este dispositivo.');
+                mostrarControl();
+            } else {
+                alert('❌ El token no parece válido. Debe empezar por ghp_ y ser largo.');
+            }
+        }
+
+        function mostrarControl() {
+            pantallaCodigo.style.display = 'none';
+            pantallaToken.style.display = 'none';
+            pantallaControl.style.display = 'block';
+        }
+
+        // Permitir pulsar "Enter" en los inputs
+        document.getElementById('codigo-admin').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') verificarCodigo();
+        });
+        document.getElementById('input-token').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') guardarToken();
+        });
+    </script>
         function switchTab(tabId, btnElement) {
             document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
