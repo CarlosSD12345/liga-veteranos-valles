@@ -33,7 +33,7 @@
         .form-badge { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; color: white; margin: 0 1px; text-align: center; }
         .win { background-color: #27ae60; } .draw { background-color: #f39c12; } .loss { background-color: #c0392b; } .none { background-color: #7f8c8d; }
         .selector-container { margin-bottom: 20px; text-align: center; }
-        #selector-jornada { background-color: var(--card-bg); color: var(--text-white); border: 1px solid var(--accent-green); padding: 10px 20px; border-radius: 8px; font-size: 1rem; font-weight: bold; width: 100%; max-width: 350px; cursor: pointer; }
+        #selector-jornada, #admin-selector-jornada { background-color: var(--card-bg); color: var(--text-white); border: 1px solid var(--accent-green); padding: 10px 20px; border-radius: 8px; font-size: 1rem; font-weight: bold; width: 100%; max-width: 350px; cursor: pointer; }
         .match-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; }
         .match-teams { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; gap: 8px; }
         .match-team { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; text-align: center; }
@@ -102,20 +102,20 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-token" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 10px;">️ Configuración</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 10px;">⚙️ Configuración</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px; font-size: 0.9rem;">Pega aquí tu Token de GitHub:</p>
                 <input type="password" id="input-token" placeholder="ghp_..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; text-align: center;">
                 <button onclick="guardarToken()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Guardar Token</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">️ Panel de Control</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
                 <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
                     <option value="">Cargando jornadas...</option>
                 </select>
                 <div id="admin-partidos-container"></div>
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 20px;">Salir</button>
-            </div>
+            </div
         </div>
     </div>
 
@@ -198,11 +198,79 @@
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + p.visitante + '</span>';
                 html += '</div></div>';
             });
-            html += '<button onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
+            html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados en la Web</button>';
             contenedor.innerHTML = html;
         }
+
         function guardarResultados(jornadaNum) {
-            alert('✅ Has introducido los resultados de la Jornada ' + jornadaNum + '. \n\nEn el siguiente paso, este botón actualizará la web automáticamente usando tu Token.');
+            var btn = document.getElementById('btn-guardar');
+            btn.textContent = '⏳ Guardando en GitHub...';
+            btn.disabled = true;
+
+            var token = localStorage.getItem('github_token');
+            var jornada = null;
+            for (var i = 0; i < calendario.length; i++) {
+                if (calendario[i].jornada === jornadaNum) { jornada = calendario[i]; break; }
+            }
+
+            // 1. Actualizar el array en memoria con los nuevos goles
+            jornada.partidos.forEach(function(p, index) {
+                var valLocal = document.getElementById('gol-local-' + index).value;
+                var valVisitante = document.getElementById('gol-visitante-' + index).value;
+                p.golesLocal = valLocal === '' ? null : parseInt(valLocal);
+                p.golesVisitante = valVisitante === '' ? null : parseInt(valVisitante);
+            });
+
+            // 2. Obtener el SHA actual del archivo en GitHub
+            fetch('https://api.github.com/repos/carlossd12345/carlossd12345.github.io/contents/index.html', {
+                headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+            })
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                if (data.sha) {
+                    // 3. Reemplazar el array calendario en el HTML completo
+                    var htmlContent = document.documentElement.outerHTML;
+                    var nuevoCalendarioStr = 'var calendario = ' + JSON.stringify(calendario, null, 2) + ';';
+                    htmlContent = htmlContent.replace(/var calendario = \[[\s\S]*?\];/, nuevoCalendarioStr);
+
+                    // 4. Codificar a Base64 (soportando UTF-8 para tildes y ñ)
+                    var base64Content = btoa(unescape(encodeURIComponent(htmlContent)));
+
+                    // 5. Enviar la actualización a GitHub
+                    return fetch('https://api.github.com/repos/carlossd12345/carlossd12345.github.io/contents/index.html', {
+                        method: 'PUT',
+                        headers: { 
+                            'Authorization': 'token ' + token, 
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: 'Actualización automática de resultados - Jornada ' + jornadaNum,
+                            content: base64Content,
+                            sha: data.sha
+                        })
+                    });
+                } else {
+                    throw new Error('No se pudo obtener el archivo');
+                }
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    alert('✅ ¡Resultados guardados con éxito! La web se recargará para mostrar los cambios.');
+                    location.reload();
+                } else {
+                    response.json().then(function(err) {
+                        alert('❌ Error al guardar: ' + (err.message || 'Revisa tu token'));
+                        btn.textContent = '💾 Guardar Resultados en la Web';
+                        btn.disabled = false;
+                    });
+                }
+            })
+            .catch(function(error) {
+                alert('❌ Error de conexión: ' + error.message);
+                btn.textContent = '💾 Guardar Resultados en la Web';
+                btn.disabled = false;
+            });
         }
     </script>
 
