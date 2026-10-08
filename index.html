@@ -521,6 +521,13 @@
             return '';
         }
 
+        function getNombreCorto(nombreCompleto) {
+            for (var i = 0; i < equipos.length; i++) {
+                if (equipos[i].nombreCompleto === nombreCompleto) return equipos[i].nombre;
+            }
+            return nombreCompleto;
+        }
+
         function initCalendario() {
             var selector = document.getElementById('selector-jornada');
             if (selector.options.length > 0) return;
@@ -546,7 +553,7 @@
                 html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
             }
             if (jornada.descanso) {
-                html += '<div class="descanso-banner">😴 Descansa: <strong>' + jornada.descanso + '</strong></div>';
+                html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
             }
             jornada.partidos.forEach(function(p) {
                 var marcador = '';
@@ -558,9 +565,9 @@
                 var arbitroHtml = p.arbitro ? ' · 👤 ' + p.arbitro : '';
                 html += '<div class="match-card">';
                 html += '<div class="match-teams">';
-                html += '<div class="match-team local"><span>' + p.local + '</span><img src="escudos/' + getImgEquipo(p.local) + '" alt="' + p.local + '"></div>';
+                html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '" alt="' + p.local + '"></div>';
                 html += marcador;
-                html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '" alt="' + p.visitante + '"><span>' + p.visitante + '</span></div>';
+                html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '" alt="' + p.visitante + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
                 html += '</div>';
                 html += '<div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbitroHtml + '</div>';
                 html += '</div>';
@@ -573,4 +580,4 @@
         };
     </script>
 </body>
-</html>2
+</html>
