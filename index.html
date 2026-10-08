@@ -222,7 +222,7 @@
             });
 
             // 2. Obtener el SHA actual del archivo en GitHub
-            fetch('https://api.github.com/repos/carlossd12345/carlossd12345.github.io/contents/index.html', {
+            fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/index.html', {
                 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
             })
             .then(function(response) { return response.json(); })
@@ -237,7 +237,7 @@
                     var base64Content = btoa(unescape(encodeURIComponent(htmlContent)));
 
                     // 5. Enviar la actualización a GitHub
-                    return fetch('https://api.github.com/repos/carlossd12345/carlossd12345.github.io/contents/index.html', {
+                    return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/index.html', {
                         method: 'PUT',
                         headers: { 
                             'Authorization': 'token ' + token, 
