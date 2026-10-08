@@ -102,16 +102,19 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-token" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 10px;">⚙️ Configuración</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 10px;">️ Configuración</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px; font-size: 0.9rem;">Pega aquí tu Token de GitHub:</p>
                 <input type="password" id="input-token" placeholder="ghp_..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; text-align: center;">
                 <button onclick="guardarToken()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Guardar Token</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
-                <p style="color: #a3b8af; margin-bottom: 20px;">¡Conectado con GitHub!</p>
-                <p style="color: white; margin-bottom: 20px;">En el siguiente paso añadiremos aquí los campos para poner los goles.</p>
-                <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Salir</button>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">️ Panel de Control</h2>
+                <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
+                <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
+                    <option value="">Cargando jornadas...</option>
+                </select>
+                <div id="admin-partidos-container"></div>
+                <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 20px;">Salir</button>
             </div>
         </div>
     </div>
@@ -160,6 +163,46 @@
             document.getElementById('pantalla-codigo').style.display = 'none';
             document.getElementById('pantalla-token').style.display = 'none';
             document.getElementById('pantalla-control').style.display = 'block';
+            cargarSelectorAdmin();
+        }
+        function cargarSelectorAdmin() {
+            var select = document.getElementById('admin-selector-jornada');
+            select.innerHTML = '<option value="">Selecciona Jornada...</option>';
+            calendario.forEach(function(j) {
+                var opt = document.createElement('option');
+                opt.value = j.jornada;
+                opt.text = 'Jornada ' + j.jornada;
+                select.appendChild(opt);
+            });
+        }
+        function mostrarPartidosAdmin() {
+            var numJornada = parseInt(document.getElementById('admin-selector-jornada').value);
+            var contenedor = document.getElementById('admin-partidos-container');
+            contenedor.innerHTML = '';
+            if (!numJornada) return;
+
+            var jornada = null;
+            for (var i = 0; i < calendario.length; i++) {
+                if (calendario[i].jornada === numJornada) { jornada = calendario[i]; break; }
+            }
+            if (!jornada) return;
+
+            var html = '<h3 style="color:white; margin-bottom:15px;">Jornada ' + jornada.jornada + '</h3>';
+            jornada.partidos.forEach(function(p, index) {
+                html += '<div style="background:#0b1d15; padding:10px; border-radius:8px; margin-bottom:10px; border:1px solid #1f4733;">';
+                html += '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">';
+                html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:right; padding-right:10px;">' + p.local + '</span>';
+                html += '<input type="number" id="gol-local-' + index + '" value="' + (p.golesLocal !== null ? p.golesLocal : '') + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
+                html += '<span style="color:#2ecc71; margin:0 5px;">-</span>';
+                html += '<input type="number" id="gol-visitante-' + index + '" value="' + (p.golesVisitante !== null ? p.golesVisitante : '') + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
+                html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + p.visitante + '</span>';
+                html += '</div></div>';
+            });
+            html += '<button onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
+            contenedor.innerHTML = html;
+        }
+        function guardarResultados(jornadaNum) {
+            alert('✅ Has introducido los resultados de la Jornada ' + jornadaNum + '. \n\nEn el siguiente paso, este botón actualizará la web automáticamente usando tu Token.');
         }
     </script>
 
