@@ -13,6 +13,16 @@
         th { background-color: #173827; padding: 12px; text-align: center; }
         td { padding: 12px; border-bottom: 1px solid #1f4733; text-align: center; }
         .team { text-align: left; padding-left: 15px; }
+        .team-info { display: flex; align-items: center; gap: 10px; }
+        .team-logo { 
+            width: 40px; 
+            height: 40px; 
+            object-fit: contain; 
+            background: #ffffff; 
+            border-radius: 8px; 
+            padding: 4px; 
+            flex-shrink: 0;
+        }
         .pts { font-weight: bold; color: #2ecc71; }
         .badge-form { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin: 0 2px; }
         .win { background-color: #27ae60; }
@@ -65,38 +75,36 @@
         ];
 
         var equipos = [
-            { nombre: "Barberà", nombreCompleto: "C.F. Barberá" },
-            { nombre: "Can Parellada", nombreCompleto: "C.F. Can Parellada" },
-            { nombre: "Castellar", nombreCompleto: "U.E. Castellar" },
-            { nombre: "Santa Eulàlia", nombreCompleto: "C.E. Santa Eulàlia de Ronçana" },
-            { nombre: "L'Ametlla", nombreCompleto: "A.V. L'Ametlla del Vallés" },
-            { nombre: "Sabadellenca", nombreCompleto: "U.E. Sabadellenca" },
-            { nombre: "Cerdanyola", nombreCompleto: "C.F. Cerdanyola" },
-            { nombre: "Penya Decano", nombreCompleto: "Penya Decano" },
-            { nombre: "Pallejà", nombreCompleto: "A.V. Pallejá" },
-            { nombre: "A.V. Ripollet", nombreCompleto: "A.V. Ripollet" },
-            { nombre: "Gramanet", nombreCompleto: "U.D.A. Gramanet" },
-            { nombre: "Sentmenat", nombreCompleto: "C.E. Sentmenat" },
-            { nombre: "Sant Feliu", nombreCompleto: "C.F. Sant Feliu de Codines" },
-            { nombre: "Palau Plegamans", nombreCompleto: "E.F.B Palau Solitá i Plegamans" },
-            { nombre: "Canovelles", nombreCompleto: "U.E. Canovelles" },
-            { nombre: "VCF Ripollet", nombreCompleto: "V.C.F. Ripollet" },
-            { nombre: "Bigues", nombreCompleto: "C.E. Bigues i Riells" }
+            { nombre: "Barberà", img: "barbera.png", nombreCompleto: "C.F. Barberá" },
+            { nombre: "Can Parellada", img: "can_parellada.png", nombreCompleto: "C.F. Can Parellada" },
+            { nombre: "Castellar", img: "castellar.png", nombreCompleto: "U.E. Castellar" },
+            { nombre: "Santa Eulàlia", img: "sta_eulalia.png", nombreCompleto: "C.E. Santa Eulàlia de Ronçana" },
+            { nombre: "L'Ametlla", img: "l_ametlla.png", nombreCompleto: "A.V. L'Ametlla del Vallés" },
+            { nombre: "Sabadellenca", img: "sabadellenca.png", nombreCompleto: "U.E. Sabadellenca" },
+            { nombre: "Cerdanyola", img: "cerdanyola.png", nombreCompleto: "C.F. Cerdanyola" },
+            { nombre: "Penya Decano", img: "decano.png", nombreCompleto: "Penya Decano" },
+            { nombre: "Pallejà", img: "palleja.png", nombreCompleto: "A.V. Pallejá" },
+            { nombre: "A.V. Ripollet", img: "agrup_ripollet.png", nombreCompleto: "A.V. Ripollet" },
+            { nombre: "Gramanet", img: "gramanet.png", nombreCompleto: "U.D.A. Gramanet" },
+            { nombre: "Sentmenat", img: "sentmenat.png", nombreCompleto: "C.E. Sentmenat" },
+            { nombre: "Sant Feliu", img: "st_feliu_codines.png", nombreCompleto: "C.F. Sant Feliu de Codines" },
+            { nombre: "Palau Plegamans", img: "palau_plegamans.png", nombreCompleto: "E.F.B Palau Solitá i Plegamans" },
+            { nombre: "Canovelles", img: "canovelles.png", nombreCompleto: "U.E. Canovelles" },
+            { nombre: "VCF Ripollet", img: "vcf_ripollet.png", nombreCompleto: "V.C.F. Ripollet" },
+            { nombre: "Bigues", img: "bigues.png", nombreCompleto: "C.E. Bigues i Riells" }
         ];
 
         function calcularClasificacion() {
             var stats = {};
             equipos.forEach(function(eq) {
-                stats[eq.nombreCompleto] = { nombre: eq.nombre, pj: 0, pts: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, forma: [] };
+                stats[eq.nombreCompleto] = { nombre: eq.nombre, img: eq.img, pj: 0, pts: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, forma: [] };
             });
 
             calendario.forEach(function(jornada) {
-                // Solo procesar jornadas jugadas (con resultados o suspendidas)
                 var jornadaJugada = jornada.suspendida || jornada.partidos.some(function(p) {
                     return p.golesLocal !== null && p.golesVisitante !== null;
                 });
-                
-                if (!jornadaJugada) return; // Ignorar jornadas futuras
+                if (!jornadaJugada) return;
                 
                 equipos.forEach(function(eq) {
                     var nombre = eq.nombreCompleto;
@@ -156,7 +164,7 @@
                     else if (letra === 'D') clase = 'rest';
                     formaHtml += '<span class="badge-form ' + clase + '">' + letra + '</span>';
                 }
-                html += '<tr><td>' + (i+1) + '</td><td class="team">' + eq.nombre + '</td><td>' + eq.pj + '</td><td class="pts">' + eq.pts + '</td><td>' + eq.g + '</td><td>' + eq.e + '</td><td>' + eq.p + '</td><td>' + eq.gf + '</td><td>' + eq.gc + '</td><td>' + (eq.dif > 0 ? '+' + eq.dif : eq.dif) + '</td><td class="col-forma">' + formaHtml + '</td></tr>';
+                html += '<tr><td>' + (i+1) + '</td><td class="team"><div class="team-info"><img src="escudos/' + eq.img + '" class="team-logo" alt="' + eq.nombre + '">' + eq.nombre + '</div></td><td>' + eq.pj + '</td><td class="pts">' + eq.pts + '</td><td>' + eq.g + '</td><td>' + eq.e + '</td><td>' + eq.p + '</td><td>' + eq.gf + '</td><td>' + eq.gc + '</td><td>' + (eq.dif > 0 ? '+' + eq.dif : eq.dif) + '</td><td class="col-forma">' + formaHtml + '</td></tr>';
             });
             document.getElementById('tabla').innerHTML = html;
         }
