@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liga Veteranos Vallès</title>
+    <title>Liga Veteranos VallÃ¨s</title>
     <style>
         body { background-color: #0b1d15; color: white; padding: 20px; font-family: Arial, sans-serif; }
         .container { max-width: 1000px; margin: 0 auto; }
@@ -60,17 +60,17 @@
 <body>
     <div class="container">
         <header>
-            <h1>VETERANOS VALLÈS</h1>
-            <div class="badge" id="badge-jornada">JORNADA 4 · CLASIFICACIÓN</div>
+            <h1>VETERANOS VALLÃS</h1>
+            <div class="badge" id="badge-jornada">JORNADA 4 Â· CLASIFICACIÃN</div>
         </header>
         <div class="tabs">
-            <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
+            <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">ClasificaciÃ³n</button>
             <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
         </div>
         <div id="clasificacion" class="section active">
             <table>
                 <thead>
-                    <tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th>PTS</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DIF</th><th>3 ÚLTIMOS</th></tr>
+                    <tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th>PTS</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DIF</th><th>3 ÃLTIMOS</th></tr>
                 </thead>
                 <tbody id="tabla"></tbody>
             </table>
@@ -82,28 +82,28 @@
             <div id="contenedor-partidos"></div>
         </div>
         <footer>
-            <p>© 2026 Liga de Fútbol Veteranos del Vallès</p>
-            <button id="admin-btn" onclick="abrirAdmin()" style="background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin-top: 10px;">⚙️ Admin</button>
+            <p>Â© 2026 Liga de FÃºtbol Veteranos del VallÃ¨s</p>
+            <button id="admin-btn" onclick="abrirAdmin()" style="background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin-top: 10px;">âï¸ Admin</button>
         </footer>
     </div>
 
     <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
         <div style="max-width: 400px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
             <div id="pantalla-codigo">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🔒 Acceso Restringido</h2>
-                <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">ð Acceso Restringido</h2>
+                <input type="password" id="codigo-admin" placeholder="CÃ³digo..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
                 <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-token" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 10px;">⚙️ Configuración</h2>
-                <p style="color: #a3b8af; margin-bottom: 15px; font-size: 0.9rem;">Pega aquí tu Token de GitHub:</p>
+                <h2 style="color: #2ecc71; margin-bottom: 10px;">âï¸ ConfiguraciÃ³n</h2>
+                <p style="color: #a3b8af; margin-bottom: 15px; font-size: 0.9rem;">Pega aquÃ­ tu Token de GitHub:</p>
                 <input type="password" id="input-token" placeholder="ghp_..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; text-align: center;">
                 <button onclick="guardarToken()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Guardar Token</button>
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">ðï¸ Panel de Control</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
                 <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
                     <option value="">Selecciona Jornada...</option>
@@ -143,7 +143,7 @@
                 document.getElementById('pantalla-codigo').style.display = 'none';
                 document.getElementById('pantalla-token').style.display = 'block';
             } else {
-                alert('Código incorrecto.');
+                alert('CÃ³digo incorrecto.');
             }
         }
         function guardarToken() {
@@ -153,7 +153,7 @@
                 alert('Token guardado correctamente.');
                 mostrarControl();
             } else {
-                alert('El token no parece válido.');
+                alert('El token no parece vÃ¡lido.');
             }
         }
         function mostrarControl() {
@@ -194,16 +194,16 @@
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
                 html += '</div>';
                 html += '<div style="text-align:center; margin-top:8px;">';
-                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="suspendido-' + index + '" ' + checked + '> ⏸️ Partido Suspendido</label>';
+                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="suspendido-' + index + '" ' + checked + '> â¸ï¸ Partido Suspendido</label>';
                 html += '</div></div>';
             });
-            html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados en la Web</button>';
+            html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">ð¾ Guardar Resultados en la Web</button>';
             contenedor.innerHTML = html;
         }
 
         function guardarResultados(jornadaNum) {
             var btn = document.getElementById('btn-guardar');
-            btn.textContent = '⏳ Obteniendo archivo...';
+            btn.textContent = 'â³ Obteniendo archivo...';
             btn.disabled = true;
             var token = localStorage.getItem('github_token');
             var jornada = null;
@@ -234,10 +234,2500 @@
                 var contenidoBase64 = data.content;
                 var contenidoActual = atob(contenidoBase64);
 
-                btn.textContent = '⏳ Guardando...';
+                btn.textContent = 'â³ Guardando...';
 
-                var inicioMarker = '/*CALENDARIO_START*/';
-                var finMarker = '/*CALENDARIO_END*/';
+                var inicioMarker = '/*CALENDARIO_START*/
+var calendario = [
+  {
+    "jornada": 1,
+    "fecha": "20/09/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": 5,
+        "golesVisitante": 1,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00",
+        "arbitro": "Salva"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": 3,
+        "golesVisitante": 16,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15",
+        "arbitro": "Congost"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": 4,
+        "golesVisitante": 1,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00",
+        "arbitro": "Julio"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": 6,
+        "golesVisitante": 3,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15",
+        "arbitro": "Edu"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": 4,
+        "golesVisitante": 1,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15",
+        "arbitro": "Salva"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "U.E. Castellar",
+        "golesLocal": 2,
+        "golesVisitante": 5,
+        "campo": "MPAL SENTMENAT",
+        "hora": "18:30",
+        "arbitro": "Fàbregas"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": 3,
+        "golesVisitante": 1,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00",
+        "arbitro": "Molina"
+      },
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "Penya Decano",
+        "golesLocal": 3,
+        "golesVisitante": 2,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "18:30",
+        "arbitro": "Puibert"
+      }
+    ],
+    "descanso": "U.E. Canovelles"
+  },
+  {
+    "jornada": 2,
+    "fecha": "27/09/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": 3,
+        "golesVisitante": 5,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00",
+        "arbitro": "Puibert"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": 4,
+        "golesVisitante": 4,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30",
+        "arbitro": "Lleixa"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": 5,
+        "golesVisitante": 1,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15",
+        "arbitro": "Duran"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "C.F. Barberá",
+        "golesLocal": 1,
+        "golesVisitante": 4,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00",
+        "arbitro": "Edu"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": 2,
+        "golesVisitante": 3,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00",
+        "arbitro": "Exposito"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": 3,
+        "golesVisitante": 2,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15",
+        "arbitro": "Fàbregas"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": 2,
+        "golesVisitante": 2,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00",
+        "arbitro": "Congost"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": 6,
+        "golesVisitante": 3,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00",
+        "arbitro": "Molina"
+      }
+    ],
+    "descanso": "E.F.B Palau Solitá i Plegamans"
+  },
+  {
+    "jornada": 3,
+    "fecha": "04/10/2026",
+    "suspendida": true,
+    "partidos": [
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00",
+        "arbitro": null
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00",
+        "arbitro": null
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15",
+        "arbitro": null
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00",
+        "arbitro": null
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15",
+        "arbitro": null
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15",
+        "arbitro": null
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30",
+        "arbitro": null
+      },
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00",
+        "arbitro": null
+      }
+    ],
+    "descanso": "C.F. Sant Feliu de Codines"
+  },
+  {
+    "jornada": 4,
+    "fecha": "11/10/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": 10,
+        "golesVisitante": 5,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30",
+        "arbitro": "Duran",
+        "suspendido": false
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15",
+        "arbitro": "Molina",
+        "suspendido": true
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00",
+        "arbitro": "Exposito",
+        "suspendido": true
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00",
+        "arbitro": "Fàbregas",
+        "suspendido": true
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00",
+        "arbitro": "Edu",
+        "suspendido": true
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00",
+        "arbitro": "Congost",
+        "suspendido": true
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00",
+        "arbitro": "Salva",
+        "suspendido": true
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00",
+        "arbitro": "Julio",
+        "suspendido": true
+      }
+    ],
+    "descanso": "U.E. Castellar"
+  },
+  {
+    "jornada": 5,
+    "fecha": "18/10/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "U.D.A. Gramanet"
+  },
+  {
+    "jornada": 6,
+    "fecha": "25/10/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      }
+    ],
+    "descanso": "Penya Decano"
+  },
+  {
+    "jornada": 7,
+    "fecha": "01/11/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "A.V. Ripollet"
+  },
+  {
+    "jornada": 8,
+    "fecha": "08/11/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "C.E. Sentmenat"
+  },
+  {
+    "jornada": 9,
+    "fecha": "15/11/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "C.F. Cerdanyola"
+  },
+  {
+    "jornada": 10,
+    "fecha": "22/11/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "C.F. Can Parellada"
+  },
+  {
+    "jornada": 11,
+    "fecha": "29/11/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "C.E. Santa Eulàlia de Ronçana"
+  },
+  {
+    "jornada": 12,
+    "fecha": "13/12/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "C.F. Barberá"
+  },
+  {
+    "jornada": 13,
+    "fecha": "20/12/2026",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "C.E. Bigues i Riells"
+  },
+  {
+    "jornada": 14,
+    "fecha": "10/01/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.E. Castellar",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "U.E. Sabadellenca"
+  },
+  {
+    "jornada": 15,
+    "fecha": "17/01/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.E. Castellar",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "V.C.F. Ripollet"
+  },
+  {
+    "jornada": 16,
+    "fecha": "24/01/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "A.V. L'Ametlla del Vallés"
+  },
+  {
+    "jornada": 17,
+    "fecha": "31/01/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "A.V. Pallejá"
+  },
+  {
+    "jornada": 18,
+    "fecha": "14/02/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "U.E. Canovelles"
+  },
+  {
+    "jornada": 19,
+    "fecha": "21/02/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "E.F.B Palau Solitá i Plegamans"
+  },
+  {
+    "jornada": 20,
+    "fecha": "28/02/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "C.F. Sant Feliu de Codines"
+  },
+  {
+    "jornada": 21,
+    "fecha": "07/03/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      }
+    ],
+    "descanso": "U.E. Castellar"
+  },
+  {
+    "jornada": 22,
+    "fecha": "14/03/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      }
+    ],
+    "descanso": "U.D.A. Gramanet"
+  },
+  {
+    "jornada": 23,
+    "fecha": "21/03/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "Penya Decano"
+  },
+  {
+    "jornada": 24,
+    "fecha": "04/04/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "A.V. Ripollet"
+  },
+  {
+    "jornada": 25,
+    "fecha": "11/04/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "C.E. Sentmenat"
+  },
+  {
+    "jornada": 26,
+    "fecha": "18/04/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "C.F. Cerdanyola"
+  },
+  {
+    "jornada": 27,
+    "fecha": "25/04/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "C.F. Can Parellada"
+  },
+  {
+    "jornada": 28,
+    "fecha": "02/05/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "C.E. Santa Eulàlia de Ronçana"
+  },
+  {
+    "jornada": 29,
+    "fecha": "09/05/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "C.F. Barberá"
+  },
+  {
+    "jornada": 30,
+    "fecha": "16/05/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.E. Castellar",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "C.E. Bigues i Riells"
+  },
+  {
+    "jornada": 31,
+    "fecha": "23/05/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "A.V. L'Ametlla del Vallés",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL L'AMETLLA",
+        "hora": "08:30"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "U.E. Sabadellenca"
+  },
+  {
+    "jornada": 32,
+    "fecha": "30/05/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "Penya Decano",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "A.V. Pallejá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      }
+    ],
+    "descanso": "V.C.F. Ripollet"
+  },
+  {
+    "jornada": 33,
+    "fecha": "06/06/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "U.D.A. Gramanet",
+        "visitante": "C.E. Santa Eulàlia de Ronçana",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL GRAMANET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Castellar",
+        "visitante": "Penya Decano",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CASTELLAR",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Sant Feliu de Codines",
+        "visitante": "A.V. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANT FELIU",
+        "hora": "08:00"
+      },
+      {
+        "local": "E.F.B Palau Solitá i Plegamans",
+        "visitante": "C.E. Sentmenat",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALAU",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Canovelles",
+        "visitante": "C.F. Cerdanyola",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL CANOVELLES",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Pallejá",
+        "visitante": "C.F. Can Parellada",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL PALLEJA",
+        "hora": "08:15"
+      },
+      {
+        "local": "V.C.F. Ripollet",
+        "visitante": "C.F. Barberá",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "U.E. Sabadellenca",
+        "visitante": "C.E. Bigues i Riells",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAMPOAMOR",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "A.V. L'Ametlla del Vallés"
+  },
+  {
+    "jornada": 34,
+    "fecha": "13/06/2027",
+    "suspendida": false,
+    "partidos": [
+      {
+        "local": "Penya Decano",
+        "visitante": "U.D.A. Gramanet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL LA FERRERIA",
+        "hora": "08:00"
+      },
+      {
+        "local": "A.V. Ripollet",
+        "visitante": "U.E. Castellar",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL RIPOLLET",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Sentmenat",
+        "visitante": "C.F. Sant Feliu de Codines",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SENTMENAT",
+        "hora": "08:30"
+      },
+      {
+        "local": "C.F. Cerdanyola",
+        "visitante": "E.F.B Palau Solitá i Plegamans",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL FONTETAS",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Can Parellada",
+        "visitante": "U.E. Canovelles",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "CAN PARELLADA",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.F. Barberá",
+        "visitante": "A.V. L'Ametlla del Vallés",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BARBERA",
+        "hora": "08:00"
+      },
+      {
+        "local": "C.E. Bigues i Riells",
+        "visitante": "V.C.F. Ripollet",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL BIGUES",
+        "hora": "08:15"
+      },
+      {
+        "local": "C.E. Santa Eulàlia de Ronçana",
+        "visitante": "U.E. Sabadellenca",
+        "golesLocal": null,
+        "golesVisitante": null,
+        "campo": "MPAL SANTA EULALIA",
+        "hora": "08:00"
+      }
+    ],
+    "descanso": "A.V. Pallejá"
+  }
+];
+/*CALENDARIO_END*/';
                 var inicioIdx = contenidoActual.indexOf(inicioMarker);
                 var finIdx = contenidoActual.indexOf(finMarker);
                 if (inicioIdx === -1 || finIdx === -1) {
@@ -249,20 +2739,20 @@
                 return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/index.html', {
                     method: 'PUT',
                     headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: 'Actualización automática - Jornada ' + jornadaNum, content: base64Content, sha: shaActual })
+                    body: JSON.stringify({ message: 'ActualizaciÃ³n automÃ¡tica - Jornada ' + jornadaNum, content: base64Content, sha: shaActual })
                 });
             })
             .then(function(response) {
                 if (response.ok) {
-                    alert('✅ ¡Resultados guardados con éxito! La web se recargará para mostrar los cambios.');
+                    alert('â Â¡Resultados guardados con Ã©xito! La web se recargarÃ¡ para mostrar los cambios.');
                     location.reload();
                 } else {
                     return response.json().then(function(err) { throw new Error(err.message || 'Error al guardar'); });
                 }
             })
             .catch(function(error) {
-                alert('❌ Error: ' + error.message);
-                btn.textContent = '💾 Guardar Resultados en la Web';
+                alert('â Error: ' + error.message);
+                btn.textContent = 'ð¾ Guardar Resultados en la Web';
                 btn.disabled = false;
             });
         }
@@ -271,362 +2761,362 @@
         var calendario = [
             { jornada: 1, fecha: "20/09/2026", suspendida: false, partidos: [
                 { local: "U.E. Sabadellenca", visitante: "V.C.F. Ripollet", golesLocal: 5, golesVisitante: 1, campo: "CAMPOAMOR", hora: "08:00", arbitro: "Salva" },
-                { local: "C.E. Bigues i Riells", visitante: "A.V. L'Ametlla del Vallés", golesLocal: 3, golesVisitante: 16, campo: "MPAL BIGUES", hora: "08:15", arbitro: "Congost" },
-                { local: "C.F. Barberá", visitante: "A.V. Pallejá", golesLocal: 4, golesVisitante: 1, campo: "MPAL BARBERA", hora: "08:00", arbitro: "Julio" },
-                { local: "C.F. Can Parellada", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: 6, golesVisitante: 3, campo: "CAN PARELLADA", hora: "08:15", arbitro: "Edu" },
+                { local: "C.E. Bigues i Riells", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: 3, golesVisitante: 16, campo: "MPAL BIGUES", hora: "08:15", arbitro: "Congost" },
+                { local: "C.F. BarberÃ¡", visitante: "A.V. PallejÃ¡", golesLocal: 4, golesVisitante: 1, campo: "MPAL BARBERA", hora: "08:00", arbitro: "Julio" },
+                { local: "C.F. Can Parellada", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: 6, golesVisitante: 3, campo: "CAN PARELLADA", hora: "08:15", arbitro: "Edu" },
                 { local: "C.F. Cerdanyola", visitante: "C.F. Sant Feliu de Codines", golesLocal: 4, golesVisitante: 1, campo: "MPAL FONTETAS", hora: "08:15", arbitro: "Salva" },
-                { local: "C.E. Sentmenat", visitante: "U.E. Castellar", golesLocal: 2, golesVisitante: 5, campo: "MPAL SENTMENAT", hora: "18:30", arbitro: "Fàbregas" },
+                { local: "C.E. Sentmenat", visitante: "U.E. Castellar", golesLocal: 2, golesVisitante: 5, campo: "MPAL SENTMENAT", hora: "18:30", arbitro: "FÃ bregas" },
                 { local: "A.V. Ripollet", visitante: "U.D.A. Gramanet", golesLocal: 3, golesVisitante: 1, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Molina" },
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "Penya Decano", golesLocal: 3, golesVisitante: 2, campo: "MPAL SANTA EULALIA", hora: "18:30", arbitro: "Puibert" }
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "Penya Decano", golesLocal: 3, golesVisitante: 2, campo: "MPAL SANTA EULALIA", hora: "18:30", arbitro: "Puibert" }
             ], descanso: "U.E. Canovelles" },
             { jornada: 2, fecha: "27/09/2026", suspendida: false, partidos: [
-                { local: "V.C.F. Ripollet", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: 3, golesVisitante: 5, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Puibert" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "U.E. Sabadellenca", golesLocal: 4, golesVisitante: 4, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Lleixa" },
-                { local: "A.V. Pallejá", visitante: "C.E. Bigues i Riells", golesLocal: 5, golesVisitante: 1, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Duran" },
-                { local: "U.E. Canovelles", visitante: "C.F. Barberá", golesLocal: 1, golesVisitante: 4, campo: "MPAL CANOVELLES", hora: "08:00", arbitro: "Edu" },
+                { local: "V.C.F. Ripollet", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: 3, golesVisitante: 5, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Puibert" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "U.E. Sabadellenca", golesLocal: 4, golesVisitante: 4, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Lleixa" },
+                { local: "A.V. PallejÃ¡", visitante: "C.E. Bigues i Riells", golesLocal: 5, golesVisitante: 1, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Duran" },
+                { local: "U.E. Canovelles", visitante: "C.F. BarberÃ¡", golesLocal: 1, golesVisitante: 4, campo: "MPAL CANOVELLES", hora: "08:00", arbitro: "Edu" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "C.F. Can Parellada", golesLocal: 2, golesVisitante: 3, campo: "MPAL SANT FELIU", hora: "08:00", arbitro: "Exposito" },
-                { local: "U.E. Castellar", visitante: "C.F. Cerdanyola", golesLocal: 3, golesVisitante: 2, campo: "MPAL CASTELLAR", hora: "08:15", arbitro: "Fàbregas" },
+                { local: "U.E. Castellar", visitante: "C.F. Cerdanyola", golesLocal: 3, golesVisitante: 2, campo: "MPAL CASTELLAR", hora: "08:15", arbitro: "FÃ bregas" },
                 { local: "U.D.A. Gramanet", visitante: "C.E. Sentmenat", golesLocal: 2, golesVisitante: 2, campo: "MPAL GRAMANET", hora: "08:00", arbitro: "Congost" },
                 { local: "Penya Decano", visitante: "A.V. Ripollet", golesLocal: 6, golesVisitante: 3, campo: "MPAL LA FERRERIA", hora: "08:00", arbitro: "Molina" }
-            ], descanso: "E.F.B Palau Solitá i Plegamans" },
+            ], descanso: "E.F.B Palau SolitÃ¡ i Plegamans" },
             { jornada: 3, fecha: "04/10/2026", suspendida: true, partidos: [
-                { local: "V.C.F. Ripollet", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: null },
-                { local: "U.E. Sabadellenca", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00", arbitro: null },
+                { local: "V.C.F. Ripollet", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: null },
+                { local: "U.E. Sabadellenca", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00", arbitro: null },
                 { local: "C.E. Bigues i Riells", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15", arbitro: null },
-                { local: "C.F. Barberá", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00", arbitro: null },
+                { local: "C.F. BarberÃ¡", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00", arbitro: null },
                 { local: "C.F. Can Parellada", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15", arbitro: null },
                 { local: "C.F. Cerdanyola", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15", arbitro: null },
                 { local: "C.E. Sentmenat", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30", arbitro: null },
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00", arbitro: null }
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00", arbitro: null }
             ], descanso: "C.F. Sant Feliu de Codines" },
             { jornada: 4, fecha: "11/10/2026", suspendida: false, partidos: [
-                { local: "A.V. L'Ametlla del Vallés", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Duran" },
-                { local: "A.V. Pallejá", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Molina" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Duran" },
+                { local: "A.V. PallejÃ¡", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Molina" },
                 { local: "U.E. Canovelles", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00", arbitro: "Exposito" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00", arbitro: "Fàbregas" },
-                { local: "C.F. Sant Feliu de Codines", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00", arbitro: "Edu" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00", arbitro: "FÃ bregas" },
+                { local: "C.F. Sant Feliu de Codines", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00", arbitro: "Edu" },
                 { local: "U.D.A. Gramanet", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00", arbitro: "Congost" },
                 { local: "Penya Decano", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00", arbitro: "Salva" },
                 { local: "A.V. Ripollet", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Julio" }
             ], descanso: "U.E. Castellar" },
             { jornada: 5, fecha: "18/10/2026", suspendida: false, partidos: [
-                { local: "A.V. L'Ametlla del Vallés", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-                { local: "U.E. Sabadellenca", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
+                { local: "U.E. Sabadellenca", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.F. BarberÃ¡", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
                 { local: "C.F. Can Parellada", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
                 { local: "C.F. Cerdanyola", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
             ], descanso: "U.D.A. Gramanet" },
             { jornada: 6, fecha: "25/10/2026", suspendida: false, partidos: [
-                { local: "A.V. Pallejá", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "U.E. Canovelles", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "A.V. PallejÃ¡", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "U.E. Canovelles", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
                 { local: "U.E. Castellar", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
-                { local: "U.D.A. Gramanet", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
+                { local: "U.D.A. Gramanet", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
                 { local: "A.V. Ripollet", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "C.E. Sentmenat", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" }
             ], descanso: "Penya Decano" },
             { jornada: 7, fecha: "01/11/2026", suspendida: false, partidos: [
-                { local: "A.V. Pallejá", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. PallejÃ¡", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.F. BarberÃ¡", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
                 { local: "C.F. Can Parellada", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
             ], descanso: "A.V. Ripollet" },
             { jornada: 8, fecha: "08/11/2026", suspendida: false, partidos: [
-                { local: "U.E. Canovelles", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
-                { local: "C.F. Sant Feliu de Codines", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
+                { local: "U.E. Canovelles", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "C.F. Sant Feliu de Codines", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
                 { local: "U.E. Castellar", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "U.D.A. Gramanet", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
                 { local: "Penya Decano", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
-                { local: "A.V. Ripollet", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "A.V. Ripollet", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "C.F. Cerdanyola", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" }
             ], descanso: "C.E. Sentmenat" },
             { jornada: 9, fecha: "15/11/2026", suspendida: false, partidos: [
-                { local: "U.E. Canovelles", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "A.V. Pallejá", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "U.E. Canovelles", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
+                { local: "A.V. PallejÃ¡", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
+                { local: "C.F. BarberÃ¡", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
             ], descanso: "C.F. Cerdanyola" },
             { jornada: 10, fecha: "22/11/2026", suspendida: false, partidos: [
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
-                { local: "U.E. Castellar", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
-                { local: "U.D.A. Gramanet", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
+                { local: "U.E. Castellar", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
+                { local: "U.D.A. Gramanet", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
                 { local: "Penya Decano", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
                 { local: "A.V. Ripollet", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "C.E. Sentmenat", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
-                { local: "C.F. Cerdanyola", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" }
+                { local: "C.F. Cerdanyola", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" }
             ], descanso: "C.F. Can Parellada" },
             { jornada: 11, fecha: "29/11/2026", suspendida: false, partidos: [
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "U.E. Canovelles", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "A.V. Pallejá", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. PallejÃ¡", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" }
-            ], descanso: "C.E. Santa Eulàlia de Ronçana" },
+                { local: "C.F. BarberÃ¡", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" }
+            ], descanso: "C.E. Santa EulÃ lia de RonÃ§ana" },
             { jornada: 12, fecha: "13/12/2026", suspendida: false, partidos: [
-                { local: "C.F. Sant Feliu de Codines", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
-                { local: "U.E. Castellar", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
+                { local: "C.F. Sant Feliu de Codines", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
+                { local: "U.E. Castellar", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "U.D.A. Gramanet", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
-                { local: "Penya Decano", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
-                { local: "A.V. Ripollet", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "Penya Decano", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
+                { local: "A.V. Ripollet", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "C.E. Sentmenat", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
                 { local: "C.F. Cerdanyola", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
                 { local: "C.F. Can Parellada", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" }
-            ], descanso: "C.F. Barberá" },
+            ], descanso: "C.F. BarberÃ¡" },
             { jornada: 13, fecha: "20/12/2026", suspendida: false, partidos: [
                 { local: "C.F. Sant Feliu de Codines", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "U.E. Canovelles", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "A.V. Pallejá", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. PallejÃ¡", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
             ], descanso: "C.E. Bigues i Riells" },
             { jornada: 14, fecha: "10/01/2027", suspendida: false, partidos: [
-                { local: "U.E. Castellar", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
+                { local: "U.E. Castellar", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "U.D.A. Gramanet", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
-                { local: "Penya Decano", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
+                { local: "Penya Decano", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
                 { local: "A.V. Ripollet", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-                { local: "C.E. Sentmenat", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
-                { local: "C.F. Cerdanyola", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
+                { local: "C.E. Sentmenat", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
+                { local: "C.F. Cerdanyola", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
                 { local: "C.F. Can Parellada", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" }
+                { local: "C.F. BarberÃ¡", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" }
             ], descanso: "U.E. Sabadellenca" },
             { jornada: 15, fecha: "17/01/2027", suspendida: false, partidos: [
                 { local: "U.E. Castellar", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "U.E. Canovelles", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "A.V. Pallejá", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
-                { local: "U.E. Sabadellenca", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
+                { local: "A.V. PallejÃ¡", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "U.E. Sabadellenca", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
             ], descanso: "V.C.F. Ripollet" },
             { jornada: 16, fecha: "24/01/2027", suspendida: false, partidos: [
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
                 { local: "Penya Decano", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
                 { local: "A.V. Ripollet", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-                { local: "C.E. Sentmenat", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
+                { local: "C.E. Sentmenat", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
                 { local: "C.F. Cerdanyola", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
-                { local: "C.F. Can Parellada", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.F. Can Parellada", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
+                { local: "C.F. BarberÃ¡", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" }
-            ], descanso: "A.V. L'Ametlla del Vallés" },
+            ], descanso: "A.V. L'Ametlla del VallÃ©s" },
             { jornada: 17, fecha: "31/01/2027", suspendida: false, partidos: [
                 { local: "U.D.A. Gramanet", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
                 { local: "U.E. Castellar", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "U.E. Canovelles", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-                { local: "U.E. Sabadellenca", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" }
-            ], descanso: "A.V. Pallejá" },
+                { local: "U.E. Sabadellenca", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" }
+            ], descanso: "A.V. PallejÃ¡" },
             { jornada: 18, fecha: "14/02/2027", suspendida: false, partidos: [
                 { local: "V.C.F. Ripollet", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
-                { local: "A.V. Pallejá", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. PallejÃ¡", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
                 { local: "U.E. Castellar", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "U.D.A. Gramanet", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
-                { local: "Penya Decano", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" }
+                { local: "Penya Decano", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" }
             ], descanso: "U.E. Canovelles" },
             { jornada: 19, fecha: "21/02/2027", suspendida: false, partidos: [
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
-                { local: "U.E. Sabadellenca", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
-                { local: "C.E. Bigues i Riells", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
+                { local: "U.E. Sabadellenca", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
+                { local: "C.E. Bigues i Riells", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
+                { local: "C.F. BarberÃ¡", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
                 { local: "C.F. Can Parellada", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
                 { local: "C.F. Cerdanyola", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
                 { local: "C.E. Sentmenat", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
                 { local: "A.V. Ripollet", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" }
-            ], descanso: "E.F.B Palau Solitá i Plegamans" },
+            ], descanso: "E.F.B Palau SolitÃ¡ i Plegamans" },
             { jornada: 20, fecha: "28/02/2027", suspendida: false, partidos: [
-                { local: "A.V. L'Ametlla del Vallés", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
-                { local: "A.V. Pallejá", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. PallejÃ¡", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
                 { local: "U.E. Canovelles", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "U.E. Castellar", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "U.D.A. Gramanet", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
                 { local: "Penya Decano", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
-                { local: "A.V. Ripollet", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" }
+                { local: "A.V. Ripollet", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" }
             ], descanso: "C.F. Sant Feliu de Codines" },
             { jornada: 21, fecha: "07/03/2027", suspendida: false, partidos: [
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
-                { local: "V.C.F. Ripollet", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
+                { local: "V.C.F. Ripollet", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
-                { local: "C.E. Bigues i Riells", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.E. Bigues i Riells", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
+                { local: "C.F. BarberÃ¡", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
                 { local: "C.F. Can Parellada", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
                 { local: "C.F. Cerdanyola", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
                 { local: "C.E. Sentmenat", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" }
             ], descanso: "U.E. Castellar" },
             { jornada: 22, fecha: "14/03/2027", suspendida: false, partidos: [
-                { local: "A.V. Pallejá", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. PallejÃ¡", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
                 { local: "U.E. Canovelles", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
-                { local: "U.E. Castellar", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
+                { local: "U.E. Castellar", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "Penya Decano", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
                 { local: "A.V. Ripollet", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-                { local: "C.E. Sentmenat", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" }
+                { local: "C.E. Sentmenat", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" }
             ], descanso: "U.D.A. Gramanet" },
             { jornada: 23, fecha: "21/03/2027", suspendida: false, partidos: [
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
-                { local: "V.C.F. Ripollet", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "V.C.F. Ripollet", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.F. BarberÃ¡", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
                 { local: "C.F. Can Parellada", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
                 { local: "C.F. Cerdanyola", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" }
             ], descanso: "Penya Decano" },
             { jornada: 24, fecha: "04/04/2027", suspendida: false, partidos: [
-                { local: "U.E. Canovelles", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "U.E. Canovelles", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
                 { local: "U.E. Castellar", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "U.D.A. Gramanet", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
-                { local: "Penya Decano", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
+                { local: "Penya Decano", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
                 { local: "C.E. Sentmenat", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
-                { local: "C.F. Cerdanyola", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" }
+                { local: "C.F. Cerdanyola", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" }
             ], descanso: "A.V. Ripollet" },
             { jornada: 25, fecha: "11/04/2027", suspendida: false, partidos: [
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
-                { local: "A.V. Pallejá", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
+                { local: "A.V. PallejÃ¡", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.F. BarberÃ¡", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
                 { local: "C.F. Can Parellada", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" }
             ], descanso: "C.E. Sentmenat" },
             { jornada: 26, fecha: "18/04/2027", suspendida: false, partidos: [
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
-                { local: "C.F. Sant Feliu de Codines", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
-                { local: "U.E. Castellar", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "C.F. Sant Feliu de Codines", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
+                { local: "U.E. Castellar", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "U.D.A. Gramanet", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
                 { local: "Penya Decano", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
                 { local: "A.V. Ripollet", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-                { local: "C.E. Sentmenat", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
-                { local: "C.F. Can Parellada", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" }
+                { local: "C.E. Sentmenat", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
+                { local: "C.F. Can Parellada", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" }
             ], descanso: "C.F. Cerdanyola" },
             { jornada: 27, fecha: "25/04/2027", suspendida: false, partidos: [
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
                 { local: "U.E. Canovelles", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "A.V. Pallejá", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. PallejÃ¡", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" }
+                { local: "C.F. BarberÃ¡", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" }
             ], descanso: "C.F. Can Parellada" },
             { jornada: 28, fecha: "02/05/2027", suspendida: false, partidos: [
-                { local: "C.F. Sant Feliu de Codines", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
+                { local: "C.F. Sant Feliu de Codines", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
                 { local: "U.E. Castellar", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
-                { local: "U.D.A. Gramanet", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
-                { local: "Penya Decano", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
+                { local: "U.D.A. Gramanet", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
+                { local: "Penya Decano", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
                 { local: "A.V. Ripollet", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "C.E. Sentmenat", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
                 { local: "C.F. Cerdanyola", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
-                { local: "C.F. Can Parellada", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" }
-            ], descanso: "C.E. Santa Eulàlia de Ronçana" },
+                { local: "C.F. Can Parellada", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" }
+            ], descanso: "C.E. Santa EulÃ lia de RonÃ§ana" },
             { jornada: 29, fecha: "09/05/2027", suspendida: false, partidos: [
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "U.E. Canovelles", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "A.V. Pallejá", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. PallejÃ¡", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" }
-            ], descanso: "C.F. Barberá" },
+            ], descanso: "C.F. BarberÃ¡" },
             { jornada: 30, fecha: "16/05/2027", suspendida: false, partidos: [
                 { local: "U.E. Castellar", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
-                { local: "U.D.A. Gramanet", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
+                { local: "U.D.A. Gramanet", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
                 { local: "Penya Decano", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
-                { local: "A.V. Ripollet", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-                { local: "C.E. Sentmenat", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
+                { local: "A.V. Ripollet", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "C.E. Sentmenat", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
                 { local: "C.F. Cerdanyola", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
                 { local: "C.F. Can Parellada", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" }
+                { local: "C.F. BarberÃ¡", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" }
             ], descanso: "C.E. Bigues i Riells" },
             { jornada: 31, fecha: "23/05/2027", suspendida: false, partidos: [
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "U.E. Canovelles", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "A.V. Pallejá", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "A.V. L'Ametlla del Vallés", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "A.V. PallejÃ¡", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del VallÃ©s", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
                 { local: "V.C.F. Ripollet", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-                { local: "C.E. Bigues i Riells", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" }
+                { local: "C.E. Bigues i Riells", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" }
             ], descanso: "U.E. Sabadellenca" },
             { jornada: 32, fecha: "30/05/2027", suspendida: false, partidos: [
                 { local: "U.D.A. Gramanet", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
                 { local: "Penya Decano", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
-                { local: "A.V. Ripollet", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "A.V. Ripollet", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "C.E. Sentmenat", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
-                { local: "C.F. Cerdanyola", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
-                { local: "C.F. Can Parellada", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
-                { local: "C.E. Bigues i Riells", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" }
+                { local: "C.F. Cerdanyola", visitante: "A.V. PallejÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
+                { local: "C.F. Can Parellada", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
+                { local: "C.F. BarberÃ¡", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.E. Bigues i Riells", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" }
             ], descanso: "V.C.F. Ripollet" },
             { jornada: 33, fecha: "06/06/2027", suspendida: false, partidos: [
-                { local: "U.D.A. Gramanet", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
+                { local: "U.D.A. Gramanet", visitante: "C.E. Santa EulÃ lia de RonÃ§ana", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
                 { local: "U.E. Castellar", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "E.F.B Palau SolitÃ¡ i Plegamans", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
                 { local: "U.E. Canovelles", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
-                { local: "A.V. Pallejá", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-                { local: "V.C.F. Ripollet", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "A.V. PallejÃ¡", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "V.C.F. Ripollet", visitante: "C.F. BarberÃ¡", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "U.E. Sabadellenca", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" }
-            ], descanso: "A.V. L'Ametlla del Vallés" },
+            ], descanso: "A.V. L'Ametlla del VallÃ©s" },
             { jornada: 34, fecha: "13/06/2027", suspendida: false, partidos: [
                 { local: "Penya Decano", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
                 { local: "A.V. Ripollet", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
                 { local: "C.E. Sentmenat", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
-                { local: "C.F. Cerdanyola", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
+                { local: "C.F. Cerdanyola", visitante: "E.F.B Palau SolitÃ¡ i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
                 { local: "C.F. Can Parellada", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
-                { local: "C.F. Barberá", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.F. BarberÃ¡", visitante: "A.V. L'Ametlla del VallÃ©s", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
                 { local: "C.E. Bigues i Riells", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
-                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
-            ], descanso: "A.V. Pallejá" }
+                { local: "C.E. Santa EulÃ lia de RonÃ§ana", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
+            ], descanso: "A.V. PallejÃ¡" }
         ];
         /*CALENDARIO_END*/
 
         var equipos = [
-            { nombre: "Barberà", img: "barbera.png", nombreCompleto: "C.F. Barberá" },
+            { nombre: "BarberÃ ", img: "barbera.png", nombreCompleto: "C.F. BarberÃ¡" },
             { nombre: "Can Parellada", img: "can_parellada.png", nombreCompleto: "C.F. Can Parellada" },
             { nombre: "Castellar", img: "castellar.png", nombreCompleto: "U.E. Castellar" },
-            { nombre: "Santa Eulàlia", img: "sta_eulalia.png", nombreCompleto: "C.E. Santa Eulàlia de Ronçana" },
-            { nombre: "L'Ametlla", img: "l_ametlla.png", nombreCompleto: "A.V. L'Ametlla del Vallés" },
+            { nombre: "Santa EulÃ lia", img: "sta_eulalia.png", nombreCompleto: "C.E. Santa EulÃ lia de RonÃ§ana" },
+            { nombre: "L'Ametlla", img: "l_ametlla.png", nombreCompleto: "A.V. L'Ametlla del VallÃ©s" },
             { nombre: "Sabadellenca", img: "sabadellenca.png", nombreCompleto: "U.E. Sabadellenca" },
             { nombre: "Cerdanyola", img: "cerdanyola.png", nombreCompleto: "C.F. Cerdanyola" },
             { nombre: "Penya Decano", img: "decano.png", nombreCompleto: "Penya Decano" },
-            { nombre: "Pallejà", img: "palleja.png", nombreCompleto: "A.V. Pallejá" },
+            { nombre: "PallejÃ ", img: "palleja.png", nombreCompleto: "A.V. PallejÃ¡" },
             { nombre: "A.V. Ripollet", img: "agrup_ripollet.png", nombreCompleto: "A.V. Ripollet" },
             { nombre: "Gramanet", img: "gramanet.png", nombreCompleto: "U.D.A. Gramanet" },
             { nombre: "Sentmenat", img: "sentmenat.png", nombreCompleto: "C.E. Sentmenat" },
             { nombre: "Sant Feliu", img: "st_feliu_codines.png", nombreCompleto: "C.F. Sant Feliu de Codines" },
-            { nombre: "Palau Plegamans", img: "palau_plegamans.png", nombreCompleto: "E.F.B Palau Solitá i Plegamans" },
+            { nombre: "Palau Plegamans", img: "palau_plegamans.png", nombreCompleto: "E.F.B Palau SolitÃ¡ i Plegamans" },
             { nombre: "Canovelles", img: "canovelles.png", nombreCompleto: "U.E. Canovelles" },
             { nombre: "VCF Ripollet", img: "vcf_ripollet.png", nombreCompleto: "V.C.F. Ripollet" },
             { nombre: "Bigues", img: "bigues.png", nombreCompleto: "C.E. Bigues i Riells" }
@@ -739,10 +3229,10 @@
             var contenedor = document.getElementById('contenedor-partidos');
             var html = '';
             if (jornada.suspendida) {
-                html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
+                html += '<div class="suspended-banner">ð§ï¸ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
             }
             if (jornada.descanso) {
-                html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
+                html += '<div class="descanso-banner">ð´ Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
             }
             jornada.partidos.forEach(function(p) {
                 var marcador = '';
@@ -751,14 +3241,14 @@
                 } else {
                     marcador = '<div class="match-score vs">VS</div>';
                 }
-                var arbitroHtml = p.arbitro ? ' · 👤 ' + p.arbitro : '';
+                var arbitroHtml = p.arbitro ? ' Â· ð¤ ' + p.arbitro : '';
                 html += '<div class="match-card">';
                 html += '<div class="match-teams">';
                 html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '" alt="' + p.local + '"></div>';
                 html += marcador;
                 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '" alt="' + p.visitante + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
                 html += '</div>';
-                html += '<div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbitroHtml + '</div>';
+                html += '<div class="match-info">ð ' + p.campo + ' Â· ð ' + p.hora + ' Â· ð ' + jornada.fecha + arbitroHtml + '</div>';
                 html += '</div>';
             });
             contenedor.innerHTML = html;
