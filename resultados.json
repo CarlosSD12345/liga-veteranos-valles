@@ -131,8 +131,8 @@
   "5": {
     "0": {
       "suspendido": false,
-      "golesLocal": 3,
-      "golesVisitante": 1
+      "golesLocal": null,
+      "golesVisitante": null
     },
     "1": {
       "suspendido": false,
@@ -146,13 +146,13 @@
     },
     "3": {
       "suspendido": false,
-      "golesLocal": 0,
-      "golesVisitante": 4
+      "golesLocal": null,
+      "golesVisitante": null
     },
     "4": {
       "suspendido": false,
-      "golesLocal": 2,
-      "golesVisitante": 2
+      "golesLocal": null,
+      "golesVisitante": null
     },
     "5": {
       "suspendido": false,
