@@ -93,9 +93,9 @@
       "golesVisitante": 5
     },
     "1": {
-      "suspendido": true,
-      "golesLocal": null,
-      "golesVisitante": null
+      "suspendido": false,
+      "golesLocal": 2,
+      "golesVisitante": 0
     },
     "2": {
       "suspendido": true,
