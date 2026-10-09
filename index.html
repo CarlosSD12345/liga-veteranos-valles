@@ -7,12 +7,13 @@
     <style>
         body { background-color: #0b1d15; color: white; padding: 20px; font-family: Arial, sans-serif; }
         .container { max-width: 1000px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 25px; }
-        .header-logo { width: 320px; max-width: 95%; height: auto; object-fit: contain; margin-bottom: 15px; }
-        .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; }
-        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        header { text-align: center; margin-bottom: 20px; }
+        .header-logo { width: 400px; max-width: 100%; height: auto; object-fit: contain; }
+        .tabs-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
+        .tabs { display: flex; gap: 10px; flex-wrap: wrap; }
         .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; }
         .tab-btn.active { background-color: #2ecc71; color: #0b1d15; border-color: #2ecc71; }
+        .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; white-space: nowrap; }
         .section { display: none; }
         .section.active { display: block; }
         table { width: 100%; border-collapse: collapse; background-color: #11291e; border-radius: 12px; overflow: hidden; }
@@ -50,7 +51,7 @@
         .card-red { background-color: #e74c3c; }
         .suspended-banner { background-color: #e74c3c; color: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; }
         .descanso-banner { background-color: #173827; color: #a3b8af; padding: 12px; border-radius: 10px; text-align: center; margin-bottom: 15px; font-size: 0.95rem; border: 1px solid #1f4733; }
-        footer { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px 20px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
+        footer { display: flex; flex-direction: column; align-items: center; padding: 30px 20px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
         .footer-lema { font-style: italic; color: white; font-size: 16px; text-align: center; margin: 10px 0 5px 0; width: 100%; }
         .footer-hashtag { color: #2ecc71; font-weight: bold; font-size: 18px; text-align: center; margin: 5px 0 15px 0; width: 100%; }
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 400px; margin-top: 10px; padding-top: 15px; border-top: 1px solid #1f4733; }
@@ -59,7 +60,9 @@
         .fp-card-box { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
         @media (max-width: 600px) {
             body { padding: 8px; }
-            .header-logo { width: 240px; }
+            .header-logo { width: 280px; }
+            .tabs-row { justify-content: center; }
+            .badge { order: -1; width: 100%; text-align: center; margin-bottom: 5px; }
             .match-card { padding: 10px; }
             .match-teams { gap: 5px; }
             .match-team { gap: 5px; }
@@ -77,13 +80,15 @@
     <div class="container">
         <header>
             <img src="escudos/logo_liga.png" alt="Liga Veteranos Vallès" class="header-logo">
-            <div class="badge" id="badge-jornada">JORNADA 3</div>
         </header>
-        <div class="tabs">
-            <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
-            <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
-            <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
-            <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
+        <div class="tabs-row">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
+                <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
+                <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
+                <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
+            </div>
+            <div class="badge" id="badge-jornada">JORNADA 3</div>
         </div>
         <div id="clasificacion" class="section active">
             <table>
@@ -119,7 +124,7 @@
             <p class="footer-lema">"Ens divertim, competim i fem amics"</p>
             <p class="footer-hashtag">#VeteransDelVallès</p>
             <div class="footer-bottom">
-                <button id="admin-btn" onclick="abrirAdmin()">️ Admin</button>
+                <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
                 <p style="margin:0; font-size:0.8rem;">© 2026 Liga de Fútbol Veteranos del Vallès</p>
             </div>
         </footer>
@@ -128,13 +133,13 @@
     <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
         <div style="max-width: 400px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
             <div id="pantalla-codigo">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;"> Acceso Restringido</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🔒 Acceso Restringido</h2>
                 <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
                 <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-token" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 10px;">⚙️ Configuración</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 10px;">️ Configuración</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px; font-size: 0.9rem;">Pega aquí tu Token de GitHub:</p>
                 <input type="password" id="input-token" placeholder="ghp_..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; text-align: center;">
                 <button onclick="guardarToken()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Guardar Token</button>
@@ -614,7 +619,7 @@
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:5px; margin-top:8px; flex-wrap:wrap; justify-content:center;">';
-                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">🟡 LOCAL</span>';
+                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;"> LOCAL</span>';
                 html += '<input type="number" id="amL-' + index + '" value="' + amL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
                 html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT🟡</span>';
@@ -629,10 +634,10 @@
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
                 html += construirSelectArbitros('ar-' + index, arb);
-                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Susp.</label>';
+                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ️ Susp.</label>';
                 html += '</div></div>';
             });
-            html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
+            html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;"> Guardar Resultados</button>';
             contenedor.innerHTML = html;
         }
 
@@ -655,7 +660,7 @@
                 }
             }
             
-            btn.textContent = '⏳ Guardando...';
+            btn.textContent = ' Guardando...';
             btn.disabled = true;
             var token = localStorage.getItem('github_token');
             var nuevosResultados = {};
