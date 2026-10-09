@@ -90,7 +90,7 @@
     <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
         <div style="max-width: 400px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
             <div id="pantalla-codigo">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🔒 Acceso Restringido</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;"> Acceso Restringido</h2>
                 <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
                 <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
@@ -544,6 +544,7 @@
                 var resP = resJ[String(index)] || {};
                 var golL = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : '';
                 var golV = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : '';
+                var arb = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : (p.arbitro || '');
                 var checked = resP.suspendido ? 'checked' : '';
                 html += '<div style="background:#0b1d15; padding:10px; border-radius:8px; margin-bottom:10px; border:1px solid #1f4733;">';
                 html += '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">';
@@ -553,8 +554,10 @@
                 html += '<input type="number" id="gv-' + index + '" value="' + golV + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
                 html += '</div>';
-                html += '<div style="text-align:center; margin-top:8px;">';
-                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Partido Suspendido</label>';
+                html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px;">';
+                html += '<span style="color:#a3b8af; font-size:0.8rem; white-space:nowrap;">👤 Árbitro:</span>';
+                html += '<input type="text" id="ar-' + index + '" value="' + arb + '" placeholder="Nombre..." style="flex:1; padding:5px; border-radius:4px; border:1px solid #1f4733; background:#11291e; color:white; font-size:14px;">';
+                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer; white-space:nowrap;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Susp.</label>';
                 html += '</div></div>';
             });
             html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
@@ -571,11 +574,13 @@
             jornada.partidos.forEach(function(p, index) {
                 var valL = document.getElementById('gl-' + index).value;
                 var valV = document.getElementById('gv-' + index).value;
+                var valArb = document.getElementById('ar-' + index).value.trim();
                 var susp = document.getElementById('sp-' + index).checked;
                 nuevosResultados[String(index)] = {
                     suspendido: susp,
                     golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)),
-                    golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV))
+                    golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV)),
+                    arbitro: valArb || null
                 };
             });
             resultados[String(jornadaNum)] = nuevosResultados;
@@ -780,21 +785,21 @@
                 var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal;
                 var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
                 var susp = resP.suspendido === true;
+                var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro;
                 var marcador = '';
                 if (susp) marcador = '<div class="match-score suspended-match">SUSP.</div>';
                 else if (gl !== null && gv !== null) marcador = '<div class="match-score">' + gl + ' - ' + gv + '</div>';
                 else marcador = '<div class="match-score vs">VS</div>';
-                var arb = p.arbitro ? ' · 👤 ' + p.arbitro : '';
+                var arbTexto = arbNombre ? ' · 👤 ' + arbNombre : '';
                 html += '<div class="match-card"><div class="match-teams">';
                 html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
                 html += marcador;
                 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
-                html += '</div><div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arb + '</div></div>';
+                html += '</div><div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div></div>';
             });
             contenedor.innerHTML = html;
         }
 
-        // Actualizar badge con la última jornada jugada
         function actualizarBadgeJornada() {
             var ultimaJornada = 0;
             for (var j = 0; j < calendario.length; j++) {
