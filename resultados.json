@@ -1,54 +1,538 @@
-{
-  "1": {
-    "0": {"golesLocal": 5, "golesVisitante": 1, "suspendido": false},
-    "1": {"golesLocal": 3, "golesVisitante": 16, "suspendido": false},
-    "2": {"golesLocal": 4, "golesVisitante": 1, "suspendido": false},
-    "3": {"golesLocal": 6, "golesVisitante": 3, "suspendido": false},
-    "4": {"golesLocal": 4, "golesVisitante": 1, "suspendido": false},
-    "5": {"golesLocal": 2, "golesVisitante": 5, "suspendido": false},
-    "6": {"golesLocal": 3, "golesVisitante": 1, "suspendido": false},
-    "7": {"golesLocal": 3, "golesVisitante": 2, "suspendido": false}
-  },
-  "2": {
-    "0": {"golesLocal": 3, "golesVisitante": 5, "suspendido": false},
-    "1": {"golesLocal": 4, "golesVisitante": 4, "suspendido": false},
-    "2": {"golesLocal": 5, "golesVisitante": 1, "suspendido": false},
-    "3": {"golesLocal": 1, "golesVisitante": 4, "suspendido": false},
-    "4": {"golesLocal": 2, "golesVisitante": 3, "suspendido": false},
-    "5": {"golesLocal": 3, "golesVisitante": 2, "suspendido": false},
-    "6": {"golesLocal": 2, "golesVisitante": 2, "suspendido": false},
-    "7": {"golesLocal": 6, "golesVisitante": 3, "suspendido": false}
-  },
-  "3": {"suspendida": true},
-  "4": {},
-  "5": {},
-  "6": {},
-  "7": {},
-  "8": {},
-  "9": {},
-  "10": {},
-  "11": {},
-  "12": {},
-  "13": {},
-  "14": {},
-  "15": {},
-  "16": {},
-  "17": {},
-  "18": {},
-  "19": {},
-  "20": {},
-  "21": {},
-  "22": {},
-  "23": {},
-  "24": {},
-  "25": {},
-  "26": {},
-  "27": {},
-  "28": {},
-  "29": {},
-  "30": {},
-  "31": {},
-  "32": {},
-  "33": {},
-  "34": {}
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga Veteranos Vallès</title>
+    <style>
+        body { background-color: #0b1d15; color: white; padding: 20px; font-family: Arial, sans-serif; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 25px; }
+        .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; }
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
+        .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; }
+        .tab-btn.active { background-color: #2ecc71; color: #0b1d15; border-color: #2ecc71; }
+        .section { display: none; }
+        .section.active { display: block; }
+        table { width: 100%; border-collapse: collapse; background-color: #11291e; border-radius: 12px; overflow: hidden; }
+        th { background-color: #173827; padding: 12px; text-align: center; }
+        td { padding: 12px; border-bottom: 1px solid #1f4733; text-align: center; }
+        .team { text-align: left; padding-left: 15px; }
+        .team-info { display: flex; align-items: center; gap: 10px; }
+        .team-logo { width: 44px; height: 44px; object-fit: contain; background: #ffffff; border-radius: 10px; padding: 2px; flex-shrink: 0; }
+        .pts { font-weight: bold; color: #2ecc71; }
+        .badge-form { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin: 0 2px; }
+        .win { background-color: #27ae60; }
+        .draw { background-color: #f39c12; }
+        .loss { background-color: #c0392b; }
+        .none { background-color: #7f8c8d; }
+        .suspended { background-color: #3498db; }
+        .rest { background-color: #9b59b6; }
+        .col-forma { white-space: nowrap; min-width: 90px; }
+        .selector-container { margin-bottom: 20px; text-align: center; }
+        #selector-jornada, #admin-selector-jornada { background-color: #11291e; color: white; border: 1px solid #2ecc71; padding: 12px 20px; border-radius: 8px; font-size: 1rem; font-weight: bold; width: 100%; max-width: 350px; cursor: pointer; }
+        .match-card { background-color: #11291e; border: 1px solid #1f4733; border-radius: 10px; padding: 15px; margin-bottom: 10px; }
+        .match-teams { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+        .match-team { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; }
+        .match-team.local { justify-content: flex-end; text-align: right; }
+        .match-team.visitante { justify-content: flex-start; text-align: left; }
+        .match-team img { width: 44px; height: 44px; object-fit: contain; background: #fff; border-radius: 8px; padding: 2px; flex-shrink: 0; }
+        .match-team span { font-size: 0.8rem; font-weight: 600; line-height: 1.25; flex: 1; min-width: 0; }
+        .match-score { background-color: #173827; padding: 10px 14px; border-radius: 8px; font-weight: bold; font-size: 1.3rem; color: #2ecc71; min-width: 70px; text-align: center; flex-shrink: 0; }
+        .match-score.vs { color: #a3b8af; font-size: 0.9rem; }
+        .match-score.suspended-match { color: #3498db; font-size: 0.9rem; }
+        .match-info { font-size: 0.75rem; color: #a3b8af; text-align: center; border-top: 1px solid #1f4733; padding-top: 8px; }
+        .suspended-banner { background-color: #e74c3c; color: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; }
+        .descanso-banner { background-color: #173827; color: #a3b8af; padding: 12px; border-radius: 10px; text-align: center; margin-bottom: 15px; font-size: 0.95rem; border: 1px solid #1f4733; }
+        footer { text-align: center; padding: 30px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
+        #admin-btn { background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        @media (max-width: 600px) {
+            body { padding: 8px; }
+            .match-card { padding: 10px; }
+            .match-teams { gap: 5px; }
+            .match-team { gap: 5px; }
+            .match-team img { width: 34px; height: 34px; }
+            .match-team span { font-size: 0.78rem; }
+            .match-score { min-width: 56px; padding: 8px 8px; font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>VETERANOS VALLÈS</h1>
+            <div class="badge">JORNADA 4 · CLASIFICACIÓN</div>
+        </header>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
+            <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
+        </div>
+        <div id="clasificacion" class="section active">
+            <table>
+                <thead>
+                    <tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th>PTS</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DIF</th><th>3 ÚLTIMOS</th></tr>
+                </thead>
+                <tbody id="tabla"></tbody>
+            </table>
+        </div>
+        <div id="calendario" class="section">
+            <div class="selector-container">
+                <select id="selector-jornada" onchange="cargarJornada()"></select>
+            </div>
+            <div id="contenedor-partidos"></div>
+        </div>
+        <footer>
+            <p>© 2026 Liga de Fútbol Veteranos del Vallès</p>
+            <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
+        </footer>
+    </div>
+
+    <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
+        <div style="max-width: 400px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
+            <div id="pantalla-codigo">
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🔒 Acceso Restringido</h2>
+                <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
+                <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
+                <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
+            </div>
+            <div id="pantalla-token" style="display: none;">
+                <h2 style="color: #2ecc71; margin-bottom: 10px;">⚙️ Configuración</h2>
+                <p style="color: #a3b8af; margin-bottom: 15px; font-size: 0.9rem;">Pega aquí tu Token de GitHub:</p>
+                <input type="password" id="input-token" placeholder="ghp_..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; text-align: center;">
+                <button onclick="guardarToken()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Guardar Token</button>
+                <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
+            </div>
+            <div id="pantalla-control" style="display: none;">
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
+                <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
+                <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
+                    <option value="">Selecciona Jornada...</option>
+                </select>
+                <div id="admin-partidos-container"></div>
+                <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 20px;">Salir</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var resultados = {};
+
+        var calendario = [
+            { jornada: 1, fecha: "20/09/2026", suspendida: false, partidos: [
+                { local: "U.E. Sabadellenca", visitante: "V.C.F. Ripollet", golesLocal: 5, golesVisitante: 1, campo: "CAMPOAMOR", hora: "08:00", arbitro: "Salva" },
+                { local: "C.E. Bigues i Riells", visitante: "A.V. L'Ametlla del Vallés", golesLocal: 3, golesVisitante: 16, campo: "MPAL BIGUES", hora: "08:15", arbitro: "Congost" },
+                { local: "C.F. Barberá", visitante: "A.V. Pallejá", golesLocal: 4, golesVisitante: 1, campo: "MPAL BARBERA", hora: "08:00", arbitro: "Julio" },
+                { local: "C.F. Can Parellada", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: 6, golesVisitante: 3, campo: "CAN PARELLADA", hora: "08:15", arbitro: "Edu" },
+                { local: "C.F. Cerdanyola", visitante: "C.F. Sant Feliu de Codines", golesLocal: 4, golesVisitante: 1, campo: "MPAL FONTETAS", hora: "08:15", arbitro: "Salva" },
+                { local: "C.E. Sentmenat", visitante: "U.E. Castellar", golesLocal: 2, golesVisitante: 5, campo: "MPAL SENTMENAT", hora: "18:30", arbitro: "Fàbregas" },
+                { local: "A.V. Ripollet", visitante: "U.D.A. Gramanet", golesLocal: 3, golesVisitante: 1, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Molina" },
+                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "Penya Decano", golesLocal: 3, golesVisitante: 2, campo: "MPAL SANTA EULALIA", hora: "18:30", arbitro: "Puibert" }
+            ], descanso: "U.E. Canovelles" },
+            { jornada: 2, fecha: "27/09/2026", suspendida: false, partidos: [
+                { local: "V.C.F. Ripollet", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: 3, golesVisitante: 5, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Puibert" },
+                { local: "A.V. L'Ametlla del Vallés", visitante: "U.E. Sabadellenca", golesLocal: 4, golesVisitante: 4, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Lleixa" },
+                { local: "A.V. Pallejá", visitante: "C.E. Bigues i Riells", golesLocal: 5, golesVisitante: 1, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Duran" },
+                { local: "U.E. Canovelles", visitante: "C.F. Barberá", golesLocal: 1, golesVisitante: 4, campo: "MPAL CANOVELLES", hora: "08:00", arbitro: "Edu" },
+                { local: "C.F. Sant Feliu de Codines", visitante: "C.F. Can Parellada", golesLocal: 2, golesVisitante: 3, campo: "MPAL SANT FELIU", hora: "08:00", arbitro: "Exposito" },
+                { local: "U.E. Castellar", visitante: "C.F. Cerdanyola", golesLocal: 3, golesVisitante: 2, campo: "MPAL CASTELLAR", hora: "08:15", arbitro: "Fàbregas" },
+                { local: "U.D.A. Gramanet", visitante: "C.E. Sentmenat", golesLocal: 2, golesVisitante: 2, campo: "MPAL GRAMANET", hora: "08:00", arbitro: "Congost" },
+                { local: "Penya Decano", visitante: "A.V. Ripollet", golesLocal: 6, golesVisitante: 3, campo: "MPAL LA FERRERIA", hora: "08:00", arbitro: "Molina" }
+            ], descanso: "E.F.B Palau Solitá i Plegamans" },
+            { jornada: 3, fecha: "04/10/2026", suspendida: true, partidos: [
+                { local: "V.C.F. Ripollet", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "U.E. Sabadellenca", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
+                { local: "C.E. Bigues i Riells", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
+                { local: "C.F. Barberá", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.F. Can Parellada", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
+                { local: "C.F. Cerdanyola", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
+                { local: "C.E. Sentmenat", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" },
+                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
+            ], descanso: "C.F. Sant Feliu de Codines" },
+            { jornada: 4, fecha: "11/10/2026", suspendida: false, partidos: [
+                { local: "A.V. L'Ametlla del Vallés", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Duran" },
+                { local: "A.V. Pallejá", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Molina" },
+                { local: "U.E. Canovelles", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00", arbitro: "Exposito" },
+                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00", arbitro: "Fàbregas" },
+                { local: "C.F. Sant Feliu de Codines", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00", arbitro: "Edu" },
+                { local: "U.D.A. Gramanet", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00", arbitro: "Congost" },
+                { local: "Penya Decano", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00", arbitro: "Salva" },
+                { local: "A.V. Ripollet", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Julio" }
+            ], descanso: "U.E. Castellar" },
+            { jornada: 5, fecha: "18/10/2026", suspendida: false, partidos: [
+                { local: "A.V. L'Ametlla del Vallés", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "V.C.F. Ripollet", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "U.E. Sabadellenca", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
+                { local: "C.E. Bigues i Riells", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
+                { local: "C.F. Barberá", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.F. Can Parellada", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
+                { local: "C.F. Cerdanyola", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" },
+                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
+            ], descanso: "U.D.A. Gramanet" },
+            { jornada: 6, fecha: "25/10/2026", suspendida: false, partidos: [
+                { local: "A.V. Pallejá", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "U.E. Canovelles", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
+                { local: "E.F.B Palau Solitá i Plegamans", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "C.F. Sant Feliu de Codines", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
+                { local: "U.E. Castellar", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
+                { local: "U.D.A. Gramanet", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
+                { local: "A.V. Ripollet", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "C.E. Sentmenat", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" }
+            ], descanso: "Penya Decano" },
+            { jornada: 7, fecha: "01/11/2026", suspendida: false, partidos: [
+                { local: "A.V. Pallejá", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
+                { local: "A.V. L'Ametlla del Vallés", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
+                { local: "V.C.F. Ripollet", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "U.E. Sabadellenca", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
+                { local: "C.E. Bigues i Riells", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
+                { local: "C.F. Barberá", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
+                { local: "C.F. Can Parellada", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
+                { local: "C.E. Santa Eulàlia de Ronçana", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
+            ], descanso: "A.V. Ripollet" },
+            { jornada: 8, fecha: "08/11/2026", suspendida: false, partidos: [
+                { local: "U.E. Canovelles", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
+                { local: "E.F.B Palau Solitá i Plegamans", visitante: "A.V. Pallejá", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
+                { local: "C.F. Sant Feliu de Codines", visitante: "A.V. L'Ametlla del Vallés", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00" },
+                { local: "U.E. Castellar", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL CASTELLAR", hora: "08:15" },
+                { local: "U.D.A. Gramanet", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00" },
+                { local: "Penya Decano", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00" },
+                { local: "A.V. Ripollet", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
+                { local: "C.F. Cerdanyola", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL FONTETAS", hora: "08:15" }
+            ], descanso: "C.E. Sentmenat" }
+        ];
+
+        var equipos = [
+            { nombre: "Barberà", img: "barbera.png", nombreCompleto: "C.F. Barberá" },
+            { nombre: "Can Parellada", img: "can_parellada.png", nombreCompleto: "C.F. Can Parellada" },
+            { nombre: "Castellar", img: "castellar.png", nombreCompleto: "U.E. Castellar" },
+            { nombre: "Santa Eulàlia", img: "sta_eulalia.png", nombreCompleto: "C.E. Santa Eulàlia de Ronçana" },
+            { nombre: "L'Ametlla", img: "l_ametlla.png", nombreCompleto: "A.V. L'Ametlla del Vallés" },
+            { nombre: "Sabadellenca", img: "sabadellenca.png", nombreCompleto: "U.E. Sabadellenca" },
+            { nombre: "Cerdanyola", img: "cerdanyola.png", nombreCompleto: "C.F. Cerdanyola" },
+            { nombre: "Penya Decano", img: "decano.png", nombreCompleto: "Penya Decano" },
+            { nombre: "Pallejà", img: "palleja.png", nombreCompleto: "A.V. Pallejá" },
+            { nombre: "A.V. Ripollet", img: "agrup_ripollet.png", nombreCompleto: "A.V. Ripollet" },
+            { nombre: "Gramanet", img: "gramanet.png", nombreCompleto: "U.D.A. Gramanet" },
+            { nombre: "Sentmenat", img: "sentmenat.png", nombreCompleto: "C.E. Sentmenat" },
+            { nombre: "Sant Feliu", img: "st_feliu_codines.png", nombreCompleto: "C.F. Sant Feliu de Codines" },
+            { nombre: "Palau Plegamans", img: "palau_plegamans.png", nombreCompleto: "E.F.B Palau Solitá i Plegamans" },
+            { nombre: "Canovelles", img: "canovelles.png", nombreCompleto: "U.E. Canovelles" },
+            { nombre: "VCF Ripollet", img: "vcf_ripollet.png", nombreCompleto: "V.C.F. Ripollet" },
+            { nombre: "Bigues", img: "bigues.png", nombreCompleto: "C.E. Bigues i Riells" }
+        ];
+
+        function cambiarPestana(id, btn) {
+            document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+            document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+            if (id === 'calendario') initCalendario();
+        }
+
+        function abrirAdmin() {
+            document.getElementById('panel-admin').style.display = 'block';
+            document.getElementById('codigo-admin').value = '';
+            if (localStorage.getItem('github_token')) {
+                mostrarControl();
+            } else {
+                document.getElementById('pantalla-codigo').style.display = 'block';
+                document.getElementById('pantalla-token').style.display = 'none';
+                document.getElementById('pantalla-control').style.display = 'none';
+            }
+        }
+        function cerrarAdmin() { document.getElementById('panel-admin').style.display = 'none'; }
+        function verificarCodigo() {
+            if (document.getElementById('codigo-admin').value === '46602900') {
+                document.getElementById('pantalla-codigo').style.display = 'none';
+                document.getElementById('pantalla-token').style.display = 'block';
+            } else { alert('Código incorrecto.'); }
+        }
+        function guardarToken() {
+            var token = document.getElementById('input-token').value.trim();
+            if (token.length > 10) {
+                localStorage.setItem('github_token', token);
+                alert('Token guardado.');
+                mostrarControl();
+            } else { alert('Token no válido.'); }
+        }
+        function mostrarControl() {
+            document.getElementById('pantalla-codigo').style.display = 'none';
+            document.getElementById('pantalla-token').style.display = 'none';
+            document.getElementById('pantalla-control').style.display = 'block';
+            cargarSelectorAdmin();
+        }
+        function cargarSelectorAdmin() {
+            var select = document.getElementById('admin-selector-jornada');
+            select.innerHTML = '<option value="">Selecciona Jornada...</option>';
+            calendario.forEach(function(j) {
+                var opt = document.createElement('option');
+                opt.value = j.jornada;
+                opt.text = 'Jornada ' + j.jornada;
+                select.appendChild(opt);
+            });
+        }
+
+        function mostrarPartidosAdmin() {
+            var numJornada = parseInt(document.getElementById('admin-selector-jornada').value);
+            var contenedor = document.getElementById('admin-partidos-container');
+            contenedor.innerHTML = '';
+            if (!numJornada) return;
+            var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
+            if (!jornada) return;
+            var resJ = resultados[String(numJornada)] || {};
+            var html = '<h3 style="color:white; margin-bottom:15px;">Jornada ' + jornada.jornada + '</h3>';
+            jornada.partidos.forEach(function(p, index) {
+                var resP = resJ[String(index)] || {};
+                var golL = resP.golesLocal !== undefined ? (resP.golesLocal === null ? '' : resP.golesLocal) : '';
+                var golV = resP.golesVisitante !== undefined ? (resP.golesVisitante === null ? '' : resP.golesVisitante) : '';
+                var checked = resP.suspendido ? 'checked' : '';
+                html += '<div style="background:#0b1d15; padding:10px; border-radius:8px; margin-bottom:10px; border:1px solid #1f4733;">';
+                html += '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">';
+                html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:right; padding-right:10px;">' + getNombreCorto(p.local) + '</span>';
+                html += '<input type="number" id="gl-' + index + '" value="' + golL + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
+                html += '<span style="color:#2ecc71; margin:0 5px;">-</span>';
+                html += '<input type="number" id="gv-' + index + '" value="' + golV + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
+                html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
+                html += '</div>';
+                html += '<div style="text-align:center; margin-top:8px;">';
+                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ️ Partido Suspendido</label>';
+                html += '</div></div>';
+            });
+            html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
+            contenedor.innerHTML = html;
+        }
+
+        function guardarResultados(jornadaNum) {
+            var btn = document.getElementById('btn-guardar');
+            btn.textContent = '⏳ Guardando...';
+            btn.disabled = true;
+            var token = localStorage.getItem('github_token');
+            var jornada = calendario.find(function(j) { return j.jornada === jornadaNum; });
+            var nuevosResultados = {};
+            jornada.partidos.forEach(function(p, index) {
+                var valL = document.getElementById('gl-' + index).value;
+                var valV = document.getElementById('gv-' + index).value;
+                var susp = document.getElementById('sp-' + index).checked;
+                nuevosResultados[String(index)] = {
+                    suspendido: susp,
+                    golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)),
+                    golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV))
+                };
+            });
+            resultados[String(jornadaNum)] = nuevosResultados;
+            
+            if (!token) {
+                alert('❌ No hay token configurado. Entra en admin y configura tu token de GitHub.');
+                btn.textContent = '💾 Guardar';
+                btn.disabled = false;
+                return;
+            }
+            
+            fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', {
+                headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+            })
+            .then(function(r) {
+                if (r.status === 404) {
+                    return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', {
+                        method: 'PUT',
+                        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: 'Crear resultados.json', content: btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))) })
+                    });
+                }
+                return r.json();
+            })
+            .then(function(data) {
+                if (data.sha) {
+                    var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2))));
+                    return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', {
+                        method: 'PUT',
+                        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha })
+                    });
+                }
+                return data;
+            })
+            .then(function(r) {
+                if (r && r.ok) { alert('✅ Guardado!'); location.reload(); }
+                else if (r && r.message) { throw new Error(r.message); }
+            })
+            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
+        }
+
+        function calcularClasificacion() {
+            var stats = {};
+            equipos.forEach(function(eq) {
+                stats[eq.nombreCompleto] = { 
+                    nombre: eq.nombre, img: eq.img, 
+                    pj: 0, pts: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, 
+                    forma: [] 
+                };
+            });
+            
+            for (var j = 0; j < calendario.length; j++) {
+                var jornada = calendario[j];
+                
+                if (jornada.suspendida === true) {
+                    equipos.forEach(function(eq) { stats[eq.nombreCompleto].forma.push('S'); });
+                    continue;
+                }
+                
+                var resJ = resultados[String(jornada.jornada)] || {};
+                
+                equipos.forEach(function(eq) {
+                    var nombre = eq.nombreCompleto;
+                    
+                    if (jornada.descanso === nombre) {
+                        stats[nombre].forma.push('D');
+                        return;
+                    }
+                    
+                    var partido = null;
+                    var idx = -1;
+                    for (var i = 0; i < jornada.partidos.length; i++) {
+                        if (jornada.partidos[i].local === nombre || jornada.partidos[i].visitante === nombre) {
+                            partido = jornada.partidos[i];
+                            idx = i;
+                            break;
+                        }
+                    }
+                    
+                    if (!partido) {
+                        stats[nombre].forma.push('-');
+                        return;
+                    }
+                    
+                    var resP = resJ[String(idx)] || {};
+                    var gl = resP.golesLocal !== undefined ? resP.golesLocal : partido.golesLocal;
+                    var gv = resP.golesVisitante !== undefined ? resP.golesVisitante : partido.golesVisitante;
+                    var susp = resP.suspendido !== undefined ? resP.suspendido : false;
+                    
+                    if (susp) {
+                        stats[nombre].forma.push('S');
+                    } else if (gl !== null && gv !== null) {
+                        var esLocal = (partido.local === nombre);
+                        var gp = esLocal ? gl : gv;
+                        var gr = esLocal ? gv : gl;
+                        stats[nombre].pj++;
+                        stats[nombre].gf += gp;
+                        stats[nombre].gc += gr;
+                        if (gp > gr) { stats[nombre].pts += 3; stats[nombre].g++; stats[nombre].forma.push('G'); }
+                        else if (gp < gr) { stats[nombre].p++; stats[nombre].forma.push('P'); }
+                        else { stats[nombre].pts += 1; stats[nombre].e++; stats[nombre].forma.push('E'); }
+                    } else {
+                        stats[nombre].forma.push('-');
+                    }
+                });
+            }
+            
+            var lista = [];
+            for (var nombre in stats) {
+                var eq = stats[nombre];
+                eq.dif = eq.gf - eq.gc;
+                var ult = eq.forma.slice(-3);
+                while (ult.length < 3) ult.unshift('-');
+                eq.forma = ult;
+                lista.push(eq);
+            }
+            
+            lista.sort(function(a, b) {
+                if (b.pts !== a.pts) return b.pts - a.pts;
+                if (b.dif !== a.dif) return b.dif - a.dif;
+                return a.nombre.localeCompare(b.nombre);
+            });
+            return lista;
+        }
+
+        function renderizarClasificacion() {
+            var clasificacion = calcularClasificacion();
+            var html = '';
+            clasificacion.forEach(function(eq, i) {
+                var formaHtml = '';
+                for (var j = 0; j < 3; j++) {
+                    var letra = eq.forma[j] || '-';
+                    var clase = 'none';
+                    if (letra === 'G') clase = 'win';
+                    else if (letra === 'E') clase = 'draw';
+                    else if (letra === 'P') clase = 'loss';
+                    else if (letra === 'S') clase = 'suspended';
+                    else if (letra === 'D') clase = 'rest';
+                    formaHtml += '<span class="badge-form ' + clase + '">' + letra + '</span>';
+                }
+                html += '<tr><td>' + (i+1) + '</td><td class="team"><div class="team-info"><img src="escudos/' + eq.img + '" class="team-logo" alt="' + eq.nombre + '">' + eq.nombre + '</div></td><td>' + eq.pj + '</td><td class="pts">' + eq.pts + '</td><td>' + eq.g + '</td><td>' + eq.e + '</td><td>' + eq.p + '</td><td>' + eq.gf + '</td><td>' + eq.gc + '</td><td>' + (eq.dif > 0 ? '+' + eq.dif : eq.dif) + '</td><td class="col-forma">' + formaHtml + '</td></tr>';
+            });
+            document.getElementById('tabla').innerHTML = html;
+        }
+
+        function getImgEquipo(nc) {
+            for (var i = 0; i < equipos.length; i++) {
+                if (equipos[i].nombreCompleto === nc) return equipos[i].img;
+            }
+            return '';
+        }
+        function getNombreCorto(nc) {
+            for (var i = 0; i < equipos.length; i++) {
+                if (equipos[i].nombreCompleto === nc) return equipos[i].nombre;
+            }
+            return nc;
+        }
+
+        function initCalendario() {
+            var selector = document.getElementById('selector-jornada');
+            if (selector.options.length > 0) return;
+            calendario.forEach(function(j) {
+                var opt = document.createElement('option');
+                opt.value = j.jornada;
+                opt.text = 'Jornada ' + j.jornada + ' (' + j.fecha + ')';
+                selector.appendChild(opt);
+            });
+            cargarJornada();
+        }
+
+        function cargarJornada() {
+            var numJornada = parseInt(document.getElementById('selector-jornada').value);
+            var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
+            if (!jornada) return;
+            var resJ = resultados[String(numJornada)] || {};
+            var contenedor = document.getElementById('contenedor-partidos');
+            var html = '';
+            if (jornada.suspendida === true) {
+                html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
+            }
+            if (jornada.descanso) {
+                html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
+            }
+            jornada.partidos.forEach(function(p, idx) {
+                var resP = resJ[String(idx)] || {};
+                var gl = resP.golesLocal !== undefined ? resP.golesLocal : p.golesLocal;
+                var gv = resP.golesVisitante !== undefined ? resP.golesVisitante : p.golesVisitante;
+                var susp = resP.suspendido !== undefined ? resP.suspendido : false;
+                var marcador = '';
+                if (susp) marcador = '<div class="match-score suspended-match">SUSP.</div>';
+                else if (gl !== null && gv !== null) marcador = '<div class="match-score">' + gl + ' - ' + gv + '</div>';
+                else marcador = '<div class="match-score vs">VS</div>';
+                var arb = p.arbitro ? ' · 👤 ' + p.arbitro : '';
+                html += '<div class="match-card"><div class="match-teams">';
+                html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
+                html += marcador;
+                html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
+                html += '</div><div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arb + '</div></div>';
+            });
+            contenedor.innerHTML = html;
+        }
+
+        fetch('resultados.json?t=' + Date.now())
+            .then(function(r) { 
+                if (r.status === 404) return {};
+                return r.json(); 
+            })
+            .then(function(data) {
+                resultados = data || {};
+                renderizarClasificacion();
+            })
+            .catch(function(e) {
+                console.error('Error:', e);
+                resultados = {};
+                renderizarClasificacion();
+            });
+    </script>
+</body>
+</html>
