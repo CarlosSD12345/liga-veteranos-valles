@@ -8,6 +8,7 @@
         body { background-color: #0b1d15; color: white; padding: 20px; font-family: Arial, sans-serif; }
         .container { max-width: 1000px; margin: 0 auto; }
         header { text-align: center; margin-bottom: 25px; }
+        .header-logo { width: 130px; height: auto; object-fit: contain; margin-bottom: 15px; }
         .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; }
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
         .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; }
@@ -49,12 +50,16 @@
         .card-red { background-color: #e74c3c; }
         .suspended-banner { background-color: #e74c3c; color: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; }
         .descanso-banner { background-color: #173827; color: #a3b8af; padding: 12px; border-radius: 10px; text-align: center; margin-bottom: 15px; font-size: 0.95rem; border: 1px solid #1f4733; }
-        footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 30px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
+        footer { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px 20px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
+        .footer-lema { font-style: italic; color: white; font-size: 14px; text-align: center; margin: 0; }
+        .footer-hashtag { color: #2ecc71; font-weight: bold; font-size: 16px; text-align: center; margin: 0; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 400px; margin-top: 10px; padding-top: 15px; border-top: 1px solid #1f4733; }
         #admin-btn { background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin: 0; }
         .fp-rank-1 { background-color: #2ecc71; color: #0b1d15; }
         .fp-card-box { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
         @media (max-width: 600px) {
             body { padding: 8px; }
+            .header-logo { width: 90px; }
             .match-card { padding: 10px; }
             .match-teams { gap: 5px; }
             .match-team { gap: 5px; }
@@ -63,13 +68,15 @@
             .match-score { min-width: 56px; padding: 8px 8px; font-size: 1.05rem; }
             .tabs { gap: 6px; }
             .tab-btn { padding: 10px 12px; font-size: 0.85rem; }
+            .footer-lema { font-size: 12px; }
+            .footer-hashtag { font-size: 14px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>VETERANOS VALLÈS</h1>
+            <img src="logo_liga.png" alt="Liga Veteranos Vallès" class="header-logo">
             <div class="badge" id="badge-jornada">JORNADA 3</div>
         </header>
         <div class="tabs">
@@ -109,8 +116,12 @@
             </table>
         </div>
         <footer>
-            <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
-            <p style="margin:0;">© 2026 Liga de Fútbol Veteranos del Vallès</p>
+            <p class="footer-lema">"Ens divertim, competim i fem amics"</p>
+            <p class="footer-hashtag">#VeteransDelVallès</p>
+            <div class="footer-bottom">
+                <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
+                <p style="margin:0; font-size:0.8rem;">© 2026 Liga de Fútbol Veteranos del Vallès</p>
+            </div>
         </footer>
     </div>
 
@@ -130,7 +141,7 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">️ Panel de Control</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
                 <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
                     <option value="">Selecciona Jornada...</option>
@@ -613,7 +624,7 @@
                 html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">🔴 LOCAL</span>';
                 html += '<input type="number" id="roL-' + index + '" value="' + roL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
-                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT🔴</span>';
+                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT</span>';
                 html += '<input type="number" id="roV-' + index + '" value="' + roV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
@@ -706,7 +717,7 @@
                 if (r && r.ok) { alert('✅ Guardado!'); location.reload(); }
                 else if (r && r.message) { throw new Error(r.message); }
             })
-            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
+            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = ' Guardar'; btn.disabled = false; });
         }
 
         function calcularClasificacion() {
