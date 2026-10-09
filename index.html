@@ -49,7 +49,8 @@
         .card-red { background-color: #e74c3c; }
         .suspended-banner { background-color: #e74c3c; color: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; }
         .descanso-banner { background-color: #173827; color: #a3b8af; padding: 12px; border-radius: 10px; text-align: center; margin-bottom: 15px; font-size: 0.95rem; border: 1px solid #1f4733; }
-        footer { text-align: center; padding: 30px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
+        footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 30px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
+        #admin-btn { background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin: 0; }
         .fp-rank-1 { background-color: #2ecc71; color: #0b1d15; }
         .fp-card-box { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
         @media (max-width: 600px) {
@@ -76,7 +77,6 @@
             <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
             <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
             <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
-            <button class="tab-btn" onclick="abrirAdmin()" style="background-color:#1a3a2a; color:#2ecc71;">️ Admin</button>
         </div>
         <div id="clasificacion" class="section active">
             <table>
@@ -109,7 +109,8 @@
             </table>
         </div>
         <footer>
-            <p>© 2026 Liga de Fútbol Veteranos del Vallès</p>
+            <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
+            <p style="margin:0;">© 2026 Liga de Fútbol Veteranos del Vallès</p>
         </footer>
     </div>
 
@@ -705,7 +706,7 @@
                 if (r && r.ok) { alert('✅ Guardado!'); location.reload(); }
                 else if (r && r.message) { throw new Error(r.message); }
             })
-            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = ' Guardar'; btn.disabled = false; });
+            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
         }
 
         function calcularClasificacion() {
@@ -1069,7 +1070,7 @@
                 html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
                 html += marcador;
                 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
-                html += '</div><div class="match-info">📍 ' + p.campo + ' ·  ' + p.hora + ' ·  ' + jornada.fecha + arbTexto + '</div>';
+                html += '</div><div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
                 if (hayTarjetas && !susp && gl !== null) {
                     html += '<div class="match-cards">';
                     html += '<div class="card-local">';
