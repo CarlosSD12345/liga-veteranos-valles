@@ -50,12 +50,8 @@
         .suspended-banner { background-color: #e74c3c; color: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; }
         .descanso-banner { background-color: #173827; color: #a3b8af; padding: 12px; border-radius: 10px; text-align: center; margin-bottom: 15px; font-size: 0.95rem; border: 1px solid #1f4733; }
         footer { text-align: center; padding: 30px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
-        #admin-btn { background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin-top: 10px; }
         .fp-rank-1 { background-color: #2ecc71; color: #0b1d15; }
         .fp-card-box { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
-        .arb-rank-1 { background-color: #e74c3c; color: white; }
-        .arb-rank-2 { background-color: #f39c12; color: white; }
-        .arb-rank-3 { background-color: #f1c40f; color: #0b1d15; }
         @media (max-width: 600px) {
             body { padding: 8px; }
             .match-card { padding: 10px; }
@@ -64,7 +60,8 @@
             .match-team img { width: 34px; height: 34px; }
             .match-team span { font-size: 0.78rem; }
             .match-score { min-width: 56px; padding: 8px 8px; font-size: 1.05rem; }
-            .tab-btn { padding: 10px 14px; font-size: 0.9rem; }
+            .tabs { gap: 6px; }
+            .tab-btn { padding: 10px 12px; font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -79,6 +76,7 @@
             <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
             <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
             <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
+            <button class="tab-btn" onclick="abrirAdmin()" style="background-color:#1a3a2a; color:#2ecc71;">️ Admin</button>
         </div>
         <div id="clasificacion" class="section active">
             <table>
@@ -112,7 +110,6 @@
         </div>
         <footer>
             <p>© 2026 Liga de Fútbol Veteranos del Vallès</p>
-            <button id="admin-btn" onclick="abrirAdmin()">️ Admin</button>
         </footer>
     </div>
 
@@ -132,7 +129,7 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">️ Panel de Control</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
                 <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
                     <option value="">Selecciona Jornada...</option>
@@ -146,7 +143,6 @@
     <script>
         var resultados = {};
 
-        // Lista oficial de árbitros (sin acentos)
         var listaArbitros = ["Duran", "Molina", "Humanes", "Portoles", "Utrera", "Julio", "Congost", "Fabregas", "Puibert", "Salva", "Lleixa", "Edu", "Exposito"];
 
         var calendario = [
@@ -609,7 +605,7 @@
                 html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">🟡 LOCAL</span>';
                 html += '<input type="number" id="amL-' + index + '" value="' + amL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
-                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT</span>';
+                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT🟡</span>';
                 html += '<input type="number" id="amV-' + index + '" value="' + amV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:5px; margin-top:5px; flex-wrap:wrap; justify-content:center;">';
@@ -621,7 +617,7 @@
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
                 html += construirSelectArbitros('ar-' + index, arb);
-                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ️ Susp.</label>';
+                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Susp.</label>';
                 html += '</div></div>';
             });
             html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
@@ -647,7 +643,7 @@
                 }
             }
             
-            btn.textContent = ' Guardando...';
+            btn.textContent = '⏳ Guardando...';
             btn.disabled = true;
             var token = localStorage.getItem('github_token');
             var nuevosResultados = {};
@@ -1050,7 +1046,7 @@
                 html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
             }
             if (jornada.descanso) {
-                html += '<div class="descanso-banner"> Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
+                html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
             }
             jornada.partidos.forEach(function(p, idx) {
                 var resP = resJ[String(idx)] || {};
@@ -1073,7 +1069,7 @@
                 html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
                 html += marcador;
                 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
-                html += '</div><div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
+                html += '</div><div class="match-info">📍 ' + p.campo + ' ·  ' + p.hora + ' ·  ' + jornada.fecha + arbTexto + '</div>';
                 if (hayTarjetas && !susp && gl !== null) {
                     html += '<div class="match-cards">';
                     html += '<div class="card-local">';
