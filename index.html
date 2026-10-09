@@ -83,7 +83,7 @@
         </div>
         <footer>
             <p>© 2026 Liga de Fútbol Veteranos del Vallès</p>
-            <button id="admin-btn" onclick="abrirAdmin()">️ Admin</button>
+            <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
         </footer>
     </div>
 
@@ -103,7 +103,7 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">️ Panel de Control</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
                 <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
                     <option value="">Selecciona Jornada...</option>
@@ -625,72 +625,113 @@
         function calcularClasificacion() {
             var stats = {};
             equipos.forEach(function(eq) {
-                stats[eq.nombreCompleto] = { nombre: eq.nombre, img: eq.img, pj: 0, pts: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, forma: [] };
+                stats[eq.nombreCompleto] = { 
+                    nombre: eq.nombre, 
+                    img: eq.img, 
+                    pj: 0, 
+                    pts: 0, 
+                    g: 0, 
+                    e: 0, 
+                    p: 0, 
+                    gf: 0, 
+                    gc: 0, 
+                    forma: [] 
+                };
             });
             
-            calendario.forEach(function(jornada) {
+            for (var j = 0; j < calendario.length; j++) {
+                var jornada = calendario[j];
                 var resJornada = resultados[jornada.jornada] || {};
                 var jornadaSuspendida = resJornada.suspendida || jornada.suspendida;
                 
                 if (jornadaSuspendida) {
-                    equipos.forEach(function(eq) { stats[eq.nombreCompleto].forma.push('S'); });
+                    for (var k = 0; k < equipos.length; k++) {
+                        stats[equipos[k].nombreCompleto].forma.push('S');
+                    }
                 } else {
-                    equipos.forEach(function(eq) {
+                    for (var k = 0; k < equipos.length; k++) {
+                        var eq = equipos[k];
                         var nombre = eq.nombreCompleto;
+                        
                         if (jornada.descanso === nombre) {
                             stats[nombre].forma.push('D');
-                        } else {
-                            var partidoOriginal = null;
-                            for (var i = 0; i < jornada.partidos.length; i++) {
-                                if (jornada.partidos[i].local === nombre || jornada.partidos[i].visitante === nombre) {
-                                    partidoOriginal = jornada.partidos[i];
-                                    break;
-                                }
-                            }
-                            
-                            if (partidoOriginal) {
-                                var idx = jornada.partidos.indexOf(partidoOriginal);
-                                var res = resJornada[idx] || {};
-                                
-                                var golesLocal = res.golesLocal !== undefined ? res.golesLocal : partidoOriginal.golesLocal;
-                                var golesVisitante = res.golesVisitante !== undefined ? res.golesVisitante : partidoOriginal.golesVisitante;
-                                var suspendido = res.suspendido !== undefined ? res.suspendido : (partidoOriginal.suspendido || false);
-                                
-                                if (suspendido) {
-                                    stats[nombre].forma.push('S');
-                                } else if (golesLocal !== null && golesVisitante !== null) {
-                                    var esLocal = partidoOriginal.local === nombre;
-                                    var gp = esLocal ? golesLocal : golesVisitante;
-                                    var gr = esLocal ? golesVisitante : golesLocal;
-                                    stats[nombre].pj++;
-                                    stats[nombre].gf += gp;
-                                    stats[nombre].gc += gr;
-                                    if (gp > gr) { stats[nombre].pts += 3; stats[nombre].g++; stats[nombre].forma.push('G'); }
-                                    else if (gp < gr) { stats[nombre].p++; stats[nombre].forma.push('P'); }
-                                    else { stats[nombre].pts += 1; stats[nombre].e++; stats[nombre].forma.push('E'); }
-                                } else {
-                                    stats[nombre].forma.push('-');
-                                }
-                            } else {
-                                stats[nombre].forma.push('-');
+                            continue;
+                        }
+                        
+                        var partido = null;
+                        var idx = -1;
+                        for (var i = 0; i < jornada.partidos.length; i++) {
+                            if (jornada.partidos[i].local === nombre || jornada.partidos[i].visitante === nombre) {
+                                partido = jornada.partidos[i];
+                                idx = i;
+                                break;
                             }
                         }
-                    });
+                        
+                        if (!partido) {
+                            stats[nombre].forma.push('-');
+                            continue;
+                        }
+                        
+                        var res = resJornada[idx] || {};
+                        var golesLocal = (res.golesLocal !== undefined && res.golesLocal !== null) ? res.golesLocal : partido.golesLocal;
+                        var golesVisitante = (res.golesVisitante !== undefined && res.golesVisitante !== null) ? res.golesVisitante : partido.golesVisitante;
+                        var suspendido = (res.suspendido !== undefined) ? res.suspendido : (partido.suspendido || false);
+                        
+                        if (suspendido) {
+                            stats[nombre].forma.push('S');
+                        } else if (golesLocal !== null && golesVisitante !== null) {
+                            var esLocal = (partido.local === nombre);
+                            var golesPropios = esLocal ? golesLocal : golesVisitante;
+                            var golesRival = esLocal ? golesVisitante : golesLocal;
+                            
+                            stats[nombre].pj++;
+                            stats[nombre].gf += golesPropios;
+                            stats[nombre].gc += golesRival;
+                            
+                            if (golesPropios > golesRival) {
+                                stats[nombre].pts += 3;
+                                stats[nombre].g++;
+                                stats[nombre].forma.push('G');
+                            } else if (golesPropios < golesRival) {
+                                stats[nombre].p++;
+                                stats[nombre].forma.push('P');
+                            } else {
+                                stats[nombre].pts += 1;
+                                stats[nombre].e++;
+                                stats[nombre].forma.push('E');
+                            }
+                        } else {
+                            stats[nombre].forma.push('-');
+                        }
+                    }
                 }
-            });
+            }
             
-            Object.keys(stats).forEach(function(key) {
-                stats[key].dif = stats[key].gf - stats[key].gc;
-                var ult = stats[key].forma.slice(-3);
-                while (ult.length < 3) ult.unshift('-');
-                stats[key].forma = ult;
-            });
+            var clasificacion = [];
+            for (var nombre in stats) {
+                var eq = stats[nombre];
+                eq.dif = eq.gf - eq.gc;
+                
+                var ultimos = [];
+                for (var i = Math.max(0, eq.forma.length - 3); i < eq.forma.length; i++) {
+                    ultimos.push(eq.forma[i]);
+                }
+                while (ultimos.length < 3) {
+                    ultimos.unshift('-');
+                }
+                eq.forma = ultimos;
+                
+                clasificacion.push(eq);
+            }
             
-            return Object.values(stats).sort(function(a, b) {
+            clasificacion.sort(function(a, b) {
                 if (b.pts !== a.pts) return b.pts - a.pts;
                 if (b.dif !== a.dif) return b.dif - a.dif;
                 return a.nombre.localeCompare(b.nombre);
             });
+            
+            return clasificacion;
         }
 
         function renderizarClasificacion() {
