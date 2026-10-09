@@ -80,5 +80,87 @@
       "rojasLocal": 0,
       "rojasVisitante": 0
     }
+  },
+  "2": {
+    "0": {
+      "suspendido": false,
+      "golesLocal": 3,
+      "golesVisitante": 5,
+      "arbitro": "Puibert",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 2,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "1": {
+      "suspendido": false,
+      "golesLocal": 4,
+      "golesVisitante": 4,
+      "arbitro": "Lleixa",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 1,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "2": {
+      "suspendido": false,
+      "golesLocal": 5,
+      "golesVisitante": 1,
+      "arbitro": "Duran",
+      "amarillasLocal": 1,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "3": {
+      "suspendido": false,
+      "golesLocal": 1,
+      "golesVisitante": 4,
+      "arbitro": "Edu",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "4": {
+      "suspendido": false,
+      "golesLocal": 2,
+      "golesVisitante": 3,
+      "arbitro": "Exposito",
+      "amarillasLocal": 1,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "5": {
+      "suspendido": false,
+      "golesLocal": 3,
+      "golesVisitante": 2,
+      "arbitro": "Fàbregas",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "6": {
+      "suspendido": false,
+      "golesLocal": 2,
+      "golesVisitante": 2,
+      "arbitro": "Congost",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "7": {
+      "suspendido": false,
+      "golesLocal": 6,
+      "golesVisitante": 3,
+      "arbitro": "Molina",
+      "amarillasLocal": 1,
+      "amarillasVisitante": 1,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    }
   }
 }
