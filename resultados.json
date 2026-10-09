@@ -84,7 +84,46 @@
     }
   },
   "3": {
-    "suspendida": true
+    "0": {
+      "suspendido": true,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "1": {
+      "suspendido": true,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "2": {
+      "suspendido": true,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "3": {
+      "suspendido": true,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "4": {
+      "suspendido": true,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "5": {
+      "suspendido": true,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "6": {
+      "suspendido": true,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "7": {
+      "suspendido": true,
+      "golesLocal": null,
+      "golesVisitante": null
+    }
   },
   "4": {
     "0": {
