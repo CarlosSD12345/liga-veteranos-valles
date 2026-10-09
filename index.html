@@ -112,7 +112,7 @@
         </div>
         <footer>
             <p>© 2026 Liga de Fútbol Veteranos del Vallès</p>
-            <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
+            <button id="admin-btn" onclick="abrirAdmin()">️ Admin</button>
         </footer>
     </div>
 
@@ -146,6 +146,9 @@
     <script>
         var resultados = {};
 
+        // Lista oficial de árbitros (sin acentos)
+        var listaArbitros = ["Duran", "Molina", "Humanes", "Portoles", "Utrera", "Julio", "Congost", "Fabregas", "Puibert", "Salva", "Lleixa", "Edu", "Exposito"];
+
         var calendario = [
             { jornada: 1, fecha: "20/09/2026", suspendida: false, partidos: [
                 { local: "U.E. Sabadellenca", visitante: "V.C.F. Ripollet", golesLocal: 5, golesVisitante: 1, campo: "CAMPOAMOR", hora: "08:00", arbitro: "Salva" },
@@ -160,7 +163,7 @@
             { jornada: 2, fecha: "27/09/2026", suspendida: false, partidos: [
                 { local: "V.C.F. Ripollet", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: 3, golesVisitante: 5, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Puibert" },
                 { local: "A.V. L'Ametlla del Vallés", visitante: "U.E. Sabadellenca", golesLocal: 4, golesVisitante: 4, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Lleixa" },
-                { local: "A.V. Pallejá", visitante: "C.E. Bigues i Riells", golesLocal: 5, golesVisitante: 1, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Durán" },
+                { local: "A.V. Pallejá", visitante: "C.E. Bigues i Riells", golesLocal: 5, golesVisitante: 1, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Duran" },
                 { local: "U.E. Canovelles", visitante: "C.F. Barberá", golesLocal: 1, golesVisitante: 4, campo: "MPAL CANOVELLES", hora: "08:00", arbitro: "Edu" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "C.F. Can Parellada", golesLocal: 2, golesVisitante: 3, campo: "MPAL SANT FELIU", hora: "08:00", arbitro: "Exposito" },
                 { local: "U.E. Castellar", visitante: "C.F. Cerdanyola", golesLocal: 3, golesVisitante: 2, campo: "MPAL CASTELLAR", hora: "08:15", arbitro: "Fabregas" },
@@ -178,7 +181,7 @@
                 { local: "C.E. Santa Eulàlia de Ronçana", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
             ], descanso: "C.F. Sant Feliu de Codines" },
             { jornada: 4, fecha: "11/10/2026", suspendida: false, partidos: [
-                { local: "A.V. L'Ametlla del Vallés", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Durán" },
+                { local: "A.V. L'Ametlla del Vallés", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Duran" },
                 { local: "A.V. Pallejá", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Molina" },
                 { local: "U.E. Canovelles", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00", arbitro: "Exposito" },
                 { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00", arbitro: "Fabregas" },
@@ -562,6 +565,17 @@
             });
         }
 
+        function construirSelectArbitros(id, valorActual) {
+            var html = '<select id="' + id + '" style="flex:1; max-width:150px; padding:5px; border-radius:4px; border:1px solid #1f4733; background:#11291e; color:white; font-size:13px;">';
+            html += '<option value="">-- Árbitro --</option>';
+            listaArbitros.forEach(function(a) {
+                var selected = (a === valorActual) ? ' selected' : '';
+                html += '<option value="' + a + '"' + selected + '>' + a + '</option>';
+            });
+            html += '</select>';
+            return html;
+        }
+
         function mostrarPartidosAdmin() {
             var numJornada = parseInt(document.getElementById('admin-selector-jornada').value);
             var contenedor = document.getElementById('admin-partidos-container');
@@ -571,7 +585,7 @@
             if (!jornada) return;
             var resJ = resultados[String(numJornada)] || {};
             var html = '<h3 style="color:white; margin-bottom:15px;">Jornada ' + jornada.jornada + '</h3>';
-            html += '<p style="color:#f39c12; font-size:0.8rem; margin-bottom:15px;"> Roja directa = 1 · Doble amarilla = 2</p>';
+            html += '<p style="color:#f39c12; font-size:0.8rem; margin-bottom:15px;">💡 Roja directa = 1 · Doble amarilla = 2</p>';
             html += '<p style="color:#2ecc71; font-size:0.75rem; margin-bottom:15px;">✅ Los goles ya rellenados son los actuales. No los borres.</p>';
             jornada.partidos.forEach(function(p, index) {
                 var resP = resJ[String(index)] || {};
@@ -592,10 +606,10 @@
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:5px; margin-top:8px; flex-wrap:wrap; justify-content:center;">';
-                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;"> LOCAL</span>';
+                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">🟡 LOCAL</span>';
                 html += '<input type="number" id="amL-' + index + '" value="' + amL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
-                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT🟡</span>';
+                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT</span>';
                 html += '<input type="number" id="amV-' + index + '" value="' + amV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:5px; margin-top:5px; flex-wrap:wrap; justify-content:center;">';
@@ -606,7 +620,7 @@
                 html += '<input type="number" id="roV-' + index + '" value="' + roV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
-                html += '<input type="text" id="ar-' + index + '" value="' + arb + '" placeholder="Árbitro..." style="flex:1; max-width:150px; padding:5px; border-radius:4px; border:1px solid #1f4733; background:#11291e; color:white; font-size:13px;">';
+                html += construirSelectArbitros('ar-' + index, arb);
                 html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ️ Susp.</label>';
                 html += '</div></div>';
             });
@@ -633,7 +647,7 @@
                 }
             }
             
-            btn.textContent = '⏳ Guardando...';
+            btn.textContent = ' Guardando...';
             btn.disabled = true;
             var token = localStorage.getItem('github_token');
             var nuevosResultados = {};
@@ -695,7 +709,7 @@
                 if (r && r.ok) { alert('✅ Guardado!'); location.reload(); }
                 else if (r && r.message) { throw new Error(r.message); }
             })
-            .catch(function(e) { alert(' ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
+            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = ' Guardar'; btn.disabled = false; });
         }
 
         function calcularClasificacion() {
@@ -911,7 +925,6 @@
         function calcularArbitros() {
             var stats = {};
             
-            // Recorrer todas las jornadas para detectar árbitros
             for (var j = 0; j < calendario.length; j++) {
                 var jornada = calendario[j];
                 
@@ -940,7 +953,6 @@
                     
                     if (susp || gl === null || gv === null) return;
                     
-                    // Obtener nombre del árbitro (del resultado si existe, si no del calendario)
                     var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro;
                     if (!arbNombre) return;
                     
@@ -967,7 +979,6 @@
                 lista.push(arb);
             }
             
-            // Ordenar: de MAYOR a MENOR media (el más tarjetero arriba)
             lista.sort(function(a, b) {
                 if (b.media !== a.media) return b.media - a.media;
                 if (b.total !== a.total) return b.total - a.total;
@@ -1039,7 +1050,7 @@
                 html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
             }
             if (jornada.descanso) {
-                html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
+                html += '<div class="descanso-banner"> Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
             }
             jornada.partidos.forEach(function(p, idx) {
                 var resP = resJ[String(idx)] || {};
