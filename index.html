@@ -9,8 +9,8 @@
         .container { max-width: 1000px; margin: 0 auto; }
         header { text-align: center; margin-bottom: 25px; }
         .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; }
-        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
-        .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; }
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; }
         .tab-btn.active { background-color: #2ecc71; color: #0b1d15; border-color: #2ecc71; }
         .section { display: none; }
         .section.active { display: block; }
@@ -42,10 +42,17 @@
         .match-score.vs { color: #a3b8af; font-size: 0.9rem; }
         .match-score.suspended-match { color: #3498db; font-size: 0.9rem; }
         .match-info { font-size: 0.75rem; color: #a3b8af; text-align: center; border-top: 1px solid #1f4733; padding-top: 8px; }
+        .match-cards { display: flex; justify-content: center; gap: 15px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #1f4733; font-size: 0.8rem; }
+        .match-cards .card-local, .match-cards .card-visitante { display: flex; align-items: center; gap: 5px; }
+        .card-icon { display: inline-block; width: 14px; height: 18px; border-radius: 2px; }
+        .card-yellow { background-color: #f1c40f; }
+        .card-red { background-color: #e74c3c; }
         .suspended-banner { background-color: #e74c3c; color: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; }
         .descanso-banner { background-color: #173827; color: #a3b8af; padding: 12px; border-radius: 10px; text-align: center; margin-bottom: 15px; font-size: 0.95rem; border: 1px solid #1f4733; }
         footer { text-align: center; padding: 30px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
         #admin-btn { background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .fp-rank-1 { background-color: #2ecc71; color: #0b1d15; }
+        .fp-card-box { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
         @media (max-width: 600px) {
             body { padding: 8px; }
             .match-card { padding: 10px; }
@@ -54,6 +61,7 @@
             .match-team img { width: 34px; height: 34px; }
             .match-team span { font-size: 0.78rem; }
             .match-score { min-width: 56px; padding: 8px 8px; font-size: 1.05rem; }
+            .tab-btn { padding: 10px 14px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -66,6 +74,7 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
             <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
+            <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
         </div>
         <div id="clasificacion" class="section active">
             <table>
@@ -80,6 +89,14 @@
                 <select id="selector-jornada" onchange="cargarJornada()"></select>
             </div>
             <div id="contenedor-partidos"></div>
+        </div>
+        <div id="fairplay" class="section">
+            <table>
+                <thead>
+                    <tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th>🟡 AMARILLAS</th><th>🔴 ROJAS</th><th style="color:#2ecc71;">TOTAL</th></tr>
+                </thead>
+                <tbody id="tabla-fp"></tbody>
+            </table>
         </div>
         <footer>
             <p>© 2026 Liga de Fútbol Veteranos del Vallès</p>
@@ -486,6 +503,7 @@
             document.getElementById(id).classList.add('active');
             btn.classList.add('active');
             if (id === 'calendario') initCalendario();
+            if (id === 'fairplay') renderizarFairPlay();
         }
 
         function abrirAdmin() {
@@ -540,11 +558,16 @@
             if (!jornada) return;
             var resJ = resultados[String(numJornada)] || {};
             var html = '<h3 style="color:white; margin-bottom:15px;">Jornada ' + jornada.jornada + '</h3>';
+            html += '<p style="color:#f39c12; font-size:0.8rem; margin-bottom:15px;">💡 Roja directa = 1 · Doble amarilla = 2</p>';
             jornada.partidos.forEach(function(p, index) {
                 var resP = resJ[String(index)] || {};
                 var golL = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : '';
                 var golV = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : '';
                 var arb = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : (p.arbitro || '');
+                var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : '';
+                var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : '';
+                var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : '';
+                var roV = (resP.rojasVisitante !== undefined && resP.rojasVisitante !== null) ? resP.rojasVisitante : '';
                 var checked = resP.suspendido ? 'checked' : '';
                 html += '<div style="background:#0b1d15; padding:10px; border-radius:8px; margin-bottom:10px; border:1px solid #1f4733;">';
                 html += '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">';
@@ -554,10 +577,19 @@
                 html += '<input type="number" id="gv-' + index + '" value="' + golV + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
                 html += '</div>';
-                html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px;">';
-                html += '<span style="color:#a3b8af; font-size:0.8rem; white-space:nowrap;">👤 Árbitro:</span>';
-                html += '<input type="text" id="ar-' + index + '" value="' + arb + '" placeholder="Nombre..." style="flex:1; padding:5px; border-radius:4px; border:1px solid #1f4733; background:#11291e; color:white; font-size:14px;">';
-                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer; white-space:nowrap;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Susp.</label>';
+                html += '<div style="display:flex; align-items:center; gap:5px; margin-top:8px; flex-wrap:wrap; justify-content:center;">';
+                html += '<span style="color:#f1c40f; font-size:0.8rem;">🟡</span>';
+                html += '<input type="number" id="amL-' + index + '" value="' + amL + '" inputmode="numeric" placeholder="0" style="width:35px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
+                html += '<span style="color:#a3b8af; font-size:0.7rem;">-</span>';
+                html += '<input type="number" id="amV-' + index + '" value="' + amV + '" inputmode="numeric" placeholder="0" style="width:35px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
+                html += '<span style="color:#e74c3c; font-size:0.8rem; margin-left:5px;"></span>';
+                html += '<input type="number" id="roL-' + index + '" value="' + roL + '" inputmode="numeric" placeholder="0" style="width:35px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
+                html += '<span style="color:#a3b8af; font-size:0.7rem;">-</span>';
+                html += '<input type="number" id="roV-' + index + '" value="' + roV + '" inputmode="numeric" placeholder="0" style="width:35px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
+                html += '</div>';
+                html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
+                html += '<input type="text" id="ar-' + index + '" value="' + arb + '" placeholder="Árbitro..." style="flex:1; max-width:150px; padding:5px; border-radius:4px; border:1px solid #1f4733; background:#11291e; color:white; font-size:13px;">';
+                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Susp.</label>';
                 html += '</div></div>';
             });
             html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
@@ -575,12 +607,20 @@
                 var valL = document.getElementById('gl-' + index).value;
                 var valV = document.getElementById('gv-' + index).value;
                 var valArb = document.getElementById('ar-' + index).value.trim();
+                var valAmL = document.getElementById('amL-' + index).value;
+                var valAmV = document.getElementById('amV-' + index).value;
+                var valRoL = document.getElementById('roL-' + index).value;
+                var valRoV = document.getElementById('roV-' + index).value;
                 var susp = document.getElementById('sp-' + index).checked;
                 nuevosResultados[String(index)] = {
                     suspendido: susp,
                     golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)),
                     golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV)),
-                    arbitro: valArb || null
+                    arbitro: valArb || null,
+                    amarillasLocal: valAmL === '' ? 0 : parseInt(valAmL),
+                    amarillasVisitante: valAmV === '' ? 0 : parseInt(valAmV),
+                    rojasLocal: valRoL === '' ? 0 : parseInt(valRoL),
+                    rojasVisitante: valRoV === '' ? 0 : parseInt(valRoV)
                 };
             });
             resultados[String(jornadaNum)] = nuevosResultados;
@@ -742,6 +782,99 @@
             document.getElementById('tabla').innerHTML = html;
         }
 
+        function calcularFairPlay() {
+            var stats = {};
+            equipos.forEach(function(eq) {
+                stats[eq.nombreCompleto] = { 
+                    nombre: eq.nombre, 
+                    img: eq.img, 
+                    pj: 0, 
+                    amarillas: 0, 
+                    rojas: 0, 
+                    total: 0 
+                };
+            });
+            
+            for (var j = 0; j < calendario.length; j++) {
+                var jornada = calendario[j];
+                
+                var tieneResultados = false;
+                if (jornada.suspendida === true) {
+                    tieneResultados = true;
+                } else {
+                    for (var i = 0; i < jornada.partidos.length; i++) {
+                        if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) {
+                            tieneResultados = true;
+                            break;
+                        }
+                    }
+                }
+                
+                if (!tieneResultados) break;
+                
+                if (jornada.suspendida === true) continue;
+                
+                var resJ = resultados[String(jornada.jornada)] || {};
+                
+                jornada.partidos.forEach(function(p, idx) {
+                    var resP = resJ[String(idx)] || {};
+                    var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal;
+                    var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
+                    var susp = resP.suspendido === true;
+                    
+                    if (susp || gl === null || gv === null) return;
+                    
+                    var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : 0;
+                    var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : 0;
+                    var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : 0;
+                    var roV = (resP.rojasVisitante !== undefined && resP.rojasVisitante !== null) ? resP.rojasVisitante : 0;
+                    
+                    stats[p.local].pj++;
+                    stats[p.local].amarillas += amL;
+                    stats[p.local].rojas += roL;
+                    stats[p.local].total += amL + roL;
+                    
+                    stats[p.visitante].pj++;
+                    stats[p.visitante].amarillas += amV;
+                    stats[p.visitante].rojas += roV;
+                    stats[p.visitante].total += amV + roV;
+                });
+            }
+            
+            var lista = [];
+            for (var nombre in stats) {
+                var eq = stats[nombre];
+                lista.push(eq);
+            }
+            
+            // Ordenar: menos total primero, luego menos rojas, luego menos amarillas, luego alfabético
+            lista.sort(function(a, b) {
+                if (a.total !== b.total) return a.total - b.total;
+                if (a.rojas !== b.rojas) return a.rojas - b.rojas;
+                if (a.amarillas !== b.amarillas) return a.amarillas - b.amarillas;
+                return a.nombre.localeCompare(b.nombre);
+            });
+            
+            return lista;
+        }
+
+        function renderizarFairPlay() {
+            var clasificacion = calcularFairPlay();
+            var html = '';
+            clasificacion.forEach(function(eq, i) {
+                var rankClass = (i === 0) ? 'fp-rank-1' : '';
+                html += '<tr>';
+                html += '<td><span style="display:inline-block; width:30px; height:30px; line-height:30px; border-radius:50%; text-align:center; font-weight:bold; ' + (rankClass ? 'background:#2ecc71; color:#0b1d15;' : 'background:#1f4733; color:white;') + '">' + (i+1) + '</span></td>';
+                html += '<td class="team"><div class="team-info"><img src="escudos/' + eq.img + '" class="team-logo" alt="' + eq.nombre + '">' + eq.nombre + '</div></td>';
+                html += '<td>' + eq.pj + '</td>';
+                html += '<td><span class="fp-card-box"><span class="card-icon card-yellow"></span> ' + eq.amarillas + '</span></td>';
+                html += '<td><span class="fp-card-box"><span class="card-icon card-red"></span> ' + eq.rojas + '</span></td>';
+                html += '<td style="font-weight:bold; color:#2ecc71; font-size:1.1rem;">' + eq.total + '</td>';
+                html += '</tr>';
+            });
+            document.getElementById('tabla-fp').innerHTML = html;
+        }
+
         function getImgEquipo(nc) {
             for (var i = 0; i < equipos.length; i++) {
                 if (equipos[i].nombreCompleto === nc) return equipos[i].img;
@@ -786,6 +919,12 @@
                 var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
                 var susp = resP.suspendido === true;
                 var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro;
+                var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : null;
+                var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : null;
+                var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : null;
+                var roV = (resP.rojasVisitante !== undefined && resP.rojasVisitante !== null) ? resP.rojasVisitante : null;
+                var hayTarjetas = (amL !== null || amV !== null || roL !== null || roV !== null);
+                
                 var marcador = '';
                 if (susp) marcador = '<div class="match-score suspended-match">SUSP.</div>';
                 else if (gl !== null && gv !== null) marcador = '<div class="match-score">' + gl + ' - ' + gv + '</div>';
@@ -795,7 +934,22 @@
                 html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
                 html += marcador;
                 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
-                html += '</div><div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div></div>';
+                html += '</div><div class="match-info"> ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
+                if (hayTarjetas && !susp && gl !== null) {
+                    html += '<div class="match-cards">';
+                    html += '<div class="card-local">';
+                    if (amL > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amL + '</span> ';
+                    if (roL > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roL + '</span>';
+                    if (amL === 0 && roL === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>';
+                    html += '</div>';
+                    html += '<div class="card-visitante">';
+                    if (amV > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amV + '</span> ';
+                    if (roV > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roV + '</span>';
+                    if (amV === 0 && roV === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>';
+                    html += '</div>';
+                    html += '</div>';
+                }
+                html += '</div>';
             });
             contenedor.innerHTML = html;
         }
