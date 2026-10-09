@@ -83,7 +83,7 @@
         </div>
         <footer>
             <p>© 2026 Liga de Fútbol Veteranos del Vallès</p>
-            <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
+            <button id="admin-btn" onclick="abrirAdmin()">️ Admin</button>
         </footer>
     </div>
 
@@ -103,7 +103,7 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">️ Panel de Control</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
                 <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
                     <option value="">Selecciona Jornada...</option>
@@ -572,7 +572,7 @@
 
         function guardarResultados(jornadaNum) {
             var btn = document.getElementById('btn-guardar');
-            btn.textContent = '⏳ Guardando...';
+            btn.textContent = ' Guardando...';
             btn.disabled = true;
             var token = localStorage.getItem('github_token');
             var jornada = null;
@@ -632,14 +632,6 @@
                 var resJornada = resultados[jornada.jornada] || {};
                 var jornadaSuspendida = resJornada.suspendida || jornada.suspendida;
                 
-                // Aplicar resultados guardados a los partidos
-                jornada.partidos.forEach(function(p, idx) {
-                    var res = resJornada[idx] || {};
-                    if (res.golesLocal !== undefined) p.golesLocal = res.golesLocal;
-                    if (res.golesVisitante !== undefined) p.golesVisitante = res.golesVisitante;
-                    if (res.suspendido !== undefined) p.suspendido = res.suspendido;
-                });
-                
                 if (jornadaSuspendida) {
                     equipos.forEach(function(eq) { stats[eq.nombreCompleto].forma.push('S'); });
                 } else {
@@ -648,21 +640,28 @@
                         if (jornada.descanso === nombre) {
                             stats[nombre].forma.push('D');
                         } else {
-                            var partido = null;
+                            var partidoOriginal = null;
                             for (var i = 0; i < jornada.partidos.length; i++) {
                                 if (jornada.partidos[i].local === nombre || jornada.partidos[i].visitante === nombre) {
-                                    partido = jornada.partidos[i];
+                                    partidoOriginal = jornada.partidos[i];
                                     break;
                                 }
                             }
                             
-                            if (partido) {
-                                if (partido.suspendido === true) {
+                            if (partidoOriginal) {
+                                var idx = jornada.partidos.indexOf(partidoOriginal);
+                                var res = resJornada[idx] || {};
+                                
+                                var golesLocal = res.golesLocal !== undefined ? res.golesLocal : partidoOriginal.golesLocal;
+                                var golesVisitante = res.golesVisitante !== undefined ? res.golesVisitante : partidoOriginal.golesVisitante;
+                                var suspendido = res.suspendido !== undefined ? res.suspendido : (partidoOriginal.suspendido || false);
+                                
+                                if (suspendido) {
                                     stats[nombre].forma.push('S');
-                                } else if (partido.golesLocal !== null && partido.golesVisitante !== null) {
-                                    var esLocal = partido.local === nombre;
-                                    var gp = esLocal ? partido.golesLocal : partido.golesVisitante;
-                                    var gr = esLocal ? partido.golesVisitante : partido.golesLocal;
+                                } else if (golesLocal !== null && golesVisitante !== null) {
+                                    var esLocal = partidoOriginal.local === nombre;
+                                    var gp = esLocal ? golesLocal : golesVisitante;
+                                    var gr = esLocal ? golesVisitante : golesLocal;
                                     stats[nombre].pj++;
                                     stats[nombre].gf += gp;
                                     stats[nombre].gc += gr;
@@ -749,12 +748,6 @@
             if (!jornada) return;
             
             var resJornada = resultados[numJornada] || {};
-            jornada.partidos.forEach(function(p, idx) {
-                var res = resJornada[idx] || {};
-                if (res.golesLocal !== undefined) p.golesLocal = res.golesLocal;
-                if (res.golesVisitante !== undefined) p.golesVisitante = res.golesVisitante;
-                if (res.suspendido !== undefined) p.suspendido = res.suspendido;
-            });
             
             var contenedor = document.getElementById('contenedor-partidos');
             var html = '';
@@ -764,15 +757,22 @@
             if (jornada.descanso) {
                 html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
             }
-            jornada.partidos.forEach(function(p) {
+            
+            jornada.partidos.forEach(function(p, idx) {
+                var res = resJornada[idx] || {};
+                var golesLocal = res.golesLocal !== undefined ? res.golesLocal : p.golesLocal;
+                var golesVisitante = res.golesVisitante !== undefined ? res.golesVisitante : p.golesVisitante;
+                var suspendido = res.suspendido !== undefined ? res.suspendido : (p.suspendido || false);
+                
                 var marcador = '';
-                if (p.suspendido) {
+                if (suspendido) {
                     marcador = '<div class="match-score suspended-match">SUSP.</div>';
-                } else if (p.golesLocal !== null && p.golesVisitante !== null) {
-                    marcador = '<div class="match-score">' + p.golesLocal + ' - ' + p.golesVisitante + '</div>';
+                } else if (golesLocal !== null && golesVisitante !== null) {
+                    marcador = '<div class="match-score">' + golesLocal + ' - ' + golesVisitante + '</div>';
                 } else {
                     marcador = '<div class="match-score vs">VS</div>';
                 }
+                
                 var arbitroHtml = p.arbitro ? ' · 👤 ' + p.arbitro : '';
                 html += '<div class="match-card">';
                 html += '<div class="match-teams">';
