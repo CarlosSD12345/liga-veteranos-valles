@@ -103,7 +103,7 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">️ Panel de Control</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
                 <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
                     <option value="">Selecciona Jornada...</option>
@@ -499,27 +499,20 @@
                 document.getElementById('pantalla-control').style.display = 'none';
             }
         }
-        function cerrarAdmin() {
-            document.getElementById('panel-admin').style.display = 'none';
-        }
+        function cerrarAdmin() { document.getElementById('panel-admin').style.display = 'none'; }
         function verificarCodigo() {
-            var codigo = document.getElementById('codigo-admin').value;
-            if (codigo === '46602900') {
+            if (document.getElementById('codigo-admin').value === '46602900') {
                 document.getElementById('pantalla-codigo').style.display = 'none';
                 document.getElementById('pantalla-token').style.display = 'block';
-            } else {
-                alert('Código incorrecto.');
-            }
+            } else { alert('Código incorrecto.'); }
         }
         function guardarToken() {
             var token = document.getElementById('input-token').value.trim();
             if (token.length > 10) {
                 localStorage.setItem('github_token', token);
-                alert('Token guardado correctamente.');
+                alert('Token guardado.');
                 mostrarControl();
-            } else {
-                alert('El token no parece válido.');
-            }
+            } else { alert('Token no válido.'); }
         }
         function mostrarControl() {
             document.getElementById('pantalla-codigo').style.display = 'none';
@@ -537,36 +530,34 @@
                 select.appendChild(opt);
             });
         }
+
         function mostrarPartidosAdmin() {
             var numJornada = parseInt(document.getElementById('admin-selector-jornada').value);
             var contenedor = document.getElementById('admin-partidos-container');
             contenedor.innerHTML = '';
             if (!numJornada) return;
-            var jornada = null;
-            for (var i = 0; i < calendario.length; i++) {
-                if (calendario[i].jornada === numJornada) { jornada = calendario[i]; break; }
-            }
+            var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
             if (!jornada) return;
+            var resJ = resultados[String(numJornada)] || {};
             var html = '<h3 style="color:white; margin-bottom:15px;">Jornada ' + jornada.jornada + '</h3>';
             jornada.partidos.forEach(function(p, index) {
-                var resJornada = resultados[String(numJornada)] || {};
-                var resPartido = resJornada[String(index)] || {};
-                var golesL = resPartido.golesLocal !== undefined ? (resPartido.golesLocal === null ? '' : resPartido.golesLocal) : '';
-                var golesV = resPartido.golesVisitante !== undefined ? (resPartido.golesVisitante === null ? '' : resPartido.golesVisitante) : '';
-                var checked = resPartido.suspendido ? 'checked' : '';
+                var resP = resJ[String(index)] || {};
+                vargL = resP.golesLocal !== undefined ? (resP.golesLocal === null ? '' : resP.golesLocal) : '';
+                var golV = resP.golesVisitante !== undefined ? (resP.golesVisitante === null ? '' : resP.golesVisitante) : '';
+                var checked = resP.suspendido ? 'checked' : '';
                 html += '<div style="background:#0b1d15; padding:10px; border-radius:8px; margin-bottom:10px; border:1px solid #1f4733;">';
                 html += '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">';
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:right; padding-right:10px;">' + getNombreCorto(p.local) + '</span>';
-                html += '<input type="number" id="gol-local-' + index + '" value="' + golesL + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
+                html += '<input type="number" id="gl-' + index + '" value="' + golL + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
                 html += '<span style="color:#2ecc71; margin:0 5px;">-</span>';
-                html += '<input type="number" id="gol-visitante-' + index + '" value="' + golesV + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
+                html += '<input type="number" id="gv-' + index + '" value="' + golV + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
                 html += '</div>';
                 html += '<div style="text-align:center; margin-top:8px;">';
-                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="suspendido-' + index + '" ' + checked + '> ⏸️ Partido Suspendido</label>';
+                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ️ Partido Suspendido</label>';
                 html += '</div></div>';
             });
-            html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados en la Web</button>';
+            html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
             contenedor.innerHTML = html;
         }
 
@@ -575,165 +566,127 @@
             btn.textContent = '⏳ Guardando...';
             btn.disabled = true;
             var token = localStorage.getItem('github_token');
-            var jornada = null;
-            for (var i = 0; i < calendario.length; i++) {
-                if (calendario[i].jornada === jornadaNum) { jornada = calendario[i]; break; }
-            }
-            
+            var jornada = calendario.find(function(j) { return j.jornada === jornadaNum; });
             var nuevosResultados = {};
             jornada.partidos.forEach(function(p, index) {
-                var valLocal = document.getElementById('gol-local-' + index).value;
-                var valVisitante = document.getElementById('gol-visitante-' + index).value;
-                var isSuspendido = document.getElementById('suspendido-' + index).checked;
+                var valL = document.getElementById('gl-' + index).value;
+                var valV = document.getElementById('gv-' + index).value;
+                var susp = document.getElementById('sp-' + index).checked;
                 nuevosResultados[String(index)] = {
-                    suspendido: isSuspendido,
-                    golesLocal: isSuspendido ? null : (valLocal === '' ? null : parseInt(valLocal)),
-                    golesVisitante: isSuspendido ? null : (valVisitante === '' ? null : parseInt(valVisitante))
+                    suspendido: susp,
+                    golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)),
+                    golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV))
                 };
             });
-            
             resultados[String(jornadaNum)] = nuevosResultados;
-
             fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', {
                 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
             })
-            .then(function(response) { return response.json(); })
+            .then(function(r) { return r.json(); })
             .then(function(data) {
                 if (!data.sha) throw new Error('No se pudo obtener el archivo');
-                var base64Content = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2))));
+                var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2))));
                 return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', {
                     method: 'PUT',
                     headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: 'Actualización resultados Jornada ' + jornadaNum, content: base64Content, sha: data.sha })
+                    body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha })
                 });
             })
-            .then(function(response) {
-                if (response.ok) {
-                    alert('✅ ¡Resultados guardados! La web se recargará.');
-                    location.reload();
-                } else {
-                    return response.json().then(function(err) { throw new Error(err.message || 'Error al guardar'); });
-                }
+            .then(function(r) {
+                if (r.ok) { alert('✅ Guardado!'); location.reload(); }
+                else { r.json().then(function(e) { throw new Error(e.message); }); }
             })
-            .catch(function(error) {
-                alert('❌ Error: ' + error.message);
-                btn.textContent = '💾 Guardar Resultados en la Web';
-                btn.disabled = false;
-            });
+            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
         }
 
+        // FUNCIÓN CLAVE: calcular clasificación con forma correcta
         function calcularClasificacion() {
             var stats = {};
             equipos.forEach(function(eq) {
                 stats[eq.nombreCompleto] = { 
-                    nombre: eq.nombre, 
-                    img: eq.img, 
-                    pj: 0, 
-                    pts: 0, 
-                    g: 0, 
-                    e: 0, 
-                    p: 0, 
-                    gf: 0, 
-                    gc: 0, 
+                    nombre: eq.nombre, img: eq.img, 
+                    pj: 0, pts: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, 
                     forma: [] 
                 };
             });
             
-            for (var j = 0; j < calendario.length; j++) {
-                var jornada = calendario[j];
-                var jornadaNum = String(jornada.jornada);
-                var resJornada = resultados[jornadaNum] || {};
-                var jornadaSuspendida = resJornada.suspendida === true || jornada.suspendida === true;
+            calendario.forEach(function(jornada) {
+                var jNum = String(jornada.jornada);
+                var resJ = resultados[jNum] || {};
                 
-                if (jornadaSuspendida) {
-                    for (var k = 0; k < equipos.length; k++) {
-                        stats[equipos[k].nombreCompleto].forma.push('S');
-                    }
-                } else {
-                    for (var k = 0; k < equipos.length; k++) {
-                        var eq = equipos[k];
-                        var nombre = eq.nombreCompleto;
-                        
-                        if (jornada.descanso === nombre) {
-                            stats[nombre].forma.push('D');
-                            continue;
-                        }
-                        
-                        var partido = null;
-                        var idx = -1;
-                        for (var i = 0; i < jornada.partidos.length; i++) {
-                            if (jornada.partidos[i].local === nombre || jornada.partidos[i].visitante === nombre) {
-                                partido = jornada.partidos[i];
-                                idx = i;
-                                break;
-                            }
-                        }
-                        
-                        if (!partido) {
-                            stats[nombre].forma.push('-');
-                            continue;
-                        }
-                        
-                        var res = resJornada[String(idx)] || {};
-                        var golesLocal = res.golesLocal;
-                        var golesVisitante = res.golesVisitante;
-                        var suspendido = res.suspendido === true;
-                        
-                        if (suspendido) {
-                            stats[nombre].forma.push('S');
-                        } else if (golesLocal !== null && golesLocal !== undefined && golesVisitante !== null && golesVisitante !== undefined) {
-                            var esLocal = (partido.local === nombre);
-                            var golesPropios = esLocal ? golesLocal : golesVisitante;
-                            var golesRival = esLocal ? golesVisitante : golesLocal;
-                            
-                            stats[nombre].pj++;
-                            stats[nombre].gf += golesPropios;
-                            stats[nombre].gc += golesRival;
-                            
-                            if (golesPropios > golesRival) {
-                                stats[nombre].pts += 3;
-                                stats[nombre].g++;
-                                stats[nombre].forma.push('G');
-                            } else if (golesPropios < golesRival) {
-                                stats[nombre].p++;
-                                stats[nombre].forma.push('P');
-                            } else {
-                                stats[nombre].pts += 1;
-                                stats[nombre].e++;
-                                stats[nombre].forma.push('E');
-                            }
-                        } else {
-                            stats[nombre].forma.push('-');
-                        }
-                    }
+                // Jornada completa suspendida
+                if (resJ.suspendida === true || jornada.suspendida === true) {
+                    equipos.forEach(function(eq) { stats[eq.nombreCompleto].forma.push('S'); });
+                    return;
                 }
-            }
+                
+                // Procesar cada equipo
+                equipos.forEach(function(eq) {
+                    var nombre = eq.nombreCompleto;
+                    
+                    // Descanso
+                    if (jornada.descanso === nombre) {
+                        stats[nombre].forma.push('D');
+                        return;
+                    }
+                    
+                    // Buscar partido
+                    var partido = null;
+                    var idx = -1;
+                    for (var i = 0; i < jornada.partidos.length; i++) {
+                        if (jornada.partidos[i].local === nombre || jornada.partidos[i].visitante === nombre) {
+                            partido = jornada.partidos[i];
+                            idx = i;
+                            break;
+                        }
+                    }
+                    
+                    if (!partido) {
+                        stats[nombre].forma.push('-');
+                        return;
+                    }
+                    
+                    // Leer resultado guardado (claves string)
+                    var resP = resJ[String(idx)] || {};
+                    var gl = resP.golesLocal;
+                    var gv = resP.golesVisitante;
+                    var susp = resP.suspendido === true;
+                    
+                    if (susp) {
+                        stats[nombre].forma.push('S');
+                    } else if (gl !== null && gl !== undefined && gv !== null && gv !== undefined) {
+                        var esLocal = (partido.local === nombre);
+                        var gp = esLocal ? gl : gv;
+                        var gr = esLocal ? gv : gl;
+                        stats[nombre].pj++;
+                        stats[nombre].gf += gp;
+                        stats[nombre].gc += gr;
+                        if (gp > gr) { stats[nombre].pts += 3; stats[nombre].g++; stats[nombre].forma.push('G'); }
+                        else if (gp < gr) { stats[nombre].p++; stats[nombre].forma.push('P'); }
+                        else { stats[nombre].pts += 1; stats[nombre].e++; stats[nombre].forma.push('E'); }
+                    } else {
+                        stats[nombre].forma.push('-');
+                    }
+                });
+            });
             
-            var clasificacion = [];
+            // Calcular DIF y tomar últimos 3
+            var lista = [];
             for (var nombre in stats) {
                 var eq = stats[nombre];
                 eq.dif = eq.gf - eq.gc;
-                
-                var ultimos = [];
-                var startIdx = Math.max(0, eq.forma.length - 3);
-                for (var i = startIdx; i < eq.forma.length; i++) {
-                    ultimos.push(eq.forma[i]);
-                }
-                while (ultimos.length < 3) {
-                    ultimos.unshift('-');
-                }
-                eq.forma = ultimos;
-                
-                clasificacion.push(eq);
+                var ult = eq.forma.slice(-3);
+                while (ult.length < 3) ult.unshift('-');
+                eq.forma = ult;
+                lista.push(eq);
             }
             
-            clasificacion.sort(function(a, b) {
+            lista.sort(function(a, b) {
                 if (b.pts !== a.pts) return b.pts - a.pts;
                 if (b.dif !== a.dif) return b.dif - a.dif;
                 return a.nombre.localeCompare(b.nombre);
             });
-            
-            return clasificacion;
+            return lista;
         }
 
         function renderizarClasificacion() {
@@ -756,18 +709,17 @@
             document.getElementById('tabla').innerHTML = html;
         }
 
-        function getImgEquipo(nombreCompleto) {
+        function getImgEquipo(nc) {
             for (var i = 0; i < equipos.length; i++) {
-                if (equipos[i].nombreCompleto === nombreCompleto) return equipos[i].img;
+                if (equipos[i].nombreCompleto === nc) return equipos[i].img;
             }
             return '';
         }
-
-        function getNombreCorto(nombreCompleto) {
+        function getNombreCorto(nc) {
             for (var i = 0; i < equipos.length; i++) {
-                if (equipos[i].nombreCompleto === nombreCompleto) return equipos[i].nombre;
+                if (equipos[i].nombreCompleto === nc) return equipos[i].nombre;
             }
-            return nombreCompleto;
+            return nc;
         }
 
         function initCalendario() {
@@ -784,51 +736,37 @@
 
         function cargarJornada() {
             var numJornada = parseInt(document.getElementById('selector-jornada').value);
-            var jornada = null;
-            for (var i = 0; i < calendario.length; i++) {
-                if (calendario[i].jornada === numJornada) { jornada = calendario[i]; break; }
-            }
+            var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
             if (!jornada) return;
-            
-            var resJornada = resultados[String(numJornada)] || {};
-            
+            var resJ = resultados[String(numJornada)] || {};
             var contenedor = document.getElementById('contenedor-partidos');
             var html = '';
-            if (resJornada.suspendida === true || jornada.suspendida === true) {
+            if (resJ.suspendida === true || jornada.suspendida === true) {
                 html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
             }
             if (jornada.descanso) {
-                html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
+                html += '<div class="descanso-banner"> Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
             }
-            
             jornada.partidos.forEach(function(p, idx) {
-                var res = resJornada[String(idx)] || {};
-                var golesLocal = res.golesLocal !== undefined ? res.golesLocal : p.golesLocal;
-                var golesVisitante = res.golesVisitante !== undefined ? res.golesVisitante : p.golesVisitante;
-                var suspendido = res.suspendido !== undefined ? res.suspendido : (p.suspendido || false);
-                
+                var resP = resJ[String(idx)] || {};
+                var gl = resP.golesLocal !== undefined ? resP.golesLocal : p.golesLocal;
+                var gv = resP.golesVisitante !== undefined ? resP.golesVisitante : p.golesVisitante;
+                var susp = resP.suspendido !== undefined ? resP.suspendido : (p.suspendido || false);
                 var marcador = '';
-                if (suspendido) {
-                    marcador = '<div class="match-score suspended-match">SUSP.</div>';
-                } else if (golesLocal !== null && golesVisitante !== null) {
-                    marcador = '<div class="match-score">' + golesLocal + ' - ' + golesVisitante + '</div>';
-                } else {
-                    marcador = '<div class="match-score vs">VS</div>';
-                }
-                
-                var arbitroHtml = p.arbitro ? ' · 👤 ' + p.arbitro : '';
-                html += '<div class="match-card">';
-                html += '<div class="match-teams">';
-                html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '" alt="' + p.local + '"></div>';
+                if (susp) marcador = '<div class="match-score suspended-match">SUSP.</div>';
+                else if (gl !== null && gl !== undefined && gv !== null && gv !== undefined) marcador = '<div class="match-score">' + gl + ' - ' + gv + '</div>';
+                else marcador = '<div class="match-score vs">VS</div>';
+                var arb = p.arbitro ? ' · 👤 ' + p.arbitro : '';
+                html += '<div class="match-card"><div class="match-teams">';
+                html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
                 html += marcador;
-                html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '" alt="' + p.visitante + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
-                html += '</div>';
-                html += '<div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbitroHtml + '</div>';
-                html += '</div>';
+                html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
+                html += '</div><div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arb + '</div></div>';
             });
             contenedor.innerHTML = html;
         }
 
+        // Cargar resultados y renderizar
         fetch('resultados.json?t=' + Date.now())
             .then(function(r) { return r.json(); })
             .then(function(data) {
@@ -836,7 +774,7 @@
                 renderizarClasificacion();
             })
             .catch(function(e) {
-                console.error('Error cargando resultados:', e);
+                console.error('Error:', e);
                 renderizarClasificacion();
             });
     </script>
