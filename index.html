@@ -53,6 +53,9 @@
         #admin-btn { background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin-top: 10px; }
         .fp-rank-1 { background-color: #2ecc71; color: #0b1d15; }
         .fp-card-box { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
+        .arb-rank-1 { background-color: #e74c3c; color: white; }
+        .arb-rank-2 { background-color: #f39c12; color: white; }
+        .arb-rank-3 { background-color: #f1c40f; color: #0b1d15; }
         @media (max-width: 600px) {
             body { padding: 8px; }
             .match-card { padding: 10px; }
@@ -75,6 +78,7 @@
             <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
             <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
             <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
+            <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
         </div>
         <div id="clasificacion" class="section active">
             <table>
@@ -93,9 +97,17 @@
         <div id="fairplay" class="section">
             <table>
                 <thead>
-                    <tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th> AMARILLAS</th><th> ROJAS</th><th style="color:#2ecc71;">TOTAL</th></tr>
+                    <tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th>🟡 AMARILLAS</th><th>🔴 ROJAS</th><th style="color:#2ecc71;">TOTAL</th></tr>
                 </thead>
                 <tbody id="tabla-fp"></tbody>
+            </table>
+        </div>
+        <div id="arbitros" class="section">
+            <table>
+                <thead>
+                    <tr><th>#</th><th class="team">ÁRBITRO</th><th>PA</th><th>🟡 AMARILLAS</th><th>🔴 ROJAS</th><th>TOTAL</th><th style="color:#2ecc71;">TARJ./PARTIDO</th></tr>
+                </thead>
+                <tbody id="tabla-arb"></tbody>
             </table>
         </div>
         <footer>
@@ -141,17 +153,17 @@
                 { local: "C.F. Barberá", visitante: "A.V. Pallejá", golesLocal: 4, golesVisitante: 1, campo: "MPAL BARBERA", hora: "08:00", arbitro: "Julio" },
                 { local: "C.F. Can Parellada", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: 6, golesVisitante: 3, campo: "CAN PARELLADA", hora: "08:15", arbitro: "Edu" },
                 { local: "C.F. Cerdanyola", visitante: "C.F. Sant Feliu de Codines", golesLocal: 4, golesVisitante: 1, campo: "MPAL FONTETAS", hora: "08:15", arbitro: "Salva" },
-                { local: "C.E. Sentmenat", visitante: "U.E. Castellar", golesLocal: 2, golesVisitante: 5, campo: "MPAL SENTMENAT", hora: "18:30", arbitro: "Fàbregas" },
+                { local: "C.E. Sentmenat", visitante: "U.E. Castellar", golesLocal: 2, golesVisitante: 5, campo: "MPAL SENTMENAT", hora: "18:30", arbitro: "Fabregas" },
                 { local: "A.V. Ripollet", visitante: "U.D.A. Gramanet", golesLocal: 3, golesVisitante: 1, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Molina" },
                 { local: "C.E. Santa Eulàlia de Ronçana", visitante: "Penya Decano", golesLocal: 3, golesVisitante: 2, campo: "MPAL SANTA EULALIA", hora: "18:30", arbitro: "Puibert" }
             ], descanso: "U.E. Canovelles" },
             { jornada: 2, fecha: "27/09/2026", suspendida: false, partidos: [
                 { local: "V.C.F. Ripollet", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: 3, golesVisitante: 5, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Puibert" },
                 { local: "A.V. L'Ametlla del Vallés", visitante: "U.E. Sabadellenca", golesLocal: 4, golesVisitante: 4, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Lleixa" },
-                { local: "A.V. Pallejá", visitante: "C.E. Bigues i Riells", golesLocal: 5, golesVisitante: 1, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Duran" },
+                { local: "A.V. Pallejá", visitante: "C.E. Bigues i Riells", golesLocal: 5, golesVisitante: 1, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Durán" },
                 { local: "U.E. Canovelles", visitante: "C.F. Barberá", golesLocal: 1, golesVisitante: 4, campo: "MPAL CANOVELLES", hora: "08:00", arbitro: "Edu" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "C.F. Can Parellada", golesLocal: 2, golesVisitante: 3, campo: "MPAL SANT FELIU", hora: "08:00", arbitro: "Exposito" },
-                { local: "U.E. Castellar", visitante: "C.F. Cerdanyola", golesLocal: 3, golesVisitante: 2, campo: "MPAL CASTELLAR", hora: "08:15", arbitro: "Fàbregas" },
+                { local: "U.E. Castellar", visitante: "C.F. Cerdanyola", golesLocal: 3, golesVisitante: 2, campo: "MPAL CASTELLAR", hora: "08:15", arbitro: "Fabregas" },
                 { local: "U.D.A. Gramanet", visitante: "C.E. Sentmenat", golesLocal: 2, golesVisitante: 2, campo: "MPAL GRAMANET", hora: "08:00", arbitro: "Congost" },
                 { local: "Penya Decano", visitante: "A.V. Ripollet", golesLocal: 6, golesVisitante: 3, campo: "MPAL LA FERRERIA", hora: "08:00", arbitro: "Molina" }
             ], descanso: "E.F.B Palau Solitá i Plegamans" },
@@ -166,10 +178,10 @@
                 { local: "C.E. Santa Eulàlia de Ronçana", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
             ], descanso: "C.F. Sant Feliu de Codines" },
             { jornada: 4, fecha: "11/10/2026", suspendida: false, partidos: [
-                { local: "A.V. L'Ametlla del Vallés", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Duran" },
+                { local: "A.V. L'Ametlla del Vallés", visitante: "C.E. Santa Eulàlia de Ronçana", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Durán" },
                 { local: "A.V. Pallejá", visitante: "V.C.F. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Molina" },
                 { local: "U.E. Canovelles", visitante: "U.E. Sabadellenca", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00", arbitro: "Exposito" },
-                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00", arbitro: "Fàbregas" },
+                { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.E. Bigues i Riells", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00", arbitro: "Fabregas" },
                 { local: "C.F. Sant Feliu de Codines", visitante: "C.F. Barberá", golesLocal: null, golesVisitante: null, campo: "MPAL SANT FELIU", hora: "08:00", arbitro: "Edu" },
                 { local: "U.D.A. Gramanet", visitante: "C.F. Can Parellada", golesLocal: null, golesVisitante: null, campo: "MPAL GRAMANET", hora: "08:00", arbitro: "Congost" },
                 { local: "Penya Decano", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL LA FERRERIA", hora: "08:00", arbitro: "Salva" },
@@ -504,6 +516,7 @@
             btn.classList.add('active');
             if (id === 'calendario') initCalendario();
             if (id === 'fairplay') renderizarFairPlay();
+            if (id === 'arbitros') renderizarArbitros();
         }
 
         function abrirAdmin() {
@@ -558,7 +571,7 @@
             if (!jornada) return;
             var resJ = resultados[String(numJornada)] || {};
             var html = '<h3 style="color:white; margin-bottom:15px;">Jornada ' + jornada.jornada + '</h3>';
-            html += '<p style="color:#f39c12; font-size:0.8rem; margin-bottom:15px;">💡 Roja directa = 1 · Doble amarilla = 2</p>';
+            html += '<p style="color:#f39c12; font-size:0.8rem; margin-bottom:15px;"> Roja directa = 1 · Doble amarilla = 2</p>';
             html += '<p style="color:#2ecc71; font-size:0.75rem; margin-bottom:15px;">✅ Los goles ya rellenados son los actuales. No los borres.</p>';
             jornada.partidos.forEach(function(p, index) {
                 var resP = resJ[String(index)] || {};
@@ -579,7 +592,7 @@
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:5px; margin-top:8px; flex-wrap:wrap; justify-content:center;">';
-                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">🟡 LOCAL</span>';
+                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;"> LOCAL</span>';
                 html += '<input type="number" id="amL-' + index + '" value="' + amL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
                 html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT🟡</span>';
@@ -615,7 +628,7 @@
             });
             
             if (hayGolesBorrados) {
-                if (!confirm('️ Hay campos de goles vacíos en partidos que ya tenían resultado. ¿Seguro que quieres guardar? Se perderán los goles actuales.')) {
+                if (!confirm('⚠️ Hay campos de goles vacíos en partidos que ya tenían resultado. ¿Seguro que quieres guardar? Se perderán los goles actuales.')) {
                     return;
                 }
             }
@@ -682,7 +695,7 @@
                 if (r && r.ok) { alert('✅ Guardado!'); location.reload(); }
                 else if (r && r.message) { throw new Error(r.message); }
             })
-            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
+            .catch(function(e) { alert(' ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
         }
 
         function calcularClasificacion() {
@@ -893,6 +906,101 @@
                 html += '</tr>';
             });
             document.getElementById('tabla-fp').innerHTML = html;
+        }
+
+        function calcularArbitros() {
+            var stats = {};
+            
+            // Recorrer todas las jornadas para detectar árbitros
+            for (var j = 0; j < calendario.length; j++) {
+                var jornada = calendario[j];
+                
+                var tieneResultados = false;
+                if (jornada.suspendida === true) {
+                    tieneResultados = true;
+                } else {
+                    for (var i = 0; i < jornada.partidos.length; i++) {
+                        if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) {
+                            tieneResultados = true;
+                            break;
+                        }
+                    }
+                }
+                
+                if (!tieneResultados) break;
+                if (jornada.suspendida === true) continue;
+                
+                var resJ = resultados[String(jornada.jornada)] || {};
+                
+                jornada.partidos.forEach(function(p, idx) {
+                    var resP = resJ[String(idx)] || {};
+                    var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal;
+                    var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
+                    var susp = resP.suspendido === true;
+                    
+                    if (susp || gl === null || gv === null) return;
+                    
+                    // Obtener nombre del árbitro (del resultado si existe, si no del calendario)
+                    var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro;
+                    if (!arbNombre) return;
+                    
+                    if (!stats[arbNombre]) {
+                        stats[arbNombre] = { nombre: arbNombre, pa: 0, amarillas: 0, rojas: 0, total: 0 };
+                    }
+                    
+                    var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : 0;
+                    var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : 0;
+                    var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : 0;
+                    var roV = (resP.rojasVisitante !== undefined && resP.rojasVisitante !== null) ? resP.rojasVisitante : 0;
+                    
+                    stats[arbNombre].pa++;
+                    stats[arbNombre].amarillas += (amL + amV);
+                    stats[arbNombre].rojas += (roL + roV);
+                    stats[arbNombre].total += (amL + amV + roL + roV);
+                });
+            }
+            
+            var lista = [];
+            for (var nombre in stats) {
+                var arb = stats[nombre];
+                arb.media = arb.pa > 0 ? (arb.total / arb.pa) : 0;
+                lista.push(arb);
+            }
+            
+            // Ordenar: de MAYOR a MENOR media (el más tarjetero arriba)
+            lista.sort(function(a, b) {
+                if (b.media !== a.media) return b.media - a.media;
+                if (b.total !== a.total) return b.total - a.total;
+                if (b.rojas !== a.rojas) return b.rojas - a.rojas;
+                return a.nombre.localeCompare(b.nombre);
+            });
+            
+            return lista;
+        }
+
+        function renderizarArbitros() {
+            var lista = calcularArbitros();
+            var html = '';
+            lista.forEach(function(arb, i) {
+                var rankStyle = '';
+                if (i === 0) rankStyle = 'background:#e74c3c; color:white;';
+                else if (i === 1) rankStyle = 'background:#f39c12; color:white;';
+                else if (i === 2) rankStyle = 'background:#f1c40f; color:#0b1d15;';
+                else rankStyle = 'background:#1f4733; color:white;';
+                
+                var mediaStr = arb.media.toFixed(2);
+                
+                html += '<tr>';
+                html += '<td><span style="display:inline-block; width:30px; height:30px; line-height:30px; border-radius:50%; text-align:center; font-weight:bold; ' + rankStyle + '">' + (i+1) + '</span></td>';
+                html += '<td class="team" style="font-size:1.05rem; font-weight:600;">' + arb.nombre + '</td>';
+                html += '<td>' + arb.pa + '</td>';
+                html += '<td><span class="fp-card-box"><span class="card-icon card-yellow"></span> ' + arb.amarillas + '</span></td>';
+                html += '<td><span class="fp-card-box"><span class="card-icon card-red"></span> ' + arb.rojas + '</span></td>';
+                html += '<td style="font-weight:bold;">' + arb.total + '</td>';
+                html += '<td style="font-weight:bold; color:#2ecc71; font-size:1.1rem;">' + mediaStr + '</td>';
+                html += '</tr>';
+            });
+            document.getElementById('tabla-arb').innerHTML = html;
         }
 
         function getImgEquipo(nc) {
