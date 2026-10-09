@@ -128,7 +128,48 @@
       "golesVisitante": null
     }
   },
-  "5": {},
+  "5": {
+    "0": {
+      "suspendido": false,
+      "golesLocal": 3,
+      "golesVisitante": 1
+    },
+    "1": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "2": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "3": {
+      "suspendido": false,
+      "golesLocal": 0,
+      "golesVisitante": 4
+    },
+    "4": {
+      "suspendido": false,
+      "golesLocal": 2,
+      "golesVisitante": 2
+    },
+    "5": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "6": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null
+    },
+    "7": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null
+    }
+  },
   "6": {},
   "7": {},
   "8": {},
