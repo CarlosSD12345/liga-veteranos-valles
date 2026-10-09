@@ -1,0 +1,84 @@
+{
+  "1": {
+    "0": {
+      "suspendido": false,
+      "golesLocal": 5,
+      "golesVisitante": 1,
+      "arbitro": "Salva",
+      "amarillasLocal": 1,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "1": {
+      "suspendido": false,
+      "golesLocal": 3,
+      "golesVisitante": 16,
+      "arbitro": "Congost",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "2": {
+      "suspendido": false,
+      "golesLocal": 4,
+      "golesVisitante": 1,
+      "arbitro": "Julio",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 1,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "3": {
+      "suspendido": false,
+      "golesLocal": 6,
+      "golesVisitante": 3,
+      "arbitro": "Edu",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 1,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "4": {
+      "suspendido": false,
+      "golesLocal": 4,
+      "golesVisitante": 1,
+      "arbitro": "Salva",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "5": {
+      "suspendido": false,
+      "golesLocal": 2,
+      "golesVisitante": 5,
+      "arbitro": "Fàbregas",
+      "amarillasLocal": 1,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "6": {
+      "suspendido": false,
+      "golesLocal": 3,
+      "golesVisitante": 1,
+      "arbitro": "Molina",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "7": {
+      "suspendido": false,
+      "golesLocal": 3,
+      "golesVisitante": 2,
+      "arbitro": "Puibert",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    }
+  }
+}
