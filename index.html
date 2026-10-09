@@ -8,7 +8,7 @@
         body { background-color: #0b1d15; color: white; padding: 20px; font-family: Arial, sans-serif; }
         .container { max-width: 1000px; margin: 0 auto; }
         header { text-align: center; margin-bottom: 25px; }
-        .header-logo { width: 130px; height: auto; object-fit: contain; margin-bottom: 15px; }
+        .header-logo { width: 320px; max-width: 95%; height: auto; object-fit: contain; margin-bottom: 15px; }
         .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; }
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
         .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; }
@@ -51,15 +51,15 @@
         .suspended-banner { background-color: #e74c3c; color: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; }
         .descanso-banner { background-color: #173827; color: #a3b8af; padding: 12px; border-radius: 10px; text-align: center; margin-bottom: 15px; font-size: 0.95rem; border: 1px solid #1f4733; }
         footer { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px 20px; color: #a3b8af; font-size: 0.85rem; border-top: 1px solid #1f4733; margin-top: 40px; }
-        .footer-lema { font-style: italic; color: white; font-size: 14px; text-align: center; margin: 0; }
-        .footer-hashtag { color: #2ecc71; font-weight: bold; font-size: 16px; text-align: center; margin: 0; }
+        .footer-lema { font-style: italic; color: white; font-size: 16px; text-align: center; margin: 10px 0 5px 0; width: 100%; }
+        .footer-hashtag { color: #2ecc71; font-weight: bold; font-size: 18px; text-align: center; margin: 5px 0 15px 0; width: 100%; }
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 400px; margin-top: 10px; padding-top: 15px; border-top: 1px solid #1f4733; }
         #admin-btn { background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin: 0; }
         .fp-rank-1 { background-color: #2ecc71; color: #0b1d15; }
         .fp-card-box { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
         @media (max-width: 600px) {
             body { padding: 8px; }
-            .header-logo { width: 90px; }
+            .header-logo { width: 240px; }
             .match-card { padding: 10px; }
             .match-teams { gap: 5px; }
             .match-team { gap: 5px; }
@@ -68,15 +68,15 @@
             .match-score { min-width: 56px; padding: 8px 8px; font-size: 1.05rem; }
             .tabs { gap: 6px; }
             .tab-btn { padding: 10px 12px; font-size: 0.85rem; }
-            .footer-lema { font-size: 12px; }
-            .footer-hashtag { font-size: 14px; }
+            .footer-lema { font-size: 14px; }
+            .footer-hashtag { font-size: 16px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="logo_liga.png" alt="Liga Veteranos Vallès" class="header-logo">
+            <img src="escudos/logo_liga.png" alt="Liga Veteranos Vallès" class="header-logo">
             <div class="badge" id="badge-jornada">JORNADA 3</div>
         </header>
         <div class="tabs">
@@ -119,7 +119,7 @@
             <p class="footer-lema">"Ens divertim, competim i fem amics"</p>
             <p class="footer-hashtag">#VeteransDelVallès</p>
             <div class="footer-bottom">
-                <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
+                <button id="admin-btn" onclick="abrirAdmin()">️ Admin</button>
                 <p style="margin:0; font-size:0.8rem;">© 2026 Liga de Fútbol Veteranos del Vallès</p>
             </div>
         </footer>
@@ -128,7 +128,7 @@
     <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
         <div style="max-width: 400px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
             <div id="pantalla-codigo">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🔒 Acceso Restringido</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;"> Acceso Restringido</h2>
                 <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
                 <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
@@ -624,7 +624,7 @@
                 html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">🔴 LOCAL</span>';
                 html += '<input type="number" id="roL-' + index + '" value="' + roL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
-                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT</span>';
+                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT🔴</span>';
                 html += '<input type="number" id="roV-' + index + '" value="' + roV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
@@ -717,7 +717,7 @@
                 if (r && r.ok) { alert('✅ Guardado!'); location.reload(); }
                 else if (r && r.message) { throw new Error(r.message); }
             })
-            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = ' Guardar'; btn.disabled = false; });
+            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
         }
 
         function calcularClasificacion() {
@@ -1055,7 +1055,7 @@
             var contenedor = document.getElementById('contenedor-partidos');
             var html = '';
             if (jornada.suspendida === true) {
-                html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
+                html += '<div class="suspended-banner">️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
             }
             if (jornada.descanso) {
                 html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
