@@ -554,7 +554,7 @@
                 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
                 html += '</div>';
                 html += '<div style="text-align:center; margin-top:8px;">';
-                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Partido Suspendido</label>';
+                html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ️ Partido Suspendido</label>';
                 html += '</div></div>';
             });
             html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
@@ -582,7 +582,7 @@
             
             if (!token) {
                 alert('❌ No hay token configurado.');
-                btn.textContent = '💾 Guardar';
+                btn.textContent = ' Guardar';
                 btn.disabled = false;
                 return;
             }
@@ -629,8 +629,25 @@
                 };
             });
             
+            // Solo procesar jornadas que tienen resultados reales o están suspendidas
             for (var j = 0; j < calendario.length; j++) {
                 var jornada = calendario[j];
+                
+                // Verificar si esta jornada tiene resultados jugados
+                var tieneResultados = false;
+                if (jornada.suspendida === true) {
+                    tieneResultados = true;
+                } else {
+                    for (var i = 0; i < jornada.partidos.length; i++) {
+                        if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) {
+                            tieneResultados = true;
+                            break;
+                        }
+                    }
+                }
+                
+                // Si no tiene resultados, detener el procesamiento
+                if (!tieneResultados) break;
                 
                 if (jornada.suspendida === true) {
                     equipos.forEach(function(eq) { stats[eq.nombreCompleto].forma.push('S'); });
@@ -663,7 +680,6 @@
                     }
                     
                     var resP = resJ[String(idx)] || {};
-                    // CORRECCIÓN CLAVE: si hay null en goles, usar los del calendario
                     var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : partido.golesLocal;
                     var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : partido.golesVisitante;
                     var susp = resP.suspendido === true;
