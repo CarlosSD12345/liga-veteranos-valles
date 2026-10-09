@@ -61,7 +61,7 @@
     <div class="container">
         <header>
             <h1>VETERANOS VALLÈS</h1>
-            <div class="badge" id="badge-jornada">JORNADA 4 · CLASIFICACIÓN</div>
+            <div class="badge">JORNADA 4 · CLASIFICACIÓN</div>
         </header>
         <div class="tabs">
             <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
@@ -103,7 +103,7 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">️ Panel de Control</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
                 <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
                     <option value="">Selecciona Jornada...</option>
@@ -549,8 +549,8 @@
             if (!jornada) return;
             var html = '<h3 style="color:white; margin-bottom:15px;">Jornada ' + jornada.jornada + '</h3>';
             jornada.partidos.forEach(function(p, index) {
-                var resJornada = resultados[numJornada] || {};
-                var resPartido = resJornada[index] || {};
+                var resJornada = resultados[String(numJornada)] || {};
+                var resPartido = resJornada[String(index)] || {};
                 var golesL = resPartido.golesLocal !== undefined ? (resPartido.golesLocal === null ? '' : resPartido.golesLocal) : '';
                 var golesV = resPartido.golesVisitante !== undefined ? (resPartido.golesVisitante === null ? '' : resPartido.golesVisitante) : '';
                 var checked = resPartido.suspendido ? 'checked' : '';
@@ -572,7 +572,7 @@
 
         function guardarResultados(jornadaNum) {
             var btn = document.getElementById('btn-guardar');
-            btn.textContent = ' Guardando...';
+            btn.textContent = '⏳ Guardando...';
             btn.disabled = true;
             var token = localStorage.getItem('github_token');
             var jornada = null;
@@ -585,14 +585,14 @@
                 var valLocal = document.getElementById('gol-local-' + index).value;
                 var valVisitante = document.getElementById('gol-visitante-' + index).value;
                 var isSuspendido = document.getElementById('suspendido-' + index).checked;
-                nuevosResultados[index] = {
+                nuevosResultados[String(index)] = {
                     suspendido: isSuspendido,
                     golesLocal: isSuspendido ? null : (valLocal === '' ? null : parseInt(valLocal)),
                     golesVisitante: isSuspendido ? null : (valVisitante === '' ? null : parseInt(valVisitante))
                 };
             });
             
-            resultados[jornadaNum] = nuevosResultados;
+            resultados[String(jornadaNum)] = nuevosResultados;
 
             fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', {
                 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
@@ -641,8 +641,9 @@
             
             for (var j = 0; j < calendario.length; j++) {
                 var jornada = calendario[j];
-                var resJornada = resultados[jornada.jornada] || {};
-                var jornadaSuspendida = resJornada.suspendida || jornada.suspendida;
+                var jornadaNum = String(jornada.jornada);
+                var resJornada = resultados[jornadaNum] || {};
+                var jornadaSuspendida = resJornada.suspendida === true || jornada.suspendida === true;
                 
                 if (jornadaSuspendida) {
                     for (var k = 0; k < equipos.length; k++) {
@@ -673,14 +674,14 @@
                             continue;
                         }
                         
-                        var res = resJornada[idx] || {};
-                        var golesLocal = (res.golesLocal !== undefined && res.golesLocal !== null) ? res.golesLocal : partido.golesLocal;
-                        var golesVisitante = (res.golesVisitante !== undefined && res.golesVisitante !== null) ? res.golesVisitante : partido.golesVisitante;
-                        var suspendido = (res.suspendido !== undefined) ? res.suspendido : (partido.suspendido || false);
+                        var res = resJornada[String(idx)] || {};
+                        var golesLocal = res.golesLocal;
+                        var golesVisitante = res.golesVisitante;
+                        var suspendido = res.suspendido === true;
                         
                         if (suspendido) {
                             stats[nombre].forma.push('S');
-                        } else if (golesLocal !== null && golesVisitante !== null) {
+                        } else if (golesLocal !== null && golesLocal !== undefined && golesVisitante !== null && golesVisitante !== undefined) {
                             var esLocal = (partido.local === nombre);
                             var golesPropios = esLocal ? golesLocal : golesVisitante;
                             var golesRival = esLocal ? golesVisitante : golesLocal;
@@ -714,7 +715,8 @@
                 eq.dif = eq.gf - eq.gc;
                 
                 var ultimos = [];
-                for (var i = Math.max(0, eq.forma.length - 3); i < eq.forma.length; i++) {
+                var startIdx = Math.max(0, eq.forma.length - 3);
+                for (var i = startIdx; i < eq.forma.length; i++) {
                     ultimos.push(eq.forma[i]);
                 }
                 while (ultimos.length < 3) {
@@ -788,11 +790,11 @@
             }
             if (!jornada) return;
             
-            var resJornada = resultados[numJornada] || {};
+            var resJornada = resultados[String(numJornada)] || {};
             
             var contenedor = document.getElementById('contenedor-partidos');
             var html = '';
-            if (resJornada.suspendida || jornada.suspendida) {
+            if (resJornada.suspendida === true || jornada.suspendida === true) {
                 html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
             }
             if (jornada.descanso) {
@@ -800,7 +802,7 @@
             }
             
             jornada.partidos.forEach(function(p, idx) {
-                var res = resJornada[idx] || {};
+                var res = resJornada[String(idx)] || {};
                 var golesLocal = res.golesLocal !== undefined ? res.golesLocal : p.golesLocal;
                 var golesVisitante = res.golesVisitante !== undefined ? res.golesVisitante : p.golesVisitante;
                 var suspendido = res.suspendido !== undefined ? res.suspendido : (p.suspendido || false);
