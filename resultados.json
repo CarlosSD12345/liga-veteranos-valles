@@ -1,214 +1,27 @@
 {
   "1": {
-    "0": {
-      "golesLocal": 5,
-      "golesVisitante": 1,
-      "suspendido": false
-    },
-    "1": {
-      "golesLocal": 3,
-      "golesVisitante": 16,
-      "suspendido": false
-    },
-    "2": {
-      "golesLocal": 4,
-      "golesVisitante": 1,
-      "suspendido": false
-    },
-    "3": {
-      "golesLocal": 6,
-      "golesVisitante": 3,
-      "suspendido": false
-    },
-    "4": {
-      "golesLocal": 4,
-      "golesVisitante": 1,
-      "suspendido": false
-    },
-    "5": {
-      "golesLocal": 2,
-      "golesVisitante": 5,
-      "suspendido": false
-    },
-    "6": {
-      "golesLocal": 3,
-      "golesVisitante": 1,
-      "suspendido": false
-    },
-    "7": {
-      "golesLocal": 3,
-      "golesVisitante": 2,
-      "suspendido": false
-    }
+    "0": {"golesLocal": 5, "golesVisitante": 1, "suspendido": false},
+    "1": {"golesLocal": 3, "golesVisitante": 16, "suspendido": false},
+    "2": {"golesLocal": 4, "golesVisitante": 1, "suspendido": false},
+    "3": {"golesLocal": 6, "golesVisitante": 3, "suspendido": false},
+    "4": {"golesLocal": 4, "golesVisitante": 1, "suspendido": false},
+    "5": {"golesLocal": 2, "golesVisitante": 5, "suspendido": false},
+    "6": {"golesLocal": 3, "golesVisitante": 1, "suspendido": false},
+    "7": {"golesLocal": 3, "golesVisitante": 2, "suspendido": false}
   },
   "2": {
-    "0": {
-      "golesLocal": 3,
-      "golesVisitante": 5,
-      "suspendido": false
-    },
-    "1": {
-      "golesLocal": 4,
-      "golesVisitante": 4,
-      "suspendido": false
-    },
-    "2": {
-      "golesLocal": 5,
-      "golesVisitante": 1,
-      "suspendido": false
-    },
-    "3": {
-      "golesLocal": 1,
-      "golesVisitante": 4,
-      "suspendido": false
-    },
-    "4": {
-      "golesLocal": 2,
-      "golesVisitante": 3,
-      "suspendido": false
-    },
-    "5": {
-      "golesLocal": 3,
-      "golesVisitante": 2,
-      "suspendido": false
-    },
-    "6": {
-      "golesLocal": 2,
-      "golesVisitante": 2,
-      "suspendido": false
-    },
-    "7": {
-      "golesLocal": 6,
-      "golesVisitante": 3,
-      "suspendido": false
-    }
+    "0": {"golesLocal": 3, "golesVisitante": 5, "suspendido": false},
+    "1": {"golesLocal": 4, "golesVisitante": 4, "suspendido": false},
+    "2": {"golesLocal": 5, "golesVisitante": 1, "suspendido": false},
+    "3": {"golesLocal": 1, "golesVisitante": 4, "suspendido": false},
+    "4": {"golesLocal": 2, "golesVisitante": 3, "suspendido": false},
+    "5": {"golesLocal": 3, "golesVisitante": 2, "suspendido": false},
+    "6": {"golesLocal": 2, "golesVisitante": 2, "suspendido": false},
+    "7": {"golesLocal": 6, "golesVisitante": 3, "suspendido": false}
   },
-  "3": {
-    "0": {
-      "suspendido": true,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "1": {
-      "suspendido": true,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "2": {
-      "suspendido": true,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "3": {
-      "suspendido": true,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "4": {
-      "suspendido": true,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "5": {
-      "suspendido": true,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "6": {
-      "suspendido": true,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "7": {
-      "suspendido": true,
-      "golesLocal": null,
-      "golesVisitante": null
-    }
-  },
-  "4": {
-    "0": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "1": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "2": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "3": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "4": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "5": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "6": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "7": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    }
-  },
-  "5": {
-    "0": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "1": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "2": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "3": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "4": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "5": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "6": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    },
-    "7": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null
-    }
-  },
+  "3": {"suspendida": true},
+  "4": {},
+  "5": {},
   "6": {},
   "7": {},
   "8": {},
