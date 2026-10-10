@@ -18,6 +18,22 @@
     ]
   },
   "2": {
+    "0": [
+      {
+        "equipo": "C.E. Santa Eulàlia de Ronçana",
+        "jugador": "Fernando",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
+      },
+      {
+        "equipo": "C.E. Santa Eulàlia de Ronçana",
+        "jugador": "Martínez",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
+      }
+    ],
     "4": [
       {
         "equipo": "C.F. Can Parellada",
