@@ -819,7 +819,7 @@
             lista.forEach(function(g, i) {
                 var rankHtml = '';
                 if (i === 0) rankHtml = '<span class="badge-form medalla-oro">🥇</span>';
-                else if (i === 1) rankHtml = '<span class="badge-form medalla-plata"></span>';
+                else if (i === 1) rankHtml = '<span class="badge-form medalla-plata">🥈</span>';
                 else if (i === 2) rankHtml = '<span class="badge-form medalla-bronce">🥉</span>';
                 else rankHtml = (i+1);
                 html += '<tr><td>' + rankHtml + '</td><td class="team" style="font-weight:bold;">' + g.jugador + '</td><td>' + getNombreCorto(g.equipo) + '</td><td style="font-weight:bold; color:#2ecc71; font-size:1.1rem;">' + g.goles + '</td></tr>';
