@@ -49,6 +49,22 @@
         "estado": "pendiente",
         "fecha": "2026-10-10"
       }
+    ],
+    "5": [
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Iván",
+        "goles": 10,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Pepelu",
+        "goles": 9,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
+      }
     ]
   }
 }
