@@ -1,7 +1,7 @@
 {
   "name": "Liga Veteranos Vallès",
   "short_name": "Veteranos Vallès",
-  "description": "Clasificación y calendario de la Liga de Fútbol Veteranos del Vallès",
+  "description": "Clasificación, calendario, Fair Play y ranking de árbitros de la Liga de Fútbol Veteranos del Vallès",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0b1d15",
