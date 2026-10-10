@@ -1,107 +1,18 @@
 {
   "1": {
-    "2": [
-      {
-        "equipo": "C.F. BarberÃÂ¡",
-        "jugador": "David",
-        "goles": 2,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      },
-      {
-        "equipo": "C.F. BarberÃÂ¡",
-        "jugador": "Manuel",
-        "goles": 1,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      }
-    ]
-  },
-  "2": {
-    "0": [
-      {
-        "equipo": "C.E. Santa EulÃÂ lia de RonÃÂ§ana",
-        "jugador": "Fernando",
-        "goles": 2,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      },
-      {
-        "equipo": "C.E. Santa EulÃÂ lia de RonÃÂ§ana",
-        "jugador": "MartÃÂ­nez",
-        "goles": 1,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      }
-    ],
     "4": [
-      {
-        "equipo": "C.F. Can Parellada",
-        "jugador": "Hombre",
-        "goles": 5,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      },
-      {
-        "equipo": "C.F. Can Parellada",
-        "jugador": "Merkel",
-        "goles": 8,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      }
-    ],
-    "5": [
       {
         "equipo": "C.F. Cerdanyola",
         "jugador": "Ivan",
-        "goles": 10,
-        "estado": "aprobado",
+        "goles": 6,
+        "estado": "pendiente",
         "fecha": "2026-10-10"
       },
       {
         "equipo": "C.F. Cerdanyola",
         "jugador": "Pepelu",
-        "goles": 9,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      },
-      {
-        "equipo": "C.F. Cerdanyola",
-        "jugador": "ivan",
-        "goles": 1,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      }
-    ],
-    "6": [
-      {
-        "equipo": "U.D.A. Gramanet",
-        "jugador": "Prueba02",
-        "goles": 3,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      },
-      {
-        "equipo": "U.D.A. Gramanet",
-        "jugador": "Prueba01",
-        "goles": 4,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      },
-      {
-        "equipo": "U.D.A. Gramanet",
-        "jugador": "prueba03",
-        "goles": 1,
-        "estado": "aprobado",
-        "fecha": "2026-10-10"
-      }
-    ],
-    "7": [
-      {
-        "equipo": "A.V. Ripollet",
-        "jugador": "Soria",
         "goles": 5,
-        "estado": "aprobado",
+        "estado": "pendiente",
         "fecha": "2026-10-10"
       }
     ]
