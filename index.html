@@ -7,13 +7,13 @@
     <style>
         body { background-color: #0b1d15; color: white; padding: 20px; font-family: Arial, sans-serif; }
         .container { max-width: 1000px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 20px; }
+        header { display: flex; justify-content: center; margin-bottom: 20px; }
         .header-logo { width: 400px; max-width: 100%; height: auto; object-fit: contain; }
         .tabs-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 25px; }
         .tabs { display: flex; gap: 8px; }
-        .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; }
+        .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; white-space: nowrap; }
         .tab-btn.active { background-color: #2ecc71; color: #0b1d15; border-color: #2ecc71; }
-        .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; white-space: nowrap; }
+        .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; white-space: nowrap; flex-shrink: 0; }
         .section { display: none; }
         .section.active { display: block; }
         table { width: 100%; border-collapse: collapse; background-color: #11291e; border-radius: 12px; overflow: hidden; }
@@ -60,11 +60,12 @@
         .fp-card-box { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
         @media (max-width: 600px) {
             body { padding: 8px; }
-            .header-logo { width: 280px; }
-            .tabs-row { flex-wrap: wrap; justify-content: center; gap: 8px; }
-            .badge { order: 1; }
-            .tabs { order: 2; width: 100%; justify-content: center; }
-            .tab-btn { padding: 10px 12px; font-size: 0.85rem; }
+            header { justify-content: flex-start; padding-left: 40px; }
+            .header-logo { width: 220px; }
+            .tabs-row { gap: 6px; }
+            .tabs { gap: 4px; }
+            .tab-btn { padding: 8px 8px; font-size: 0.72rem; }
+            .badge { padding: 6px 10px; font-size: 0.72rem; }
             .match-card { padding: 10px; }
             .match-teams { gap: 5px; }
             .match-team { gap: 5px; }
@@ -139,14 +140,14 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-token" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 10px;">⚙️ Configuración</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 10px;">️ Configuración</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px; font-size: 0.9rem;">Pega aquí tu Token de GitHub:</p>
                 <input type="password" id="input-token" placeholder="ghp_..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; text-align: center;">
                 <button onclick="guardarToken()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Guardar Token</button>
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">️ Panel de Control</h2>
                 <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
                 <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
                     <option value="">Selecciona Jornada...</option>
@@ -159,9 +160,7 @@
 
     <script>
         var resultados = {};
-
         var listaArbitros = ["Duran", "Molina", "Humanes", "Portoles", "Utrera", "Julio", "Congost", "Fabregas", "Puibert", "Salva", "Lleixa", "Edu", "Exposito"];
-
         var calendario = [
             { jornada: 1, fecha: "20/09/2026", suspendida: false, partidos: [
                 { local: "U.E. Sabadellenca", visitante: "V.C.F. Ripollet", golesLocal: 5, golesVisitante: 1, campo: "CAMPOAMOR", hora: "08:00", arbitro: "Salva" },
@@ -629,7 +628,7 @@
                 html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">🔴 LOCAL</span>';
                 html += '<input type="number" id="roL-' + index + '" value="' + roL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
-                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT🔴</span>';
+                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT</span>';
                 html += '<input type="number" id="roV-' + index + '" value="' + roV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
@@ -644,7 +643,6 @@
         function guardarResultados(jornadaNum) {
             var btn = document.getElementById('btn-guardar');
             var jornada = calendario.find(function(j) { return j.jornada === jornadaNum; });
-            
             var hayGolesBorrados = false;
             jornada.partidos.forEach(function(p, index) {
                 var valL = document.getElementById('gl-' + index).value;
@@ -653,14 +651,12 @@
                     hayGolesBorrados = true;
                 }
             });
-            
             if (hayGolesBorrados) {
-                if (!confirm('⚠️ Hay campos de goles vacíos en partidos que ya tenían resultado. ¿Seguro que quieres guardar? Se perderán los goles actuales.')) {
+                if (!confirm('️ Hay campos de goles vacíos en partidos que ya tenían resultado. ¿Seguro que quieres guardar? Se perderán los goles actuales.')) {
                     return;
                 }
             }
-            
-            btn.textContent = ' Guardando...';
+            btn.textContent = '⏳ Guardando...';
             btn.disabled = true;
             var token = localStorage.getItem('github_token');
             var nuevosResultados = {};
@@ -685,14 +681,12 @@
                 };
             });
             resultados[String(jornadaNum)] = nuevosResultados;
-            
             if (!token) {
                 alert('❌ No hay token configurado.');
                 btn.textContent = '💾 Guardar';
                 btn.disabled = false;
                 return;
             }
-            
             fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', {
                 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
             })
@@ -728,93 +722,49 @@
         function calcularClasificacion() {
             var stats = {};
             equipos.forEach(function(eq) {
-                stats[eq.nombreCompleto] = { 
-                    nombre: eq.nombre, img: eq.img, 
-                    pj: 0, pts: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, 
-                    forma: [] 
-                };
+                stats[eq.nombreCompleto] = { nombre: eq.nombre, img: eq.img, pj: 0, pts: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, forma: [] };
             });
-            
             for (var j = 0; j < calendario.length; j++) {
                 var jornada = calendario[j];
-                
                 var tieneResultados = false;
-                if (jornada.suspendida === true) {
-                    tieneResultados = true;
-                } else {
+                if (jornada.suspendida === true) { tieneResultados = true; }
+                else {
                     for (var i = 0; i < jornada.partidos.length; i++) {
-                        if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) {
-                            tieneResultados = true;
-                            break;
-                        }
+                        if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) { tieneResultados = true; break; }
                     }
                 }
-                
                 if (!tieneResultados) break;
-                
-                if (jornada.suspendida === true) {
-                    equipos.forEach(function(eq) { stats[eq.nombreCompleto].forma.push('S'); });
-                    continue;
-                }
-                
+                if (jornada.suspendida === true) { equipos.forEach(function(eq) { stats[eq.nombreCompleto].forma.push('S'); }); continue; }
                 var resJ = resultados[String(jornada.jornada)] || {};
-                
                 equipos.forEach(function(eq) {
                     var nombre = eq.nombreCompleto;
-                    
-                    if (jornada.descanso === nombre) {
-                        stats[nombre].forma.push('D');
-                        return;
-                    }
-                    
-                    var partido = null;
-                    var idx = -1;
+                    if (jornada.descanso === nombre) { stats[nombre].forma.push('D'); return; }
+                    var partido = null; var idx = -1;
                     for (var i = 0; i < jornada.partidos.length; i++) {
-                        if (jornada.partidos[i].local === nombre || jornada.partidos[i].visitante === nombre) {
-                            partido = jornada.partidos[i];
-                            idx = i;
-                            break;
-                        }
+                        if (jornada.partidos[i].local === nombre || jornada.partidos[i].visitante === nombre) { partido = jornada.partidos[i]; idx = i; break; }
                     }
-                    
-                    if (!partido) {
-                        stats[nombre].forma.push('-');
-                        return;
-                    }
-                    
+                    if (!partido) { stats[nombre].forma.push('-'); return; }
                     var resP = resJ[String(idx)] || {};
                     var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : partido.golesLocal;
                     var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : partido.golesVisitante;
                     var susp = resP.suspendido === true;
-                    
-                    if (susp) {
-                        stats[nombre].forma.push('S');
-                    } else if (gl !== null && gv !== null) {
+                    if (susp) { stats[nombre].forma.push('S'); }
+                    else if (gl !== null && gv !== null) {
                         var esLocal = (partido.local === nombre);
-                        var gp = esLocal ? gl : gv;
-                        var gr = esLocal ? gv : gl;
-                        stats[nombre].pj++;
-                        stats[nombre].gf += gp;
-                        stats[nombre].gc += gr;
+                        var gp = esLocal ? gl : gv; var gr = esLocal ? gv : gl;
+                        stats[nombre].pj++; stats[nombre].gf += gp; stats[nombre].gc += gr;
                         if (gp > gr) { stats[nombre].pts += 3; stats[nombre].g++; stats[nombre].forma.push('G'); }
                         else if (gp < gr) { stats[nombre].p++; stats[nombre].forma.push('P'); }
                         else { stats[nombre].pts += 1; stats[nombre].e++; stats[nombre].forma.push('E'); }
-                    } else {
-                        stats[nombre].forma.push('-');
-                    }
+                    } else { stats[nombre].forma.push('-'); }
                 });
             }
-            
             var lista = [];
             for (var nombre in stats) {
-                var eq = stats[nombre];
-                eq.dif = eq.gf - eq.gc;
-                var ult = eq.forma.slice(-3);
-                while (ult.length < 3) ult.unshift('-');
-                eq.forma = ult;
+                var eq = stats[nombre]; eq.dif = eq.gf - eq.gc;
+                var ult = eq.forma.slice(-3); while (ult.length < 3) ult.unshift('-'); eq.forma = ult;
                 lista.push(eq);
             }
-            
             lista.sort(function(a, b) {
                 if (b.pts !== a.pts) return b.pts - a.pts;
                 if (b.dif !== a.dif) return b.dif - a.dif;
@@ -829,13 +779,8 @@
             clasificacion.forEach(function(eq, i) {
                 var formaHtml = '';
                 for (var j = 0; j < 3; j++) {
-                    var letra = eq.forma[j] || '-';
-                    var clase = 'none';
-                    if (letra === 'G') clase = 'win';
-                    else if (letra === 'E') clase = 'draw';
-                    else if (letra === 'P') clase = 'loss';
-                    else if (letra === 'S') clase = 'suspended';
-                    else if (letra === 'D') clase = 'rest';
+                    var letra = eq.forma[j] || '-'; var clase = 'none';
+                    if (letra === 'G') clase = 'win'; else if (letra === 'E') clase = 'draw'; else if (letra === 'P') clase = 'loss'; else if (letra === 'S') clase = 'suspended'; else if (letra === 'D') clase = 'rest';
                     formaHtml += '<span class="badge-form ' + clase + '">' + letra + '</span>';
                 }
                 html += '<tr><td>' + (i+1) + '</td><td class="team"><div class="team-info"><img src="escudos/' + eq.img + '" class="team-logo" alt="' + eq.nombre + '">' + eq.nombre + '</div></td><td>' + eq.pj + '</td><td class="pts">' + eq.pts + '</td><td>' + eq.g + '</td><td>' + eq.e + '</td><td>' + eq.p + '</td><td>' + eq.gf + '</td><td>' + eq.gc + '</td><td>' + (eq.dif > 0 ? '+' + eq.dif : eq.dif) + '</td><td class="col-forma">' + formaHtml + '</td></tr>';
@@ -845,76 +790,36 @@
 
         function calcularFairPlay() {
             var stats = {};
-            equipos.forEach(function(eq) {
-                stats[eq.nombreCompleto] = { 
-                    nombre: eq.nombre, 
-                    img: eq.img, 
-                    pj: 0, 
-                    amarillas: 0, 
-                    rojas: 0, 
-                    total: 0 
-                };
-            });
-            
+            equipos.forEach(function(eq) { stats[eq.nombreCompleto] = { nombre: eq.nombre, img: eq.img, pj: 0, amarillas: 0, rojas: 0, total: 0 }; });
             for (var j = 0; j < calendario.length; j++) {
                 var jornada = calendario[j];
-                
                 var tieneResultados = false;
-                if (jornada.suspendida === true) {
-                    tieneResultados = true;
-                } else {
-                    for (var i = 0; i < jornada.partidos.length; i++) {
-                        if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) {
-                            tieneResultados = true;
-                            break;
-                        }
-                    }
-                }
-                
+                if (jornada.suspendida === true) { tieneResultados = true; }
+                else { for (var i = 0; i < jornada.partidos.length; i++) { if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) { tieneResultados = true; break; } } }
                 if (!tieneResultados) break;
-                
                 if (jornada.suspendida === true) continue;
-                
                 var resJ = resultados[String(jornada.jornada)] || {};
-                
                 jornada.partidos.forEach(function(p, idx) {
                     var resP = resJ[String(idx)] || {};
                     var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal;
                     var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
                     var susp = resP.suspendido === true;
-                    
                     if (susp || gl === null || gv === null) return;
-                    
                     var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : 0;
                     var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : 0;
                     var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : 0;
                     var roV = (resP.rojasVisitante !== undefined && resP.rojasVisitante !== null) ? resP.rojasVisitante : 0;
-                    
-                    stats[p.local].pj++;
-                    stats[p.local].amarillas += amL;
-                    stats[p.local].rojas += roL;
-                    stats[p.local].total += amL + roL;
-                    
-                    stats[p.visitante].pj++;
-                    stats[p.visitante].amarillas += amV;
-                    stats[p.visitante].rojas += roV;
-                    stats[p.visitante].total += amV + roV;
+                    stats[p.local].pj++; stats[p.local].amarillas += amL; stats[p.local].rojas += roL; stats[p.local].total += amL + roL;
+                    stats[p.visitante].pj++; stats[p.visitante].amarillas += amV; stats[p.visitante].rojas += roV; stats[p.visitante].total += amV + roV;
                 });
             }
-            
-            var lista = [];
-            for (var nombre in stats) {
-                var eq = stats[nombre];
-                lista.push(eq);
-            }
-            
+            var lista = []; for (var nombre in stats) { lista.push(stats[nombre]); }
             lista.sort(function(a, b) {
                 if (a.total !== b.total) return a.total - b.total;
                 if (a.rojas !== b.rojas) return a.rojas - b.rojas;
                 if (a.amarillas !== b.amarillas) return a.amarillas - b.amarillas;
                 return a.nombre.localeCompare(b.nombre);
             });
-            
             return lista;
         }
 
@@ -923,82 +828,49 @@
             var html = '';
             clasificacion.forEach(function(eq, i) {
                 var rankClass = (i === 0) ? 'fp-rank-1' : '';
-                html += '<tr>';
-                html += '<td><span style="display:inline-block; width:30px; height:30px; line-height:30px; border-radius:50%; text-align:center; font-weight:bold; ' + (rankClass ? 'background:#2ecc71; color:#0b1d15;' : 'background:#1f4733; color:white;') + '">' + (i+1) + '</span></td>';
+                html += '<tr><td><span style="display:inline-block; width:30px; height:30px; line-height:30px; border-radius:50%; text-align:center; font-weight:bold; ' + (rankClass ? 'background:#2ecc71; color:#0b1d15;' : 'background:#1f4733; color:white;') + '">' + (i+1) + '</span></td>';
                 html += '<td class="team"><div class="team-info"><img src="escudos/' + eq.img + '" class="team-logo" alt="' + eq.nombre + '">' + eq.nombre + '</div></td>';
                 html += '<td>' + eq.pj + '</td>';
                 html += '<td><span class="fp-card-box"><span class="card-icon card-yellow"></span> ' + eq.amarillas + '</span></td>';
                 html += '<td><span class="fp-card-box"><span class="card-icon card-red"></span> ' + eq.rojas + '</span></td>';
-                html += '<td style="font-weight:bold; color:#2ecc71; font-size:1.1rem;">' + eq.total + '</td>';
-                html += '</tr>';
+                html += '<td style="font-weight:bold; color:#2ecc71; font-size:1.1rem;">' + eq.total + '</td></tr>';
             });
             document.getElementById('tabla-fp').innerHTML = html;
         }
 
         function calcularArbitros() {
             var stats = {};
-            
             for (var j = 0; j < calendario.length; j++) {
                 var jornada = calendario[j];
-                
                 var tieneResultados = false;
-                if (jornada.suspendida === true) {
-                    tieneResultados = true;
-                } else {
-                    for (var i = 0; i < jornada.partidos.length; i++) {
-                        if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) {
-                            tieneResultados = true;
-                            break;
-                        }
-                    }
-                }
-                
+                if (jornada.suspendida === true) { tieneResultados = true; }
+                else { for (var i = 0; i < jornada.partidos.length; i++) { if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) { tieneResultados = true; break; } } }
                 if (!tieneResultados) break;
                 if (jornada.suspendida === true) continue;
-                
                 var resJ = resultados[String(jornada.jornada)] || {};
-                
                 jornada.partidos.forEach(function(p, idx) {
                     var resP = resJ[String(idx)] || {};
                     var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal;
                     var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
                     var susp = resP.suspendido === true;
-                    
                     if (susp || gl === null || gv === null) return;
-                    
                     var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro;
                     if (!arbNombre) return;
-                    
-                    if (!stats[arbNombre]) {
-                        stats[arbNombre] = { nombre: arbNombre, pa: 0, amarillas: 0, rojas: 0, total: 0 };
-                    }
-                    
+                    if (!stats[arbNombre]) { stats[arbNombre] = { nombre: arbNombre, pa: 0, amarillas: 0, rojas: 0, total: 0 }; }
                     var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : 0;
                     var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : 0;
                     var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : 0;
                     var roV = (resP.rojasVisitante !== undefined && resP.rojasVisitante !== null) ? resP.rojasVisitante : 0;
-                    
-                    stats[arbNombre].pa++;
-                    stats[arbNombre].amarillas += (amL + amV);
-                    stats[arbNombre].rojas += (roL + roV);
-                    stats[arbNombre].total += (amL + amV + roL + roV);
+                    stats[arbNombre].pa++; stats[arbNombre].amarillas += (amL + amV); stats[arbNombre].rojas += (roL + roV); stats[arbNombre].total += (amL + amV + roL + roV);
                 });
             }
-            
-            var lista = [];
-            for (var nombre in stats) {
-                var arb = stats[nombre];
-                arb.media = arb.pa > 0 ? (arb.total / arb.pa) : 0;
-                lista.push(arb);
-            }
-            
+            var lista = []; for (var nombre in stats) { var arb = stats[nombre]; arb.media = arb.pa > 0 ? (arb.total / arb.pa) : 0; lista.push(arb); }
             lista.sort(function(a, b) {
                 if (b.media !== a.media) return b.media - a.media;
                 if (b.total !== a.total) return b.total - a.total;
                 if (b.rojas !== a.rojas) return b.rojas - a.rojas;
                 return a.nombre.localeCompare(b.nombre);
             });
-            
             return lista;
         }
 
@@ -1011,43 +883,25 @@
                 else if (i === 1) rankStyle = 'background:#f39c12; color:white;';
                 else if (i === 2) rankStyle = 'background:#f1c40f; color:#0b1d15;';
                 else rankStyle = 'background:#1f4733; color:white;';
-                
-                var mediaStr = arb.media.toFixed(2);
-                
-                html += '<tr>';
-                html += '<td><span style="display:inline-block; width:30px; height:30px; line-height:30px; border-radius:50%; text-align:center; font-weight:bold; ' + rankStyle + '">' + (i+1) + '</span></td>';
+                html += '<tr><td><span style="display:inline-block; width:30px; height:30px; line-height:30px; border-radius:50%; text-align:center; font-weight:bold; ' + rankStyle + '">' + (i+1) + '</span></td>';
                 html += '<td class="team" style="font-size:1.05rem; font-weight:600;">' + arb.nombre + '</td>';
                 html += '<td>' + arb.pa + '</td>';
                 html += '<td><span class="fp-card-box"><span class="card-icon card-yellow"></span> ' + arb.amarillas + '</span></td>';
                 html += '<td><span class="fp-card-box"><span class="card-icon card-red"></span> ' + arb.rojas + '</span></td>';
                 html += '<td style="font-weight:bold;">' + arb.total + '</td>';
-                html += '<td style="font-weight:bold; color:#2ecc71; font-size:1.1rem;">' + mediaStr + '</td>';
-                html += '</tr>';
+                html += '<td style="font-weight:bold; color:#2ecc71; font-size:1.1rem;">' + arb.media.toFixed(2) + '</td></tr>';
             });
             document.getElementById('tabla-arb').innerHTML = html;
         }
 
-        function getImgEquipo(nc) {
-            for (var i = 0; i < equipos.length; i++) {
-                if (equipos[i].nombreCompleto === nc) return equipos[i].img;
-            }
-            return '';
-        }
-        function getNombreCorto(nc) {
-            for (var i = 0; i < equipos.length; i++) {
-                if (equipos[i].nombreCompleto === nc) return equipos[i].nombre;
-            }
-            return nc;
-        }
+        function getImgEquipo(nc) { for (var i = 0; i < equipos.length; i++) { if (equipos[i].nombreCompleto === nc) return equipos[i].img; } return ''; }
+        function getNombreCorto(nc) { for (var i = 0; i < equipos.length; i++) { if (equipos[i].nombreCompleto === nc) return equipos[i].nombre; } return nc; }
 
         function initCalendario() {
             var selector = document.getElementById('selector-jornada');
             if (selector.options.length > 0) return;
             calendario.forEach(function(j) {
-                var opt = document.createElement('option');
-                opt.value = j.jornada;
-                opt.text = 'Jornada ' + j.jornada + ' (' + j.fecha + ')';
-                selector.appendChild(opt);
+                var opt = document.createElement('option'); opt.value = j.jornada; opt.text = 'Jornada ' + j.jornada + ' (' + j.fecha + ')'; selector.appendChild(opt);
             });
             cargarJornada();
         }
@@ -1059,12 +913,8 @@
             var resJ = resultados[String(numJornada)] || {};
             var contenedor = document.getElementById('contenedor-partidos');
             var html = '';
-            if (jornada.suspendida === true) {
-                html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>';
-            }
-            if (jornada.descanso) {
-                html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>';
-            }
+            if (jornada.suspendida === true) { html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>'; }
+            if (jornada.descanso) { html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>'; }
             jornada.partidos.forEach(function(p, idx) {
                 var resP = resJ[String(idx)] || {};
                 var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal;
@@ -1076,7 +926,6 @@
                 var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : null;
                 var roV = (resP.rojasVisitante !== undefined && resP.rojasVisitante !== null) ? resP.rojasVisitante : null;
                 var hayTarjetas = (amL !== null || amV !== null || roL !== null || roV !== null);
-                
                 var marcador = '';
                 if (susp) marcador = '<div class="match-score suspended-match">SUSP.</div>';
                 else if (gl !== null && gv !== null) marcador = '<div class="match-score">' + gl + ' - ' + gv + '</div>';
@@ -1086,20 +935,17 @@
                 html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
                 html += marcador;
                 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
-                html += '</div><div class="match-info"> ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
+                html += '</div><div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
                 if (hayTarjetas && !susp && gl !== null) {
-                    html += '<div class="match-cards">';
-                    html += '<div class="card-local">';
+                    html += '<div class="match-cards"><div class="card-local">';
                     if (amL > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amL + '</span> ';
                     if (roL > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roL + '</span>';
                     if (amL === 0 && roL === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>';
-                    html += '</div>';
-                    html += '<div class="card-visitante">';
+                    html += '</div><div class="card-visitante">';
                     if (amV > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amV + '</span> ';
                     if (roV > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roV + '</span>';
                     if (amV === 0 && roV === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>';
-                    html += '</div>';
-                    html += '</div>';
+                    html += '</div></div>';
                 }
                 html += '</div>';
             });
@@ -1110,38 +956,16 @@
             var ultimaJornada = 0;
             for (var j = 0; j < calendario.length; j++) {
                 var jornada = calendario[j];
-                if (jornada.suspendida === true) {
-                    ultimaJornada = jornada.jornada;
-                } else {
-                    for (var i = 0; i < jornada.partidos.length; i++) {
-                        if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) {
-                            ultimaJornada = jornada.jornada;
-                            break;
-                        }
-                    }
-                }
+                if (jornada.suspendida === true) { ultimaJornada = jornada.jornada; }
+                else { for (var i = 0; i < jornada.partidos.length; i++) { if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) { ultimaJornada = jornada.jornada; break; } } }
             }
-            if (ultimaJornada > 0) {
-                document.getElementById('badge-jornada').textContent = 'JORNADA ' + ultimaJornada;
-            }
+            if (ultimaJornada > 0) { document.getElementById('badge-jornada').textContent = 'JORNADA ' + ultimaJornada; }
         }
 
         fetch('resultados.json?t=' + Date.now())
-            .then(function(r) { 
-                if (r.status === 404) return {};
-                return r.json(); 
-            })
-            .then(function(data) {
-                resultados = data || {};
-                renderizarClasificacion();
-                actualizarBadgeJornada();
-            })
-            .catch(function(e) {
-                console.error('Error:', e);
-                resultados = {};
-                renderizarClasificacion();
-                actualizarBadgeJornada();
-            });
+            .then(function(r) { if (r.status === 404) return {}; return r.json(); })
+            .then(function(data) { resultados = data || {}; renderizarClasificacion(); actualizarBadgeJornada(); })
+            .catch(function(e) { console.error('Error:', e); resultados = {}; renderizarClasificacion(); actualizarBadgeJornada(); });
     </script>
 </body>
 </html>
