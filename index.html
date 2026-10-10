@@ -16,7 +16,7 @@
         header { display: flex; justify-content: center; margin-bottom: 20px; }
         .header-logo { width: 400px; max-width: 100%; height: auto; object-fit: contain; }
         .tabs-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 25px; }
-        .tabs { display: flex; gap: 8px; }
+        .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
         .tab-btn { background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; white-space: nowrap; }
         .tab-btn.active { background-color: #2ecc71; color: #0b1d15; border-color: #2ecc71; }
         .badge { background-color: #2ecc71; color: #0b1d15; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; white-space: nowrap; flex-shrink: 0; }
@@ -38,7 +38,7 @@
         .rest { background-color: #9b59b6; }
         .col-forma { white-space: nowrap; min-width: 90px; }
         .selector-container { margin-bottom: 20px; text-align: center; }
-        #selector-jornada, #admin-selector-jornada { background-color: #11291e; color: white; border: 1px solid #2ecc71; padding: 12px 20px; border-radius: 8px; font-size: 1rem; font-weight: bold; width: 100%; max-width: 350px; cursor: pointer; }
+        #selector-jornada, #admin-selector-jornada, #goleador-jornada, #goleador-partido, #login-equipo { background-color: #11291e; color: white; border: 1px solid #2ecc71; padding: 12px 20px; border-radius: 8px; font-size: 1rem; font-weight: bold; width: 100%; max-width: 350px; cursor: pointer; }
         .match-card { background-color: #11291e; border: 1px solid #1f4733; border-radius: 10px; padding: 15px; margin-bottom: 10px; }
         .match-teams { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
         .match-team { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; }
@@ -64,6 +64,27 @@
         #admin-btn { background-color: #11291e; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin: 0; }
         .fp-rank-1 { background-color: #2ecc71; color: #0b1d15; }
         .fp-card-box { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
+        .login-box, .propuesta-box { background-color: #11291e; border: 1px solid #2ecc71; border-radius: 12px; padding: 25px; max-width: 400px; margin: 20px auto; text-align: center; }
+        .login-box h2, .propuesta-box h2 { color: #2ecc71; margin-bottom: 20px; }
+        .login-box input, .propuesta-box input, .propuesta-box select { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center; box-sizing: border-box; }
+        .btn-primary { background-color: #2ecc71; color: #0b1d15; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; width: 100%; margin-bottom: 10px; }
+        .btn-secondary { background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; padding: 12px 20px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; width: 100%; }
+        .btn-small { padding: 6px 12px; font-size: 0.85rem; border-radius: 6px; cursor: pointer; border: none; font-weight: bold; margin: 2px; }
+        .btn-approve { background-color: #27ae60; color: white; }
+        .btn-reject { background-color: #c0392b; color: white; }
+        .btn-edit { background-color: #f39c12; color: white; }
+        .propuesta-item { background-color: #0b1d15; border: 1px solid #1f4733; border-radius: 8px; padding: 12px; margin-bottom: 10px; text-align: left; }
+        .propuesta-item .estado-pendiente { color: #f39c12; font-weight: bold; }
+        .propuesta-item .estado-aprobado { color: #27ae60; font-weight: bold; }
+        .propuesta-item .estado-rechazado { color: #e74c3c; font-weight: bold; text-decoration: line-through; }
+        .goleador-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; flex-wrap: wrap; }
+        .goleador-row input { flex: 1; min-width: 120px; padding: 8px; border-radius: 6px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; }
+        .goleador-row input[type="number"] { max-width: 80px; }
+        .btn-add { background-color: #2ecc71; color: #0b1d15; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .btn-remove { background-color: #e74c3c; color: white; border: none; padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .medalla-oro { background-color: #f1c40f; color: #0b1d15; }
+        .medalla-plata { background-color: #bdc3c7; color: #0b1d15; }
+        .medalla-bronce { background-color: #e67e22; color: #0b1d15; }
         @media (max-width: 600px) {
             body { padding: 8px; }
             .container { width: 100%; }
@@ -81,6 +102,7 @@
             .match-score { min-width: 56px; padding: 8px 8px; font-size: 1.05rem; }
             .footer-lema { font-size: 16px; }
             .footer-hashtag { font-size: 18px; }
+            .login-box, .propuesta-box { padding: 15px; margin: 10px; }
         }
     </style>
 </head>
@@ -95,6 +117,7 @@
                 <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
                 <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
                 <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
+                <button class="tab-btn" onclick="cambiarPestana('goleadores', this)">Goleadores</button>
             </div>
             <div class="badge" id="badge-jornada">JORNADA 3</div>
         </div>
@@ -128,6 +151,45 @@
                 <tbody id="tabla-arb"></tbody>
             </table>
         </div>
+        <div id="goleadores" class="section">
+            <div id="goleadores-login">
+                <div class="login-box">
+                    <h2>⚽ Acceso Goleadores</h2>
+                    <p style="color:#a3b8af; margin-bottom:15px; font-size:0.9rem;">Solo responsables de equipo</p>
+                    <select id="login-equipo">
+                        <option value="">Selecciona tu equipo...</option>
+                    </select>
+                    <input type="password" id="login-password" placeholder="Contraseña del equipo">
+                    <button class="btn-primary" onclick="loginGoleadores()">Entrar</button>
+                    <button class="btn-secondary" onclick="verRankingGoleadores()">Ver ranking público</button>
+                </div>
+            </div>
+            <div id="goleadores-form" style="display:none;">
+                <div class="propuesta-box">
+                    <h2>⚽ Enviar Goleadores</h2>
+                    <p style="color:#a3b8af; margin-bottom:10px;">Equipo: <strong id="equipo-actual" style="color:#2ecc71;"></strong></p>
+                    <button class="btn-secondary" onclick="cerrarSesionGoleadores()" style="margin-bottom:15px; font-size:0.85rem; padding:8px;">Cerrar sesión</button>
+                    <select id="goleador-jornada" onchange="cargarPartidosGoleador()">
+                        <option value="">Selecciona Jornada...</option>
+                    </select>
+                    <select id="goleador-partido">
+                        <option value="">Selecciona Partido...</option>
+                    </select>
+                    <div id="goleadores-lista" style="margin-top:15px;"></div>
+                    <button class="btn-add" onclick="addGoleadorRow()" style="margin-top:10px; width:100%;">➕ Añadir goleador</button>
+                    <button class="btn-primary" onclick="enviarPropuestaGoleadores()" style="margin-top:15px;"> Enviar propuesta</button>
+                </div>
+            </div>
+            <div id="goleadores-ranking" style="display:none;">
+                <table>
+                    <thead>
+                        <tr><th>#</th><th class="team">Jugador</th><th>Equipo</th><th style="color:#2ecc71;">⚽ GOLES</th></tr>
+                    </thead>
+                    <tbody id="tabla-goleadores"></tbody>
+                </table>
+                <button class="btn-primary" onclick="volverLoginGoleadores()" style="max-width:300px; margin:20px auto; display:block;">️ Volver al login</button>
+            </div>
+        </div>
         <footer>
             <p class="footer-lema">"Ens divertim, competim i fem amics"</p>
             <p class="footer-hashtag">#VeteransDelVallès</p>
@@ -139,7 +201,7 @@
     </div>
 
     <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
-        <div style="max-width: 400px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
+        <div style="max-width: 500px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
             <div id="pantalla-codigo">
                 <h2 style="color: #2ecc71; margin-bottom: 20px;"> Acceso Restringido</h2>
                 <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
@@ -154,20 +216,54 @@
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
             </div>
             <div id="pantalla-control" style="display: none;">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🎛️ Panel de Control</h2>
-                <p style="color: #a3b8af; margin-bottom: 15px;">Selecciona la jornada para editar los resultados:</p>
-                <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
-                    <option value="">Selecciona Jornada...</option>
-                </select>
-                <div id="admin-partidos-container"></div>
-                <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 20px;">Salir</button>
+                <h2 style="color: #2ecc71; margin-bottom: 15px;">🎛️ Panel de Control</h2>
+                <button onclick="mostrarSeccionAdmin('resultados')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:10px;">📊 Resultados</button>
+                <button onclick="mostrarSeccionAdmin('propuestas')" style="width:100%; padding:12px; background-color:#f39c12; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:15px;">⚽ Propuestas Goleadores</button>
+                <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Salir</button>
+                
+                <div id="admin-seccion-resultados" style="display:none; margin-top:15px;">
+                    <p style="color: #a3b8af; margin-bottom: 10px;">Selecciona la jornada para editar resultados:</p>
+                    <select id="admin-selector-jornada" onchange="mostrarPartidosAdmin()" style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px;">
+                        <option value="">Selecciona Jornada...</option>
+                    </select>
+                    <div id="admin-partidos-container"></div>
+                </div>
+                
+                <div id="admin-seccion-propuestas" style="display:none; margin-top:15px; text-align:left;">
+                    <h3 style="color:#f39c12; margin-bottom:10px;">Propuestas pendientes</h3>
+                    <div id="admin-propuestas-container"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         var resultados = {};
+        var propuestas = {};
+        var equipoLogueado = null;
+        
+        var contraseñasEquipos = {
+            "C.F. Barberá": "barbera26",
+            "C.F. Can Parellada": "canparellada26",
+            "U.E. Castellar": "castellar26",
+            "C.E. Santa Eulàlia de Ronçana": "santaeulalia26",
+            "A.V. L'Ametlla del Vallés": "lametlla26",
+            "U.E. Sabadellenca": "sabadellenca26",
+            "C.F. Cerdanyola": "cerdanyola26",
+            "Penya Decano": "penyadecano26",
+            "A.V. Pallejá": "palleja26",
+            "A.V. Ripollet": "avripollet26",
+            "U.D.A. Gramanet": "gramanet26",
+            "C.E. Sentmenat": "sentmenat26",
+            "C.F. Sant Feliu de Codines": "santfeliu26",
+            "E.F.B Palau Solitá i Plegamans": "palauplegamans26",
+            "U.E. Canovelles": "canovelles26",
+            "V.C.F. Ripollet": "vcfripollet26",
+            "C.E. Bigues i Riells": "bigues26"
+        };
+
         var listaArbitros = ["Duran", "Molina", "Humanes", "Portoles", "Utrera", "Julio", "Congost", "Fabregas", "Puibert", "Salva", "Lleixa", "Edu", "Exposito"];
+
         var calendario = [
             { jornada: 1, fecha: "20/09/2026", suspendida: false, partidos: [
                 { local: "U.E. Sabadellenca", visitante: "V.C.F. Ripollet", golesLocal: 5, golesVisitante: 1, campo: "CAMPOAMOR", hora: "08:00", arbitro: "Salva" },
@@ -539,34 +635,343 @@
             if (id === 'calendario') initCalendario();
             if (id === 'fairplay') renderizarFairPlay();
             if (id === 'arbitros') renderizarArbitros();
+            if (id === 'goleadores') initGoleadores();
+        }
+
+        function initGoleadores() {
+            if (equipoLogueado) {
+                document.getElementById('goleadores-login').style.display = 'none';
+                document.getElementById('goleadores-form').style.display = 'block';
+                document.getElementById('goleadores-ranking').style.display = 'none';
+                document.getElementById('equipo-actual').textContent = equipoLogueado;
+                initSelectorJornadaGoleador();
+            } else {
+                document.getElementById('goleadores-login').style.display = 'block';
+                document.getElementById('goleadores-form').style.display = 'none';
+                document.getElementById('goleadores-ranking').style.display = 'none';
+                initSelectorEquipoLogin();
+            }
+        }
+
+        function initSelectorEquipoLogin() {
+            var select = document.getElementById('login-equipo');
+            if (select.options.length > 1) return;
+            Object.keys(contraseñasEquipos).forEach(function(eq) {
+                var opt = document.createElement('option');
+                opt.value = eq;
+                opt.text = eq;
+                select.appendChild(opt);
+            });
+        }
+
+        function loginGoleadores() {
+            var equipo = document.getElementById('login-equipo').value;
+            var pass = document.getElementById('login-password').value;
+            if (!equipo) { alert('Selecciona un equipo'); return; }
+            if (contraseñasEquipos[equipo] === pass) {
+                equipoLogueado = equipo;
+                document.getElementById('login-password').value = '';
+                initGoleadores();
+            } else {
+                alert('Contraseña incorrecta');
+            }
+        }
+
+        function cerrarSesionGoleadores() {
+            equipoLogueado = null;
+            document.getElementById('goleador-jornada').value = '';
+            document.getElementById('goleador-partido').innerHTML = '<option value="">Selecciona Partido...</option>';
+            document.getElementById('goleadores-lista').innerHTML = '';
+            initGoleadores();
+        }
+
+        function verRankingGoleadores() {
+            document.getElementById('goleadores-login').style.display = 'none';
+            document.getElementById('goleadores-form').style.display = 'none';
+            document.getElementById('goleadores-ranking').style.display = 'block';
+            renderizarRankingGoleadores();
+        }
+
+        function volverLoginGoleadores() {
+            initGoleadores();
+        }
+
+        function initSelectorJornadaGoleador() {
+            var select = document.getElementById('goleador-jornada');
+            if (select.options.length > 1) return;
+            calendario.forEach(function(j) {
+                var opt = document.createElement('option');
+                opt.value = j.jornada;
+                opt.text = 'Jornada ' + j.jornada + ' (' + j.fecha + ')';
+                select.appendChild(opt);
+            });
+        }
+
+        function cargarPartidosGoleador() {
+            var numJornada = parseInt(document.getElementById('goleador-jornada').value);
+            var selectPartido = document.getElementById('goleador-partido');
+            selectPartido.innerHTML = '<option value="">Selecciona Partido...</option>';
+            document.getElementById('goleadores-lista').innerHTML = '';
+            if (!numJornada) return;
+            var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
+            if (!jornada) return;
+            jornada.partidos.forEach(function(p, idx) {
+                if (p.local === equipoLogueado || p.visitante === equipoLogueado) {
+                    var opt = document.createElement('option');
+                    opt.value = idx;
+                    opt.text = p.local + ' vs ' + p.visitante;
+                    selectPartido.appendChild(opt);
+                }
+            });
+        }
+
+        function addGoleadorRow() {
+            var lista = document.getElementById('goleadores-lista');
+            var row = document.createElement('div');
+            row.className = 'goleador-row';
+            row.innerHTML = '<input type="text" placeholder="Nombre del jugador" class="gol-nombre"><input type="number" placeholder="Goles" min="1" class="gol-goles"><button class="btn-remove" onclick="this.parentElement.remove()">✕</button>';
+            lista.appendChild(row);
+        }
+
+        function enviarPropuestaGoleadores() {
+            var numJornada = parseInt(document.getElementById('goleador-jornada').value);
+            var idxPartido = document.getElementById('goleador-partido').value;
+            if (!numJornada || idxPartido === '') { alert('Selecciona jornada y partido'); return; }
+            var rows = document.querySelectorAll('.goleador-row');
+            var goleadores = [];
+            rows.forEach(function(row) {
+                var nombre = row.querySelector('.gol-nombre').value.trim();
+                var goles = parseInt(row.querySelector('.gol-goles').value);
+                if (nombre && goles > 0) {
+                    goleadores.push({ jugador: nombre, goles: goles });
+                }
+            });
+            if (goleadores.length === 0) { alert('Añade al menos un goleador'); return; }
+            if (!confirm('¿Enviar propuesta de ' + goleadores.length + ' goleador(es)?')) return;
+            var token = localStorage.getItem('github_token');
+            if (!token) { alert('No hay token configurado. Contacta con el administrador.'); return; }
+            var keyJornada = String(numJornada);
+            var keyPartido = String(idxPartido);
+            if (!propuestas[keyJornada]) propuestas[keyJornada] = {};
+            if (!propuestas[keyJornada][keyPartido]) propuestas[keyJornada][keyPartido] = [];
+            goleadores.forEach(function(g) {
+                propuestas[keyJornada][keyPartido].push({
+                    equipo: equipoLogueado,
+                    jugador: g.jugador,
+                    goles: g.goles,
+                    estado: 'pendiente',
+                    fecha: new Date().toISOString().split('T')[0]
+                });
+            });
+            fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
+                headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+            })
+            .then(function(r) {
+                if (r.status === 404) {
+                    var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
+                    return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
+                        method: 'PUT',
+                        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: 'Crear propuestas.json', content: b64 })
+                    });
+                }
+                return r.json();
+            })
+            .then(function(data) {
+                if (data && data.sha) {
+                    var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
+                    return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
+                        method: 'PUT',
+                        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: 'Actualizar propuestas', content: b64, sha: data.sha })
+                    });
+                }
+                return data;
+            })
+            .then(function(r) {
+                if (r && r.ok) {
+                    alert('✅ Propuesta enviada. Pendiente de validación.');
+                    document.getElementById('goleadores-lista').innerHTML = '';
+                    document.getElementById('goleador-jornada').value = '';
+                    document.getElementById('goleador-partido').innerHTML = '<option value="">Selecciona Partido...</option>';
+                } else if (r && r.message) { throw new Error(r.message); }
+            })
+            .catch(function(e) { alert('❌ ' + e.message); });
+        }
+
+        function renderizarRankingGoleadores() {
+            var stats = {};
+            for (var j in propuestas) {
+                for (var p in propuestas[j]) {
+                    propuestas[j][p].forEach(function(prop) {
+                        if (prop.estado === 'aprobado') {
+                            var key = prop.jugador + '|' + prop.equipo;
+                            if (!stats[key]) stats[key] = { jugador: prop.jugador, equipo: prop.equipo, goles: 0 };
+                            stats[key].goles += prop.goles;
+                        }
+                    });
+                }
+            }
+            var lista = [];
+            for (var k in stats) lista.push(stats[k]);
+            lista.sort(function(a, b) { return b.goles - a.goles; });
+            var html = '';
+            lista.forEach(function(g, i) {
+                var rankHtml = '';
+                if (i === 0) rankHtml = '<span class="badge-form medalla-oro">🥇</span>';
+                else if (i === 1) rankHtml = '<span class="badge-form medalla-plata"></span>';
+                else if (i === 2) rankHtml = '<span class="badge-form medalla-bronce">🥉</span>';
+                else rankHtml = (i+1);
+                html += '<tr><td>' + rankHtml + '</td><td class="team" style="font-weight:bold;">' + g.jugador + '</td><td>' + getNombreCorto(g.equipo) + '</td><td style="font-weight:bold; color:#2ecc71; font-size:1.1rem;">' + g.goles + '</td></tr>';
+            });
+            if (lista.length === 0) html = '<tr><td colspan="4" style="padding:30px; color:#a3b8af;">Aún no hay goles aprobados</td></tr>';
+            document.getElementById('tabla-goleadores').innerHTML = html;
         }
 
         function abrirAdmin() {
             document.getElementById('panel-admin').style.display = 'block';
             document.getElementById('codigo-admin').value = '';
-            if (localStorage.getItem('github_token')) { mostrarControl(); }
-            else { document.getElementById('pantalla-codigo').style.display = 'block'; document.getElementById('pantalla-token').style.display = 'none'; document.getElementById('pantalla-control').style.display = 'none'; }
+            if (localStorage.getItem('github_token')) {
+                mostrarControl();
+            } else {
+                document.getElementById('pantalla-codigo').style.display = 'block';
+                document.getElementById('pantalla-token').style.display = 'none';
+                document.getElementById('pantalla-control').style.display = 'none';
+            }
         }
         function cerrarAdmin() { document.getElementById('panel-admin').style.display = 'none'; }
         function verificarCodigo() {
-            if (document.getElementById('codigo-admin').value === '46602900') { document.getElementById('pantalla-codigo').style.display = 'none'; document.getElementById('pantalla-token').style.display = 'block'; }
-            else { alert('Código incorrecto.'); }
+            if (document.getElementById('codigo-admin').value === '46602900') {
+                document.getElementById('pantalla-codigo').style.display = 'none';
+                document.getElementById('pantalla-token').style.display = 'block';
+            } else { alert('Código incorrecto.'); }
         }
         function guardarToken() {
             var token = document.getElementById('input-token').value.trim();
-            if (token.length > 10) { localStorage.setItem('github_token', token); alert('Token guardado.'); mostrarControl(); }
-            else { alert('Token no válido.'); }
+            if (token.length > 10) {
+                localStorage.setItem('github_token', token);
+                alert('Token guardado.');
+                mostrarControl();
+            } else { alert('Token no válido.'); }
         }
         function mostrarControl() {
             document.getElementById('pantalla-codigo').style.display = 'none';
             document.getElementById('pantalla-token').style.display = 'none';
             document.getElementById('pantalla-control').style.display = 'block';
             cargarSelectorAdmin();
+            cargarPropuestasAdmin();
+        }
+        function mostrarSeccionAdmin(seccion) {
+            document.getElementById('admin-seccion-resultados').style.display = seccion === 'resultados' ? 'block' : 'none';
+            document.getElementById('admin-seccion-propuestas').style.display = seccion === 'propuestas' ? 'block' : 'none';
+            if (seccion === 'propuestas') cargarPropuestasAdmin();
         }
         function cargarSelectorAdmin() {
             var select = document.getElementById('admin-selector-jornada');
             select.innerHTML = '<option value="">Selecciona Jornada...</option>';
-            calendario.forEach(function(j) { var opt = document.createElement('option'); opt.value = j.jornada; opt.text = 'Jornada ' + j.jornada; select.appendChild(opt); });
+            calendario.forEach(function(j) {
+                var opt = document.createElement('option');
+                opt.value = j.jornada;
+                opt.text = 'Jornada ' + j.jornada;
+                select.appendChild(opt);
+            });
+        }
+
+        function cargarPropuestasAdmin() {
+            var token = localStorage.getItem('github_token');
+            if (!token) return;
+            fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now(), {
+                headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+            })
+            .then(function(r) {
+                if (r.status === 404) { propuestas = {}; return; }
+                return r.json();
+            })
+            .then(function(data) {
+                if (data && data.content) {
+                    propuestas = JSON.parse(atob(data.content));
+                } else if (data && typeof data === 'object' && !data.content) {
+                    propuestas = data;
+                } else {
+                    propuestas = {};
+                }
+                renderizarPropuestasAdmin();
+            })
+            .catch(function(e) { console.error(e); propuestas = {}; });
+        }
+
+        function renderizarPropuestasAdmin() {
+            var contenedor = document.getElementById('admin-propuestas-container');
+            var html = '';
+            var hayPropuestas = false;
+            for (var j in propuestas) {
+                for (var p in propuestas[j]) {
+                    var jornada = calendario.find(function(x) { return x.jornada === parseInt(j); });
+                    var partido = jornada ? jornada.partidos[parseInt(p)] : null;
+                    propuestas[j][p].forEach(function(prop, idx) {
+                        if (prop.estado === 'pendiente') {
+                            hayPropuestas = true;
+                            html += '<div class="propuesta-item">';
+                            html += '<div style="color:#a3b8af; font-size:0.8rem; margin-bottom:5px;">J' + j + ' · ' + (partido ? partido.local + ' vs ' + partido.visitante : '?') + '</div>';
+                            html += '<div style="margin-bottom:8px;"><strong style="color:#2ecc71;">' + prop.equipo + '</strong> · ' + prop.jugador + ' · <strong>' + prop.goles + ' gol(es)</strong></div>';
+                            html += '<div style="display:flex; gap:5px; flex-wrap:wrap;">';
+                            html += '<button class="btn-small btn-approve" onclick="aprobarPropuesta(\'' + j + '\',\'' + p + '\',' + idx + ')">✅ Aprobar</button>';
+                            html += '<button class="btn-small btn-edit" onclick="editarPropuesta(\'' + j + '\',\'' + p + '\',' + idx + ')">✏️ Corregir</button>';
+                            html += '<button class="btn-small btn-reject" onclick="rechazarPropuesta(\'' + j + '\',\'' + p + '\',' + idx + ')">❌ Rechazar</button>';
+                            html += '</div></div>';
+                        }
+                    });
+                }
+            }
+            if (!hayPropuestas) html = '<p style="color:#a3b8af; text-align:center; padding:20px;">No hay propuestas pendientes</p>';
+            contenedor.innerHTML = html;
+        }
+
+        function aprobarPropuesta(j, p, idx) {
+            propuestas[j][p][idx].estado = 'aprobado';
+            guardarPropuestas();
+        }
+
+        function rechazarPropuesta(j, p, idx) {
+            if (!confirm('¿Rechazar esta propuesta?')) return;
+            propuestas[j][p][idx].estado = 'rechazado';
+            guardarPropuestas();
+        }
+
+        function editarPropuesta(j, p, idx) {
+            var prop = propuestas[j][p][idx];
+            var nuevoNombre = prompt('Nombre del jugador:', prop.jugador);
+            if (nuevoNombre === null) return;
+            var nuevosGoles = prompt('Goles:', prop.goles);
+            if (nuevosGoles === null) return;
+            prop.jugador = nuevoNombre.trim() || prop.jugador;
+            prop.goles = parseInt(nuevosGoles) || prop.goles;
+            prop.estado = 'aprobado';
+            guardarPropuestas();
+        }
+
+        function guardarPropuestas() {
+            var token = localStorage.getItem('github_token');
+            if (!token) { alert('No hay token'); return; }
+            fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
+                headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
+                return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
+                    method: 'PUT',
+                    headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: 'Actualizar propuestas', content: b64, sha: data.sha })
+                });
+            })
+            .then(function(r) {
+                if (r && r.ok) {
+                    alert('✅ Actualizado');
+                    renderizarPropuestasAdmin();
+                } else if (r && r.message) { throw new Error(r.message); }
+            })
+            .catch(function(e) { alert('❌ ' + e.message); });
         }
 
         function construirSelectArbitros(id, valorActual) {
@@ -617,7 +1022,7 @@
                 html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">🔴 LOCAL</span>';
                 html += '<input type="number" id="roL-' + index + '" value="' + roL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
-                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT</span>';
+                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT🔴</span>';
                 html += '<input type="number" id="roV-' + index + '" value="' + roV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
@@ -647,12 +1052,12 @@
                 nuevosResultados[String(index)] = { suspendido: susp, golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)), golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV)), arbitro: valArb || null, amarillasLocal: valAmL === '' ? 0 : parseInt(valAmL), amarillasVisitante: valAmV === '' ? 0 : parseInt(valAmV), rojasLocal: valRoL === '' ? 0 : parseInt(valRoL), rojasVisitante: valRoV === '' ? 0 : parseInt(valRoV) };
             });
             resultados[String(jornadaNum)] = nuevosResultados;
-            if (!token) { alert(' No hay token configurado.'); btn.textContent = ' Guardar'; btn.disabled = false; return; }
+            if (!token) { alert('❌ No hay token configurado.'); btn.textContent = '💾 Guardar'; btn.disabled = false; return; }
             fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } })
             .then(function(r) { if (r.status === 404) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Crear resultados.json', content: b64 }) }); } return r.json(); })
             .then(function(data) { if (data && data.sha) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha }) }); } return data; })
             .then(function(r) { if (r && r.ok) { alert('✅ Guardado!'); location.reload(); } else if (r && r.message) { throw new Error(r.message); } })
-            .catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
+            .catch(function(e) { alert(' ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
         }
 
         function calcularClasificacion() {
@@ -684,6 +1089,7 @@
         }
 
         function renderizarClasificacion() {
+            function renderizarClasificacion() {
             var clasificacion = calcularClasificacion(); var html = '';
             clasificacion.forEach(function(eq, i) {
                 var formaHtml = ''; for (var j = 0; j < 3; j++) { var letra = eq.forma[j] || '-'; var clase = 'none'; if (letra === 'G') clase = 'win'; else if (letra === 'E') clase = 'draw'; else if (letra === 'P') clase = 'loss'; else if (letra === 'S') clase = 'suspended'; else if (letra === 'D') clase = 'rest'; formaHtml += '<span class="badge-form ' + clase + '">' + letra + '</span>'; }
@@ -782,7 +1188,7 @@
                 html += '<div class="match-card"><div class="match-teams"><div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
                 html += marcador;
                 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div></div>';
-                html += '<div class="match-info"> ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
+                html += '<div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' ·  ' + jornada.fecha + arbTexto + '</div>';
                 if (hayTarjetas && !susp && gl !== null) { html += '<div class="match-cards"><div class="card-local">'; if (amL > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amL + '</span> '; if (roL > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roL + '</span>'; if (amL === 0 && roL === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>'; html += '</div><div class="card-visitante">'; if (amV > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amV + '</span> '; if (roV > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roV + '</span>'; if (amV === 0 && roV === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>'; html += '</div></div>'; }
                 html += '</div>';
             });
