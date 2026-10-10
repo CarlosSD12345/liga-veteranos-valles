@@ -33,6 +33,15 @@
         "estado": "pendiente",
         "fecha": "2026-10-10"
       }
+    ],
+    "7": [
+      {
+        "equipo": "A.V. Ripollet",
+        "jugador": "Soria",
+        "goles": 4,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
+      }
     ]
   }
 }
