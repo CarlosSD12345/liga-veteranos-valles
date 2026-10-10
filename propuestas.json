@@ -66,6 +66,29 @@
         "fecha": "2026-10-10"
       }
     ],
+    "6": [
+      {
+        "equipo": "U.D.A. Gramanet",
+        "jugador": "Prueba02",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
+      },
+      {
+        "equipo": "U.D.A. Gramanet",
+        "jugador": "Prueba01",
+        "goles": 4,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
+      },
+      {
+        "equipo": "U.D.A. Gramanet",
+        "jugador": "prueba03",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
+      }
+    ],
     "7": [
       {
         "equipo": "A.V. Ripollet",
