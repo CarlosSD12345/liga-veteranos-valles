@@ -686,11 +686,26 @@
         }
 
         function verRankingGoleadores() {
-            document.getElementById('goleadores-login').style.display = 'none';
-            document.getElementById('goleadores-form').style.display = 'none';
-            document.getElementById('goleadores-ranking').style.display = 'block';
-            renderizarRankingGoleadores();
-        }
+    document.getElementById('goleadores-login').style.display = 'none';
+    document.getElementById('goleadores-form').style.display = 'none';
+    document.getElementById('goleadores-ranking').style.display = 'block';
+    cargarPropuestasPublicas();
+}
+
+function cargarPropuestasPublicas() {
+    fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now())
+    .then(function(r) {
+        if (r.status === 404) { propuestas = {}; renderizarRankingGoleadores(); return; }
+        return r.json();
+    })
+    .then(function(data) {
+        if (data && data.content) { propuestas = JSON.parse(atob(data.content)); }
+        else if (data && typeof data === 'object' && !data.content) { propuestas = data; }
+        else { propuestas = {}; }
+        renderizarRankingGoleadores();
+    })
+    .catch(function(e) { console.error(e); propuestas = {}; renderizarRankingGoleadores(); });
+}
 
         function volverLoginGoleadores() {
             initGoleadores();
