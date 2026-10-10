@@ -2,14 +2,14 @@
   "1": {
     "2": [
       {
-        "equipo": "C.F. BarberÃ¡",
+        "equipo": "C.F. BarberÃÂ¡",
         "jugador": "David",
         "goles": 2,
         "estado": "aprobado",
         "fecha": "2026-10-10"
       },
       {
-        "equipo": "C.F. BarberÃ¡",
+        "equipo": "C.F. BarberÃÂ¡",
         "jugador": "Manuel",
         "goles": 1,
         "estado": "aprobado",
@@ -20,15 +20,15 @@
   "2": {
     "0": [
       {
-        "equipo": "C.E. Santa EulÃ lia de RonÃ§ana",
+        "equipo": "C.E. Santa EulÃÂ lia de RonÃÂ§ana",
         "jugador": "Fernando",
         "goles": 2,
         "estado": "aprobado",
         "fecha": "2026-10-10"
       },
       {
-        "equipo": "C.E. Santa EulÃ lia de RonÃ§ana",
-        "jugador": "MartÃ­nez",
+        "equipo": "C.E. Santa EulÃÂ lia de RonÃÂ§ana",
+        "jugador": "MartÃÂ­nez",
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-10-10"
@@ -69,7 +69,7 @@
         "equipo": "C.F. Cerdanyola",
         "jugador": "ivan",
         "goles": 1,
-        "estado": "pendiente",
+        "estado": "aprobado",
         "fecha": "2026-10-10"
       }
     ],
