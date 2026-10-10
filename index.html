@@ -1089,7 +1089,6 @@
         }
 
         function renderizarClasificacion() {
-            function renderizarClasificacion() {
             var clasificacion = calcularClasificacion(); var html = '';
             clasificacion.forEach(function(eq, i) {
                 var formaHtml = ''; for (var j = 0; j < 3; j++) { var letra = eq.forma[j] || '-'; var clase = 'none'; if (letra === 'G') clase = 'win'; else if (letra === 'E') clase = 'draw'; else if (letra === 'P') clase = 'loss'; else if (letra === 'S') clase = 'suspended'; else if (letra === 'D') clase = 'rest'; formaHtml += '<span class="badge-form ' + clase + '">' + letra + '</span>'; }
