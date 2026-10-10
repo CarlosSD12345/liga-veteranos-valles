@@ -64,6 +64,13 @@
         "goles": 9,
         "estado": "aprobado",
         "fecha": "2026-10-10"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "ivan",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
       }
     ],
     "6": [
