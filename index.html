@@ -61,9 +61,9 @@
         @media (max-width: 600px) {
             body { padding: 8px; }
             .header-logo { width: 280px; }
-            .tabs-row { flex-direction: column; gap: 12px; }
-            .badge { align-self: flex-start; }
-            .tabs { flex-wrap: wrap; justify-content: center; }
+            .tabs-row { flex-wrap: wrap; justify-content: center; gap: 8px; }
+            .badge { order: 1; }
+            .tabs { order: 2; width: 100%; justify-content: center; }
             .tab-btn { padding: 10px 12px; font-size: 0.85rem; }
             .match-card { padding: 10px; }
             .match-teams { gap: 5px; }
@@ -82,13 +82,13 @@
             <img src="escudos/logo_liga.png" alt="Liga Veteranos Vallès" class="header-logo">
         </header>
         <div class="tabs-row">
-            <div class="badge" id="badge-jornada">JORNADA 3</div>
             <div class="tabs">
                 <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
                 <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
                 <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
                 <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
             </div>
+            <div class="badge" id="badge-jornada">JORNADA 3</div>
         </div>
         <div id="clasificacion" class="section active">
             <table>
@@ -124,7 +124,7 @@
             <p class="footer-lema">"Ens divertim, competim i fem amics"</p>
             <p class="footer-hashtag">#VeteransDelVallès</p>
             <div class="footer-bottom">
-                <button id="admin-btn" onclick="abrirAdmin()">️ Admin</button>
+                <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
                 <p style="margin:0; font-size:0.8rem;">© 2026 Liga de Fútbol Veteranos del Vallès</p>
             </div>
         </footer>
@@ -133,7 +133,7 @@
     <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
         <div style="max-width: 400px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
             <div id="pantalla-codigo">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;"> Acceso Restringido</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;">🔒 Acceso Restringido</h2>
                 <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
                 <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
@@ -660,7 +660,7 @@
                 }
             }
             
-            btn.textContent = '⏳ Guardando...';
+            btn.textContent = ' Guardando...';
             btn.disabled = true;
             var token = localStorage.getItem('github_token');
             var nuevosResultados = {};
@@ -1086,7 +1086,7 @@
                 html += '<div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
                 html += marcador;
                 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div>';
-                html += '</div><div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
+                html += '</div><div class="match-info"> ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
                 if (hayTarjetas && !susp && gl !== null) {
                     html += '<div class="match-cards">';
                     html += '<div class="card-local">';
