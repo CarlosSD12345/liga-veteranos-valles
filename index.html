@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+2<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -749,70 +749,35 @@ function cargarPropuestasPublicas() {
         }
 
         function enviarPropuestaGoleadores() {
-            var numJornada = parseInt(document.getElementById('goleador-jornada').value);
-            var idxPartido = document.getElementById('goleador-partido').value;
-            if (!numJornada || idxPartido === '') { alert('Selecciona jornada y partido'); return; }
-            var rows = document.querySelectorAll('.goleador-row');
-            var goleadores = [];
-            rows.forEach(function(row) {
-                var nombre = row.querySelector('.gol-nombre').value.trim();
-                var goles = parseInt(row.querySelector('.gol-goles').value);
-                if (nombre && goles > 0) {
-                    goleadores.push({ jugador: nombre, goles: goles });
-                }
-            });
-            if (goleadores.length === 0) { alert('Añade al menos un goleador'); return; }
-            if (!confirm('¿Enviar propuesta de ' + goleadores.length + ' goleador(es)?')) return;
-            var token = localStorage.getItem('github_token');
-            if (!token) { alert('No hay token configurado. Contacta con el administrador.'); return; }
-            var keyJornada = String(numJornada);
-            var keyPartido = String(idxPartido);
-            if (!propuestas[keyJornada]) propuestas[keyJornada] = {};
-            if (!propuestas[keyJornada][keyPartido]) propuestas[keyJornada][keyPartido] = [];
-            goleadores.forEach(function(g) {
-                propuestas[keyJornada][keyPartido].push({
-                    equipo: equipoLogueado,
-                    jugador: g.jugador,
-                    goles: g.goles,
-                    estado: 'pendiente',
-                    fecha: new Date().toISOString().split('T')[0]
-                });
-            });
-            fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
-                headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
-            })
-            .then(function(r) {
-                if (r.status === 404) {
-                    var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
-                    return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
-                        method: 'PUT',
-                        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ message: 'Crear propuestas.json', content: b64 })
-                    });
-                }
-                return r.json();
-            })
-            .then(function(data) {
-                if (data && data.sha) {
-                    var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
-                    return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
-                        method: 'PUT',
-                        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ message: 'Actualizar propuestas', content: b64, sha: data.sha })
-                    });
-                }
-                return data;
-            })
-            .then(function(r) {
-                if (r && r.ok) {
-                    alert('✅ Propuesta enviada. Pendiente de validación.');
-                    document.getElementById('goleadores-lista').innerHTML = '';
-                    document.getElementById('goleador-jornada').value = '';
-                    document.getElementById('goleador-partido').innerHTML = '<option value="">Selecciona Partido...</option>';
-                } else if (r && r.message) { throw new Error(r.message); }
-            })
-            .catch(function(e) { alert('❌ ' + e.message); });
-        }
+    var numJornada = parseInt(document.getElementById('goleador-jornada').value);
+    var idxPartido = document.getElementById('goleador-partido').value;
+    if (!numJornada || idxPartido === '') { alert('Selecciona jornada y partido'); return; }
+    var rows = document.querySelectorAll('.goleador-row');
+    var goleadores = [];
+    rows.forEach(function(row) {
+        var nombre = row.querySelector('.gol-nombre').value.trim();
+        var goles = parseInt(row.querySelector('.gol-goles').value);
+        if (nombre && goles > 0) { goleadores.push({ jugador: nombre, goles: goles }); }
+    });
+    if (goleadores.length === 0) { alert('Añade al menos un goleador'); return; }
+    if (!confirm('¿Enviar propuesta de ' + goleadores.length + ' goleador(es)?')) return;
+
+    var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
+    var partido = jornada.partidos[parseInt(idxPartido)];
+    var texto = '⚽ *PROPUESTA GOLEADORES*\n\n';
+    texto += '📅 Jornada ' + numJornada + '\n';
+    texto += ' ' + partido.local + ' vs ' + partido.visitante + '\n';
+    texto += ' Equipo: ' + equipoLogueado + '\n\n';
+    texto += '*Goleadores:*\n';
+    goleadores.forEach(function(g) {
+        texto += '• ' + g.jugador + ' - ' + g.goles + ' gol(es)\n';
+    });
+    texto += '\nPor favor, valida esta propuesta. ¡Gracias!';
+
+    var numeroAdmin = '34617417827';
+    var url = 'https://wa.me/' + numeroAdmin + '?text=' + encodeURIComponent(texto);
+    window.open(url, '_blank');
+}
 
         function renderizarRankingGoleadores() {
             var stats = {};
