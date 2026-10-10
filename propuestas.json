@@ -4,6 +4,13 @@
       {
         "equipo": "C.F. Barberá",
         "jugador": "David",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-10"
+      },
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Manuel",
         "goles": 1,
         "estado": "pendiente",
         "fecha": "2026-10-10"
