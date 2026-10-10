@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liga Veteranos Vallès</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0b1d15">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Liga Veteranos">
+    <link rel="apple-touch-icon" href="escudos/icono_512.png">
     <style>
         body { background-color: #0b1d15; color: white; padding: 20px; font-family: Arial, sans-serif; }
         .container { max-width: 1000px; margin: 0 auto; width: 100%; box-sizing: border-box; }
@@ -117,7 +123,7 @@
         <div id="arbitros" class="section">
             <table>
                 <thead>
-                    <tr><th>#</th><th class="team">ÁRBITRO</th><th>PA</th><th> AMARILLAS</th><th> ROJAS</th><th>TOTAL</th><th style="color:#2ecc71;">TARJ./PARTIDO</th></tr>
+                    <tr><th>#</th><th class="team">ÁRBITRO</th><th>PA</th><th>🟡 AMARILLAS</th><th>🔴 ROJAS</th><th>TOTAL</th><th style="color:#2ecc71;">TARJ./PARTIDO</th></tr>
                 </thead>
                 <tbody id="tabla-arb"></tbody>
             </table>
@@ -126,7 +132,7 @@
             <p class="footer-lema">"Ens divertim, competim i fem amics"</p>
             <p class="footer-hashtag">#VeteransDelVallès</p>
             <div class="footer-bottom">
-                <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
+                <button id="admin-btn" onclick="abrirAdmin()">️ Admin</button>
                 <p style="margin:0; font-size:0.8rem;">© 2026 Liga de Fútbol Veteranos del Vallès</p>
             </div>
         </footer>
@@ -135,7 +141,7 @@
     <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
         <div style="max-width: 400px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
             <div id="pantalla-codigo">
-                <h2 style="color: #2ecc71; margin-bottom: 20px;">🔒 Acceso Restringido</h2>
+                <h2 style="color: #2ecc71; margin-bottom: 20px;"> Acceso Restringido</h2>
                 <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
                 <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
                 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
@@ -604,14 +610,14 @@
                 html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">🟡 LOCAL</span>';
                 html += '<input type="number" id="amL-' + index + '" value="' + amL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
-                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT</span>';
+                html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT🟡</span>';
                 html += '<input type="number" id="amV-' + index + '" value="' + amV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:5px; margin-top:5px; flex-wrap:wrap; justify-content:center;">';
                 html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">🔴 LOCAL</span>';
                 html += '<input type="number" id="roL-' + index + '" value="' + roL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
-                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT🔴</span>';
+                html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT</span>';
                 html += '<input type="number" id="roV-' + index + '" value="' + roV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
                 html += '</div>';
                 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
@@ -628,7 +634,7 @@
             var jornada = calendario.find(function(j) { return j.jornada === jornadaNum; });
             var hayGolesBorrados = false;
             jornada.partidos.forEach(function(p, index) { var valL = document.getElementById('gl-' + index).value; var valV = document.getElementById('gv-' + index).value; if ((p.golesLocal !== null || p.golesVisitante !== null) && (valL === '' || valV === '')) { hayGolesBorrados = true; } });
-            if (hayGolesBorrados) { if (!confirm('⚠️ Hay campos de goles vacíos en partidos que ya tenían resultado. ¿Seguro que quieres guardar? Se perderán los goles actuales.')) { return; } }
+            if (hayGolesBorrados) { if (!confirm('️ Hay campos de goles vacíos en partidos que ya tenían resultado. ¿Seguro que quieres guardar? Se perderán los goles actuales.')) { return; } }
             btn.textContent = '⏳ Guardando...'; btn.disabled = true;
             var token = localStorage.getItem('github_token');
             var nuevosResultados = {};
@@ -641,7 +647,7 @@
                 nuevosResultados[String(index)] = { suspendido: susp, golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)), golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV)), arbitro: valArb || null, amarillasLocal: valAmL === '' ? 0 : parseInt(valAmL), amarillasVisitante: valAmV === '' ? 0 : parseInt(valAmV), rojasLocal: valRoL === '' ? 0 : parseInt(valRoL), rojasVisitante: valRoV === '' ? 0 : parseInt(valRoV) };
             });
             resultados[String(jornadaNum)] = nuevosResultados;
-            if (!token) { alert('❌ No hay token configurado.'); btn.textContent = '💾 Guardar'; btn.disabled = false; return; }
+            if (!token) { alert(' No hay token configurado.'); btn.textContent = ' Guardar'; btn.disabled = false; return; }
             fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } })
             .then(function(r) { if (r.status === 404) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Crear resultados.json', content: b64 }) }); } return r.json(); })
             .then(function(data) { if (data && data.sha) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha }) }); } return data; })
@@ -763,7 +769,7 @@
         function cargarJornada() {
             var numJornada = parseInt(document.getElementById('selector-jornada').value); var jornada = calendario.find(function(j) { return j.jornada === numJornada; }); if (!jornada) return;
             var resJ = resultados[String(numJornada)] || {}; var contenedor = document.getElementById('contenedor-partidos'); var html = '';
-            if (jornada.suspendida === true) { html += '<div class="suspended-banner">️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>'; }
+            if (jornada.suspendida === true) { html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>'; }
             if (jornada.descanso) { html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>'; }
             jornada.partidos.forEach(function(p, idx) {
                 var resP = resJ[String(idx)] || {}; var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal; var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
@@ -776,7 +782,7 @@
                 html += '<div class="match-card"><div class="match-teams"><div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
                 html += marcador;
                 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div></div>';
-                html += '<div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
+                html += '<div class="match-info"> ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
                 if (hayTarjetas && !susp && gl !== null) { html += '<div class="match-cards"><div class="card-local">'; if (amL > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amL + '</span> '; if (roL > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roL + '</span>'; if (amL === 0 && roL === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>'; html += '</div><div class="card-visitante">'; if (amV > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amV + '</span> '; if (roV > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roV + '</span>'; if (amV === 0 && roV === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>'; html += '</div></div>'; }
                 html += '</div>';
             });
