@@ -162,5 +162,87 @@
       "rojasLocal": 0,
       "rojasVisitante": 0
     }
+  },
+  "4": {
+    "0": {
+      "suspendido": false,
+      "golesLocal": 6,
+      "golesVisitante": 5,
+      "arbitro": "Duran",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "1": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Molina",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "2": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Exposito",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "3": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Fabregas",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "4": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Edu",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "5": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Congost",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "6": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Salva",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "7": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Julio",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    }
   }
 }
