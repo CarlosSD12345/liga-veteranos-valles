@@ -1175,10 +1175,26 @@ function cargarPropuestasPublicas() {
         }
 
         function actualizarBadgeJornada() {
-            var ultimaJornada = 0;
-            for (var j = 0; j < calendario.length; j++) { var jornada = calendario[j]; if (jornada.suspendida === true) { ultimaJornada = jornada.jornada; } else { for (var i = 0; i < jornada.partidos.length; i++) { if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) { ultimaJornada = jornada.jornada; break; } } } }
-            if (ultimaJornada > 0) { document.getElementById('badge-jornada').textContent = 'JORNADA ' + ultimaJornada; }
+    var ultimaJornada = 0;
+    for (var j = 0; j < calendario.length; j++) {
+        var jornada = calendario[j];
+        if (jornada.suspendida === true) {
+            ultimaJornada = jornada.jornada;
+        } else {
+            var resJ = resultados[String(jornada.jornada)] || {};
+            var todosConResultado = true;
+            for (var i = 0; i < jornada.partidos.length; i++) {
+                var resP = resJ[String(i)] || {};
+                var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
+                var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
+                if (gl === null || gv === null) { todosConResultado = false; break; }
+            }
+            if (todosConResultado) { ultimaJornada = jornada.jornada; }
+            else { break; }
         }
+    }
+    if (ultimaJornada > 0) { document.getElementById('badge-jornada').textContent = 'JORNADA ' + ultimaJornada; }
+}
 
         fetch('resultados.json?t=' + Date.now()).then(function(r) { if (r.status === 404) return {}; return r.json(); }).then(function(data) { resultados = data || {}; renderizarClasificacion(); actualizarBadgeJornada(); }).catch(function(e) { console.error('Error:', e); resultados = {}; renderizarClasificacion(); actualizarBadgeJornada(); });
     </script>
