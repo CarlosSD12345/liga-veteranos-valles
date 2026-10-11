@@ -1130,26 +1130,35 @@ function cargarPropuestasPublicas() {
         }
 
         function calcularArbitros() {
-            var stats = {};
-            for (var j = 0; j < calendario.length; j++) {
-                var jornada = calendario[j]; var tieneResultados = false;
-                if (jornada.suspendida === true) { tieneResultados = true; } else { for (var i = 0; i < jornada.partidos.length; i++) { if (jornada.partidos[i].golesLocal !== null && jornada.partidos[i].golesVisitante !== null) { tieneResultados = true; break; } } }
-                if (!tieneResultados) break; if (jornada.suspendida === true) continue;
-                var resJ = resultados[String(jornada.jornada)] || {};
-                jornada.partidos.forEach(function(p, idx) {
-                    var resP = resJ[String(idx)] || {}; var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal; var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante; var susp = resP.suspendido === true;
-                    if (susp || gl === null || gv === null) return;
-                    var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro; if (!arbNombre) return;
-                    if (!stats[arbNombre]) { stats[arbNombre] = { nombre: arbNombre, pa: 0, amarillas: 0, rojas: 0, total: 0 }; }
-                    var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : 0; var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : 0;
-                    var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : 0; var roV = (resP.rojasVisitante !== undefined && resP.rojasVisitante !== null) ? resP.rojasVisitante : 0;
-                    stats[arbNombre].pa++; stats[arbNombre].amarillas += (amL + amV); stats[arbNombre].rojas += (roL + roV); stats[arbNombre].total += (amL + amV + roL + roV);
-                });
+    var stats = {};
+    for (var j = 0; j < calendario.length; j++) {
+        var jornada = calendario[j]; var tieneResultados = false;
+        if (jornada.suspendida === true) { tieneResultados = true; }
+        else {
+            var resJ = resultados[String(jornada.jornada)] || {};
+            for (var i = 0; i < jornada.partidos.length; i++) {
+                var resP = resJ[String(i)] || {};
+                var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
+                var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
+                if (gl !== null && gv !== null) { tieneResultados = true; break; }
             }
-            var lista = []; for (var nombre in stats) { var arb = stats[nombre]; arb.media = arb.pa > 0 ? (arb.total / arb.pa) : 0; lista.push(arb); }
-            lista.sort(function(a, b) { if (b.media !== a.media) return b.media - a.media; if (b.total !== a.total) return b.total - a.total; if (b.rojas !== a.rojas) return b.rojas - a.rojas; return a.nombre.localeCompare(b.nombre); });
-            return lista;
         }
+        if (!tieneResultados) break; if (jornada.suspendida === true) continue;
+        var resJ = resultados[String(jornada.jornada)] || {};
+        jornada.partidos.forEach(function(p, idx) {
+            var resP = resJ[String(idx)] || {}; var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal; var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante; var susp = resP.suspendido === true;
+            if (susp || gl === null || gv === null) return;
+            var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro; if (!arbNombre) return;
+            if (!stats[arbNombre]) { stats[arbNombre] = { nombre: arbNombre, pa: 0, amarillas: 0, rojas: 0, total: 0 }; }
+            var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : 0; var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : 0;
+            var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : 0; var roV = (resP.rojasVisitante !== undefined && resP.rojasVisitante !== null) ? resP.rojasVisitante : 0;
+            stats[arbNombre].pa++; stats[arbNombre].amarillas += (amL + amV); stats[arbNombre].rojas += (roL + roV); stats[arbNombre].total += (amL + amV + roL + roV);
+        });
+    }
+    var lista = []; for (var nombre in stats) { var arb = stats[nombre]; arb.media = arb.pa > 0 ? (arb.total / arb.pa) : 0; lista.push(arb); }
+    lista.sort(function(a, b) { if (b.media !== a.media) return b.media - a.media; if (b.total !== a.total) return b.total - a.total; if (b.rojas !== a.rojas) return b.rojas - a.rojas; return a.nombre.localeCompare(b.nombre); });
+    return lista;
+}
 
         function renderizarArbitros() {
             var lista = calcularArbitros(); var html = '';
