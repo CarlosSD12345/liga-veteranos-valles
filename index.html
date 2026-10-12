@@ -1073,7 +1073,7 @@ function cargarPropuestasPublicas() {
         });
     }
     var lista = []; for (var nombre in stats) { var eq = stats[nombre]; eq.dif = eq.gf - eq.gc; var ult = eq.forma.slice(-3); while (ult.length < 3) ult.unshift('-'); eq.forma = ult; lista.push(eq); }
-    lista.sort(function(a, b) { if (b.pts !== a.pts) return b.pts - a.pts; if (b.dif !== a.dif) return b.dif - a.dif; return a.nombre.localeCompare(b.nombre); });
+    lista.sort(function(a, b) { if (b.pts !== a.pts) return b.pts - a.pts; if (b.dif !== a.dif) return b.dif - a.dif; if (b.gf !== a.gf) return b.gf - a.gf; return a.nombre.localeCompare(b.nombre); });
     return lista;
 }
 
