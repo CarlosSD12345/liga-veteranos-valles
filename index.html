@@ -888,6 +888,83 @@ function cargarPropuestasPublicas() {
             })
             .catch(function(e) { console.error(e); propuestas = {}; });
         }
+        function mostrarImportarWhatsApp() {
+    document.getElementById('admin-seccion-resultados').style.display = 'none';
+    document.getElementById('admin-seccion-propuestas').style.display = 'none';
+    document.getElementById('modal-importar-whatsapp').style.display = 'block';
+    document.getElementById('texto-whatsapp').value = '';
+}
+
+function cerrarModalImportar() {
+    document.getElementById('modal-importar-whatsapp').style.display = 'none';
+    document.getElementById('admin-seccion-propuestas').style.display = 'block';
+}
+
+function procesarWhatsApp() {
+    var texto = document.getElementById('texto-whatsapp').value.trim();
+    if (!texto) { alert('Pega el mensaje de WhatsApp'); return; }
+    var matchJornada = texto.match(/Jornada\s+(\d+)/i);
+    if (!matchJornada) { alert('No se encontró la jornada'); return; }
+    var numJornada = parseInt(matchJornada[1]);
+    var matchPartido = texto.match(/🆚\s*(.+?)(?:\n|$)/);
+    if (!matchPartido) { alert('No se encontró el partido'); return; }
+    var textoPartido = matchPartido[1].trim();
+    var matchEquipo = texto.match(/Equipo:\s*(.+?)(?:\n|$)/);
+    if (!matchEquipo) { alert('No se encontró el equipo'); return; }
+    var equipo = matchEquipo[1].trim();
+    var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
+    if (!jornada) { alert('Jornada ' + numJornada + ' no encontrada'); return; }
+    var idxPartido = -1;
+    jornada.partidos.forEach(function(p, idx) {
+        var textoPartidoCal = p.local + ' vs ' + p.visitante;
+        if (textoPartidoCal === textoPartido) { idxPartido = idx; }
+    });
+    if (idxPartido === -1) { alert('Partido no encontrado: ' + textoPartido); return; }
+    var goleadores = [];
+    var lineas = texto.split('\n');
+    for (var i = 0; i < lineas.length; i++) {
+        var linea = lineas[i].trim();
+        if (linea.startsWith('•')) {
+            var matchGoleador = linea.match(/•\s*(.+?)\s*-\s*(\d+)\s*gol/i);
+            if (matchGoleador) {
+                goleadores.push({ jugador: matchGoleador[1].trim(), goles: parseInt(matchGoleador[2]) });
+            }
+        }
+    }
+    if (goleadores.length === 0) { alert('No se encontraron goleadores'); return; }
+    var keyJornada = String(numJornada);
+    var keyPartido = String(idxPartido);
+    if (!propuestas[keyJornada]) propuestas[keyJornada] = {};
+    if (!propuestas[keyJornada][keyPartido]) propuestas[keyJornada][keyPartido] = [];
+    goleadores.forEach(function(g) {
+        propuestas[keyJornada][keyPartido].push({
+            equipo: equipo, jugador: g.jugador, goles: g.goles,
+            estado: 'pendiente', fecha: new Date().toISOString().split('T')[0]
+        });
+    });
+    var token = localStorage.getItem('github_token');
+    if (!token) { alert('No hay token configurado'); return; }
+    fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
+        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
+        return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
+            method: 'PUT',
+            headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: 'Importar desde WhatsApp', content: b64, sha: data.sha })
+        });
+    })
+    .then(function(r) {
+        if (r && r.ok) {
+            alert('✅ ' + goleadores.length + ' propuesta(s) creada(s) como pendiente');
+            cerrarModalImportar();
+            cargarPropuestasAdmin();
+        } else if (r && r.message) { throw new Error(r.message); }
+    })
+    .catch(function(e) { alert('❌ ' + e.message); });
+}
 
         function renderizarPropuestasAdmin() {
             var contenedor = document.getElementById('admin-propuestas-container');
