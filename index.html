@@ -112,25 +112,16 @@
             <img src="escudos/logo_liga.png" alt="Liga Veteranos Vallès" class="header-logo">
         </header>
         <div class="tabs-row">
-    <div class="tabs">
-        <button class="tab-btn active" onclick="cambiarPestana('clasificacion-real', this)">Clasificación Real</button>
-        <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
-        <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
-        <button class="tab-btn" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
-        <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
-        <button class="tab-btn" onclick="cambiarPestana('goleadores', this)">Goleadores</button>
-    </div>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
+                <button class="tab-btn" onclick="cambiarPestana('calendario', this)">Calendario</button>
+                <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
+                <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
+                <button class="tab-btn" onclick="cambiarPestana('goleadores', this)">Goleadores</button>
+            </div>
             <div class="badge" id="badge-jornada">JORNADA 3</div>
         </div>
-        <div id="clasificacion-real" class="section active">
-    <table>
-        <thead>
-            <tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Pts Dep.</th><th>🟡</th><th>🔴</th><th>Pts Ajustados</th></tr>
-        </thead>
-        <tbody id="tabla-cr"></tbody>
-    </table>
-</div>
-<div id="clasificacion" class="section">
+        <div id="clasificacion" class="section active">
             <table>
                 <thead>
                     <tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th>PTS</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DIF</th><th>3 ÚLTIMOS</th></tr>
@@ -1212,167 +1203,6 @@ function procesarWhatsApp() {
             });
             document.getElementById('tabla').innerHTML = html;
         }
-       function renderizarClasificacionReal() {
-    var tbody = document.getElementById('tabla-cr');
-    if (!tbody) return;
-    
-    var stats = {};
-    equipos.forEach(function(eq) {
-        stats[eq.nombre] = { nombre: eq.nombre, img: eq.img, pj: 0, pts: 0, gf: 0, gc: 0, pg: 0, pe: 0, pp: 0, forma: [] };
-    });
-    
-    var ultimaJornada = 0;
-    for (var j = 0; j < calendario.length; j++) {
-        var jornada = calendario[j];
-        if (jornada.suspendida === true) { ultimaJornada = jornada.jornada; continue; }
-        
-        var resJ = resultados[String(jornada.jornada)] || {};
-        var todosConResultado = true;
-        
-        for (var i = 0; i < jornada.partidos.length; i++) {
-            var resP = resJ[String(i)] || {};
-            var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
-            var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
-            
-            if (gl === null || gv === null) { todosConResultado = false; break; }
-        }
-        
-        if (todosConResultado) { ultimaJornada = jornada.jornada; }
-        else { break; }
-    }
-    
-    for (var j = 0; j < calendario.length; j++) {
-        var jornada = calendario[j];
-        if (jornada.jornada > ultimaJornada) break;
-        if (jornada.suspendida === true) continue;
-        
-        var resJ = resultados[String(jornada.jornada)] || {};
-        
-        for (var i = 0; i < jornada.partidos.length; i++) {
-            var resP = resJ[String(i)] || {};
-            var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
-            var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
-            
-            if (gl === null || gv === null) continue;
-            
-            var local = jornada.partidos[i].local;
-            var visitante = jornada.partidos[i].visitante;
-            
-            stats[local].pj++;
-            stats[visitante].pj++;
-            stats[local].gf += gl;
-            stats[local].gc += gv;
-            stats[visitante].gf += gv;
-            stats[visitante].gc += gl;
-            
-            if (gl > gv) {
-                stats[local].pts += 3;
-                stats[local].pg++;
-                stats[visitante].pp++;
-                stats[local].forma.push('G');
-                stats[visitante].forma.push('P');
-            } else if (gl < gv) {
-                stats[visitante].pts += 3;
-                stats[visitante].pg++;
-                stats[local].pp++;
-                stats[local].forma.push('P');
-                stats[visitante].forma.push('G');
-            } else {
-                stats[local].pts += 1;
-                stats[visitante].pts += 1;
-                stats[local].pe++;
-                stats[visitante].pe++;
-                stats[local].forma.push('E');
-                stats[visitante].forma.push('E');
-            }
-        }
-    }
-    
-    var tarjetas = {};
-    equipos.forEach(function(eq) {
-        tarjetas[eq.nombre] = { amarillas: 0, rojas: 0 };
-    });
-    
-    for (var j = 0; j < calendario.length; j++) {
-        var jornada = calendario[j];
-        if (jornada.jornada > ultimaJornada) break;
-        if (jornada.suspendida === true) continue;
-        
-        var resJ = resultados[String(jornada.jornada)] || {};
-        
-        for (var i = 0; i < jornada.partidos.length; i++) {
-            var resP = resJ[String(i)] || {};
-            var tarjetasLocal = resP.tarjetasLocal || 0;
-            var tarjetasVisitante = resP.tarjetasVisitante || 0;
-            var rojasLocal = resP.rojasLocal || 0;
-            var rojasVisitante = resP.rojasVisitante || 0;
-            
-            var local = jornada.partidos[i].local;
-            var visitante = jornada.partidos[i].visitante;
-            
-            if (tarjetas[local]) {
-                tarjetas[local].amarillas += tarjetasLocal;
-                tarjetas[local].rojas += rojasLocal;
-            }
-            if (tarjetas[visitante]) {
-                tarjetas[visitante].amarillas += tarjetasVisitante;
-                tarjetas[visitante].rojas += rojasVisitante;
-            }
-        }
-    }
-    
-    var equiposConPuntos = [];
-    for (var nombre in stats) {
-        var eq = stats[nombre];
-        var dif = eq.gf - eq.gc;
-        var amarillas = tarjetas[nombre] ? tarjetas[nombre].amarillas : 0;
-        var rojas = tarjetas[nombre] ? tarjetas[nombre].rojas : 0;
-        var ptsAjustados = eq.pts - (amarillas * 1) - (rojas * 3);
-        
-        equiposConPuntos.push({
-            nombre: eq.nombre,
-            img: eq.img,
-            pj: eq.pj,
-            pg: eq.pg,
-            pe: eq.pe,
-            pp: eq.pp,
-            ptsDeportivos: eq.pts,
-            amarillas: amarillas,
-            rojas: rojas,
-            ptsAjustados: ptsAjustados,
-            gf: eq.gf,
-            dif: dif
-        });
-    }
-    
-    equiposConPuntos.sort(function(a, b) {
-        if (b.ptsAjustados !== a.ptsAjustados) return b.ptsAjustados - a.ptsAjustados;
-        if (b.dif !== a.dif) return b.dif - a.dif;
-        if (b.gf !== a.gf) return b.gf - a.gf;
-        return a.nombre.localeCompare(b.nombre);
-    });
-    
-    var html = '';
-    for (var i = 0; i < equiposConPuntos.length; i++) {
-        var eq = equiposConPuntos[i];
-        var posicion = i + 1;
-        
-        html += '<tr>';
-        html += '<td>' + posicion + '</td>';
-        html += '<td class="team"><img src="escudos/' + eq.img + '" class="team-logo" onerror="this.style.display=\'none\'"><span>' + eq.nombre + '</span></td>';
-        html += '<td>' + eq.pj + '</td>';
-        html += '<td>' + eq.pg + '</td>';
-        html += '<td>' + eq.pe + '</td>';
-        html += '<td>' + eq.pp + '</td>';
-        html += '<td>' + eq.ptsDeportivos + '</td>';
-        html += '<td>🟡' + eq.amarillas + '</td>';
-        html += '<td>🔴' + eq.rojas + '</td>';
-        html += '<td style="font-weight:bold; color:#2ecc71;">' + eq.ptsAjustados + '</td>';
-        html += '</tr>';
-    }
-    
-    tbody.innerHTML = html;
-}
 
         function calcularFairPlay() {
     var stats = {}; equipos.forEach(function(eq) { stats[eq.nombreCompleto] = { nombre: eq.nombre, img: eq.img, pj: 0, amarillas: 0, rojas: 0, total: 0 }; });
@@ -1511,7 +1341,7 @@ function procesarWhatsApp() {
     if (ultimaJornada > 0) { document.getElementById('badge-jornada').textContent = 'JORNADA ' + ultimaJornada; }
 }
 
-        fetch('resultados.json?t=' + Date.now()).then(function(r) { if (r.status === 404) return {}; return r.json(); }).then(function(data) { resultados = data || {}; renderizarClasificacion(); renderizarClasificacionReal(); actualizarBadgeJornada(); }).catch(function(e) { console.error('Error:', e); resultados = {}; renderizarClasificacion(); renderizarClasificacionReal(); });
+        fetch('resultados.json?t=' + Date.now()).then(function(r) { if (r.status === 404) return {}; return r.json(); }).then(function(data) { resultados = data || {}; renderizarClasificacion(); actualizarBadgeJornada(); }).catch(function(e) { console.error('Error:', e); resultados = {}; renderizarClasificacion(); actualizarBadgeJornada(); });
     </script>
 </body>
 </html>
