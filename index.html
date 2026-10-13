@@ -1212,37 +1212,142 @@ function procesarWhatsApp() {
             });
             document.getElementById('tabla').innerHTML = html;
         }
-        function renderizarClasificacionReal() {
+       function renderizarClasificacionReal() {
     var tbody = document.getElementById('tabla-cr');
     if (!tbody) return;
     
-    var clasificacion = calcularClasificacion();
-    var fairPlay = calcularFairPlay();
+    var stats = {};
+    equipos.forEach(function(eq) {
+        stats[eq.nombre] = { nombre: eq.nombre, img: eq.img, pj: 0, pts: 0, gf: 0, gc: 0, pg: 0, pe: 0, pp: 0, forma: [] };
+    });
+    
+    var ultimaJornada = 0;
+    for (var j = 0; j < calendario.length; j++) {
+        var jornada = calendario[j];
+        if (jornada.suspendida === true) { ultimaJornada = jornada.jornada; continue; }
+        
+        var resJ = resultados[String(jornada.jornada)] || {};
+        var todosConResultado = true;
+        
+        for (var i = 0; i < jornada.partidos.length; i++) {
+            var resP = resJ[String(i)] || {};
+            var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
+            var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
+            
+            if (gl === null || gv === null) { todosConResultado = false; break; }
+        }
+        
+        if (todosConResultado) { ultimaJornada = jornada.jornada; }
+        else { break; }
+    }
+    
+    for (var j = 0; j < calendario.length; j++) {
+        var jornada = calendario[j];
+        if (jornada.jornada > ultimaJornada) break;
+        if (jornada.suspendida === true) continue;
+        
+        var resJ = resultados[String(jornada.jornada)] || {};
+        
+        for (var i = 0; i < jornada.partidos.length; i++) {
+            var resP = resJ[String(i)] || {};
+            var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
+            var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
+            
+            if (gl === null || gv === null) continue;
+            
+            var local = jornada.partidos[i].local;
+            var visitante = jornada.partidos[i].visitante;
+            
+            stats[local].pj++;
+            stats[visitante].pj++;
+            stats[local].gf += gl;
+            stats[local].gc += gv;
+            stats[visitante].gf += gv;
+            stats[visitante].gc += gl;
+            
+            if (gl > gv) {
+                stats[local].pts += 3;
+                stats[local].pg++;
+                stats[visitante].pp++;
+                stats[local].forma.push('G');
+                stats[visitante].forma.push('P');
+            } else if (gl < gv) {
+                stats[visitante].pts += 3;
+                stats[visitante].pg++;
+                stats[local].pp++;
+                stats[local].forma.push('P');
+                stats[visitante].forma.push('G');
+            } else {
+                stats[local].pts += 1;
+                stats[visitante].pts += 1;
+                stats[local].pe++;
+                stats[visitante].pe++;
+                stats[local].forma.push('E');
+                stats[visitante].forma.push('E');
+            }
+        }
+    }
+    
+    var tarjetas = {};
+    equipos.forEach(function(eq) {
+        tarjetas[eq.nombre] = { amarillas: 0, rojas: 0 };
+    });
+    
+    for (var j = 0; j < calendario.length; j++) {
+        var jornada = calendario[j];
+        if (jornada.jornada > ultimaJornada) break;
+        if (jornada.suspendida === true) continue;
+        
+        var resJ = resultados[String(jornada.jornada)] || {};
+        
+        for (var i = 0; i < jornada.partidos.length; i++) {
+            var resP = resJ[String(i)] || {};
+            var tarjetasLocal = resP.tarjetasLocal || 0;
+            var tarjetasVisitante = resP.tarjetasVisitante || 0;
+            var rojasLocal = resP.rojasLocal || 0;
+            var rojasVisitante = resP.rojasVisitante || 0;
+            
+            var local = jornada.partidos[i].local;
+            var visitante = jornada.partidos[i].visitante;
+            
+            if (tarjetas[local]) {
+                tarjetas[local].amarillas += tarjetasLocal;
+                tarjetas[local].rojas += rojasLocal;
+            }
+            if (tarjetas[visitante]) {
+                tarjetas[visitante].amarillas += tarjetasVisitante;
+                tarjetas[visitante].rojas += rojasVisitante;
+            }
+        }
+    }
     
     var equiposConPuntos = [];
-    for (var i = 0; i < clasificacion.length; i++) {
-        var eq = clasificacion[i];
-        var fp = fairPlay.find(function(f) { return f.nombre === eq.equipo; }) || { amarillas: 0, rojas: 0 };
-        
-        var ptsAjustados = eq.pts - (fp.amarillas * 1) - (fp.rojas * 3);
+    for (var nombre in stats) {
+        var eq = stats[nombre];
+        var dif = eq.gf - eq.gc;
+        var amarillas = tarjetas[nombre] ? tarjetas[nombre].amarillas : 0;
+        var rojas = tarjetas[nombre] ? tarjetas[nombre].rojas : 0;
+        var ptsAjustados = eq.pts - (amarillas * 1) - (rojas * 3);
         
         equiposConPuntos.push({
-            nombre: eq.equipo,
+            nombre: eq.nombre,
             img: eq.img,
             pj: eq.pj,
             pg: eq.pg,
             pe: eq.pe,
             pp: eq.pp,
             ptsDeportivos: eq.pts,
-            amarillas: fp.amarillas,
-            rojas: fp.rojas,
+            amarillas: amarillas,
+            rojas: rojas,
             ptsAjustados: ptsAjustados,
-            gf: eq.gf
+            gf: eq.gf,
+            dif: dif
         });
     }
     
     equiposConPuntos.sort(function(a, b) {
         if (b.ptsAjustados !== a.ptsAjustados) return b.ptsAjustados - a.ptsAjustados;
+        if (b.dif !== a.dif) return b.dif - a.dif;
         if (b.gf !== a.gf) return b.gf - a.gf;
         return a.nombre.localeCompare(b.nombre);
     });
@@ -1260,7 +1365,7 @@ function procesarWhatsApp() {
         html += '<td>' + eq.pe + '</td>';
         html += '<td>' + eq.pp + '</td>';
         html += '<td>' + eq.ptsDeportivos + '</td>';
-        html += '<td>' + eq.amarillas + '</td>';
+        html += '<td>🟡' + eq.amarillas + '</td>';
         html += '<td>🔴' + eq.rojas + '</td>';
         html += '<td style="font-weight:bold; color:#2ecc71;">' + eq.ptsAjustados + '</td>';
         html += '</tr>';
