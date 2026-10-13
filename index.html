@@ -1216,60 +1216,51 @@ function procesarWhatsApp() {
     var tbody = document.getElementById('tabla-cr');
     if (!tbody) return;
     
+    var clasificacion = calcularClasificacion();
+    var fairPlay = calcularFairPlay();
+    
     var equiposConPuntos = [];
-    for (var i = 0; i < equipos.length; i++) {
-        var equipo = equipos[i];
-        var nombreEquipo = equipo.nombre;
+    for (var i = 0; i < clasificacion.length; i++) {
+        var eq = clasificacion[i];
+        var fp = fairPlay.find(function(f) { return f.nombre === eq.equipo; }) || { amarillas: 0, rojas: 0 };
         
-        var stats = null;
-        for (var j = 0; j < clasificacion.length; j++) {
-            if (clasificacion[j].equipo === nombreEquipo) {
-                stats = clasificacion[j];
-                break;
-            }
-        }
+        var ptsAjustados = eq.pts - (fp.amarillas * 1) - (fp.rojas * 3);
         
-        if (stats) {
-            var ptsDeportivos = stats.pts;
-            var amarillas = stats.amarillas || 0;
-            var rojas = stats.rojas || 0;
-            var ptsAjustados = ptsDeportivos - (amarillas * 1) - (rojas * 3);
-            
-            equiposConPuntos.push({
-                nombre: nombreEquipo,
-                pj: stats.pj,
-                pg: stats.pg,
-                pe: stats.pe,
-                pp: stats.pp,
-                ptsDeportivos: ptsDeportivos,
-                amarillas: amarillas,
-                rojas: rojas,
-                ptsAjustados: ptsAjustados,
-                gf: stats.gf
-            });
-        }
+        equiposConPuntos.push({
+            nombre: eq.equipo,
+            img: eq.img,
+            pj: eq.pj,
+            pg: eq.pg,
+            pe: eq.pe,
+            pp: eq.pp,
+            ptsDeportivos: eq.pts,
+            amarillas: fp.amarillas,
+            rojas: fp.rojas,
+            ptsAjustados: ptsAjustados,
+            gf: eq.gf
+        });
     }
     
     equiposConPuntos.sort(function(a, b) {
         if (b.ptsAjustados !== a.ptsAjustados) return b.ptsAjustados - a.ptsAjustados;
-        return b.gf - a.gf;
+        if (b.gf !== a.gf) return b.gf - a.gf;
+        return a.nombre.localeCompare(b.nombre);
     });
     
     var html = '';
     for (var i = 0; i < equiposConPuntos.length; i++) {
         var eq = equiposConPuntos[i];
         var posicion = i + 1;
-        var escudo = 'escudos/' + eq.nombre.toLowerCase().replace(/[^a-z0-9]/g, '') + '.png';
         
         html += '<tr>';
         html += '<td>' + posicion + '</td>';
-        html += '<td class="team"><img src="' + escudo + '" onerror="this.style.display=\'none\'"><span>' + eq.nombre + '</span></td>';
+        html += '<td class="team"><img src="escudos/' + eq.img + '" class="team-logo" onerror="this.style.display=\'none\'"><span>' + eq.nombre + '</span></td>';
         html += '<td>' + eq.pj + '</td>';
         html += '<td>' + eq.pg + '</td>';
         html += '<td>' + eq.pe + '</td>';
         html += '<td>' + eq.pp + '</td>';
         html += '<td>' + eq.ptsDeportivos + '</td>';
-        html += '<td>🟡' + eq.amarillas + '</td>';
+        html += '<td>' + eq.amarillas + '</td>';
         html += '<td>🔴' + eq.rojas + '</td>';
         html += '<td style="font-weight:bold; color:#2ecc71;">' + eq.ptsAjustados + '</td>';
         html += '</tr>';
