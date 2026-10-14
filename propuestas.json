@@ -1,5 +1,56 @@
 {
   "1": {
+    "1": [
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Kaña",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Javi",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Isaac",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Torito",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Miki",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Carri",
+        "goles": 4,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Txap",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      }
+    ],
     "5": [
       {
         "equipo": "U.E. Castellar",
