@@ -232,6 +232,43 @@
         "fecha": "2026-10-14"
       }
     ],
+    "2": [
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "DAVIDE",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "TEINO",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "CHRIS.D",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "DOSI",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "JAVI ROBLES",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      }
+    ],
     "6": [
       {
         "equipo": "C.F. Cerdanyola",
