@@ -147,6 +147,15 @@
         "fecha": "2026-10-14"
       }
     ],
+    "3": [
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "ANTONIO",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      }
+    ],
     "5": [
       {
         "equipo": "U.E. Castellar",
