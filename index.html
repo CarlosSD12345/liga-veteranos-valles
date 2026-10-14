@@ -916,29 +916,25 @@ function cerrarModalImportar() {
 function procesarWhatsApp() {
     var texto = document.getElementById('texto-whatsapp').value.trim();
     if (!texto) { alert('Pega el mensaje de WhatsApp'); return; }
-    
     var matchJornada = texto.match(/Jornada\s+(\d+)/i);
     if (!matchJornada) { alert('No se encontró la jornada'); return; }
     var numJornada = parseInt(matchJornada[1]);
-    
-    var matchBloque = texto.match(/Jornada\s+\d+\s*\n([\s\S]*?)Equipo:/i);
+    var matchBloque = texto.match(/Jornada\s+\d+\s*([\s\S]*?)Equipo:/i);
     if (!matchBloque) { alert('No se encontró el bloque del partido'); return; }
     var bloquePartido = matchBloque[1].trim();
-    
     var idxVs = bloquePartido.indexOf(' vs ');
     if (idxVs === -1) { alert('No se encontró " vs " en el partido'); return; }
-    
     var local = bloquePartido.substring(0, idxVs).trim();
     var visitante = bloquePartido.substring(idxVs + 4).trim();
     var textoPartido = local + ' vs ' + visitante;
-    
     var matchEquipo = texto.match(/Equipo:\s*(.+?)(?:\n|$)/);
     if (!matchEquipo) { alert('No se encontró el equipo'); return; }
-    var equipo = matchEquipo[1].trim();
+    
+    // CORRECCIÓN: Limpiar caracteres extraños del nombre del equipo
+    var equipo = matchEquipo[1].trim().replace(/[^\w\sáéíóúÁÉÍÓÚñÑüÜ'.-]/g, '');
     
     var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
     if (!jornada) { alert('Jornada ' + numJornada + ' no encontrada'); return; }
-    
     var idxPartido = -1;
     jornada.partidos.forEach(function(p, idx) {
         var textoPartidoCal = p.local + ' vs ' + p.visitante;
@@ -953,11 +949,12 @@ function procesarWhatsApp() {
         if (linea.indexOf('•') !== -1) {
             var matchGoleador = linea.match(/[•\-\*]\s*(.+?)\s*[-–]\s*(\d+)\s*gol/i);
             if (matchGoleador) {
-                goleadores.push({ jugador: matchGoleador[1].trim(), goles: parseInt(matchGoleador[2]) });
+                // CORRECCIÓN: Limpiar caracteres extraños del nombre del jugador
+                var nombreLimpio = matchGoleador[1].trim().replace(/[^\w\sáéíóúÁÉÍÓÚñÑüÜ'.-]/g, '');
+                goleadores.push({ jugador: nombreLimpio, goles: parseInt(matchGoleador[2]) });
             }
         }
     }
-    
     if (goleadores.length === 0) { alert('No se encontraron goleadores'); return; }
     
     var keyJornada = String(numJornada);
