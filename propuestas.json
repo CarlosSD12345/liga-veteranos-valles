@@ -2,52 +2,52 @@
   "1": {
     "1": [
       {
-        "equipo": "A.V. L'Ametlla del Vallés",
-        "jugador": "Kaña",
+        "equipo": "A.V. L'Ametlla del VallÃ©s",
+        "jugador": "KaÃ±a",
         "goles": 3,
         "estado": "pendiente",
         "fecha": "2026-10-14"
       },
       {
-        "equipo": "A.V. L'Ametlla del Vallés",
+        "equipo": "A.V. L'Ametlla del VallÃ©s",
         "jugador": "Javi",
         "goles": 1,
         "estado": "pendiente",
         "fecha": "2026-10-14"
       },
       {
-        "equipo": "A.V. L'Ametlla del Vallés",
+        "equipo": "A.V. L'Ametlla del VallÃ©s",
         "jugador": "Isaac",
         "goles": 1,
         "estado": "pendiente",
         "fecha": "2026-10-14"
       },
       {
-        "equipo": "A.V. L'Ametlla del Vallés",
+        "equipo": "A.V. L'Ametlla del VallÃ©s",
         "jugador": "Torito",
         "goles": 3,
         "estado": "pendiente",
         "fecha": "2026-10-14"
       },
       {
-        "equipo": "A.V. L'Ametlla del Vallés",
+        "equipo": "A.V. L'Ametlla del VallÃ©s",
         "jugador": "Miki",
         "goles": 2,
         "estado": "pendiente",
         "fecha": "2026-10-14"
       },
       {
-        "equipo": "A.V. L'Ametlla del Vallés",
+        "equipo": "A.V. L'Ametlla del VallÃ©s",
         "jugador": "Carri",
         "goles": 4,
         "estado": "pendiente",
         "fecha": "2026-10-14"
       },
       {
-        "equipo": "A.V. L'Ametlla del Vallés",
+        "equipo": "A.V. L'Ametlla del VallÃ©s",
         "jugador": "Txap",
         "goles": 2,
-        "estado": "pendiente",
+        "estado": "aprobado",
         "fecha": "2026-10-14"
       }
     ],
