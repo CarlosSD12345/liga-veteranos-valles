@@ -89,6 +89,22 @@
         "estado": "aprobado",
         "fecha": "2026-10-13"
       }
+    ],
+    "7": [
+      {
+        "equipo": "C.E. Santa Eullia de Ronana",
+        "jugador": "Borja",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "C.E. Santa Eullia de Ronana",
+        "jugador": "Edu",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      }
     ]
   },
   "2": {
