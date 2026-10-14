@@ -51,6 +51,22 @@
         "fecha": "2026-10-14"
       }
     ],
+    "4": [
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Pepelu",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Nico Ruiz",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      }
+    ],
     "5": [
       {
         "equipo": "U.E. Castellar",
