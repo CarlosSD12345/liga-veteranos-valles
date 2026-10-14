@@ -200,6 +200,27 @@
         "goles": 3,
         "estado": "aprobado",
         "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "C.E. Santa Eullia de Ronana",
+        "jugador": "Borja",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "C.E. Santa Eullia de Ronana",
+        "jugador": "Diego",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "C.E. Santa Eullia de Ronana",
+        "jugador": "Dani",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
       }
     ],
     "6": [
