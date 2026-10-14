@@ -129,6 +129,20 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-10-13"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Cristian",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Raul Ruiz",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-14"
       }
     ]
   },
