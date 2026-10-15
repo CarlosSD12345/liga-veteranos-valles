@@ -267,7 +267,7 @@
       "rojasVisitante": 0
     },
     "2": {
-      "suspendido": true,
+      "suspendido": false,
       "golesLocal": null,
       "golesVisitante": null,
       "arbitro": "Salva",
