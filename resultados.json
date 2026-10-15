@@ -50,16 +50,6 @@
       "rojasLocal": 0,
       "rojasVisitante": 0
     },
-    "5": {
-      "suspendido": false,
-      "golesLocal": 2,
-      "golesVisitante": 5,
-      "arbitro": "Fabregas",
-      "amarillasLocal": 1,
-      "amarillasVisitante": 0,
-      "rojasLocal": 0,
-      "rojasVisitante": 0
-    },
     "6": {
       "suspendido": false,
       "golesLocal": 3,
@@ -128,16 +118,6 @@
       "golesVisitante": 3,
       "arbitro": "Exposito",
       "amarillasLocal": 1,
-      "amarillasVisitante": 0,
-      "rojasLocal": 0,
-      "rojasVisitante": 0
-    },
-    "5": {
-      "suspendido": false,
-      "golesLocal": 3,
-      "golesVisitante": 2,
-      "arbitro": "Fabregas",
-      "amarillasLocal": 0,
       "amarillasVisitante": 0,
       "rojasLocal": 0,
       "rojasVisitante": 0
@@ -214,16 +194,6 @@
       "rojasLocal": 0,
       "rojasVisitante": 0
     },
-    "5": {
-      "suspendido": false,
-      "golesLocal": 0,
-      "golesVisitante": 3,
-      "arbitro": "Congost",
-      "amarillasLocal": 0,
-      "amarillasVisitante": 0,
-      "rojasLocal": 0,
-      "rojasVisitante": 0
-    },
     "6": {
       "suspendido": false,
       "golesLocal": 0,
@@ -245,17 +215,6 @@
       "rojasVisitante": 0
     }
   },
-  "5": {
-    "0": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null,
-      "arbitro": "Congost",
-      "amarillasLocal": 0,
-      "amarillasVisitante": 0,
-      "rojasLocal": 0,
-      "rojasVisitante": 0
-    },
     "1": {
       "suspendido": false,
       "golesLocal": null,
@@ -291,16 +250,6 @@
       "golesLocal": 0,
       "golesVisitante": 0,
       "arbitro": "Fabregas",
-      "amarillasLocal": 0,
-      "amarillasVisitante": 0,
-      "rojasLocal": 0,
-      "rojasVisitante": 0
-    },
-    "5": {
-      "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null,
-      "arbitro": "Lleixa",
       "amarillasLocal": 0,
       "amarillasVisitante": 0,
       "rojasLocal": 0,
