@@ -248,48 +248,48 @@
   "5": {
     "0": {
       "suspendido": false,
-      "golesLocal": 2,
-      "golesVisitante": 0,
+      "golesLocal": null,
+      "golesVisitante": null,
       "arbitro": "Congost",
-      "amarillasLocal": 2,
-      "amarillasVisitante": 2,
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
       "rojasLocal": 0,
       "rojasVisitante": 0
     },
     "1": {
       "suspendido": false,
-      "golesLocal": 2,
-      "golesVisitante": 0,
+      "golesLocal": null,
+      "golesVisitante": null,
       "arbitro": "Julio",
       "amarillasLocal": 0,
       "amarillasVisitante": 0,
-      "rojasLocal": 2,
-      "rojasVisitante": 2
+      "rojasLocal": 0,
+      "rojasVisitante": 0
     },
     "2": {
       "suspendido": true,
       "golesLocal": null,
       "golesVisitante": null,
       "arbitro": "Salva",
-      "amarillasLocal": 5,
+      "amarillasLocal": 0,
       "amarillasVisitante": 0,
       "rojasLocal": 0,
-      "rojasVisitante": 5
+      "rojasVisitante": 0
     },
     "3": {
       "suspendido": false,
       "golesLocal": 0,
-      "golesVisitante": 2,
+      "golesVisitante": null,
       "arbitro": "Duran",
       "amarillasLocal": 0,
       "amarillasVisitante": 0,
-      "rojasLocal": 10,
-      "rojasVisitante": 10
+      "rojasLocal": 0,
+      "rojasVisitante": 0
     },
     "4": {
       "suspendido": false,
-      "golesLocal": 5,
-      "golesVisitante": 5,
+      "golesLocal": 0,
+      "golesVisitante": 0,
       "arbitro": "Fabregas",
       "amarillasLocal": 0,
       "amarillasVisitante": 0,
@@ -298,28 +298,28 @@
     },
     "5": {
       "suspendido": false,
-      "golesLocal": 1,
-      "golesVisitante": 1,
+      "golesLocal": null,
+      "golesVisitante": null,
       "arbitro": "Lleixa",
-      "amarillasLocal": 4,
-      "amarillasVisitante": 4,
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
       "rojasLocal": 0,
       "rojasVisitante": 0
     },
     "6": {
       "suspendido": false,
-      "golesLocal": 5,
-      "golesVisitante": 2,
+      "golesLocal": null,
+      "golesVisitante": null,
       "arbitro": "Utrera",
-      "amarillasLocal": 10,
-      "amarillasVisitante": 10,
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
       "rojasLocal": 0,
       "rojasVisitante": 0
     },
     "7": {
       "suspendido": false,
-      "golesLocal": 2,
-      "golesVisitante": 5,
+      "golesLocal": null,
+      "golesVisitante": null,
       "arbitro": "Edu",
       "amarillasLocal": 0,
       "amarillasVisitante": 0,
