@@ -1404,24 +1404,54 @@ if (sinAcentos(equipos[i].nombreCompleto).indexOf(ncNorm) !== -1) return equipos
 return nc;
 }
 function initCalendario() {
-var selector = document.getElementById('selector-jornada');
-if (!selector) {
-console.error("No se encontró el selector de jornada en el HTML");
-return;
-}
-if (selector.options.length > 0) return;
-if (typeof calendario === 'undefined' || !Array.isArray(calendario)) {
-console.error("El array calendario no está definido");
-return;
-}
-calendario.forEach(function(j) {
-var opt = document.createElement('option');
-opt.value = j.jornada;
-opt.text = 'Jornada ' + j.jornada + ' (' + j.fecha + ')';
-selector.appendChild(opt);
-});
-selector.selectedIndex = 0;
-cargarJornada();
+    var selector = document.getElementById('selector-jornada');
+    if (!selector) {
+        console.error("No se encontró el selector de jornada en el HTML");
+        return;
+    }
+    if (selector.options.length > 0) return;
+    if (typeof calendario === 'undefined' || !Array.isArray(calendario)) {
+        console.error("El array calendario no está definido");
+        return;
+    }
+    
+    // Crear todas las opciones del selector
+    calendario.forEach(function(j) {
+        var opt = document.createElement('option');
+        opt.value = j.jornada;
+        opt.text = 'Jornada ' + j.jornada + ' (' + j.fecha + ')';
+        selector.appendChild(opt);
+    });
+    
+    // Calcular la última jornada jugada
+    var ultimaJornadaJugada = 1;
+    for (var j = 0; j < calendario.length; j++) {
+        var jornada = calendario[j];
+        if (jornada.suspendida === true) {
+            ultimaJornadaJugada = jornada.jornada;
+            continue;
+        }
+        var resJ = resultados[String(jornada.jornada)] || {};
+        var todosConResultado = true;
+        for (var i = 0; i < jornada.partidos.length; i++) {
+            var resP = resJ[String(i)] || {};
+            var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
+            var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
+            if (gl === null || gv === null) {
+                todosConResultado = false;
+                break;
+            }
+        }
+        if (todosConResultado) {
+            ultimaJornadaJugada = jornada.jornada;
+        } else {
+            break;
+        }
+    }
+    
+    // Seleccionar la última jornada jugada
+    selector.value = ultimaJornadaJugada;
+    cargarJornada();
 }
 function cargarJornada() {
 var numJornada = parseInt(document.getElementById('selector-jornada').value);
