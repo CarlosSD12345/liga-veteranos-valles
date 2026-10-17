@@ -1483,15 +1483,19 @@ html += marcador;
 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div></div>';
 html += '<div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
 if (hayTarjetas && !susp && gl !== null) {
-html += '<div class="match-cards"><div class="card-local">';
-if (amL > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amL + '</span> ';
-if (roL > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roL + '</span>';
-if (amL === 0 && roL === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>';
-html += '</div><div class="card-visitante">';
-if (amV > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amV + '</span> ';
-if (roV > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roV + '</span>';
-if (amV === 0 && roV === 0) html += '<span style="color:#7f8c8d;">Sin tarjetas</span>';
-html += '</div></div>';
+    html += '<div class="match-cards" style="gap:8px;">';
+    html += '<div style="display:flex; align-items:center; gap:3px;">';
+    if (amL > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amL + '</span>';
+    if (roL > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roL + '</span>';
+    if (amL === 0 && roL === 0) html += '<span style="color:#7f8c8d; font-size:0.75rem;">0</span>';
+    html += '</div>';
+    html += '<span style="color:#1f4733; font-weight:bold; margin:0 8px;">-</span>';
+    html += '<div style="display:flex; align-items:center; gap:3px;">';
+    if (amV > 0) html += '<span class="fp-card-box"><span class="card-icon card-yellow"></span>' + amV + '</span>';
+    if (roV > 0) html += '<span class="fp-card-box"><span class="card-icon card-red"></span>' + roV + '</span>';
+    if (amV === 0 && roV === 0) html += '<span style="color:#7f8c8d; font-size:0.75rem;">0</span>';
+    html += '</div>';
+    html += '</div>';
 }
 html += '</div>';
 });
