@@ -1,5 +1,42 @@
 {
   "1": {
+    "0": [
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Uri",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Abel",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Dídac",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "David. B",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Marc",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      }
+    ],
     "1": [
       {
         "equipo": "A.V. L'Ametlla del Vallés",
