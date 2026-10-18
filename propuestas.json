@@ -359,6 +359,29 @@
     ]
   },
   "5": {
+    "0": [
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Torito",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Miki",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Javi",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      }
+    ],
     "1": [
       {
         "equipo": "U.E. Canovelles",
