@@ -416,6 +416,29 @@
         "fecha": "2026-10-18"
       }
     ],
+    "6": [
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Nico Ruiz",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Pepelu",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Juan",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      }
+    ],
     "7": [
       {
         "equipo": "C.E. Santa Eulàlia de Ronçana",
