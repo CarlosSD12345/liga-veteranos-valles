@@ -280,6 +280,15 @@
     ]
   },
   "5": {
+    "1": [
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "Eloy",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      }
+    ],
     "4": [
       {
         "equipo": "U.E. Castellar",
