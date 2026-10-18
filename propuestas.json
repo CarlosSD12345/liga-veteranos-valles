@@ -325,6 +325,27 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Raul",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Marc",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Uri",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
       }
     ],
     "6": [
