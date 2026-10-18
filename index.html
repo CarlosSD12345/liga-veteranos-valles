@@ -715,7 +715,7 @@ document.getElementById('goleadores-ranking').style.display = 'block';
 cargarPropuestasPublicas();
 }
 function cargarPropuestasPublicas() {
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json?t=' + Date.now())
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now())
 .then(function(r) {
 if (r.status === 404) { propuestas = {}; renderizarRankingGoleadores(); return; }
 return r.json();
@@ -799,7 +799,7 @@ for (var j in propuestas) {
 for (var p in propuestas[j]) {
 propuestas[j][p].forEach(function(prop) {
 if (prop.estado === 'aprobado') {
-var key = prop.jugador.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '') + '|' + prop.equipo.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+var key = prop.jugador + '|' + prop.equipo;
 if (!stats[key]) stats[key] = { jugador: prop.jugador, equipo: prop.equipo, goles: 0 };
 stats[key].goles += prop.goles;
 }
@@ -872,7 +872,7 @@ select.appendChild(opt);
 function cargarPropuestasAdmin() {
 var token = localStorage.getItem('github_token');
 if (!token) return;
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json?t=' + Date.now(), {
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now(), {
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
 })
 .then(function(r) {
@@ -910,9 +910,7 @@ var numJornada = parseInt(matchJornada[1]);
 var matchBloque = texto.match(/Jornada\s+\d+\s*([\s\S]*?)Equipo:/i);
 if (!matchBloque) { alert('No se encontró el bloque del partido'); return; }
 var bloquePartido = matchBloque[1].trim();
-// Eliminar solo emojis y símbolos especiales, pero preservar TODAS las letras (incluida ç, l·l, etc.)
-bloquePartido = bloquePartido.replace(/[\p{Emoji}\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '').trim();
-bloquePartido = bloquePartido.replace(/[\u{200B}-\u{200D}\u{FEFF}]/gu, '');
+bloquePartido = bloquePartido.replace(/[^\w\sáéíóúÁÉÍÓÚñÑüÜ'.\-]/gu, '').trim();
 bloquePartido = bloquePartido.replace(/\s+/g, ' ');
 var idxVs = bloquePartido.indexOf(' vs ');
 if (idxVs === -1) { alert('No se encontró " vs " en el partido'); return; }
@@ -924,42 +922,10 @@ if (!matchEquipo) { alert('No se encontró el equipo'); return; }
 var equipo = matchEquipo[1].trim().normalize('NFC').replace(/[^\w\sáéíóúÁÉÍÓÚñÑüÜ'.-]/gu, '');
 var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
 if (!jornada) { alert('Jornada ' + numJornada + ' no encontrada'); return; }
-// Función auxiliar para normalizar texto (eliminar acentos)
-function normalizarTexto(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-}
-
-function normalizarTexto(str) {
-    return str
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/l·l/gi, 'l')
-        .replace(/ç/gi, 'c')
-        .replace(/[^a-z0-9\s]/g, '')
-        .toLowerCase()
-        .trim();
-}
-
 var idxPartido = -1;
 jornada.partidos.forEach(function(p, idx) {
-    var textoPartidoCal = normalizarTexto(p.local + ' vs ' + p.visitante);
-    var textoPartidoNorm = normalizarTexto(textoPartido);
-    // Comparación exacta primero
-    if (textoPartidoCal === textoPartidoNorm) { idxPartido = idx; }
-    // Si no, buscar por coincidencia de equipos
-    else {
-        var localNorm = normalizarTexto(p.local);
-        var visitNorm = normalizarTexto(p.visitante);
-        var partes = textoPartidoNorm.split(' vs ');
-        if (partes.length === 2) {
-            var localMsg = partes[0].trim();
-            var visitMsg = partes[1].trim();
-            if ((localMsg.includes(localNorm) || localNorm.includes(localMsg)) && 
-                (visitMsg.includes(visitNorm) || visitNorm.includes(visitMsg))) {
-                idxPartido = idx;
-            }
-        }
-    }
+var textoPartidoCal = p.local + ' vs ' + p.visitante;
+if (textoPartidoCal === textoPartido) { idxPartido = idx; }
 });
 if (idxPartido === -1) { alert('Partido no encontrado: "' + textoPartido + '"\nRevisa que los nombres coincidan.'); return; }
 var goleadores = [];
@@ -979,40 +945,21 @@ var keyJornada = String(numJornada);
 var keyPartido = String(idxPartido);
 if (!propuestas[keyJornada]) propuestas[keyJornada] = {};
 if (!propuestas[keyJornada][keyPartido]) propuestas[keyJornada][keyPartido] = [];
-var partidoOrig = jornada.partidos[idxPartido];
-
-// Función para medir similitud entre dos nombres
-function similitudEquipos(a, b) {
-    var norm = function(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ''); };
-    var aNorm = norm(a);
-    var bNorm = norm(b);
-    var comunes = 0;
-    var i = 0, j = 0;
-    while (i < aNorm.length && j < bNorm.length) {
-        if (aNorm[i] === bNorm[j]) { comunes++; i++; j++; }
-        else { j++; }
-    }
-    return comunes;
-}
-
-var simLocal = similitudEquipos(equipo, partidoOrig.local);
-var simVisit = similitudEquipos(equipo, partidoOrig.visitante);
-var equipoOriginal = simLocal >= simVisit ? partidoOrig.local : partidoOrig.visitante;
 goleadores.forEach(function(g) {
 propuestas[keyJornada][keyPartido].push({
-equipo: equipoOriginal, jugador: g.jugador, goles: g.goles,
+equipo: equipo, jugador: g.jugador, goles: g.goles,
 estado: 'pendiente', fecha: new Date().toISOString().split('T')[0]
 });
 });
 var token = localStorage.getItem('github_token');
 if (!token) { alert('No hay token configurado'); return; }
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json', {
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
 })
 .then(function(r) { return r.json(); })
 .then(function(data) {
 var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Importar desde WhatsApp', content: b64, sha: data.sha })
@@ -1076,13 +1023,13 @@ guardarPropuestas();
 function guardarPropuestas() {
 var token = localStorage.getItem('github_token');
 if (!token) { alert('No hay token'); return; }
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json', {
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
 })
 .then(function(r) { return r.json(); })
 .then(function(data) {
 var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Actualizar propuestas', content: b64, sha: data.sha })
@@ -1173,9 +1120,9 @@ nuevosResultados[String(index)] = { suspendido: susp, golesLocal: susp ? null : 
 });
 resultados[String(jornadaNum)] = nuevosResultados;
 if (!token) { alert('❌ No hay token configurado.'); btn.textContent = '💾 Guardar'; btn.disabled = false; return; }
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/resultados.json', { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } })
-.then(function(r) { if (r.status === 404) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Crear resultados.json', content: b64 }) }); } return r.json(); })
-.then(function(data) { if (data && data.sha) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha }) }); } return data; })
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } })
+.then(function(r) { if (r.status === 404) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Crear resultados.json', content: b64 }) }); } return r.json(); })
+.then(function(data) { if (data && data.sha) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha }) }); } return data; })
 .then(function(r) { if (r && r.ok) { alert('✅ Guardado!'); location.reload(); } else if (r && r.message) { throw new Error(r.message); } })
 .catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
 }
