@@ -182,6 +182,27 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Iván Diaz",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Abel",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Dídac",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
       }
     ],
     "3": [
