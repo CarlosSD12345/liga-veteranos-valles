@@ -368,6 +368,22 @@
         "fecha": "2026-10-18"
       }
     ],
+    "2": [
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Jose Montero",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Moba",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      }
+    ],
     "4": [
       {
         "equipo": "U.E. Castellar",
