@@ -415,6 +415,15 @@
         "estado": "aprobado",
         "fecha": "2026-10-18"
       }
+    ],
+    "7": [
+      {
+        "equipo": "C.E. Santa Eulàlia de Ronçana",
+        "jugador": "Edu",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-18"
+      }
     ]
   }
 }
