@@ -467,6 +467,29 @@
         "fecha": "2026-10-18"
       }
     ],
+    "5": [
+      {
+        "equipo": "Penya Decano",
+        "jugador": "Baena",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-19"
+      },
+      {
+        "equipo": "Penya Decano",
+        "jugador": "Monki",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-19"
+      },
+      {
+        "equipo": "Penya Decano",
+        "jugador": "Chus",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-19"
+      }
+    ],
     "6": [
       {
         "equipo": "C.F. Cerdanyola",
