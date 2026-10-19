@@ -443,6 +443,22 @@
         "fecha": "2026-10-18"
       }
     ],
+    "4": [
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Felix",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-19"
+      },
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Ivan Heras",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-19"
+      }
+    ],
     "6": [
       {
         "equipo": "C.F. Cerdanyola",
