@@ -88,6 +88,29 @@
         "fecha": "2026-10-14"
       }
     ],
+    "2": [
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Alvaro",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-19"
+      },
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Felix",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-19"
+      },
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Alberto",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-19"
+      }
+    ],
     "4": [
       {
         "equipo": "C.F. Cerdanyola",
