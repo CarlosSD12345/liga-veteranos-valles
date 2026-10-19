@@ -525,6 +525,13 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Alberto Gomez",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-19"
       }
     ],
     "5": [
