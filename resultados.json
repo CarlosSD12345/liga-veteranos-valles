@@ -359,7 +359,7 @@
       "rojasVisitante": 0
     },
     "3": {
-      "suspendido": true,
+      "suspendido": false,
       "golesLocal": null,
       "golesVisitante": null,
       "arbitro": "Lleixa",
