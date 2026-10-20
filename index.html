@@ -1177,6 +1177,8 @@ var valArb = document.getElementById('ar-' + index).value.trim();
 var valAmL = document.getElementById('amL-' + index).value; var valAmV = document.getElementById('amV-' + index).value;
 var valRoL = document.getElementById('roL-' + index).value; var valRoV = document.getElementById('roV-' + index).value;
 var susp = document.getElementById('sp-' + index).checked;
+var valCampo = document.getElementById('ca-' + index).value.trim();
+var valHora = document.getElementById('ho-' + index).value.trim();
 nuevosResultados[String(index)] = { suspendido: susp, golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)), golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV)), arbitro: valArb || null, amarillasLocal: valAmL === '' ? 0 : parseInt(valAmL), amarillasVisitante: valAmV === '' ? 0 : parseInt(valAmV), rojasLocal: valRoL === '' ? 0 : parseInt(valRoL), rojasVisitante: valRoV === '' ? 0 : parseInt(valRoV) };
 });
 resultados[String(jornadaNum)] = nuevosResultados;
