@@ -1147,6 +1147,14 @@ html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT
 html += '<input type="number" id="roV-' + index + '" value="' + roV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
 html += '</div>';
 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center;">';
+var campoActual = (resP.campo !== undefined && resP.campo !== null) ? resP.campo : (p.campo || '');
+var horaActual = (resP.hora !== undefined && resP.hora !== null) ? resP.hora : (p.hora || '');
+html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center; flex-wrap:wrap;">';
+html += '<span style="color:#a3b8af; font-size:0.75rem;">📍 Campo:</span>';
+html += '<input type="text" id="ca-' + index + '" value="' + campoActual + '" placeholder="Campo" style="flex:1; max-width:200px; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:13px;">';
+html += '<span style="color:#a3b8af; font-size:0.75rem;"> Hora:</span>';
+html += '<input type="text" id="ho-' + index + '" value="' + horaActual + '" placeholder="08:00" style="width:80px; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:13px; text-align:center;">';
+html += '</div>';
 html += construirSelectArbitros('ar-' + index, arb);
 html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Susp.</label>';
 html += '</div></div>';
