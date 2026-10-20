@@ -1547,7 +1547,7 @@ var arbTexto = arbNombre ? ' · 👤 ' + arbNombre : '';
 html += '<div class="match-card"><div class="match-teams"><div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
 html += marcador;
 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div></div>';
-html += '<div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
+html += '<div class="match-info">📍 ' + campoPartido + ' · 🕒 ' + horaPartido + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
 if (hayTarjetas && !susp && gl !== null) {
     html += '<div class="match-cards" style="gap:8px;">';
     html += '<div style="display:flex; align-items:center; gap:3px;">';
