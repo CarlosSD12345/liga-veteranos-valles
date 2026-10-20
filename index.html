@@ -11,18 +11,8 @@
 <meta name="apple-mobile-web-app-title" content="Liga Veteranos">
 <link rel="apple-touch-icon" href="escudos/icono_512.png">
 <style>
-html, body { margin: 0; padding: 0; overflow-x: hidden; }
-body { background-color: #0b1d15; color: white; font-family: Arial, sans-serif; }
-.container { max-width: 1000px; margin: 0 auto; width: 100%; box-sizing: border-box; padding: 20px; }
-    /* Nuevo contenedor sticky */
-.sticky-header {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: #0b1d15;
-    padding-bottom: 10px;
-}
+body { background-color: #0b1d15; color: white; padding: 20px; font-family: Arial, sans-serif; }
+.container { max-width: 1000px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 header { display: flex; justify-content: center; margin-bottom: 20px; }
 .header-logo { width: 400px; max-width: 100%; height: auto; object-fit: contain; }
 .tabs-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 25px; }
@@ -100,8 +90,8 @@ footer { display: flex; flex-direction: column; align-items: center; padding: 30
 .medalla-plata { background-color: #bdc3c7; color: #0b1d15; }
 .medalla-bronce { background-color: #e67e22; color: #0b1d15; }
 @media (max-width: 600px) {
-body { padding: 0; }
-.container { width: 100%; padding: 8px; }
+body { padding: 8px; }
+.container { width: 100%; }
 header { justify-content: center; }
 .header-logo { width: 260px; margin-left: 20px; }
 .tabs-row { gap: 6px; flex-wrap: nowrap; }
@@ -122,7 +112,6 @@ header { justify-content: center; }
 </head>
 <body>
 <div class="container">
-<div class="sticky-header">
 <header>
 <img src="escudos/logo_liga.png" alt="Liga Veteranos Vallès" class="header-logo">
 </header>
@@ -137,7 +126,6 @@ header { justify-content: center; }
 <button class="tab-btn" onclick="cambiarPestana('goleadores', this)">Goleadores</button>
 </div>
 <div class="badge" id="badge-jornada">JORNADA 3</div>
-</div>
 </div>
 <div id="clasificacion-real" class="section">
 <table>
@@ -1144,14 +1132,6 @@ html += '<span style="color:#2ecc71; margin:0 5px;">-</span>';
 html += '<input type="number" id="gv-' + index + '" value="' + golV + '" inputmode="numeric" style="width:40px; text-align:center; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:16px;">';
 html += '<span style="color:white; font-size:0.85rem; flex:1; text-align:left; padding-left:10px;">' + getNombreCorto(p.visitante) + '</span>';
 html += '</div>';
-var campoActual = (resP.campo !== undefined && resP.campo !== null) ? resP.campo : (p.campo || '');
-var horaActual = (resP.hora !== undefined && resP.hora !== null) ? resP.hora : (p.hora || '');
-html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center; flex-wrap:wrap;">';
-html += '<span style="color:#a3b8af; font-size:0.75rem;">📍 Campo:</span>';
-html += '<input type="text" id="ca-' + index + '" value="' + campoActual + '" placeholder="Campo" style="flex:1; max-width:200px; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:13px;">';
-html += '<span style="color:#a3b8af; font-size:0.75rem;"> Hora:</span>';
-html += '<input type="text" id="ho-' + index + '" value="' + horaActual + '" placeholder="08:00" style="width:80px; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:13px; text-align:center;">';
-html += '</div>';
 html += '<div style="display:flex; align-items:center; gap:5px; margin-top:8px; flex-wrap:wrap; justify-content:center;">';
 html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">🟡 LOCAL</span>';
 html += '<input type="number" id="amL-' + index + '" value="' + amL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
@@ -1189,9 +1169,7 @@ var valArb = document.getElementById('ar-' + index).value.trim();
 var valAmL = document.getElementById('amL-' + index).value; var valAmV = document.getElementById('amV-' + index).value;
 var valRoL = document.getElementById('roL-' + index).value; var valRoV = document.getElementById('roV-' + index).value;
 var susp = document.getElementById('sp-' + index).checked;
-var valCampo = document.getElementById('ca-' + index).value.trim();
-var valHora = document.getElementById('ho-' + index).value.trim();
-nuevosResultados[String(index)] = { suspendido: susp, golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)), golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV)), arbitro: valArb || null, campo: valCampo || null, hora: valHora || null, amarillasLocal: valAmL === '' ? 0 : parseInt(valAmL), amarillasVisitante: valAmV === '' ? 0 : parseInt(valAmV), rojasLocal: valRoL === '' ? 0 : parseInt(valRoL), rojasVisitante: valRoV === '' ? 0 : parseInt(valRoV) };
+nuevosResultados[String(index)] = { suspendido: susp, golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)), golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV)), arbitro: valArb || null, amarillasLocal: valAmL === '' ? 0 : parseInt(valAmL), amarillasVisitante: valAmV === '' ? 0 : parseInt(valAmV), rojasLocal: valRoL === '' ? 0 : parseInt(valRoL), rojasVisitante: valRoV === '' ? 0 : parseInt(valRoV) };
 });
 resultados[String(jornadaNum)] = nuevosResultados;
 if (!token) { alert('❌ No hay token configurado.'); btn.textContent = '💾 Guardar'; btn.disabled = false; return; }
@@ -1544,8 +1522,6 @@ var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.gole
 var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
 var susp = resP.suspendido === true;
 var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro;
-var campoPartido = (resP.campo !== undefined && resP.campo !== null) ? resP.campo : p.campo;
-var horaPartido = (resP.hora !== undefined && resP.hora !== null) ? resP.hora : p.hora;
 var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : null;
 var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : null;
 var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : null;
@@ -1559,7 +1535,7 @@ var arbTexto = arbNombre ? ' · 👤 ' + arbNombre : '';
 html += '<div class="match-card"><div class="match-teams"><div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
 html += marcador;
 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div></div>';
-html += '<div class="match-info">📍 ' + campoPartido + ' · 🕒 ' + horaPartido + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
+html += '<div class="match-info">📍 ' + p.campo + ' · 🕒 ' + p.hora + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
 if (hayTarjetas && !susp && gl !== null) {
     html += '<div class="match-cards" style="gap:8px;">';
     html += '<div style="display:flex; align-items:center; gap:3px;">';
