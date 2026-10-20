@@ -14,7 +14,14 @@
 body { background-color: #0b1d15; color: white; padding: 0; margin: 0; font-family: Arial, sans-serif; overflow-x: hidden; }
 .container { max-width: 1000px; margin: 0 auto; width: 100%; box-sizing: border-box; padding: 20px; }
     /* Nuevo contenedor sticky */
-.sticky-header { position: sticky; top: 0; z-index: 100; background-color: #0b1d15; padding-bottom: 10px; }
+.sticky-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #0b1d15;
+    padding-bottom: 10px;
+}
 header { display: flex; justify-content: center; margin-bottom: 20px; }
 .header-logo { width: 400px; max-width: 100%; height: auto; object-fit: contain; }
 .tabs-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 25px; }
