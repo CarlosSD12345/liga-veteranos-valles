@@ -42,7 +42,13 @@ td { padding: 12px; border-bottom: 1px solid #1f4733; text-align: center; }
 .rest { background-color: #9b59b6; }
 .col-forma { white-space: nowrap; min-width: 90px; }
 .selector-container { margin-bottom: 20px; text-align: center; }
-#selector-jornada, #admin-selector-jornada, #goleador-jornada, #goleador-partido, #login-equipo, #login-equipo-delegados, #goleador-jornada-delegados, #goleador-partido-delegados { background-color: #11291e; color: white; border: 1px solid #2ecc71; padding: 12px 20px; border-radius: 8px; font-size: 1rem; font-weight: bold; width: 100%; max-width: 350px; cursor: pointer; }
+#admin-selector-jornada, #goleador-jornada, #goleador-partido, #login-equipo, #login-equipo-delegados { background-color: #11291e; color: white; border: 1px solid #2ecc71; padding: 12px 20px; border-radius: 8px; font-size: 1rem; font-weight: bold; width: 100%; max-width: 350px; cursor: pointer; }
+.jornadas-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-bottom: 20px; }
+.jornadas-scroll::-webkit-scrollbar { display: none; }
+.jornada-btn { flex-shrink: 0; background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; white-space: nowrap; text-align: center; transition: all 0.2s; }
+.jornada-btn.active { background-color: #2ecc71; color: #0b1d15; border-color: #2ecc71; }
+.jornada-btn:hover { background-color: #173827; }
+.jornada-btn.active:hover { background-color: #2ecc71; }
 .match-card { background-color: #11291e; border: 1px solid #1f4733; border-radius: 10px; padding: 15px; margin-bottom: 10px; }
 .match-teams { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
 .match-team { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; }
@@ -107,6 +113,7 @@ header { justify-content: center; }
 .footer-lema { font-size: 16px; }
 .footer-hashtag { font-size: 18px; }
 .login-box, .propuesta-box { padding: 15px; margin: 10px; }
+.jornada-btn { padding: 8px 10px; font-size: 0.75rem; }
 }
 </style>
 </head>
@@ -117,8 +124,6 @@ header { justify-content: center; }
 </header>
 <div class="tabs-row">
 <div class="tabs">
-<!-- OCULTO TEMPORALMENTE - Activar cuando Jaume lo autorice -->
-<!-- <button class="tab-btn active" onclick="cambiarPestana('clasificacion-real', this)">Clasificación Real</button> -->
 <button class="tab-btn active" onclick="cambiarPestana('calendario', this)">Calendario</button>
 <button class="tab-btn" onclick="cambiarPestana('fairplay', this)">Fair Play</button>
 <button class="tab-btn" onclick="cambiarPestana('clasificacion', this)">Clasificación</button>
@@ -145,9 +150,7 @@ header { justify-content: center; }
 </table>
 </div>
 <div id="calendario" class="section active">
-<div class="selector-container">
-<select id="selector-jornada" onchange="cargarJornada()"></select>
-</div>
+<div class="jornadas-scroll" id="jornadas-scroll"></div>
 <div id="contenedor-partidos"></div>
 </div>
 <div id="fairplay" class="section">
@@ -161,7 +164,7 @@ header { justify-content: center; }
 <div id="arbitros" class="section">
 <table>
 <thead>
-<tr><th>#</th><th class="team">ÁRBITRO</th><th>PA</th><th>🟡 AMARILLAS</th><th>🔴 ROJAS</th><th>TOTAL</th><th style="color:#2ecc71;">TARJ./PARTIDO</th></tr>
+<tr><th>#</th><th class="team">ÁRBITRO</th><th>PA</th><th> AMARILLAS</th><th> ROJAS</th><th>TOTAL</th><th style="color:#2ecc71;">TARJ./PARTIDO</th></tr>
 </thead>
 <tbody id="tabla-arb"></tbody>
 </table>
@@ -174,7 +177,7 @@ header { justify-content: center; }
 </thead>
 <tbody id="tabla-goleadores"></tbody>
 </table>
-<button class="btn-primary" onclick="cambiarPestana('acceso-delegados', document.querySelectorAll('.tab-btn')[6])" style="max-width:300px; margin:20px auto; display:block;">Acceso Delegados</button>
+<button class="btn-primary" onclick="cambiarPestana('acceso-delegados', document.querySelectorAll('.tab-btn')[5])" style="max-width:300px; margin:20px auto; display:block;">Acceso Delegados</button>
 </div>
 </div>
 <div id="acceso-delegados" class="section">
@@ -187,7 +190,7 @@ header { justify-content: center; }
 <p style="margin:0 0 8px 0;"> <b>Contraseña:</b> Se facilita en privado a cada responsable de equipo.</p>
 <a href="https://wa.me/34617417827?text=Hola,%20soy%20el%20responsable%20de%20mi%20equipo%20y%20necesito%20mi%20contrase%C3%B1a%20para%20enviar%20los%20goleadores.%20%C2%A1Gracias!" target="_blank" style="display:block; width:100%; padding:12px; background-color:#25D366; color:white; text-align:center; border-radius:8px; font-weight:bold; text-decoration:none; margin-bottom:12px;">📲 Solicitar contraseña por WhatsApp</a>
 <p style="margin:0 0 8px 0;">📝 <b>Cómo enviar:</b> Selecciona tu equipo → introduce contraseña → elige Jornada y Partido → escribe jugador y goles → "Enviar propuesta".</p>
-<p style="margin:0 0 8px 0; color:#f39c12;">⚠️ <b>IMPORTANTE:</b> Usa siempre el mismo nombre exacto para cada jugador. Si escribes "Javi" un día y "Javier" otro, no sumará al ser nombres diferentes.</p>
+<p style="margin:0 0 8px 0; color:#f39c12;">️ <b>IMPORTANTE:</b> Usa siempre el mismo nombre exacto para cada jugador. Si escribes "Javi" un día y "Javier" otro, no sumará al ser nombres diferentes.</p>
 <p style="margin:0;">✅ Se abrirá WhatsApp con el mensaje listo. Envíalo y el admin lo aprobará.</p>
 </div>
 <select id="login-equipo-delegados">
@@ -199,7 +202,7 @@ header { justify-content: center; }
 </div>
 <div id="acceso-delegados-form" style="display:none;">
 <div class="propuesta-box">
-<h2>⚽ Enviar Goleadores</h2>
+<h2> Enviar Goleadores</h2>
 <p style="color:#a3b8af; margin-bottom:10px;">Equipo: <strong id="equipo-actual-delegados" style="color:#2ecc71;"></strong></p>
 <button class="btn-secondary" onclick="cerrarSesionGoleadoresDelegados()" style="margin-bottom:15px; font-size:0.85rem; padding:8px;">Cerrar sesión</button>
 <select id="goleador-jornada-delegados" onchange="cargarPartidosGoleadorDelegados()">
@@ -210,7 +213,7 @@ header { justify-content: center; }
 </select>
 <div id="goleadores-lista-delegados" style="margin-top:15px;"></div>
 <button class="btn-add" onclick="addGoleadorRowDelegados()" style="margin-top:10px; width:100%;">➕ Añadir goleador</button>
-<button class="btn-primary" onclick="enviarPropuestaGoleadoresDelegados()" style="margin-top:15px;">📲 Enviar propuesta</button>
+<button class="btn-primary" onclick="enviarPropuestaGoleadoresDelegados()" style="margin-top:15px;"> Enviar propuesta</button>
 </div>
 </div>
 </div>
@@ -231,7 +234,7 @@ header { justify-content: center; }
 <div id="panel-admin" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 29, 21, 0.98); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto;">
 <div style="max-width: 500px; margin: 30px auto; background-color: #11291e; padding: 25px; border-radius: 12px; border: 1px solid #2ecc71; text-align: center;">
 <div id="pantalla-codigo">
-<h2 style="color: #2ecc71; margin-bottom: 20px;"> Acceso Restringido</h2>
+<h2 style="color: #2ecc71; margin-bottom: 20px;">🔒 Acceso Restringido</h2>
 <input type="password" id="codigo-admin" placeholder="Código..." style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 16px; text-align: center;">
 <button onclick="verificarCodigo()" style="width: 100%; padding: 12px; background-color: #2ecc71; color: #0b1d15; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 10px;">Entrar</button>
 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
@@ -763,7 +766,7 @@ var partido = jornada.partidos[parseInt(idxPartido)];
 var texto = ' *PROPUESTA GOLEADORES*\n';
 texto += '📅 Jornada ' + numJornada + '\n';
 texto += ' ' + partido.local + ' vs ' + partido.visitante + '\n';
-texto += '👕 Equipo: ' + equipoLogueado + '\n';
+texto += ' Equipo: ' + equipoLogueado + '\n';
 texto += '*Goleadores:*\n';
 goleadores.forEach(function(g) {
 texto += '• ' + g.jugador + ' - ' + g.goles + ' gol(es)\n';
@@ -912,7 +915,7 @@ if (idxVs === -1) { alert('No se encontró " vs " en el partido'); return; }
 var local = bloquePartido.substring(0, idxVs).trim();
 var visitante = bloquePartido.substring(idxVs + 4).trim();
 var textoPartido = local + ' vs ' + visitante;
-var matchEquipo = texto.match(/Equipo:\s*(.+?)(?:\n|$)/);
+var matchEquipo = texto.match(/Equipo:\s*(.+?)(?:|$)/);
 if (!matchEquipo) { alert('No se encontró el equipo'); return; }
 var equipo = matchEquipo[1].trim().normalize('NFC').replace(/[^\w\sáéíóúÁÉÍÓÚñÑüÜ'.-]/gu, '');
 var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
@@ -1118,7 +1121,7 @@ html += '<div style="display:flex; align-items:center; gap:5px; margin-top:5px; 
 html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">🔴 LOCAL</span>';
 html += '<input type="number" id="roL-' + index + '" value="' + roL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
-html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT🔴</span>';
+html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT</span>';
 html += '<input type="number" id="roV-' + index + '" value="' + roV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
 html += '</div>';
 html += '<div style="display:flex; align-items:center; gap:8px; margin-top:8px; justify-content:center; flex-wrap:wrap;">';
@@ -1126,14 +1129,14 @@ var campoActual = (resP.campo !== undefined && resP.campo !== null) ? resP.campo
 var horaActual = (resP.hora !== undefined && resP.hora !== null) ? resP.hora : (p.hora || '');
 html += '<span style="color:#a3b8af; font-size:0.75rem;">📍 Campo:</span>';
 html += '<input type="text" id="ca-' + index + '" value="' + campoActual + '" placeholder="Campo" style="flex:1; max-width:200px; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:13px;">';
-html += '<span style="color:#a3b8af; font-size:0.75rem;"> Hora:</span>';
+html += '<span style="color:#a3b8af; font-size:0.75rem;">🕒 Hora:</span>';
 html += '<input type="text" id="ho-' + index + '" value="' + horaActual + '" placeholder="08:00" style="width:80px; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:13px; text-align:center;">';
 html += '</div>';
 html += construirSelectArbitros('ar-' + index, arb);
 html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Susp.</label>';
 html += '</div></div>';
 });
-html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
+html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;"> Guardar Resultados</button>';
 contenedor.innerHTML = html;
 }
 function guardarResultados(jornadaNum) {
@@ -1161,7 +1164,7 @@ fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents
 .then(function(r) { if (r.status === 404) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Crear resultados.json', content: b64 }) }); } return r.json(); })
 .then(function(data) { if (data && data.sha) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha }) }); } return data; })
 .then(function(r) { if (r && r.ok) { alert('✅ Guardado!'); location.reload(); } else if (r && r.message) { throw new Error(r.message); } })
-.catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
+.catch(function(e) { alert('❌ ' + e.message); btn.textContent = ' Guardar'; btn.disabled = false; });
 }
 function calcularClasificacion() {
 var stats = {}; equipos.forEach(function(eq) { stats[eq.nombreCompleto] = { nombre: eq.nombre, img: eq.img, pj: 0, pts: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, forma: [] }; });
@@ -1442,21 +1445,23 @@ if (sinAcentos(equipos[i].nombreCompleto).indexOf(ncNorm) !== -1) return equipos
 return nc;
 }
 function initCalendario() {
-var selector = document.getElementById('selector-jornada');
-if (!selector) {
-console.error("No se encontró el selector de jornada en el HTML");
+var contenedor = document.getElementById('jornadas-scroll');
+if (!contenedor) {
+console.error("No se encontró el contenedor de jornadas");
 return;
 }
-if (selector.options.length > 0) return;
+if (contenedor.children.length > 0) return;
 if (typeof calendario === 'undefined' || !Array.isArray(calendario)) {
 console.error("El array calendario no está definido");
 return;
 }
 calendario.forEach(function(j) {
-var opt = document.createElement('option');
-opt.value = j.jornada;
-opt.text = 'Jornada ' + j.jornada + ' (' + j.fecha + ')';
-selector.appendChild(opt);
+var btn = document.createElement('button');
+btn.className = 'jornada-btn';
+btn.dataset.jornada = j.jornada;
+btn.textContent = 'J' + j.jornada + ' · ' + j.fecha;
+btn.onclick = function() { seleccionarJornada(parseInt(this.dataset.jornada)); };
+contenedor.appendChild(btn);
 });
 var ultimaJornadaJugada = 1;
 for (var j = 0; j < calendario.length; j++) {
@@ -1482,17 +1487,31 @@ ultimaJornadaJugada = jornada.jornada;
 break;
 }
 }
-selector.value = ultimaJornadaJugada;
-cargarJornada();
+seleccionarJornada(ultimaJornadaJugada);
 }
-function cargarJornada() {
-var numJornada = parseInt(document.getElementById('selector-jornada').value);
+function seleccionarJornada(numJornada) {
+var botones = document.querySelectorAll('.jornada-btn');
+botones.forEach(function(btn) {
+if (parseInt(btn.dataset.jornada) === numJornada) {
+btn.classList.add('active');
+btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+} else {
+btn.classList.remove('active');
+}
+});
+cargarJornada(numJornada);
+}
+function cargarJornada(numJornada) {
+if (numJornada === undefined) {
+var btnActivo = document.querySelector('.jornada-btn.active');
+numJornada = btnActivo ? parseInt(btnActivo.dataset.jornada) : 1;
+}
 var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
 if (!jornada) return;
 var resJ = resultados[String(numJornada)] || {};
 var contenedor = document.getElementById('contenedor-partidos');
 var html = '';
-if (jornada.suspendida === true) { html += '<div class="suspended-banner">️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>'; }
+if (jornada.suspendida === true) { html += '<div class="suspended-banner">🌧️ JORNADA ' + jornada.jornada + ' SUSPENDIDA POR LLUVIA</div>'; }
 if (jornada.descanso) { html += '<div class="descanso-banner">😴 Descansa: <strong>' + getNombreCorto(jornada.descanso) + '</strong></div>'; }
 jornada.partidos.forEach(function(p, idx) {
 var resP = resJ[String(idx)] || {};
@@ -1567,6 +1586,7 @@ renderizarClasificacion();
 renderizarClasificacionReal();
 actualizarBadgeJornada();
 initCalendario();
+cargarPropuestasPublicas();
 })
 .catch(function(e) {
 console.error('Error al cargar resultados:', e);
@@ -1575,6 +1595,7 @@ renderizarClasificacion();
 renderizarClasificacionReal();
 actualizarBadgeJornada();
 initCalendario();
+cargarPropuestasPublicas();
 });
 </script>
 </body>
