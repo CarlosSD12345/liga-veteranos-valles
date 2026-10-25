@@ -815,6 +815,30 @@
         "goles": 1,
         "estado": "rechazado",
         "fecha": "2026-10-25"
+      },
+      {
+        "jugador": "Kaña",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "jugador": "Txap",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "jugador": "Miki",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "jugador": "Javi",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
       }
     ],
     "7": [
