@@ -591,6 +591,22 @@
     ]
   },
   "6": {
+    "0": [
+      {
+        "equipo": "C.E. Santa Eulàlia de Ronçana",
+        "jugador": "Edu",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "C.E. Santa Eulàlia de Ronçana",
+        "jugador": "Diego",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      }
+    ],
     "1": [
       {
         "equipo": "U.E. Canovelles",
