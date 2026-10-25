@@ -917,7 +917,11 @@ var visitante = bloquePartido.substring(idxVs + 4).trim();
 var textoPartido = local + ' vs ' + visitante;
 var matchEquipo = texto.match(/Equipo:\s*(.+?)(?:|$)/);
 if (!matchEquipo) { alert('No se encontró el equipo'); return; }
-var equipo = matchEquipo[1].trim().normalize('NFC');
+var equipo = matchEquipo[1].trim();
+// Solo eliminar emojis y caracteres de control, mantener TODAS las letras, puntos, apóstrofes, etc.
+equipo = equipo.replace(/[\p{Emoji}\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '');
+equipo = equipo.replace(/[\u{200B}-\u{200D}\u{FEFF}]/gu, '');
+equipo = equipo.replace(/\s+/g, ' ');
 // Limpiar solo caracteres extraños, mantener letras normales incluyendo ñ, ç, l·l
 equipo = equipo.replace(/[\p{Emoji}\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '').trim();
 equipo = equipo.replace(/\s+/g, ' ');
