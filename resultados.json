@@ -342,8 +342,8 @@
     },
     "1": {
       "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null,
+      "golesLocal": 3,
+      "golesVisitante": 6,
       "arbitro": "Duran",
       "campo": "MPAL CANOVELLES",
       "hora": "08:00",
