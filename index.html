@@ -136,7 +136,7 @@ header { justify-content: center; }
 <div id="clasificacion-real" class="section">
 <table>
 <thead>
-<tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Pts Dep.</th><th>🟡</th><th>🔴</th><th>Pts Ajustados</th></tr>
+<tr><th>#</th><th class="team">Equipo</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Pts Dep.</th><th></th><th>🔴</th><th>Pts Ajustados</th></tr>
 </thead>
 <tbody id="tabla-cr"></tbody>
 </table>
@@ -164,7 +164,7 @@ header { justify-content: center; }
 <div id="arbitros" class="section">
 <table>
 <thead>
-<tr><th>#</th><th class="team">ÁRBITRO</th><th>PA</th><th> AMARILLAS</th><th> ROJAS</th><th>TOTAL</th><th style="color:#2ecc71;">TARJ./PARTIDO</th></tr>
+<tr><th>#</th><th class="team">ÁRBITRO</th><th>PA</th><th>🟡 AMARILLAS</th><th>🔴 ROJAS</th><th>TOTAL</th><th style="color:#2ecc71;">TARJ./PARTIDO</th></tr>
 </thead>
 <tbody id="tabla-arb"></tbody>
 </table>
@@ -187,10 +187,10 @@ header { justify-content: center; }
 <p style="color:#a3b8af; margin-bottom:15px; font-size:0.9rem;">Solo responsables de equipo</p>
 <button onclick="var g=document.getElementById('guia-goleadores-delegados'); g.style.display = g.style.display==='none'?'block':'none';" style="width:100%; padding:10px; background-color:#1f4733; color:#2ecc71; border:1px solid #2ecc71; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:10px;"> Ver guía rápida</button>
 <div id="guia-goleadores-delegados" style="display:none; background-color:#1f4733; padding:15px; border-radius:8px; margin-bottom:15px; font-size:0.85rem; color:white;">
-<p style="margin:0 0 8px 0;"> <b>Contraseña:</b> Se facilita en privado a cada responsable de equipo.</p>
+<p style="margin:0 0 8px 0;">🔑 <b>Contraseña:</b> Se facilita en privado a cada responsable de equipo.</p>
 <a href="https://wa.me/34617417827?text=Hola,%20soy%20el%20responsable%20de%20mi%20equipo%20y%20necesito%20mi%20contrase%C3%B1a%20para%20enviar%20los%20goleadores.%20%C2%A1Gracias!" target="_blank" style="display:block; width:100%; padding:12px; background-color:#25D366; color:white; text-align:center; border-radius:8px; font-weight:bold; text-decoration:none; margin-bottom:12px;">📲 Solicitar contraseña por WhatsApp</a>
-<p style="margin:0 0 8px 0;">📝 <b>Cómo enviar:</b> Selecciona tu equipo → introduce contraseña → elige Jornada y Partido → escribe jugador y goles → "Enviar propuesta".</p>
-<p style="margin:0 0 8px 0; color:#f39c12;">️ <b>IMPORTANTE:</b> Usa siempre el mismo nombre exacto para cada jugador. Si escribes "Javi" un día y "Javier" otro, no sumará al ser nombres diferentes.</p>
+<p style="margin:0 0 8px 0;"> <b>Cómo enviar:</b> Selecciona tu equipo → introduce contraseña → elige Jornada y Partido → escribe jugador y goles → "Enviar propuesta".</p>
+<p style="margin:0 0 8px 0; color:#f39c12;">⚠️ <b>IMPORTANTE:</b> Usa siempre el mismo nombre exacto para cada jugador. Si escribes "Javi" un día y "Javier" otro, no sumará al ser nombres diferentes.</p>
 <p style="margin:0;">✅ Se abrirá WhatsApp con el mensaje listo. Envíalo y el admin lo aprobará.</p>
 </div>
 <select id="login-equipo-delegados">
@@ -202,7 +202,7 @@ header { justify-content: center; }
 </div>
 <div id="acceso-delegados-form" style="display:none;">
 <div class="propuesta-box">
-<h2> Enviar Goleadores</h2>
+<h2>⚽ Enviar Goleadores</h2>
 <p style="color:#a3b8af; margin-bottom:10px;">Equipo: <strong id="equipo-actual-delegados" style="color:#2ecc71;"></strong></p>
 <button class="btn-secondary" onclick="cerrarSesionGoleadoresDelegados()" style="margin-bottom:15px; font-size:0.85rem; padding:8px;">Cerrar sesión</button>
 <select id="goleador-jornada-delegados" onchange="cargarPartidosGoleadorDelegados()">
@@ -213,7 +213,7 @@ header { justify-content: center; }
 </select>
 <div id="goleadores-lista-delegados" style="margin-top:15px;"></div>
 <button class="btn-add" onclick="addGoleadorRowDelegados()" style="margin-top:10px; width:100%;">➕ Añadir goleador</button>
-<button class="btn-primary" onclick="enviarPropuestaGoleadoresDelegados()" style="margin-top:15px;"> Enviar propuesta</button>
+<button class="btn-primary" onclick="enviarPropuestaGoleadoresDelegados()" style="margin-top:15px;">📲 Enviar propuesta</button>
 </div>
 </div>
 </div>
@@ -247,7 +247,7 @@ header { justify-content: center; }
 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
 </div>
 <div id="pantalla-control" style="display: none;">
-<h2 style="color: #2ecc71; margin-bottom: 15px;">🎛️ Panel de Control</h2>
+<h2 style="color: #2ecc71; margin-bottom: 15px;">️ Panel de Control</h2>
 <button onclick="mostrarSeccionAdmin('resultados')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:10px;">📊 Resultados</button>
 <button onclick="mostrarSeccionAdmin('propuestas')" style="width:100%; padding:12px; background-color:#f39c12; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:15px;">⚽ Propuestas Goleadores</button>
 <button onclick="mostrarImportarWhatsApp()" style="width:100%; padding:12px; background-color:#3498db; color:white; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:15px;">📋 Importar desde WhatsApp</button>
@@ -763,10 +763,10 @@ if (goleadores.length === 0) { alert('Añade al menos un goleador'); return; }
 if (!confirm('¿Enviar propuesta de ' + goleadores.length + ' goleador(es)?')) return;
 var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
 var partido = jornada.partidos[parseInt(idxPartido)];
-var texto = ' *PROPUESTA GOLEADORES*\n';
+var texto = '⚽ *PROPUESTA GOLEADORES*\n';
 texto += '📅 Jornada ' + numJornada + '\n';
-texto += ' ' + partido.local + ' vs ' + partido.visitante + '\n';
-texto += ' Equipo: ' + equipoLogueado + '\n';
+texto += '⚽ ' + partido.local + ' vs ' + partido.visitante + '\n';
+texto += '👕 Equipo: ' + equipoLogueado + '\n';
 texto += '*Goleadores:*\n';
 goleadores.forEach(function(g) {
 texto += '• ' + g.jugador + ' - ' + g.goles + ' gol(es)\n';
@@ -917,15 +917,7 @@ var visitante = bloquePartido.substring(idxVs + 4).trim();
 var textoPartido = local + ' vs ' + visitante;
 var matchEquipo = texto.match(/Equipo:\s*(.+?)(?:\n|$)/);
 if (!matchEquipo) { alert('No se encontró el equipo'); return; }
-// Mantener el nombre completo del equipo (con puntos, apóstrofes, acentos)
-var equipo = matchEquipo[1].trim();
-equipo = equipo.replace(/[\p{Emoji}\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '');
-equipo = equipo.replace(/[\u{200B}-\u{200D}\u{FEFF}]/gu, '');
-equipo = equipo.replace(/\s+/g, ' ').trim();
-// Solo eliminar emojis y caracteres invisibles
-equipo = equipo.replace(/[\p{Emoji}\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '');
-equipo = equipo.replace(/[\u{200B}-\u{200D}\u{FEFF}]/gu, '');
-equipo = equipo.replace(/\s+/g, ' ').trim();
+var equipo = matchEquipo[1].trim().normalize('NFC').replace(/[^\w\sáéíóúÁÉÍÓÚñÑüÜ'.-]/gu, '');
 var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
 if (!jornada) { alert('Jornada ' + numJornada + ' no encontrada'); return; }
 function normalizarTexto(str) {
@@ -981,13 +973,9 @@ else { j++; }
 }
 return comunes;
 }
-var esLocal = confirm(
-    'Partido: ' + partidoOrig.local + ' vs ' + partidoOrig.visitante + '\n\n' +
-    '¿Los goleadores son del equipo LOCAL?\n\n' +
-    'Aceptar = ' + partidoOrig.local + '\n' +
-    'Cancelar = ' + partidoOrig.visitante
-);
-var equipoOriginal = esLocal ? partidoOrig.local : partidoOrig.visitante;
+var simLocal = similitudEquipos(equipo, partidoOrig.local);
+var simVisit = similitudEquipos(equipo, partidoOrig.visitante);
+var equipoOriginal = simLocal >= simVisit ? partidoOrig.local : partidoOrig.visitante;
 goleadores.forEach(function(g) {
 propuestas[keyJornada][keyPartido].push({
 equipo: equipoOriginal, jugador: g.jugador, goles: g.goles,
@@ -1130,7 +1118,7 @@ html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT
 html += '<input type="number" id="amV-' + index + '" value="' + amV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
 html += '</div>';
 html += '<div style="display:flex; align-items:center; gap:5px; margin-top:5px; flex-wrap:wrap; justify-content:center;">';
-html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">🔴 LOCAL</span>';
+html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;"> LOCAL</span>';
 html += '<input type="number" id="roL-' + index + '" value="' + roL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
 html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT</span>';
@@ -1148,7 +1136,7 @@ html += construirSelectArbitros('ar-' + index, arb);
 html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Susp.</label>';
 html += '</div></div>';
 });
-html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;"> Guardar Resultados</button>';
+html += '<button id="btn-guardar" onclick="guardarResultados(' + numJornada + ')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:15px;">💾 Guardar Resultados</button>';
 contenedor.innerHTML = html;
 }
 function guardarResultados(jornadaNum) {
@@ -1156,7 +1144,7 @@ var btn = document.getElementById('btn-guardar');
 var jornada = calendario.find(function(j) { return j.jornada === jornadaNum; });
 var hayGolesBorrados = false;
 jornada.partidos.forEach(function(p, index) { var valL = document.getElementById('gl-' + index).value; var valV = document.getElementById('gv-' + index).value; if ((p.golesLocal !== null || p.golesVisitante !== null) && (valL === '' || valV === '')) { hayGolesBorrados = true; } });
-if (hayGolesBorrados) { if (!confirm('️ Hay campos de goles vacíos en partidos que ya tenían resultado. ¿Seguro que quieres guardar? Se perderán los goles actuales.')) { return; } }
+if (hayGolesBorrados) { if (!confirm('⚠️ Hay campos de goles vacíos en partidos que ya tenían resultado. ¿Seguro que quieres guardar? Se perderán los goles actuales.')) { return; } }
 btn.textContent = '⏳ Guardando...'; btn.disabled = true;
 var token = localStorage.getItem('github_token');
 var nuevosResultados = {};
@@ -1176,7 +1164,7 @@ fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents
 .then(function(r) { if (r.status === 404) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Crear resultados.json', content: b64 }) }); } return r.json(); })
 .then(function(data) { if (data && data.sha) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha }) }); } return data; })
 .then(function(r) { if (r && r.ok) { alert('✅ Guardado!'); location.reload(); } else if (r && r.message) { throw new Error(r.message); } })
-.catch(function(e) { alert('❌ ' + e.message); btn.textContent = ' Guardar'; btn.disabled = false; });
+.catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
 }
 function calcularClasificacion() {
 var stats = {}; equipos.forEach(function(eq) { stats[eq.nombreCompleto] = { nombre: eq.nombre, img: eq.img, pj: 0, pts: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, forma: [] }; });
@@ -1546,7 +1534,7 @@ var arbTexto = arbNombre ? ' · 👤 ' + arbNombre : '';
 html += '<div class="match-card"><div class="match-teams"><div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
 html += marcador;
 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div></div>';
-html += '<div class="match-info">📍 ' + campoPartido + ' · 🕒 ' + horaPartido + ' · 📅 ' + jornada.fecha + arbTexto + '</div>';
+html += '<div class="match-info">📍 ' + campoPartido + ' ·  ' + horaPartido + ' ·  ' + jornada.fecha + arbTexto + '</div>';
 if (hayTarjetas && !susp && gl !== null) {
 html += '<div class="match-cards" style="gap:8px;">';
 html += '<div style="display:flex; align-items:center; gap:3px;">';
