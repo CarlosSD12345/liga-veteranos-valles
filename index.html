@@ -917,7 +917,10 @@ var visitante = bloquePartido.substring(idxVs + 4).trim();
 var textoPartido = local + ' vs ' + visitante;
 var matchEquipo = texto.match(/Equipo:\s*(.+?)(?:|$)/);
 if (!matchEquipo) { alert('No se encontró el equipo'); return; }
-var equipo = matchEquipo[1].trim().normalize('NFC').replace(/[^\w\sáéíóúÁÉÍÓÚñÑüÜ'.-]/gu, '');
+var equipo = matchEquipo[1].trim().normalize('NFC');
+// Limpiar solo caracteres extraños, mantener letras normales incluyendo ñ, ç, l·l
+equipo = equipo.replace(/[\p{Emoji}\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '').trim();
+equipo = equipo.replace(/\s+/g, ' ');
 var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
 if (!jornada) { alert('Jornada ' + numJornada + ' no encontrada'); return; }
 function normalizarTexto(str) {
