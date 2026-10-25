@@ -1003,9 +1003,21 @@ function encontrarEquipoCorrecto(equipoEnviado, local, visitante) {
     if (equipoNorm.includes(visitNorm) && visitNorm.length > 5) return visitante;
     
     // Fallback: similitud
-var simLocal = similitudEquipos(equipo, partidoOrig.local);
-var simVisit = similitudEquipos(equipo, partidoOrig.visitante);
-var equipoOriginal = simLocal >= simVisit ? partidoOrig.local : partidoOrig.visitante;
+// Mostrar al admin los dos equipos del partido para que elija
+var equipoOriginal = prompt(
+    'Partido: ' + partidoOrig.local + ' vs ' + partidoOrig.visitante + '\n\n' +
+    'Equipo detectado en el mensaje: ' + equipo + '\n\n' +
+    '¿A qué equipo pertenecen los goleadores?\n\n' +
+    'Escribe 1 para: ' + partidoOrig.local + '\n' +
+    'Escribe 2 para: ' + partidoOrig.visitante,
+    '1'
+);
+
+if (equipoOriginal === '2') {
+    equipoOriginal = partidoOrig.visitante;
+} else {
+    equipoOriginal = partidoOrig.local;
+}2
 }
 
 console.log('DEBUG: equipo enviado =', equipo);
