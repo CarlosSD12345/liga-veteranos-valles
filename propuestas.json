@@ -962,6 +962,27 @@
         "goles": 1,
         "estado": "rechazado",
         "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Pepelu",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Salva",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Raul Ruiz",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
       }
     ]
   }
