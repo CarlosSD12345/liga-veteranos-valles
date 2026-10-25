@@ -941,6 +941,36 @@
         "fecha": "2026-10-25"
       }
     ],
+    "3": [
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Dani Flores",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Xavi Molas",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Madir",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Pau",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      }
+    ],
     "7": [
       {
         "equipo": "C.E. Sentmenat",
