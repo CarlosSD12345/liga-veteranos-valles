@@ -992,6 +992,15 @@
         "fecha": "2026-10-25"
       }
     ],
+    "4": [
+      {
+        "equipo": "U.E. Castellar",
+        "jugador": "Jaime Perales",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      }
+    ],
     "7": [
       {
         "equipo": "C.E. Sentmenat",
