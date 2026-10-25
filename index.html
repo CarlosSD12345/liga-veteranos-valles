@@ -1004,7 +1004,11 @@ function encontrarEquipoCorrecto(equipoEnviado, local, visitante) {
     return simLocal >= simVisit ? local : visitante;
 }
 
+console.log('DEBUG: equipo enviado =', equipo);
+console.log('DEBUG: local =', partidoOrig.local);
+console.log('DEBUG: visitante =', partidoOrig.visitante);
 var equipoOriginal = encontrarEquipoCorrecto(equipo, partidoOrig.local, partidoOrig.visitante);
+console.log('DEBUG: equipo asignado =', equipoOriginal);
 goleadores.forEach(function(g) {
 propuestas[keyJornada][keyPartido].push({
 equipo: equipoOriginal, jugador: g.jugador, goles: g.goles,
