@@ -589,5 +589,37 @@
         "fecha": "2026-10-18"
       }
     ]
+  },
+  "6": {
+    "1": [
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "Kaña",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "Txap",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "Miki",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "Javi",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      }
+    ]
   }
 }
