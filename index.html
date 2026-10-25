@@ -1003,9 +1003,9 @@ function encontrarEquipoCorrecto(equipoEnviado, local, visitante) {
     if (equipoNorm.includes(visitNorm) && visitNorm.length > 5) return visitante;
     
     // Fallback: similitud
-    var simLocal = similitudEquipos(equipoEnviado, local);
-    var simVisit = similitudEquipos(equipoEnviado, visitante);
-    return simLocal >= simVisit ? local : visitante;
+var simLocal = similitudEquipos(equipo, partidoOrig.local);
+var simVisit = similitudEquipos(equipo, partidoOrig.visitante);
+var equipoOriginal = simLocal >= simVisit ? partidoOrig.local : partidoOrig.visitante;
 }
 
 console.log('DEBUG: equipo enviado =', equipo);
