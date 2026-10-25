@@ -915,10 +915,13 @@ if (idxVs === -1) { alert('No se encontró " vs " en el partido'); return; }
 var local = bloquePartido.substring(0, idxVs).trim();
 var visitante = bloquePartido.substring(idxVs + 4).trim();
 var textoPartido = local + ' vs ' + visitante;
-var matchEquipo = texto.match(/Equipo:\s*(.+?)(?:|$)/);
+var matchEquipo = texto.match(/Equipo:\s*(.+?)(?:\n|$)/);
 if (!matchEquipo) { alert('No se encontró el equipo'); return; }
-// Extraer el equipo manteniendo TODOS los caracteres (puntos, apóstrofes, etc.)
+// Mantener el nombre completo del equipo (con puntos, apóstrofes, acentos)
 var equipo = matchEquipo[1].trim();
+equipo = equipo.replace(/[\p{Emoji}\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '');
+equipo = equipo.replace(/[\u{200B}-\u{200D}\u{FEFF}]/gu, '');
+equipo = equipo.replace(/\s+/g, ' ').trim();
 // Solo eliminar emojis y caracteres invisibles
 equipo = equipo.replace(/[\p{Emoji}\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '');
 equipo = equipo.replace(/[\u{200B}-\u{200D}\u{FEFF}]/gu, '');
