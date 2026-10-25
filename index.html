@@ -978,52 +978,13 @@ else { j++; }
 }
 return comunes;
 }
-// Función mejorada para encontrar el equipo correcto
-function encontrarEquipoCorrecto(equipoEnviado, local, visitante) {
-    // Normalizar: quitar acentos, minúsculas, solo letras y números
-    var norm = function(s) {
-        return s.toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .replace(/[^a-z0-9]/g, '');
-    };
-    
-    var equipoNorm = norm(equipoEnviado);
-    var localNorm = norm(local);
-    var visitNorm = norm(visitante);
-    
-    // Comparación exacta primero
-    if (equipoNorm === localNorm) return local;
-    if (equipoNorm === visitNorm) return visitante;
-    
-    // Si contiene el nombre completo
-    if (equipoNorm.includes(localNorm) && localNorm.length > 5) return local;
-    if (equipoNorm.includes(visitNorm) && visitNorm.length > 5) return visitante;
-    
-    // Fallback: similitud
-// Mostrar al admin los dos equipos del partido para que elija
-var equipoOriginal = prompt(
+var esLocal = confirm(
     'Partido: ' + partidoOrig.local + ' vs ' + partidoOrig.visitante + '\n\n' +
-    'Equipo detectado en el mensaje: ' + equipo + '\n\n' +
-    '¿A qué equipo pertenecen los goleadores?\n\n' +
-    'Escribe 1 para: ' + partidoOrig.local + '\n' +
-    'Escribe 2 para: ' + partidoOrig.visitante,
-    '1'
+    '¿Los goleadores son del equipo LOCAL?\n\n' +
+    'Aceptar = ' + partidoOrig.local + '\n' +
+    'Cancelar = ' + partidoOrig.visitante
 );
-
-if (equipoOriginal === '2') {
-    equipoOriginal = partidoOrig.visitante;
-} else {
-    equipoOriginal = partidoOrig.local;
-}2
-}
-
-console.log('DEBUG: equipo enviado =', equipo);
-console.log('DEBUG: local =', partidoOrig.local);
-console.log('DEBUG: visitante =', partidoOrig.visitante);
-    alert('DEBUG:\nEquipo detectado: ' + equipo + '\nLocal: ' + partidoOrig.local + '\nVisitante: ' + partidoOrig.visitante);
-var equipoOriginal = encontrarEquipoCorrecto(equipo, partidoOrig.local, partidoOrig.visitante);
-console.log('DEBUG: equipo asignado =', equipoOriginal);
+var equipoOriginal = esLocal ? partidoOrig.local : partidoOrig.visitante;
 goleadores.forEach(function(g) {
 propuestas[keyJornada][keyPartido].push({
 equipo: equipoOriginal, jugador: g.jugador, goles: g.goles,
