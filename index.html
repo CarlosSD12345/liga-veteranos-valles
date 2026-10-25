@@ -976,34 +976,35 @@ else { j++; }
 }
 return comunes;
 }
-// Determinar qué equipo del partido coincide mejor con el equipo enviado
-function encontrarEquipoEnPartido(equipoEnviado, local, visitante) {
-    var norm = function(s) { 
+// Función mejorada para encontrar el equipo correcto
+function encontrarEquipoCorrecto(equipoEnviado, local, visitante) {
+    // Normalizar: quitar acentos, minúsculas, solo letras y números
+    var norm = function(s) {
         return s.toLowerCase()
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
-            .replace(/[^a-z0-9]/g, ''); 
+            .replace(/[^a-z0-9]/g, '');
     };
     
     var equipoNorm = norm(equipoEnviado);
     var localNorm = norm(local);
     var visitNorm = norm(visitante);
     
-    // Si el equipo enviado contiene el nombre local o viceversa
-    if (equipoNorm.includes(localNorm) || localNorm.includes(equipoNorm)) {
-        return local;
-    }
-    if (equipoNorm.includes(visitNorm) || visitNorm.includes(equipoNorm)) {
-        return visitante;
-    }
+    // Comparación exacta primero
+    if (equipoNorm === localNorm) return local;
+    if (equipoNorm === visitNorm) return visitante;
     
-    // Fallback: usar similitud como antes
+    // Si contiene el nombre completo
+    if (equipoNorm.includes(localNorm) && localNorm.length > 5) return local;
+    if (equipoNorm.includes(visitNorm) && visitNorm.length > 5) return visitante;
+    
+    // Fallback: similitud
     var simLocal = similitudEquipos(equipoEnviado, local);
     var simVisit = similitudEquipos(equipoEnviado, visitante);
     return simLocal >= simVisit ? local : visitante;
 }
 
-var equipoOriginal = encontrarEquipoEnPartido(equipo, partidoOrig.local, partidoOrig.visitante);
+var equipoOriginal = encontrarEquipoCorrecto(equipo, partidoOrig.local, partidoOrig.visitante);
 goleadores.forEach(function(g) {
 propuestas[keyJornada][keyPartido].push({
 equipo: equipoOriginal, jugador: g.jugador, goles: g.goles,
