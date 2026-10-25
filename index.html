@@ -973,9 +973,34 @@ else { j++; }
 }
 return comunes;
 }
-var simLocal = similitudEquipos(equipo, partidoOrig.local);
-var simVisit = similitudEquipos(equipo, partidoOrig.visitante);
-var equipoOriginal = simLocal >= simVisit ? partidoOrig.local : partidoOrig.visitante;
+// Determinar qué equipo del partido coincide mejor con el equipo enviado
+function encontrarEquipoEnPartido(equipoEnviado, local, visitante) {
+    var norm = function(s) { 
+        return s.toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9]/g, ''); 
+    };
+    
+    var equipoNorm = norm(equipoEnviado);
+    var localNorm = norm(local);
+    var visitNorm = norm(visitante);
+    
+    // Si el equipo enviado contiene el nombre local o viceversa
+    if (equipoNorm.includes(localNorm) || localNorm.includes(equipoNorm)) {
+        return local;
+    }
+    if (equipoNorm.includes(visitNorm) || visitNorm.includes(equipoNorm)) {
+        return visitante;
+    }
+    
+    // Fallback: usar similitud como antes
+    var simLocal = similitudEquipos(equipoEnviado, local);
+    var simVisit = similitudEquipos(equipoEnviado, visitante);
+    return simLocal >= simVisit ? local : visitante;
+}
+
+var equipoOriginal = encontrarEquipoEnPartido(equipo, partidoOrig.local, partidoOrig.visitante);
 goleadores.forEach(function(g) {
 propuestas[keyJornada][keyPartido].push({
 equipo: equipoOriginal, jugador: g.jugador, goles: g.goles,
