@@ -1004,6 +1004,27 @@
         "goles": 1,
         "estado": "rechazado",
         "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "CHRIS.D",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "ELOY",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "ANTONIO",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-25"
       }
     ],
     "3": [
