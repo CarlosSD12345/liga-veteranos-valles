@@ -279,6 +279,15 @@
         "fecha": "2026-10-19"
       }
     ],
+    "4": [
+      {
+        "equipo": "C.F. Sant Feliu de Codines",
+        "jugador": "Enric González",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-26"
+      }
+    ],
     "5": [
       {
         "equipo": "U.E. Castellar",
