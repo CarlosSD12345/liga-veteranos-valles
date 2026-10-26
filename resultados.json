@@ -424,5 +424,103 @@
       "rojasLocal": 0,
       "rojasVisitante": 0
     }
+  },
+  "7": {
+    "0": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Lleixa",
+      "campo": "MPAL PALLEJA",
+      "hora": "08:15",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "1": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Edu",
+      "campo": "MPAL L'AMETLLA",
+      "hora": "08:30",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "2": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Julio",
+      "campo": "MPAL RIPOLLET",
+      "hora": "08:00",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "3": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Salva",
+      "campo": "CAMPOAMOR",
+      "hora": "08:00",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "4": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Fabregas",
+      "campo": "MPAL BIGUES",
+      "hora": "08:15",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "5": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Puibert",
+      "campo": "MPAL BARBERA",
+      "hora": "08:00",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "6": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Duran",
+      "campo": "CAN PARELLADA",
+      "hora": "08:15",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    },
+    "7": {
+      "suspendido": false,
+      "golesLocal": null,
+      "golesVisitante": null,
+      "arbitro": "Congost",
+      "campo": "MPAL SANTA EULALIA",
+      "hora": "08:00",
+      "amarillasLocal": 0,
+      "amarillasVisitante": 0,
+      "rojasLocal": 0,
+      "rojasVisitante": 0
+    }
   }
 }
