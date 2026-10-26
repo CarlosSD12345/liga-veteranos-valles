@@ -473,6 +473,13 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-10-19"
+      },
+      {
+        "equipo": "C.F. Sant Feliu de Codines",
+        "jugador": "Enric González",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-10-26"
       }
     ],
     "6": [
