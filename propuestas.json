@@ -541,6 +541,15 @@
         "fecha": "2026-10-18"
       }
     ],
+    "3": [
+      {
+        "equipo": "C.F. Sant Feliu de Codines",
+        "jugador": "Ivan Fenández",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-10-26"
+      }
+    ],
     "4": [
       {
         "equipo": "U.E. Castellar",
