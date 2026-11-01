@@ -860,6 +860,22 @@
     ]
   },
   "7": {
+    "3": [
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Abel",
+        "goles": 4,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Madir",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      }
+    ],
     "6": [
       {
         "equipo": "C.F. Can Parellada",
