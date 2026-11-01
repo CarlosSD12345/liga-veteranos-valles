@@ -826,6 +826,15 @@
         "fecha": "2026-10-25"
       }
     ],
+    "6": [
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Matu",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      }
+    ],
     "7": [
       {
         "equipo": "C.F. Cerdanyola",
