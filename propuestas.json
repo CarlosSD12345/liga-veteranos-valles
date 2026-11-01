@@ -111,6 +111,43 @@
         "fecha": "2026-10-19"
       }
     ],
+    "3": [
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Mario",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Ángel",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Joel",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Raúl",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Javi",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      }
+    ],
     "4": [
       {
         "equipo": "C.F. Cerdanyola",
