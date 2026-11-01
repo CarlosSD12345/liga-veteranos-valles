@@ -973,6 +973,13 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Pepelu",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
       }
     ]
   }
