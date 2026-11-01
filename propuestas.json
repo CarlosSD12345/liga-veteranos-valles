@@ -323,6 +323,27 @@
         "goles": 2,
         "estado": "aprobado",
         "fecha": "2026-10-26"
+      },
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "David",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Raúl",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Javi",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
       }
     ],
     "5": [
