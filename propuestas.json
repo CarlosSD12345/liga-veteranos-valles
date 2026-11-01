@@ -899,6 +899,22 @@
         "fecha": "2026-11-01"
       }
     ],
+    "5": [
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Ivan Heras",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Fran",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-01"
+      }
+    ],
     "6": [
       {
         "equipo": "C.F. Can Parellada",
