@@ -897,6 +897,20 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "U.E. Castellar",
+        "jugador": "Jaime Perales",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-02"
+      },
+      {
+        "equipo": "U.E. Castellar",
+        "jugador": "Jose Cabrera",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-02"
       }
     ],
     "5": [
