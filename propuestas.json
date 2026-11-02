@@ -927,6 +927,13 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "Penya Decano",
+        "jugador": "Denis",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-02"
       }
     ],
     "6": [
