@@ -883,6 +883,15 @@
         "fecha": "2026-11-01"
       }
     ],
+    "2": [
+      {
+        "equipo": "C.F. Sant Feliu de Codines",
+        "jugador": "Kenneth",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-03"
+      }
+    ],
     "3": [
       {
         "equipo": "U.E. Sabadellenca",
