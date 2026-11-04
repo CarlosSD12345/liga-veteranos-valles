@@ -860,6 +860,15 @@
     ]
   },
   "7": {
+    "0": [
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "CHRIS.D",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-04"
+      }
+    ],
     "1": [
       {
         "equipo": "A.V. L'Ametlla del Vallés",
