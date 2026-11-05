@@ -957,6 +957,13 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-01"
+      },
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "ISMAEL",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-05"
       }
     ],
     "2": [
