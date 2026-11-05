@@ -636,6 +636,13 @@
         "goles": 2,
         "estado": "aprobado",
         "fecha": "2026-10-18"
+      },
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "JORDI FARRE",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-05"
       }
     ],
     "3": [
