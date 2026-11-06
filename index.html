@@ -90,6 +90,7 @@ footer { display: flex; flex-direction: column; align-items: center; padding: 30
 .goleador-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; flex-wrap: wrap; }
 .goleador-row input { flex: 1; min-width: 120px; padding: 8px; border-radius: 6px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; }
 .goleador-row input[type="number"] { max-width: 80px; }
+.goleador-row select { flex: 1; min-width: 120px; padding: 8px; border-radius: 6px; border: 1px solid #1f4733; background-color: #0b1d15; color: white; font-size: 14px; }
 .btn-add { background-color: #2ecc71; color: #0b1d15; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; }
 .btn-remove { background-color: #e74c3c; color: white; border: none; padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; }
 .medalla-oro { background-color: #f1c40f; color: #0b1d15; }
@@ -115,6 +116,8 @@ header { justify-content: center; }
 .login-box, .propuesta-box { padding: 15px; margin: 10px; }
 .jornada-btn { padding: 8px 10px; font-size: 0.75rem; }
 }
+.tabs a.tab-btn { display: inline-block; padding: 12px 20px; border-radius: 8px; font-weight: bold; font-size: 1rem; white-space: nowrap; text-align: center; box-sizing: border-box; }
+@media (max-width: 600px) { .tabs a.tab-btn { padding: 8px 6px; font-size: 0.7rem; } }
 </style>
 </head>
 <body>
@@ -130,8 +133,8 @@ header { justify-content: center; }
 <button class="tab-btn" onclick="cambiarPestana('arbitros', this)">Árbitros</button>
 <button class="tab-btn" onclick="cambiarPestana('goleadores', this)">Goleadores</button>
 <button class="tab-btn" onclick="cambiarPestana('acceso-delegados', this)">Acceso Delegados</button>
+<a href="https://carlossd12345.github.io/Actas-veteranos/?from=pruebas" target="_blank" class="tab-btn" style="background-color:#3498db; color:white; border-color:#3498db; text-decoration:none;">📋 Actas</a>
 </div>
-<div class="badge" id="badge-jornada">JORNADA 3</div>
 </div>
 <div id="clasificacion-real" class="section">
 <table>
@@ -185,12 +188,12 @@ header { justify-content: center; }
 <div class="login-box">
 <h2>⚽ Acceso Goleadores</h2>
 <p style="color:#a3b8af; margin-bottom:15px; font-size:0.9rem;">Solo responsables de equipo</p>
-<button onclick="var g=document.getElementById('guia-goleadores-delegados'); g.style.display = g.style.display==='none'?'block':'none';" style="width:100%; padding:10px; background-color:#1f4733; color:#2ecc71; border:1px solid #2ecc71; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:10px;"> Ver guía rápida</button>
+<button onclick="var g=document.getElementById('guia-goleadores-delegados'); g.style.display = g.style.display==='none'?'block':'none';" style="width:100%; padding:10px; background-color:#1f4733; color:#2ecc71; border:1px solid #2ecc71; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:10px;">📖 Ver guía rápida</button>
 <div id="guia-goleadores-delegados" style="display:none; background-color:#1f4733; padding:15px; border-radius:8px; margin-bottom:15px; font-size:0.85rem; color:white;">
 <p style="margin:0 0 8px 0;">🔑 <b>Contraseña:</b> Se facilita en privado a cada responsable de equipo.</p>
 <a href="https://wa.me/34617417827?text=Hola,%20soy%20el%20responsable%20de%20mi%20equipo%20y%20necesito%20mi%20contrase%C3%B1a%20para%20enviar%20los%20goleadores.%20%C2%A1Gracias!" target="_blank" style="display:block; width:100%; padding:12px; background-color:#25D366; color:white; text-align:center; border-radius:8px; font-weight:bold; text-decoration:none; margin-bottom:12px;">📲 Solicitar contraseña por WhatsApp</a>
-<p style="margin:0 0 8px 0;"> <b>Cómo enviar:</b> Selecciona tu equipo → introduce contraseña → elige Jornada y Partido → escribe jugador y goles → "Enviar propuesta".</p>
-<p style="margin:0 0 8px 0; color:#f39c12;">⚠️ <b>IMPORTANTE:</b> Usa siempre el mismo nombre exacto para cada jugador. Si escribes "Javi" un día y "Javier" otro, no sumará al ser nombres diferentes.</p>
+<p style="margin:0 0 8px 0;">📝 <b>Cómo enviar:</b> Selecciona tu equipo → introduce contraseña → elige Jornada y Partido → selecciona jugador del desplegable (o escribe uno nuevo) → añade goles → "Enviar propuesta".</p>
+<p style="margin:0 0 8px 0; color:#f39c12;">⚠️ <b>IMPORTANTE:</b> Si el jugador ya ha marcado gol antes, aparecerá en el desplegable. Si es nuevo, escríbelo en el campo de texto.</p>
 <p style="margin:0;">✅ Se abrirá WhatsApp con el mensaje listo. Envíalo y el admin lo aprobará.</p>
 </div>
 <select id="login-equipo-delegados">
@@ -247,7 +250,7 @@ header { justify-content: center; }
 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancelar</button>
 </div>
 <div id="pantalla-control" style="display: none;">
-<h2 style="color: #2ecc71; margin-bottom: 15px;">️ Panel de Control</h2>
+<h2 style="color: #2ecc71; margin-bottom: 15px;">⚙️ Panel de Control</h2>
 <button onclick="mostrarSeccionAdmin('resultados')" style="width:100%; padding:12px; background-color:#2ecc71; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:10px;">📊 Resultados</button>
 <button onclick="mostrarSeccionAdmin('propuestas')" style="width:100%; padding:12px; background-color:#f39c12; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:15px;">⚽ Propuestas Goleadores</button>
 <button onclick="mostrarImportarWhatsApp()" style="width:100%; padding:12px; background-color:#3498db; color:white; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:15px;">📋 Importar desde WhatsApp</button>
@@ -279,6 +282,7 @@ header { justify-content: center; }
 var resultados = {};
 var propuestas = {};
 var equipoLogueado = null;
+var jugadoresDB = {};
 var contraseñasEquipos = {
 "C.F. Barberá": "barbera26",
 "C.F. Can Parellada": "canparellada26",
@@ -361,11 +365,11 @@ var calendario = [
 { local: "C.E. Sentmenat", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL SENTMENAT", hora: "08:30" }
 ], descanso: "Penya Decano" },
 { jornada: 7, fecha: "01/11/2026", suspendida: false, partidos: [
-{ local: "A.V. Pallejá", visitante: "U.E. Canovelles", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
-{ local: "A.V. L'Ametlla del Vallés", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
-{ local: "V.C.F. Ripollet", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
-{ local: "U.E. Sabadellenca", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "CAMPOAMOR", hora: "08:00" },
-{ local: "C.E. Bigues i Riells", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL BIGUES", hora: "08:15" },
+{ local: "A.V. Pallejá", visitante: "U.E. Canovelles", golesLocal: 4, golesVisitante: 2, campo: "MPAL PALLEJA", hora: "08:15", arbitro: "Lleixa" },
+{ local: "A.V. L'Ametlla del Vallés", visitante: "E.F.B Palau Solitá i Plegamans", golesLocal: 3, golesVisitante: 1, campo: "MPAL L'AMETLLA", hora: "08:30", arbitro: "Edu" },
+{ local: "V.C.F. Ripollet", visitante: "C.F. Sant Feliu de Codines", golesLocal: 3, golesVisitante: 1, campo: "MPAL RIPOLLET", hora: "08:00", arbitro: "Julio" },
+{ local: "U.E. Sabadellenca", visitante: "U.E. Castellar", golesLocal: 5, golesVisitante: 2, campo: "CAMPOAMOR", hora: "08:00", arbitro: "Salva" },
+{ local: "C.E. Bigues i Riells", visitante: "U.D.A. Gramanet", golesLocal: 4, golesVisitante: 3, campo: "MPAL BIGUES", hora: "08:15" },
 { local: "C.F. Barberá", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL BARBERA", hora: "08:00" },
 { local: "C.F. Can Parellada", visitante: "C.E. Sentmenat", golesLocal: null, golesVisitante: null, campo: "CAN PARELLADA", hora: "08:15" },
 { local: "C.E. Santa Eulàlia de Ronçana", visitante: "C.F. Cerdanyola", golesLocal: null, golesVisitante: null, campo: "MPAL SANTA EULALIA", hora: "08:00" }
@@ -745,8 +749,29 @@ function addGoleadorRowDelegados() {
 var lista = document.getElementById('goleadores-lista-delegados');
 var row = document.createElement('div');
 row.className = 'goleador-row';
-row.innerHTML = '<input type="text" placeholder="Nombre del jugador" class="gol-nombre"><input type="number" placeholder="Goles" min="1" class="gol-goles"><button class="btn-remove" onclick="this.parentElement.remove()">✕</button>';
+var opciones = '<option value="">-- Selecciona jugador --</option>';
+var jugadoresEquipo = jugadoresDB[equipoLogueado] || [];
+jugadoresEquipo.forEach(function(j) {
+opciones += '<option value="' + j.replace(/"/g, '&quot;') + '">' + j + '</option>';
+});
+row.innerHTML =
+'<select class="gol-select" onchange="onSelectJugadorDelegado(this)">' + opciones + '</select>' +
+'<input type="text" class="gol-nombre-manual" placeholder="O escribe nombre nuevo...">' +
+'<input type="number" placeholder="Goles" min="1" class="gol-goles">' +
+'<button class="btn-remove" onclick="this.parentElement.remove()">✕</button>';
 lista.appendChild(row);
+}
+function onSelectJugadorDelegado(sel) {
+var inputManual = sel.parentElement.querySelector('.gol-nombre-manual');
+if (sel.value !== '') {
+inputManual.value = '';
+inputManual.style.opacity = '0.4';
+inputManual.disabled = true;
+} else {
+inputManual.style.opacity = '1';
+inputManual.disabled = false;
+inputManual.focus();
+}
 }
 function enviarPropuestaGoleadoresDelegados() {
 var numJornada = parseInt(document.getElementById('goleador-jornada-delegados').value);
@@ -755,7 +780,14 @@ if (!numJornada || idxPartido === '') { alert('Selecciona jornada y partido'); r
 var rows = document.querySelectorAll('#goleadores-lista-delegados .goleador-row');
 var goleadores = [];
 rows.forEach(function(row) {
-var nombre = row.querySelector('.gol-nombre').value.trim();
+var select = row.querySelector('.gol-select');
+var inputManual = row.querySelector('.gol-nombre-manual');
+var nombre = '';
+if (select && select.value !== '') {
+nombre = select.value.trim();
+} else if (inputManual) {
+nombre = inputManual.value.trim();
+}
 var goles = parseInt(row.querySelector('.gol-goles').value);
 if (nombre && goles > 0) { goleadores.push({ jugador: nombre, goles: goles }); }
 });
@@ -775,6 +807,58 @@ texto += '\nPor favor, valida esta propuesta. ¡Gracias!';
 var numeroAdmin = '34617417827';
 var url = 'https://wa.me/' + numeroAdmin + '?text=' + encodeURIComponent(texto);
 window.open(url, '_blank');
+}
+function cargarJugadoresDB() {
+// Primero cargar jugadores.json
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/jugadores.json?t=' + Date.now())
+.then(function(r) {
+if (r.status === 404) { jugadoresDB = {}; return null; }
+return r.json();
+})
+.then(function(data) {
+if (data && data.content) {
+jugadoresDB = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+} else if (data && typeof data === 'object' && !data.content) {
+jugadoresDB = data;
+} else {
+jugadoresDB = {};
+}
+// Luego cargar propuestas.json para extraer jugadores aprobados
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now());
+})
+.then(function(r) {
+if (!r) return;
+if (r.status === 404) return;
+return r.json();
+})
+.then(function(data) {
+if (!data) return;
+var props = {};
+if (data && data.content) {
+props = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+} else if (data && typeof data === 'object' && !data.content) {
+props = data;
+} else {
+return;
+}
+// Extraer jugadores aprobados y añadirlos a jugadoresDB
+for (var j in props) {
+for (var p in props[j]) {
+props[j][p].forEach(function(prop) {
+if (prop.estado === 'aprobado' && prop.equipo && prop.jugador) {
+if (!jugadoresDB[prop.equipo]) jugadoresDB[prop.equipo] = [];
+var existe = jugadoresDB[prop.equipo].some(function(n) {
+return n.toLowerCase().trim() === prop.jugador.toLowerCase().trim();
+});
+if (!existe) {
+jugadoresDB[prop.equipo].push(prop.jugador);
+}
+}
+});
+}
+}
+})
+.catch(function() { });
 }
 function cargarPropuestasPublicas() {
 fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now())
@@ -1033,6 +1117,16 @@ contenedor.innerHTML = html;
 }
 function aprobarPropuesta(j, p, idx) {
 propuestas[j][p][idx].estado = 'aprobado';
+var prop = propuestas[j][p][idx];
+if (prop.equipo && prop.jugador) {
+if (!jugadoresDB[prop.equipo]) jugadoresDB[prop.equipo] = [];
+var existe = jugadoresDB[prop.equipo].some(function(n) {
+return n.toLowerCase().trim() === prop.jugador.toLowerCase().trim();
+});
+if (!existe) {
+jugadoresDB[prop.equipo].push(prop.jugador);
+}
+}
 guardarPropuestas();
 }
 function rechazarPropuesta(j, p, idx) {
@@ -1068,6 +1162,29 @@ body: JSON.stringify({ message: 'Actualizar propuestas', content: b64, sha: data
 })
 .then(function(r) {
 if (r && r.ok) {
+var b64Jug = btoa(unescape(encodeURIComponent(JSON.stringify(jugadoresDB, null, 2))));
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/jugadores.json?t=' + Date.now(), {
+headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+})
+.then(function(r2) {
+if (r2.status === 404) {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/jugadores.json', {
+method: 'PUT',
+headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+body: JSON.stringify({ message: 'Crear jugadores.json', content: b64Jug })
+});
+}
+return r2.json();
+})
+.then(function(dataJug) {
+if (dataJug && dataJug.sha) {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/jugadores.json', {
+method: 'PUT',
+headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+body: JSON.stringify({ message: 'Actualizar jugadores', content: b64Jug, sha: dataJug.sha })
+});
+}
+});
 alert('✅ Actualizado');
 renderizarPropuestasAdmin();
 } else if (r && r.message) { throw new Error(r.message); }
@@ -1118,7 +1235,7 @@ html += '<span style="color:#f1c40f; font-size:0.75rem; font-weight:bold;">VISIT
 html += '<input type="number" id="amV-' + index + '" value="' + amV + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #f1c40f; background:#11291e; color:white; font-size:14px;">';
 html += '</div>';
 html += '<div style="display:flex; align-items:center; gap:5px; margin-top:5px; flex-wrap:wrap; justify-content:center;">';
-html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;"> LOCAL</span>';
+html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">🔴 LOCAL</span>';
 html += '<input type="number" id="roL-' + index + '" value="' + roL + '" inputmode="numeric" placeholder="0" style="width:40px; text-align:center; padding:4px; border-radius:4px; border:1px solid #e74c3c; background:#11291e; color:white; font-size:14px;">';
 html += '<span style="color:#a3b8af; font-size:0.7rem;">|</span>';
 html += '<span style="color:#e74c3c; font-size:0.75rem; font-weight:bold;">VISIT</span>';
@@ -1446,15 +1563,9 @@ return nc;
 }
 function initCalendario() {
 var contenedor = document.getElementById('jornadas-scroll');
-if (!contenedor) {
-console.error("No se encontró el contenedor de jornadas");
-return;
-}
+if (!contenedor) { console.error("No se encontró el contenedor de jornadas"); return; }
 if (contenedor.children.length > 0) return;
-if (typeof calendario === 'undefined' || !Array.isArray(calendario)) {
-console.error("El array calendario no está definido");
-return;
-}
+if (typeof calendario === 'undefined' || !Array.isArray(calendario)) { console.error("El array calendario no está definido"); return; }
 calendario.forEach(function(j) {
 var btn = document.createElement('button');
 btn.className = 'jornada-btn';
@@ -1466,26 +1577,16 @@ contenedor.appendChild(btn);
 var ultimaJornadaJugada = 1;
 for (var j = 0; j < calendario.length; j++) {
 var jornada = calendario[j];
-if (jornada.suspendida === true) {
-ultimaJornadaJugada = jornada.jornada;
-continue;
-}
+if (jornada.suspendida === true) { ultimaJornadaJugada = jornada.jornada; continue; }
 var resJ = resultados[String(jornada.jornada)] || {};
 var todosConResultado = true;
 for (var i = 0; i < jornada.partidos.length; i++) {
 var resP = resJ[String(i)] || {};
 var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
 var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
-if (gl === null || gv === null) {
-todosConResultado = false;
-break;
+if (gl === null || gv === null) { todosConResultado = false; break; }
 }
-}
-if (todosConResultado) {
-ultimaJornadaJugada = jornada.jornada;
-} else {
-break;
-}
+if (todosConResultado) { ultimaJornadaJugada = jornada.jornada; } else { break; }
 }
 seleccionarJornada(ultimaJornadaJugada);
 }
@@ -1495,9 +1596,7 @@ botones.forEach(function(btn) {
 if (parseInt(btn.dataset.jornada) === numJornada) {
 btn.classList.add('active');
 btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-} else {
-btn.classList.remove('active');
-}
+} else { btn.classList.remove('active'); }
 });
 cargarJornada(numJornada);
 }
@@ -1554,27 +1653,7 @@ html += '</div>';
 });
 contenedor.innerHTML = html;
 }
-function actualizarBadgeJornada() {
-var ultimaJornada = 0;
-for (var j = 0; j < calendario.length; j++) {
-var jornada = calendario[j];
-if (jornada.suspendida === true) {
-ultimaJornada = jornada.jornada;
-} else {
-var resJ = resultados[String(jornada.jornada)] || {};
-var todosConResultado = true;
-for (var i = 0; i < jornada.partidos.length; i++) {
-var resP = resJ[String(i)] || {};
-var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
-var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
-if (gl === null || gv === null) { todosConResultado = false; break; }
-}
-if (todosConResultado) { ultimaJornada = jornada.jornada; }
-else { break; }
-}
-}
-if (ultimaJornada > 0) { document.getElementById('badge-jornada').textContent = 'JORNADA ' + ultimaJornada; }
-}
+cargarJugadoresDB();
 fetch('resultados.json?t=' + Date.now())
 .then(function(r) {
 if (r.status === 404) return {};
@@ -1584,7 +1663,6 @@ return r.json();
 resultados = data || {};
 renderizarClasificacion();
 renderizarClasificacionReal();
-actualizarBadgeJornada();
 initCalendario();
 cargarPropuestasPublicas();
 })
@@ -1593,7 +1671,6 @@ console.error('Error al cargar resultados:', e);
 resultados = {};
 renderizarClasificacion();
 renderizarClasificacionReal();
-actualizarBadgeJornada();
 initCalendario();
 cargarPropuestasPublicas();
 });
