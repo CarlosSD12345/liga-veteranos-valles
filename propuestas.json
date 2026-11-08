@@ -1097,6 +1097,29 @@
     ]
   },
   "8": {
+    "1": [
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "JORDI FARRE",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "DIEGO",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "GUILLERMO",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      }
+    ],
     "2": [
       {
         "equipo": "A.V. L'Ametlla del Vallés",
