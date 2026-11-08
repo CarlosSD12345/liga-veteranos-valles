@@ -1127,6 +1127,43 @@
         "fecha": "2026-11-08"
       }
     ],
+    "4": [
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Marc",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Dani Flores",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Pau",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Javi Raya",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Abel",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      }
+    ],
     "7": [
       {
         "equipo": "C.F. Can Parellada",
