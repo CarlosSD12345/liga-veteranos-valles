@@ -1210,6 +1210,20 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Pepelu",
+        "goles": 4,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Cristian",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
       }
     ]
   }
