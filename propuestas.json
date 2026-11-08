@@ -1097,6 +1097,22 @@
     ]
   },
   "8": {
+    "0": [
+      {
+        "equipo": "C.E. Santa Eulàlia de Ronçana",
+        "jugador": "Gerard",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "C.E. Santa Eulàlia de Ronçana",
+        "jugador": "Pascual",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      }
+    ],
     "1": [
       {
         "equipo": "E.F.B Palau Solitá i Plegamans",
