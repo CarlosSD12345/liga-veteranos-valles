@@ -1097,6 +1097,36 @@
     ]
   },
   "8": {
+    "2": [
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Kaña",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Arnau",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Torito",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Ferran",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-08"
+      }
+    ],
     "7": [
       {
         "equipo": "C.F. Can Parellada",
