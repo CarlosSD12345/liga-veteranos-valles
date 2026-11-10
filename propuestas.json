@@ -1286,6 +1286,13 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-08"
+      },
+      {
+        "equipo": "A.V. Ripollet",
+        "jugador": "Vlad",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-10"
       }
     ],
     "7": [
