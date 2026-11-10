@@ -201,6 +201,22 @@
         "fecha": "2026-10-13"
       }
     ],
+    "6": [
+      {
+        "equipo": "A.V. Ripollet",
+        "jugador": "Musta",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-10"
+      },
+      {
+        "equipo": "A.V. Ripollet",
+        "jugador": "Vlad",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-10"
+      }
+    ],
     "7": [
       {
         "equipo": "C.E. Santa Eulalia de Ronçana",
