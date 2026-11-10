@@ -801,7 +801,7 @@ texto += '⚽ ' + partido.local + ' vs ' + partido.visitante + '\n';
 texto += '👕 Equipo: ' + equipoLogueado + '\n';
 texto += '*Goleadores:*\n';
 goleadores.forEach(function(g) {
-texto += '• ' + g.jugador + ' - ' + g.goles + ' gol(es)\n';
+  texto += '• ' + g.jugador + ' - ' + g.goles + ' gol(es)\n';
 });
 texto += '\nPor favor, valida esta propuesta. ¡Gracias!';
 var numeroAdmin = '34617417827';
@@ -809,7 +809,6 @@ var url = 'https://wa.me/' + numeroAdmin + '?text=' + encodeURIComponent(texto);
 window.open(url, '_blank');
 }
 function cargarJugadoresDB() {
-// Primero cargar jugadores.json
 fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/jugadores.json?t=' + Date.now())
 .then(function(r) {
 if (r.status === 404) { jugadoresDB = {}; return null; }
@@ -823,7 +822,6 @@ jugadoresDB = data;
 } else {
 jugadoresDB = {};
 }
-// Luego cargar propuestas.json para extraer jugadores aprobados
 return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now());
 })
 .then(function(r) {
@@ -841,7 +839,6 @@ props = data;
 } else {
 return;
 }
-// Extraer jugadores aprobados y añadirlos a jugadoresDB
 for (var j in props) {
 for (var p in props[j]) {
 props[j][p].forEach(function(prop) {
