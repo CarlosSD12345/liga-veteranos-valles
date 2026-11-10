@@ -1219,6 +1219,15 @@
         "fecha": "2026-11-08"
       }
     ],
+    "5": [
+      {
+        "equipo": "Penya Decano",
+        "jugador": "Xavi",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-10"
+      }
+    ],
     "6": [
       {
         "equipo": "C.F. Barberá",
