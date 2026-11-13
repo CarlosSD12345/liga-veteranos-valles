@@ -1,0 +1,40 @@
+{
+  "C.F. Cerdanyola": [
+    {"dorsal": 12, "nombre": "Abel Moreno Griera", "foto": "Abel Moreno Griera.jpg"},
+    {"dorsal": 23, "nombre": "Albert Antonio Roncal Diaz", "foto": "Albert Antonio Roncal Diaz.jpg"},
+    {"dorsal": 10, "nombre": "Cristian García Pujante", "foto": "Cristian García Pujante.jpg"},
+    {"dorsal": 9, "nombre": "Diego Pérez Martell", "foto": "Diego Pérez Martell.jpg"},
+    {"dorsal": 22, "nombre": "Edgar Rodríguez Ramírez", "foto": "Edgar Rodríguez Ramírez.jpg"},
+    {"dorsal": 8, "nombre": "Eduard Frances Merino Cruces", "foto": "Eduard Frances Merino Cruces.jpg"},
+    {"dorsal": 21, "nombre": "Ismael López Montes", "foto": "Ismael López Montes.jpg"},
+    {"dorsal": 16, "nombre": "Iván Rodríguez Mallas", "foto": "Iván Rodríguez Mallas.jpg"},
+    {"dorsal": 11, "nombre": "Jose luis Pozo García", "foto": "Jose luis Pozo García.jpg"},
+    {"dorsal": 14, "nombre": "Juan Mellado Martínez", "foto": "Juan Mellado Martínez.jpg"},
+    {"dorsal": 3, "nombre": "Luis Escalera", "foto": "Luis Escalera.jpg"},
+    {"dorsal": 7, "nombre": "Mario Romero Molina", "foto": "Mario Romero Molina.jpg"},
+    {"dorsal": 25, "nombre": "Martín Moreno Padilla", "foto": "Martín Moreno Padilla.jpg"},
+    {"dorsal": 5, "nombre": "Nicolás Ruiz Granja", "foto": "Nicolás Ruiz Granja.jpg"},
+    {"dorsal": 2, "nombre": "Pablo Pérez Rodríguez", "foto": "Pablo Pérez Rodríguez.jpg"},
+    {"dorsal": 20, "nombre": "Raúl Ruiz Granja", "foto": "Raúl Ruiz Granja.jpg"},
+    {"dorsal": 6, "nombre": "Raúl Ulloa Montserrat", "foto": "Raúl Ulloa Montserrat.jpg"},
+    {"dorsal": 18, "nombre": "Salvador Morales Martín", "foto": "Salvador Morales Martín.jpg"}
+  ],
+  "C.F. Can Parellada": [
+    {"dorsal": 6, "nombre": "Antonio Mengual Ávila", "foto": "Antonio Mengual Ávila.jpg"},
+    {"dorsal": 24, "nombre": "David Palacio Durán", "foto": "David Palacio Durán.jpg"},
+    {"dorsal": 5, "nombre": "Javier Cañas García", "foto": "Javier Cañas García.png"},
+    {"dorsal": 3, "nombre": "Javier Lores Bautista", "foto": "Javier Lores Bautista.jpg"},
+    {"dorsal": 20, "nombre": "Jordi Leiva Cañestro", "foto": "Jordi Leiva Cañestro.jpg"},
+    {"dorsal": 2, "nombre": "Jordi Prats Sevillano", "foto": "Jordi Prats Sevillano.jpg"},
+    {"dorsal": 12, "nombre": "Juan Miguel Torres Hernández", "foto": "Juan Miguel Torres Hernández.jpg"},
+    {"dorsal": 15, "nombre": "Mario Álvarez Pérez", "foto": "Mario Álvarez Pérez.jpg"},
+    {"dorsal": 23, "nombre": "Ramón Prats Sevillano", "foto": "Ramón Prats Sevillano.jpg"},
+    {"dorsal": 7, "nombre": "Raúl Cañas García", "foto": "Raúl Cañas García.jpg"},
+    {"dorsal": 11, "nombre": "Raúl Maturana Campos", "foto": "Raúl Maturana Campos.jpg"},
+    {"dorsal": 17, "nombre": "Sergio Jiménez Márquez", "foto": "Sergio Jiménez Márquez.jpg"},
+    {"dorsal": 21, "nombre": "Sergio López Molina", "foto": "Sergio López Molina.jpg"},
+    {"dorsal": 22, "nombre": "Vladimir Céspedes Delgadillo", "foto": "Vladimir Céspedes Delgadillo.jpg"},
+    {"dorsal": 10, "nombre": "Ángel Espinosa Cornelo", "foto": "Ángel Espinosa Cornelo.jpg"},
+    {"dorsal": 19, "nombre": "Jose Antonio Saavedra Ruiz", "foto": "Jose Antonio Saavedra Ruiz.jpg"}
+  ]
+}
