@@ -1,117 +1,267 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actas | Liga Veteranos Vallès</title>
-  <style>
-    :root {
-      --bg: #0b1d15;
-      --panel: #11291e;
-      --panel-soft: #173827;
-      --line: #1f4733;
-      --green: #2ecc71;
-      --green-strong: #37d68a;
-      --text: #eafaf1;
-      --muted: #a3b8af;
-      --shadow: rgba(46, 204, 113, 0.18);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, sans-serif;
-      padding: 32px 18px;
-    }
-    .container {
-      max-width: 980px;
-      margin: 0 auto;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 28px 20px 36px;
-      box-shadow: 0 0 0 1px var(--shadow);
-    }
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-    .logo {
-      width: 260px;
-      max-width: 100%;
-      height: auto;
-    }
-    .volver {
-      display: inline-block;
-      background: var(--green);
-      color: #0b1d15;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 18px;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .card {
-      background: #0b1d15;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 26px 20px;
-      margin-top: 16px;
-    }
-    h1 {
-      margin: 0 0 12px;
-      color: var(--green);
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-    }
-    p {
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 0 0 16px;
-    }
-    .placeholder {
-      background: var(--panel-soft);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 18px;
-      color: var(--text);
-      margin-top: 12px;
-    }
-    .list {
-      margin: 18px 0 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="topbar">
-      <img class="logo" src="escudos/logo_liga.png" alt="Liga Veteranos Vallès">
-      <a class="volver" href="index.html">← Volver a la liga</a>
-    </div>
-
-    <div class="card">
-      <h1>Actas</h1>
-      <p>Desde aquí se gestionarán las actas de la competición, reuniones y resoluciones del torneo.</p>
-
-      <div class="placeholder">
-        <strong>Estado:</strong> Sección preparada para añadir las actas y los documentos del club.
-      </div>
-
-      <ul class="list">
-        <li>Actas de jornada</li>
-        <li>Resoluciones y decisiones</li>
-        <li>Documentación de equipo</li>
-        <li>Historial oficial del campeonato</li>
-      </ul>
-    </div>
-  </div>
-</body>
-</html>
+{
+  "8_7": {
+    "jornada": 8,
+    "partido": 7,
+    "equipoLocal": "C.F. Cerdanyola",
+    "equipoVisitante": "C.F. Can Parellada",
+    "resultadoLocal": 6,
+    "resultadoVisitante": 1,
+    "arbitro": "Duran",
+    "campo": "MPAL FONTETAS",
+    "hora": "08:15",
+    "cuerpoTecnicoLocal": {
+      "entrenador": "Carlos Sánchez",
+      "delegado": "Yo mismo"
+    },
+    "cuerpoTecnicoVisitante": {
+      "entrenador": "Carlos Sanchez",
+      "delegado": "Yo mismo"
+    },
+    "local": {
+      "jugadores": [
+        {
+          "dorsal": 12,
+          "nombre": "Abel Moreno Griera",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 23,
+          "nombre": "Albert Antonio Roncal Diaz",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 10,
+          "nombre": "Cristian García Pujante",
+          "goles": 2,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 9,
+          "nombre": "Diego Pérez Martell",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 22,
+          "nombre": "Edgar Rodríguez Ramírez",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 8,
+          "nombre": "Eduard Frances Merino Cruces",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 21,
+          "nombre": "Ismael López Montes",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 16,
+          "nombre": "Iván Rodríguez Mallas",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 11,
+          "nombre": "Jose luis Pozo García",
+          "goles": 4,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 14,
+          "nombre": "Juan Mellado Martínez",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 3,
+          "nombre": "Luis Escalera",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 7,
+          "nombre": "Mario Romero Molina",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 25,
+          "nombre": "Martín Moreno Padilla",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 5,
+          "nombre": "Nicolás Ruiz Granja",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 2,
+          "nombre": "Pablo Pérez Rodríguez",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 20,
+          "nombre": "Raúl Ruiz Granja",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 6,
+          "nombre": "Raúl Ulloa Montserrat",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 18,
+          "nombre": "Salvador Morales Martín",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        }
+      ]
+    },
+    "visitante": {
+      "jugadores": [
+        {
+          "dorsal": 6,
+          "nombre": "Antonio Mengual Ávila",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 24,
+          "nombre": "David Palacio Durán",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 5,
+          "nombre": "Javier Cañas García",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 3,
+          "nombre": "Javier Lores Bautista",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 20,
+          "nombre": "Jordi Leiva Cañestro",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 2,
+          "nombre": "Jordi Prats Sevillano",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 12,
+          "nombre": "Juan Miguel Torres Hernández",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 15,
+          "nombre": "Mario Álvarez Pérez",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 23,
+          "nombre": "Ramón Prats Sevillano",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 7,
+          "nombre": "Raúl Cañas García",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 11,
+          "nombre": "Raúl Maturana Campos",
+          "goles": 1,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 17,
+          "nombre": "Sergio Jiménez Márquez",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": [
+            {
+              "tipo": "amarilla",
+              "minuto": 55,
+              "motivo": "4-Traveta"
+            }
+          ]
+        },
+        {
+          "dorsal": 21,
+          "nombre": "Sergio López Molina",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 10,
+          "nombre": "Ángel Espinosa Cornelo",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 19,
+          "nombre": "Jose Antonio Saavedra Ruiz",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        }
+      ]
+    },
+    "fechaImportacion": "2026-11-12T19:44:01.864Z"
+  }
+}
