@@ -1318,5 +1318,30 @@
         "fecha": "2026-11-08"
       }
     ]
+  },
+  "9": {
+    "0": [
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "EDU",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "DIEGO",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "ABEL",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      }
+    ]
   }
 }
