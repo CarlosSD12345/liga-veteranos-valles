@@ -1342,6 +1342,22 @@
         "estado": "aprobado",
         "fecha": "2026-11-15"
       }
+    ],
+    "7": [
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Javi",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "C.F. Can Parellada",
+        "jugador": "Matu",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      }
     ]
   }
 }
