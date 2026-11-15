@@ -1378,6 +1378,20 @@
         "goles": 2,
         "estado": "aprobado",
         "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "U.E. Castellar",
+        "jugador": "Xavi Herrero",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "U.E. Castellar",
+        "jugador": "Javi Zarza",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
       }
     ],
     "4": [
