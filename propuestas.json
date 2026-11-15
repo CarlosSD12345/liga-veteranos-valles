@@ -1410,6 +1410,22 @@
         "fecha": "2026-11-15"
       }
     ],
+    "6": [
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Alberto Gomez",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Lolo",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      }
+    ],
     "7": [
       {
         "equipo": "C.F. Can Parellada",
