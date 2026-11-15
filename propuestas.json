@@ -1380,6 +1380,22 @@
         "fecha": "2026-11-15"
       }
     ],
+    "4": [
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Marc",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Abel",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      }
+    ],
     "7": [
       {
         "equipo": "C.F. Can Parellada",
