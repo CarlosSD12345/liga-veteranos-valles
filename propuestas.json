@@ -1394,6 +1394,20 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "C.E. Santa Eulàlia de Ronçana",
+        "jugador": "Dani",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "C.E. Santa Eulàlia de Ronçana",
+        "jugador": "Manu",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-15"
       }
     ]
   }
