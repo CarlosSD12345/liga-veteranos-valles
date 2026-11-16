@@ -1431,6 +1431,15 @@
         "fecha": "2026-11-16"
       }
     ],
+    "5": [
+      {
+        "equipo": "A.V. Ripollet",
+        "jugador": "Vlad",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-16"
+      }
+    ],
     "6": [
       {
         "equipo": "C.F. Barberá",
