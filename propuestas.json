@@ -1447,6 +1447,13 @@
         "goles": 2,
         "estado": "aprobado",
         "fecha": "2026-11-16"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Kamis",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-11-16"
       }
     ],
     "6": [
