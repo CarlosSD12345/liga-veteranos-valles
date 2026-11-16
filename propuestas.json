@@ -1341,6 +1341,20 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "CHRIS.D",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-16"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "DAVIDE",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-16"
       }
     ],
     "2": [
