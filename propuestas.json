@@ -1422,6 +1422,13 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-15"
+      },
+      {
+        "equipo": "Penya Decano",
+        "jugador": "Humberto",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-16"
       }
     ],
     "6": [
