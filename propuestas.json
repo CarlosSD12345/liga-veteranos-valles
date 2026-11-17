@@ -86,6 +86,20 @@
         "goles": 2,
         "estado": "aprobado",
         "fecha": "2026-10-14"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Cisse",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-17"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Lamine",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-17"
       }
     ],
     "2": [
