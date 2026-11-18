@@ -45,7 +45,7 @@ td { padding: 12px; border-bottom: 1px solid #1f4733; text-align: center; }
 .jornadas-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-bottom: 20px; }
 .jornadas-scroll::-webkit-scrollbar { display: none; }
 .jornada-btn { flex-shrink: 0; background-color: #11291e; color: #a3b8af; border: 1px solid #1f4733; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; white-space: nowrap; text-align: center; transition: all 0.2s; }
-.jornada-btn.active { background-color: #2ecc71; color: #0b1d15; border-color: #2ecc71; }
+.jornada-btn.active { background-color: #2ecc71 !important; color: #0b1d15 !important; border-color: #2ecc71 !important; }
 .jornada-btn:hover { background-color: #173827; }
 .jornada-btn.active:hover { background-color: #2ecc71; }
 .match-card { background-color: #11291e; border: 1px solid #1f4733; border-radius: 10px; padding: 15px; margin-bottom: 10px; }
@@ -1140,8 +1140,8 @@ return;
 }
 var cuerpoTecnicoLocal = { entrenador: '', delegado: '' };
 var cuerpoTecnicoVisitante = { entrenador: '', delegado: '' };
-var ctLocalMatch = texto.match(/CUERPO TÉCNICO LOCAL:([\s\S]*?)(?=\n\n|👕|LOCAL -|VISITANTE -)/i);
-var ctVisitMatch = texto.match(/CUERPO TÉCNICO VISITANTE:([\s\S]*?)(?=\n\n|👕|VISITANTE -|Por favor)/i);
+var ctLocalMatch = texto.match(/CUERPO TÉCNICO LOCAL:([\s\S]*?)(?=\n|👕|LOCAL -|VISITANTE -)/i);
+var ctVisitMatch = texto.match(/CUERPO TÉCNICO VISITANTE:([\s\S]*?)(?=\n|👕|VISITANTE -|Por favor)/i);
 if (ctLocalMatch) {
 var bloqueCT = ctLocalMatch[1];
 var matchEntLocal = bloqueCT.match(/Entrenador:\s*(.+?)(?:\n|$)/i);
@@ -1188,9 +1188,9 @@ subseccionActual = 'suplent';
 continue;
 }
 if (linea.indexOf('•') !== -1 && seccionActual && subseccionActual) {
-var matchJugador = linea.match(/•\s*(\d+)\s+(.+?)(?:\s*⚽|\s*$)/);
+var matchJugador = linea.match(/•\s*(?:(\d+)\s+)?(.+?)(?:\s*⚽|\s*$)/);
 if (matchJugador) {
-var dorsal = parseInt(matchJugador[1]);
+var dorsal = matchJugador[1] ? parseInt(matchJugador[1]) : null;
 var nombre = matchJugador[2].trim();
 var goles = 0;
 var tarjetas = [];
@@ -1838,6 +1838,8 @@ function getFotoJugador(nombre, equipo) {
 var carpeta = '';
 if (equipo === 'C.F. Cerdanyola') carpeta = 'CF-Cerdanyola';
 else if (equipo === 'C.F. Can Parellada') carpeta = 'CF-Can-Parellada';
+else if (equipo === 'A.V. Ripollet') carpeta = 'AV-Ripollet';
+else if (equipo === 'C.E. Bigues i Riells') carpeta = 'CE-Bigues';
 else return null;
 var base = 'https://raw.githubusercontent.com/CarlosSD12345/liga-veteranos-valles/main/fotos-jugadores/' + carpeta + '/';
 return { jpg: base + encodeURIComponent(nombre) + '.jpg', png: base + encodeURIComponent(nombre) + '.png' };
