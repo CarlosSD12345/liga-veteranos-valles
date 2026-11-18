@@ -263,5 +263,310 @@
       ]
     },
     "fechaImportacion": "2026-11-12T19:44:01.864Z"
+  },
+  "9_5": {
+    "jornada": 9,
+    "partido": 5,
+    "equipoLocal": "C.E. Bigues i Riells",
+    "equipoVisitante": "A.V. Ripollet",
+    "resultadoLocal": 3,
+    "resultadoVisitante": 2,
+    "arbitro": "Duran",
+    "campo": "MPAL BIGUES",
+    "hora": "08:15",
+    "cuerpoTecnicoLocal": {
+      "entrenador": "",
+      "delegado": "",
+      "targetesEntrenador": [],
+      "targetesDelegado": []
+    },
+    "cuerpoTecnicoVisitante": {
+      "entrenador": "Fco Jose Fuset Casado",
+      "delegado": "Pedro Soria Pardo",
+      "targetesEntrenador": [],
+      "targetesDelegado": []
+    },
+    "local": {
+      "jugadores": [
+        {
+          "dorsal": 12,
+          "nombre": "Alex Sánchez Sierra",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 16,
+          "nombre": "Ameth Cisse",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 10,
+          "nombre": "Lamine Darry",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 17,
+          "nombre": "Lassana Diaby Diaby",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 18,
+          "nombre": "Mamadou Kamassokho Kamassokho",
+          "goles": 3,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 2,
+          "nombre": "Manuel Alcaide Sánchez",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 3,
+          "nombre": "Manuel Perez Domínguez",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 1,
+          "nombre": "Mario Ramon Cellato Andrade",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 4,
+          "nombre": "Roger Vic Canillas",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": null,
+          "nombre": "Sergio Jiménez Segovia",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 8,
+          "nombre": "Xavier Jiménez Fernández",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 7,
+          "nombre": "Cristian Rosero Tobau",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 5,
+          "nombre": "Diego Fco Morinigo Aguilera",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 9,
+          "nombre": "Francesc Diassis Soriano Araez",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 6,
+          "nombre": "Jorge Luis Mujica Mejia",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 11,
+          "nombre": "Julián Peña Agudelo",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 81,
+          "nombre": "Karim Badio Abdou",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": null,
+          "nombre": "Xavier Rodríguez García",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": null,
+          "nombre": "Lorgio Cespedes Rojas",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        }
+      ]
+    },
+    "visitante": {
+      "jugadores": [
+        {
+          "dorsal": 6,
+          "nombre": "Adria Martin Caldero",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 22,
+          "nombre": "David Arjona Valiente",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 17,
+          "nombre": "Fidel Sanagustin Millan",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 30,
+          "nombre": "Ivan Valery Godoy Morales",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 7,
+          "nombre": "Jonathan Martinez Nuñez",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 3,
+          "nombre": "Jose Manuel Osuna Marzal",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 14,
+          "nombre": "Juan Pedro Gomez Puerta",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 23,
+          "nombre": "Luis Henry Lema Puente",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 33,
+          "nombre": "Mustapha Fadera",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 12,
+          "nombre": "Mustapha Serhane Oulba",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 11,
+          "nombre": "Roberto Marti Cironi Renda",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 10,
+          "nombre": "Fco Jose Fuset Casado",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 5,
+          "nombre": "Pedro Soria Pardo",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 25,
+          "nombre": "Said El Kabouri",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 24,
+          "nombre": "Sergio Vazquez Sanz",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 19,
+          "nombre": "Victor Carbonell Blasco",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 7,
+          "nombre": "Vlad Pienariu",
+          "goles": 2,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 1,
+          "nombre": "Vladimir Edwin Rodriguez Lopez",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 27,
+          "nombre": "Gerardo Manuel Marlo Jimenez",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 32,
+          "nombre": "Leonel Bruno Santos",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        }
+      ]
+    },
+    "fechaImportacion": "2026-11-18T14:56:52.559Z"
   }
 }
