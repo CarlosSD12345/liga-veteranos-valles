@@ -217,6 +217,7 @@ header { justify-content: center; }
 <button onclick="mostrarSeccionAdmin('propuestas')" style="width:100%; padding:12px; background-color:#f39c12; color:#0b1d15; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:15px;">⚽ Propuestas Goleadores</button>
 <button onclick="mostrarImportarWhatsApp()" style="width:100%; padding:12px; background-color:#3498db; color:white; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:15px;">📋 Importar desde WhatsApp</button>
 <button onclick="mostrarImportarActa()" style="width:100%; padding:12px; background-color:#9b59b6; color:white; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:15px;">📋 Importar ACTA desde WhatsApp</button>
+<button onclick="mostrarDashboardArbitros()" style="width:100%; padding:12px; background-color:#1abc9c; color:white; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin-bottom:15px;">📊 Dashboard Árbitros</button>
 <button onclick="cerrarAdmin()" style="width: 100%; padding: 12px; background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Salir</button>
 <div id="admin-seccion-resultados" style="display:none; margin-top:15px;">
 <p style="color: #a3b8af; margin-bottom: 10px;">Selecciona la jornada para editar resultados:</p>
@@ -247,6 +248,10 @@ header { justify-content: center; }
 <div id="admin-seccion-propuestas" style="display:none; margin-top:15px; text-align:left;">
 <h3 style="color:#f39c12; margin-bottom:10px;">Propuestas pendientes</h3>
 <div id="admin-propuestas-container"></div>
+</div>
+<div id="admin-seccion-arbitros" style="display:none; margin-top:15px; text-align:left;">
+<h3 style="color:#1abc9c; margin-bottom:10px;">📊 Dashboard de Árbitros</h3>
+<div id="dashboard-arbitros-contenido"></div>
 </div>
 </div>
 </div>
@@ -918,6 +923,7 @@ cargarPropuestasAdmin();
 function mostrarSeccionAdmin(seccion) {
 document.getElementById('admin-seccion-resultados').style.display = seccion === 'resultados' ? 'block' : 'none';
 document.getElementById('admin-seccion-propuestas').style.display = seccion === 'propuestas' ? 'block' : 'none';
+document.getElementById('admin-seccion-arbitros').style.display = seccion === 'arbitros-dashboard' ? 'block' : 'none';
 if (seccion === 'propuestas') cargarPropuestasAdmin();
 }
 function cargarSelectorAdmin() {
@@ -955,6 +961,7 @@ renderizarPropuestasAdmin();
 function mostrarImportarWhatsApp() {
 document.getElementById('admin-seccion-resultados').style.display = 'none';
 document.getElementById('admin-seccion-propuestas').style.display = 'none';
+document.getElementById('admin-seccion-arbitros').style.display = 'none';
 document.getElementById('modal-importar-whatsapp').style.display = 'block';
 document.getElementById('texto-whatsapp').value = '';
 }
@@ -1072,6 +1079,7 @@ cargarPropuestasAdmin();
 function mostrarImportarActa() {
 document.getElementById('admin-seccion-resultados').style.display = 'none';
 document.getElementById('admin-seccion-propuestas').style.display = 'none';
+document.getElementById('admin-seccion-arbitros').style.display = 'none';
 document.getElementById('modal-importar-whatsapp').style.display = 'none';
 document.getElementById('modal-importar-acta').style.display = 'block';
 document.getElementById('texto-acta-whatsapp').value = '';
@@ -2110,6 +2118,92 @@ renderizarClasificacionReal();
 initCalendario();
 cargarPropuestasPublicas();
 });
+
+function mostrarDashboardArbitros() {
+document.getElementById('admin-seccion-resultados').style.display = 'none';
+document.getElementById('admin-seccion-propuestas').style.display = 'none';
+document.getElementById('modal-importar-whatsapp').style.display = 'none';
+document.getElementById('modal-importar-acta').style.display = 'none';
+document.getElementById('admin-seccion-arbitros').style.display = 'block';
+
+var statsArbitrosEquipos = {};
+
+for (var j = 0; j < calendario.length; j++) {
+var jornada = calendario[j];
+var tieneResultados = false;
+if (jornada.suspendida === true) { tieneResultados = true; }
+else {
+var resJ = resultados[String(jornada.jornada)] || {};
+for (var i = 0; i < jornada.partidos.length; i++) {
+var resP = resJ[String(i)] || {};
+var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : jornada.partidos[i].golesLocal;
+var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : jornada.partidos[i].golesVisitante;
+if (gl !== null && gv !== null) { tieneResultados = true; break; }
+}
+}
+if (!tieneResultados) continue;
+if (jornada.suspendida === true) continue;
+
+var resJ = resultados[String(jornada.jornada)] || {};
+jornada.partidos.forEach(function(p, idx) {
+var resP = resJ[String(idx)] || {};
+var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : p.golesLocal;
+var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
+var susp = resP.suspendido === true;
+if (susp || gl === null || gv === null) return;
+
+var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro;
+if (!arbNombre) return;
+
+if (!statsArbitrosEquipos[arbNombre]) statsArbitrosEquipos[arbNombre] = {};
+
+var equipoLocal = p.local;
+if (!statsArbitrosEquipos[arbNombre][equipoLocal]) {
+statsArbitrosEquipos[arbNombre][equipoLocal] = 0;
+}
+statsArbitrosEquipos[arbNombre][equipoLocal]++;
+});
+}
+
+var listaArbitros = [];
+for (var nombre in statsArbitrosEquipos) {
+var total = 0;
+for (var eq in statsArbitrosEquipos[nombre]) total += statsArbitrosEquipos[nombre][eq];
+listaArbitros.push({ nombre: nombre, partidos: total });
+}
+listaArbitros.sort(function(a, b) {
+if (b.partidos !== a.partidos) return b.partidos - a.partidos;
+return a.nombre.localeCompare(b.nombre);
+});
+
+var html = '';
+listaArbitros.forEach(function(arb) {
+var equiposLocales = statsArbitrosEquipos[arb.nombre] || {};
+var equiposArray = [];
+for (var eq in equiposLocales) {
+equiposArray.push({ nombre: eq, veces: equiposLocales[eq] });
+}
+equiposArray.sort(function(a, b) { return b.veces - a.veces; });
+
+html += '<div style="background-color:#173827; padding:12px; border-radius:8px; margin-bottom:12px; border-left:4px solid #1abc9c;">';
+html += '<div style="font-weight:bold; font-size:1.05rem; margin-bottom:8px; color:white;">👤 ' + arb.nombre + ' <span style="color:#a3b8af; font-size:0.85rem; font-weight:normal;">(' + arb.partidos + ' partidos)</span></div>';
+
+if (equiposArray.length === 0) {
+html += '<div style="color:#a3b8af; font-size:0.85rem;">Sin partidos registrados</div>';
+} else {
+html += '<div style="display:flex; flex-wrap:wrap; gap:6px;">';
+equiposArray.forEach(function(e) {
+html += '<span style="background-color:#0b1d15; padding:6px 10px; border-radius:6px; font-size:0.85rem; border:1px solid #1f4733;">';
+html += '<strong style="color:#2ecc71;">' + e.veces + 'x</strong> ' + getNombreCorto(e.nombre);
+html += '</span>';
+});
+html += '</div>';
+}
+html += '</div>';
+});
+
+document.getElementById('dashboard-arbitros-contenido').innerHTML = html;
+}
 </script>
 </body>
 </html>
