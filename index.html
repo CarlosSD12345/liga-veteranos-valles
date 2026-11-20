@@ -2265,6 +2265,7 @@ var minutoStr = t.minuto ? 'min ' + t.minuto : '';
 var numMotivo = numeroMotivo(t.motivo);
 var motivoStr = numMotivo ? ' - ' + numMotivo : '';
 var infoStr = (minutoStr || motivoStr) ? '(' + minutoStr + motivoStr + ')' : '';
+if (tarjetasHtml !== '') tarjetasHtml += ' ';
 if (t.tipo === 'roja') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟥';
 else if (t.tipo === 'doble_amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨🟨';
 else if (t.tipo === 'amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨';
