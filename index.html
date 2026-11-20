@@ -2261,10 +2261,13 @@ var golesNum = (j.goles && j.goles > 0) ? j.goles : '';
 var tarjetasHtml = '';
 if (j.tarjetas && j.tarjetas.length > 0) {
 j.tarjetas.forEach(function(t) {
-var minutoStr = t.minuto ? '(min ' + t.minuto + ") " : "";
-if (t.tipo === 'roja') tarjetasHtml += minutoStr + '🟥';
-else if (t.tipo === 'doble_amarilla') tarjetasHtml += minutoStr + '🟨🟨';
-else if (t.tipo === 'amarilla') tarjetasHtml += minutoStr + '🟨';
+var minutoStr = t.minuto ? 'min ' + t.minuto : '';
+var numMotivo = numeroMotivo(t.motivo);
+var motivoStr = numMotivo ? ' - ' + numMotivo : '';
+var infoStr = (minutoStr || motivoStr) ? '(' + minutoStr + motivoStr + ')' : '';
+if (t.tipo === 'roja') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟥';
+else if (t.tipo === 'doble_amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨🟨';
+else if (t.tipo === 'amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨';
 });
 }
 html += '<tr>';
