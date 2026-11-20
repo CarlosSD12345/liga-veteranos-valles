@@ -1258,6 +1258,12 @@ jugadoresVisitante.push(jugador);
 }
 }
 }
+// Capturar observaciones
+var observaciones = '';
+var matchObs = texto.match(/OBSERVACIONES[:\s]*\n?([\s\S]*?)(?:Por favor, valida esta acta|$)/i);
+if (matchObs) {
+observaciones = matchObs[1].trim();
+}
 var claveActa = String(numJornada) + '_' + String(idxPartido);
 var acta = {
 jornada: numJornada,
