@@ -2211,6 +2211,16 @@ html += '</div>';
 
 document.getElementById('dashboard-arbitros-contenido').innerHTML = html;
 }
+function numeroMotivo(motivo) {
+if (!motivo) return '';
+var motivoLimpio = motivo.replace(/^\d+-\s*/, '').toLowerCase().trim();
+var mapa = {
+'subjectar': '1', 'empentar': '2', 'mans': '3', 'traveta': '4',
+'protestar': '5', 'desconsiderar': '6', 'distancia': '7',
+'perdre temps': '8', 'reincidir faltes': '9', 'reincidencia en faltas': '9'
+};
+return mapa[motivoLimpio] || '';
+}
 function generarPDFActa(numJornada, idxPartido) {
 var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
 if (!jornada) return;
