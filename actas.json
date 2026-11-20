@@ -10,12 +10,12 @@
     "campo": "MPAL FONTETAS",
     "hora": "08:15",
     "cuerpoTecnicoLocal": {
-      "entrenador": "Carlos Sánchez",
-      "delegado": "Yo mismo"
+      "entrenador": "",
+      "delegado": ""
     },
     "cuerpoTecnicoVisitante": {
-      "entrenador": "Carlos Sanchez",
-      "delegado": "Yo mismo"
+      "entrenador": "",
+      "delegado": ""
     },
     "local": {
       "jugadores": [
@@ -69,23 +69,9 @@
           "tarjetas": []
         },
         {
-          "dorsal": 16,
-          "nombre": "Iván Rodríguez Mallas",
-          "goles": 0,
-          "condicion": "titular",
-          "tarjetas": []
-        },
-        {
           "dorsal": 11,
           "nombre": "Jose luis Pozo García",
           "goles": 4,
-          "condicion": "titular",
-          "tarjetas": []
-        },
-        {
-          "dorsal": 14,
-          "nombre": "Juan Mellado Martínez",
-          "goles": 0,
           "condicion": "titular",
           "tarjetas": []
         },
@@ -100,12 +86,26 @@
           "dorsal": 7,
           "nombre": "Mario Romero Molina",
           "goles": 0,
-          "condicion": "suplent",
+          "condicion": "titular",
           "tarjetas": []
         },
         {
           "dorsal": 25,
           "nombre": "Martín Moreno Padilla",
+          "goles": 0,
+          "condicion": "titular",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 16,
+          "nombre": "Iván Rodríguez Mallas",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 14,
+          "nombre": "Juan Mellado Martínez",
           "goles": 0,
           "condicion": "suplent",
           "tarjetas": []
@@ -236,12 +236,24 @@
               "tipo": "amarilla",
               "minuto": 55,
               "motivo": "4-Traveta"
+            },
+            {
+              "tipo": "amarilla",
+              "minuto": 72,
+              "motivo": "5-Protestar"
             }
           ]
         },
         {
           "dorsal": 21,
           "nombre": "Sergio López Molina",
+          "goles": 0,
+          "condicion": "suplent",
+          "tarjetas": []
+        },
+        {
+          "dorsal": 22,
+          "nombre": "Vladimir Céspedes Delgadillo",
           "goles": 0,
           "condicion": "suplent",
           "tarjetas": []
@@ -262,7 +274,8 @@
         }
       ]
     },
-    "fechaImportacion": "2026-11-12T19:44:01.864Z"
+    "observaciones": "*\nEsto es una prueba de como quedaría de me extiendo un poco escribiendo en el apartado de OBSERVACIONES. Si no me gusta lo cambiaré si me gusta lo dejaré tal cual. Y no tengo nada más que comentar ya que creo que es suficiente para hacer la prueba.",
+    "fechaImportacion": "2026-11-20T21:51:47.992Z"
   },
   "9_5": {
     "jornada": 9,
