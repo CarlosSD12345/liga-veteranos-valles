@@ -2032,7 +2032,7 @@ if (arbNombre) html += '👤 Árbitro: <strong>' + arbNombre + '</strong><br>';
 if (campoPartido) html += '📍 Campo: <strong>' + campoPartido + '</strong>';
 if (horaPartido) html += ' · 🕒 ' + horaPartido;
 html += '</div>';
-html += '<button class="btn-pdf" disabled>📄 Descargar acta en PDF (próximamente)</button>';
+html += '<button class="btn-pdf" onclick="generarPDFActa(' + numJornada + ',' + idxPartido + ')" style="background-color:#27ae60; cursor:pointer;">📄 Descargar acta en PDF</button>';
 html += '</div>';
 document.getElementById('modal-acta-contenido').innerHTML = html;
 document.getElementById('modal-acta').classList.add('active');
@@ -2203,6 +2203,172 @@ html += '</div>';
 });
 
 document.getElementById('dashboard-arbitros-contenido').innerHTML = html;
+}
+function generarPDFActa(numJornada, idxPartido) {
+var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
+if (!jornada) return;
+var partido = jornada.partidos[idxPartido];
+if (!partido) return;
+
+var resJ = resultados[String(numJornada)] || {};
+var resP = resJ[String(idxPartido)] || {};
+var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : partido.golesLocal;
+var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : partido.golesVisitante;
+var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : partido.arbitro;
+var campoPartido = (resP.campo !== undefined && resP.campo !== null) ? resP.campo : partido.campo;
+var horaPartido = (resP.hora !== undefined && resP.hora !== null) ? resP.hora : partido.hora;
+
+var claveActa = String(numJornada) + '_' + String(idxPartido);
+var acta = actas[claveActa] || null;
+
+var ctLocal = acta ? acta.cuerpoTecnicoLocal : { entrenador: '', delegado: '' };
+var ctVisitante = acta ? acta.cuerpoTecnicoVisitante : { entrenador: '', delegado: '' };
+var titularesLocal = acta ? (acta.local ? acta.local.jugadores.filter(function(j) { return j.condicion === 'titular'; }) : []) : [];
+var suplentesLocal = acta ? (acta.local ? acta.local.jugadores.filter(function(j) { return j.condicion === 'suplent'; }) : []) : [];
+var titularesVisitante = acta ? (acta.visitante ? acta.visitante.jugadores.filter(function(j) { return j.condicion === 'titular'; }) : []) : [];
+var suplentesVisitante = acta ? (acta.visitante ? acta.visitante.jugadores.filter(function(j) { return j.condicion === 'suplent'; }) : []) : [];
+
+var observaciones = '';
+if (acta && acta.observaciones && acta.observaciones.trim() !== '') {
+observaciones = acta.observaciones.trim();
+} else {
+observaciones = 'Sin observaciones';
+}
+
+function renderTablaJugadores(jugadores) {
+if (jugadores.length === 0) return '<tr><td colspan="4" style="text-align:center; color:#999;">Sin datos</td></tr>';
+var html = '';
+jugadores.forEach(function(j) {
+var dorsal = j.dorsal !== null && j.dorsal !== undefined ? j.dorsal : '-';
+var golesNum = (j.goles && j.goles > 0) ? j.goles : '';
+var tarjetasHtml = '';
+if (j.tarjetas && j.tarjetas.length > 0) {
+j.tarjetas.forEach(function(t) {
+var minutoStr = t.minuto ? '(min ' + t.minuto + ") " : "";
+if (t.tipo === 'roja') tarjetasHtml += minutoStr + '🟥';
+else if (t.tipo === 'doble_amarilla') tarjetasHtml += minutoStr + '🟨🟨';
+else if (t.tipo === 'amarilla') tarjetasHtml += minutoStr + '🟨';
+});
+}
+html += '<tr>';
+html += '<td style="text-align:center; font-weight:bold;">' + dorsal + '</td>';
+html += '<td><span class="nombre-jugador" title="' + j.nombre + '">' + j.nombre + '</span></td>';
+html += '<td style="text-align:center; font-weight:bold;">' + golesNum + '</td>';
+html += '<td style="text-align:center;">' + tarjetasHtml + '</td>';
+html += '</tr>';
+});
+return html;
+}
+
+function renderCuerpoTecnico(ct) {
+var html = '<h4 style="color:#1a5f2a; border-bottom:2px solid #1a5f2a; padding-bottom:5px; margin-top:20px; margin-bottom:10px;">👥 CUERPO TÉCNICO</h4>';
+html += '<table style="width:100%; border-collapse:collapse; margin-bottom:15px;">';
+html += '<tr style="background:#f5f5f5;"><td style="padding:6px 8px; font-weight:bold; width:30%; border:1px solid #ddd;">Entrenador:</td><td style="padding:6px 8px; border:1px solid #ddd;">' + (ct.entrenador || '-') + '</td></tr>';
+html += '<tr><td style="padding:6px 8px; font-weight:bold; border:1px solid #ddd;">Delegado:</td><td style="padding:6px 8px; border:1px solid #ddd;">' + (ct.delegado || '-') + '</td></tr>';
+html += '</table>';
+return html;
+}
+
+var theadJugadores = '<thead><tr><th style="width:10%;">Dorsal</th><th style="width:52%;">Nombre</th><th style="width:10%; text-align:center;">Goles</th><th style="width:28%; text-align:center;">Tarjetas</th></tr></thead>';
+
+var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Acta - ' + partido.local + ' vs ' + partido.visitante + '</title>';
+html += '<style>';
+html += 'body { font-family: Arial, sans-serif; max-width: 900px; margin: 20px auto; padding: 20px; color: #000; }';
+html += 'h1 { text-align: center; color: #1a5f2a; border-bottom: 3px solid #1a5f2a; padding-bottom: 10px; }';
+html += 'h2 { color: #1a5f2a; border-bottom: 2px solid #1a5f2a; padding-bottom: 5px; margin-top: 25px; }';
+html += 'h3 { color: #333; margin: 15px 0 8px 0; }';
+html += '.info-partido { background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 15px 0; }';
+html += '.info-partido p { margin: 5px 0; }';
+html += '.marcador { text-align: center; font-size: 2em; font-weight: bold; color: #1a5f2a; margin: 20px 0; }';
+html += 'table { width: 100%; border-collapse: collapse; margin: 10px 0; table-layout: fixed; }';
+html += 'th { background: #1a5f2a; color: white; padding: 6px 5px; text-align: left; font-size: 13px; }';
+html += 'td { padding: 5px 5px; border-bottom: 1px solid #ddd; font-size: 13px; overflow-wrap: break-word; }';
+html += 'tr:nth-child(even) { background: #f9f9f9; }';
+html += '.dos-columnas { display: flex; gap: 20px; }';
+html += '.dos-columnas > div { flex: 1; min-width: 0; }';
+html += '.firma { margin-top: 50px; text-align: right; }';
+html += '.firma-linea { display: inline-block; border-top: 1px solid #000; width: 200px; padding-top: 5px; }';
+html += '@media print { ';
+html += '@page { margin: 5mm; size: A4; } ';
+html += 'body { margin: 0; padding: 3px; font-size: 8.5px; } ';
+html += '.no-print { display: none !important; } ';
+html += 'h2 { margin-top: 4px; margin-bottom: 2px; font-size: 13px; } ';
+html += 'h3 { font-size: 10px; margin: 4px 0 2px 0; } ';
+html += 'h4 { font-size: 8px; margin: 3px 0 1px 0; } ';
+html += 'table { font-size: 8px; margin: 2px 0; } ';
+html += 'td { padding: 1px 3px; } ';
+html += 'th { padding: 2px 3px; font-size: 8px; } ';
+html += '.info-partido { padding: 4px; margin: 4px 0; font-size: 8px; } ';
+html += '.marcador { font-size: 1.1em; margin: 4px 0; } ';
+html += '.dos-columnas { gap: 6px; } ';
+html += '.observaciones-box { padding: 4px; margin: 4px 0; font-size: 8px; } ';
+html += '.firma { margin-top: 8px; } ';
+html += 'img { -webkit-print-color-adjust: exact; print-color-adjust: exact; } ';
+html += 'table, tr, td, th { page-break-inside: avoid; } ';
+html += '.nombre-jugador { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: block; } ';
+html += '} ';
+html += '.btn-print { background: #1a5f2a; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px 5px; }';
+html += '.btn-close { background: #e74c3c; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px 5px; }';
+html += '.observaciones-box { background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #1a5f2a; font-style: italic; }';
+html += '</style></head><body>';
+
+html += '<div class="no-print" style="text-align:center; margin-bottom:20px;">';
+html += '<button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>';
+html += '<button class="btn-close" onclick="window.close()">✕ Cerrar</button>';
+html += '</div>';
+
+html += '<div style="background-color:#1a5f2a; padding:12px; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:12px; margin-top:5px;">';
+html += '<img src="https://raw.githubusercontent.com/CarlosSD12345/liga-veteranos-valles/main/escudos/logo_liga.png" alt="Logo Liga" style="height:75px; background:#1a5f2a;">';
+html += '</div>';
+html += '<h2 style="text-align:center; border:none;">ACTA DEL PARTIDO</h2>';
+
+html += '<div class="info-partido">';
+html += '<p><strong>Jornada:</strong> ' + numJornada + ' · <strong>Fecha:</strong> ' + jornada.fecha + '</p>';
+html += '<p><strong>Hora:</strong> ' + horaPartido + ' · <strong>Campo:</strong> ' + campoPartido + '</p>';
+html += '<p><strong>Árbitro:</strong> ' + (arbNombre || 'No asignado') + '</p>';
+html += '</div>';
+
+html += '<div class="marcador">';
+html += getNombreCorto(partido.local) + ' ' + (gl !== null ? gl : '-') + ' - ' + (gv !== null ? gv : '-') + ' ' + getNombreCorto(partido.visitante);
+html += '</div>';
+
+html += '<div class="dos-columnas">';
+
+html += '<div>';
+var imgLocal = getImgEquipo(partido.local);
+html += '<h3 style="color:#1a5f2a; display:flex; align-items:center; justify-content:center; gap:10px; text-align:center;"><img src="https://carlossd12345.github.io/liga-veteranos-valles/escudos/' + imgLocal + '" style="width:32px; height:32px; object-fit:contain; background:#fff; border-radius:50%; padding:2px; box-shadow:0 1px 3px rgba(0,0,0,0.2);"> ' + partido.local.toUpperCase() + '</h3>';
+html += '<h4 style="color:#1a5f2a; border-bottom:2px solid #1a5f2a; padding-bottom:5px;">TITULARES</h4>';
+html += '<table>' + theadJugadores + '<tbody>' + renderTablaJugadores(titularesLocal) + '</tbody></table>';
+html += '<h4 style="color:#1a5f2a; border-bottom:2px solid #1a5f2a; padding-bottom:5px; margin-top:20px;">SUPLENTES</h4>';
+html += '<table>' + theadJugadores + '<tbody>' + renderTablaJugadores(suplentesLocal) + '</tbody></table>';
+html += renderCuerpoTecnico(ctLocal);
+html += '</div>';
+
+html += '<div>';
+var imgVisitante = getImgEquipo(partido.visitante);
+html += '<h3 style="color:#c0392b; display:flex; align-items:center; justify-content:center; gap:10px; text-align:center;"><img src="https://carlossd12345.github.io/liga-veteranos-valles/escudos/' + imgVisitante + '" style="width:32px; height:32px; object-fit:contain; background:#fff; border-radius:50%; padding:2px; box-shadow:0 1px 3px rgba(0,0,0,0.2);"> ' + partido.visitante.toUpperCase() + '</h3>';
+html += '<h4 style="color:#1a5f2a; border-bottom:2px solid #1a5f2a; padding-bottom:5px;">TITULARES</h4>';
+html += '<table>' + theadJugadores + '<tbody>' + renderTablaJugadores(titularesVisitante) + '</tbody></table>';
+html += '<h4 style="color:#1a5f2a; border-bottom:2px solid #1a5f2a; padding-bottom:5px; margin-top:20px;">SUPLENTES</h4>';
+html += '<table>' + theadJugadores + '<tbody>' + renderTablaJugadores(suplentesVisitante) + '</tbody></table>';
+html += renderCuerpoTecnico(ctVisitante);
+html += '</div>';
+
+html += '</div>';
+
+html += '<h2>📝 OBSERVACIONES</h2>';
+html += '<div class="observaciones-box">' + observaciones + '</div>';
+
+html += '<div class="firma">';
+html += '<p>Firma del árbitro:</p>';
+html += '<div class="firma-linea">' + (arbNombre || '') + '</div>';
+html += '</div>';
+
+html += '</body></html>';
+
+var ventana = window.open('', '_blank');
+ventana.document.write(html);
+ventana.document.close();
 }
 </script>
 </body>
