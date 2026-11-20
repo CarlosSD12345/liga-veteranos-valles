@@ -1258,12 +1258,6 @@ jugadoresVisitante.push(jugador);
 }
 }
 }
-// Capturar observaciones
-var observaciones = '';
-var matchObs = texto.match(/OBSERVACIONES[:\s]*\n?([\s\S]*?)(?:Por favor, valida esta acta|$)/i);
-if (matchObs) {
-observaciones = matchObs[1].trim();
-}
 var claveActa = String(numJornada) + '_' + String(idxPartido);
 var acta = {
 jornada: numJornada,
@@ -1279,7 +1273,6 @@ cuerpoTecnicoLocal: cuerpoTecnicoLocal,
 cuerpoTecnicoVisitante: cuerpoTecnicoVisitante,
 local: { jugadores: jugadoresLocal },
 visitante: { jugadores: jugadoresVisitante },
-observaciones: observaciones,
 fechaImportacion: new Date().toISOString()
 };
 resultadoDiv.style.display = 'block';
@@ -2211,16 +2204,6 @@ html += '</div>';
 
 document.getElementById('dashboard-arbitros-contenido').innerHTML = html;
 }
-function numeroMotivo(motivo) {
-if (!motivo) return '';
-var motivoLimpio = motivo.replace(/^\d+-\s*/, '').toLowerCase().trim();
-var mapa = {
-'subjectar': '1', 'empentar': '2', 'mans': '3', 'traveta': '4',
-'protestar': '5', 'desconsiderar': '6', 'distancia': '7',
-'perdre temps': '8', 'reincidir faltes': '9', 'reincidencia en faltas': '9'
-};
-return mapa[motivoLimpio] || '';
-}
 function generarPDFActa(numJornada, idxPartido) {
 var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
 if (!jornada) return;
@@ -2261,14 +2244,10 @@ var golesNum = (j.goles && j.goles > 0) ? j.goles : '';
 var tarjetasHtml = '';
 if (j.tarjetas && j.tarjetas.length > 0) {
 j.tarjetas.forEach(function(t) {
-var minutoStr = t.minuto ? 'min ' + t.minuto : '';
-var numMotivo = numeroMotivo(t.motivo);
-var motivoStr = numMotivo ? ' - ' + numMotivo : '';
-var infoStr = (minutoStr || motivoStr) ? '(' + minutoStr + motivoStr + ')' : '';
-if (tarjetasHtml !== '') tarjetasHtml += ' ';
-if (t.tipo === 'roja') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟥';
-else if (t.tipo === 'doble_amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨🟨';
-else if (t.tipo === 'amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨';
+var minutoStr = t.minuto ? '(min ' + t.minuto + ") " : "";
+if (t.tipo === 'roja') tarjetasHtml += minutoStr + '🟥';
+else if (t.tipo === 'doble_amarilla') tarjetasHtml += minutoStr + '🟨🟨';
+else if (t.tipo === 'amarilla') tarjetasHtml += minutoStr + '🟨';
 });
 }
 html += '<tr>';
@@ -2376,13 +2355,6 @@ html += renderCuerpoTecnico(ctVisitante);
 html += '</div>';
 
 html += '</div>';
-
-html += '<h2>🟨🟥 MOTIVOS DE TARJETA</h2>';
-html += '<table style="width:100%; border-collapse:collapse; margin-bottom:15px; font-size:8px;">';
-html += '<tr><td style="padding:2px 4px; border:1px solid #ddd;"><b>1.</b> Subjectar</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>2.</b> Empentar</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>3.</b> Mans</td></tr>';
-html += '<tr><td style="padding:2px 4px; border:1px solid #ddd;"><b>4.</b> Traveta</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>5.</b> Protestar</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>6.</b> Desconsiderar</td></tr>';
-html += '<tr><td style="padding:2px 4px; border:1px solid #ddd;"><b>7.</b> Distancia</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>8.</b> Perdre temps</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>9.</b> Reincidir faltes</td></tr>';
-html += '</table>';
 
 html += '<h2>📝 OBSERVACIONES</h2>';
 html += '<div class="observaciones-box">' + observaciones + '</div>';
