@@ -6,7 +6,7 @@
 // para que el móvil actualice la caché automáticamente.
 // ============================================
 
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE_NAME = `liga-veteranos-${VERSION}`;
 
 // Lista de archivos que se guardarán en caché
