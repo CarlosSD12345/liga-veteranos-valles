@@ -323,6 +323,15 @@
         "fecha": "2026-10-18"
       }
     ],
+    "2": [
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Lamine",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-21"
+      }
+    ],
     "3": [
       {
         "equipo": "U.E. Canovelles",
