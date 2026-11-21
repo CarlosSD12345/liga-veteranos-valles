@@ -963,6 +963,27 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-10-25"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Pablo",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-21"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Abdou",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-21"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Fran",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-21"
       }
     ],
     "5": [
