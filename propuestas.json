@@ -719,6 +719,13 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-10-26"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Lamine",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-21"
       }
     ],
     "4": [
