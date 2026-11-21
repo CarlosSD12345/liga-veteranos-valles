@@ -584,6 +584,13 @@
         "goles": 4,
         "estado": "aprobado",
         "fecha": "2026-11-05"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Lass",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-21"
       }
     ],
     "4": [
