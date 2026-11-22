@@ -1615,6 +1615,43 @@
         "fecha": "2026-11-22"
       }
     ],
+    "3": [
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Arnau",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Carri",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Torito",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Uba",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "A.V. L'Ametlla del Vallés",
+        "jugador": "Carlos E.",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      }
+    ],
     "5": [
       {
         "equipo": "U.E. Sabadellenca",
