@@ -794,13 +794,13 @@
     },
     "6": {
       "suspendido": false,
-      "golesLocal": null,
-      "golesVisitante": null,
+      "golesLocal": 5,
+      "golesVisitante": 1,
       "arbitro": "Fabregas",
       "campo": "MPAL SENTMENAT",
       "hora": "08:30",
-      "amarillasLocal": 0,
-      "amarillasVisitante": 0,
+      "amarillasLocal": 2,
+      "amarillasVisitante": 1,
       "rojasLocal": 0,
       "rojasVisitante": 0
     },
