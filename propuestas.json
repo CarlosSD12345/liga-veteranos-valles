@@ -1569,6 +1569,29 @@
     ]
   },
   "10": {
+    "0": [
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "EDU",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "RUBEN ESCOBAR",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "E.F.B Palau Solitá i Plegamans",
+        "jugador": "JORDI FARRE",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      }
+    ],
     "2": [
       {
         "equipo": "U.E. Castellar",
