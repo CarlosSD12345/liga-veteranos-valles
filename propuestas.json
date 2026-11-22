@@ -1569,6 +1569,29 @@
     ]
   },
   "10": {
+    "2": [
+      {
+        "equipo": "U.E. Castellar",
+        "jugador": "Jaime Perales",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "U.E. Castellar",
+        "jugador": "Xavier Salvans",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "U.E. Castellar",
+        "jugador": "Adrian Garcia",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      }
+    ],
     "5": [
       {
         "equipo": "U.E. Sabadellenca",
