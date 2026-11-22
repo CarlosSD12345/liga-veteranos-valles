@@ -1681,6 +1681,29 @@
         "estado": "aprobado",
         "fecha": "2026-11-22"
       }
+    ],
+    "7": [
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Pepelu",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Cristian",
+        "goles": 3,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "C.F. Cerdanyola",
+        "jugador": "Ivan Ruiz",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      }
     ]
   }
 }
