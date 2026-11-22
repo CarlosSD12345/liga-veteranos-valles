@@ -1712,6 +1712,13 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "C.F. Barberá",
+        "jugador": "Alvaro",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
       }
     ]
   }
