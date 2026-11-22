@@ -2,6 +2,7 @@
   "message": "API rate limit exceeded for 84.78.248.161. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)",
   "documentation_url": "https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting",
   "U.E. Castellar": [
-    "Jaime Perales"
+    "Jaime Perales",
+    "Xavier Salvans"
   ]
 }
