@@ -1567,5 +1567,37 @@
         "fecha": "2026-11-15"
       }
     ]
+  },
+  "10": {
+    "5": [
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Jose Montero",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Abel",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Madir",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      },
+      {
+        "equipo": "U.E. Sabadellenca",
+        "jugador": "Javi Raya",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-22"
+      }
+    ]
   }
 }
