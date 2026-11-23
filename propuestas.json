@@ -1719,6 +1719,29 @@
         "fecha": "2026-11-22"
       }
     ],
+    "4": [
+      {
+        "equipo": "Penya Decano",
+        "jugador": "Baena",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      },
+      {
+        "equipo": "Penya Decano",
+        "jugador": "Jose",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      },
+      {
+        "equipo": "Penya Decano",
+        "jugador": "Edu",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      }
+    ],
     "5": [
       {
         "equipo": "U.E. Sabadellenca",
