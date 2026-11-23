@@ -1592,6 +1592,22 @@
         "fecha": "2026-11-22"
       }
     ],
+    "1": [
+      {
+        "equipo": "C.F. Sant Feliu de Codines",
+        "jugador": "Enric González",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      },
+      {
+        "equipo": "C.F. Sant Feliu de Codines",
+        "jugador": "Patrick",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      }
+    ],
     "2": [
       {
         "equipo": "U.E. Castellar",
