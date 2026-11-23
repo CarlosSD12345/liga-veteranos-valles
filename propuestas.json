@@ -1606,6 +1606,34 @@
         "goles": 1,
         "estado": "aprobado",
         "fecha": "2026-11-23"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "CHRIS.D",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "ANTONIO",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "ANGEL",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      },
+      {
+        "equipo": "U.E. Canovelles",
+        "jugador": "JOSE",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
       }
     ],
     "2": [
