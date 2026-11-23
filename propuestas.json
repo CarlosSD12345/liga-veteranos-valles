@@ -1114,6 +1114,29 @@
         "fecha": "2026-11-02"
       }
     ],
+    "4": [
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Abdou",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Lamine",
+        "goles": 1,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      },
+      {
+        "equipo": "C.E. Bigues i Riells",
+        "jugador": "Lass",
+        "goles": 2,
+        "estado": "pendiente",
+        "fecha": "2026-11-23"
+      }
+    ],
     "5": [
       {
         "equipo": "C.F. Barberá",
