@@ -157,8 +157,8 @@ header { justify-content: center; }
 .btn-cerrar-modal { position: absolute; top: 10px; right: 10px; background: #e74c3c; color: white; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; font-weight: bold; }
 @media (max-width: 600px) { .modal-acta { margin: 10px auto; padding: 15px; } .modal-header h2 { font-size: 1.1rem; } .modal-header .modal-score { font-size: 1.2rem; } .modal-tab-btn { font-size: 0.8rem; padding: 8px; } }
 </style>
-</head>
 <script src="https://cdn.counter.dev/script.js" data-id="b981d262-4374-4ae0-b843-9d64c7aff79f" data-utcoffset="1"></script>
+</head>
 <body>
 <div class="container">
 <header><img src="escudos/logo_liga.png" alt="Liga Veteranos Vallès" class="header-logo"></header>
@@ -192,14 +192,13 @@ header { justify-content: center; }
 <p class="footer-lema">"Ens divertim, competim i fem amics"</p>
 <p class="footer-hashtag">#VeteransDelVallès</p>
 <div class="footer-bottom">
-   <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
-   <p style="margin:0; font-size:0.8rem; display: flex; align-items: center; gap: 10px;">
-     © 2026 Liga de Fútbol Veteranos del Vallès
-     <!-- hitwebcounter Code START -->
-     <img src="https://www.hitwebcounter.com/counter/counter.php?page=21529498&style=0006&nbdigits=5&type=page" alt="Visitas" decoding="async" style="border:0; height: 20px; vertical-align: middle;" />
-     <!-- hitwebcounter Code END -->
-   </p>
-   </div>
+<button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
+<p style="margin:0; font-size:0.8rem; display: flex; align-items: center; gap: 10px;">
+© 2026 Liga de Fútbol Veteranos del Vallès
+<!-- hitwebcounter Code START -->
+<img src="https://www.hitwebcounter.com/counter/counter.php?page=21529498&style=0006&nbdigits=5&type=page" alt="Visitas" decoding="async" style="border:0; height: 20px; vertical-align: middle;" />
+<!-- hitwebcounter Code END -->
+</p>
 </div>
 </footer>
 </div>
@@ -389,7 +388,7 @@ var calendario = [
 ], descanso: "C.F. Can Parellada" },
 { jornada: 11, fecha: "29/11/2026", suspendida: false, partidos: [
 { local: "E.F.B Palau Solitá i Plegamans", visitante: "C.F. Sant Feliu de Codines", golesLocal: null, golesVisitante: null, campo: "MPAL PALAU", hora: "08:00" },
-{ local: "U.E. Canovelles", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "08:00" },
+{ local: "U.E. Canovelles", visitante: "U.E. Castellar", golesLocal: null, golesVisitante: null, campo: "MPAL CANOVELLES", hora: "19:15 sábado" },
 { local: "A.V. Pallejá", visitante: "U.D.A. Gramanet", golesLocal: null, golesVisitante: null, campo: "MPAL PALLEJA", hora: "08:15" },
 { local: "A.V. L'Ametlla del Vallés", visitante: "Penya Decano", golesLocal: null, golesVisitante: null, campo: "MPAL L'AMETLLA", hora: "08:30" },
 { local: "V.C.F. Ripollet", visitante: "A.V. Ripollet", golesLocal: null, golesVisitante: null, campo: "MPAL RIPOLLET", hora: "08:00" },
@@ -930,7 +929,7 @@ cargarPropuestasAdmin();
 function mostrarSeccionAdmin(seccion) {
 document.getElementById('admin-seccion-resultados').style.display = seccion === 'resultados' ? 'block' : 'none';
 document.getElementById('admin-seccion-propuestas').style.display = seccion === 'propuestas' ? 'block' : 'none';
-document.getElementById('admin-seccion-arbitros').style.display = seccion === 'arbitros-dashboard' ? 'block' : 'none';
+document.getElementById('admin-seccion-arbitros').style.display = seccion === 'arbitros' ? 'block' : 'none';
 if (seccion === 'propuestas') cargarPropuestasAdmin();
 }
 function cargarSelectorAdmin() {
@@ -1265,20 +1264,12 @@ jugadoresVisitante.push(jugador);
 }
 }
 }
-// Capturar observaciones
 var observaciones = '';
-var matchObs = texto.match(/OBSERVACIONES[:\s]*\n?([\s\S]*?)(?:Por favor, valida esta acta|$)/i);
+var matchObs = texto.match(/(?:OBSERVACIONES|OBSERVACIONS)[:\s]*\n?([\s\S]*?)(?=\n[A-Z]|$)/i);
 if (matchObs) {
 observaciones = matchObs[1].trim();
 }
 var claveActa = String(numJornada) + '_' + String(idxPartido);
-// Capturar observaciones (busca "OBSERVACIONES:" o "OBSERVACIONS:")
-var observaciones = '';
-var matchObs = texto.match(/(?:OBSERVACIONES|OBSERVACIONS)[:\s]*\n?([\s\S]*?)(?=\n\n[A-Z]|$)/i);
-if (matchObs) {
-observaciones = matchObs[1].trim();
-}
-
 var acta = {
 jornada: numJornada,
 partido: idxPartido,
@@ -1551,6 +1542,12 @@ html += '<input type="text" id="ca-' + index + '" value="' + campoActual + '" pl
 html += '<span style="color:#a3b8af; font-size:0.75rem;">🕒 Hora:</span>';
 html += '<input type="text" id="ho-' + index + '" value="' + horaActual + '" placeholder="08:00" style="width:80px; padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:13px; text-align:center;">';
 html += '</div>';
+var fechaActual = (resP.fecha !== undefined && resP.fecha !== null) ? resP.fecha : '';
+html += '<div style="display:flex; align-items:center; gap:8px; margin-top:5px; justify-content:center; flex-wrap:wrap;">';
+html += '<span style="color:#a3b8af; font-size:0.75rem;">📅 Fecha (opcional):</span>';
+html += '<input type="date" id="fe-' + index + '" value="' + fechaActual + '" style="padding:5px; border-radius:4px; border:1px solid #2ecc71; background:#11291e; color:white; font-size:13px;">';
+html += '<span style="color:#7f8c8d; font-size:0.7rem;">(Si se deja vacío, usa la de la jornada)</span>';
+html += '</div>';
 html += construirSelectArbitros('ar-' + index, arb);
 html += '<label style="color:#3498db; font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="sp-' + index + '" ' + checked + '> ⏸️ Susp.</label>';
 html += '</div></div>';
@@ -1575,7 +1572,8 @@ var valRoL = document.getElementById('roL-' + index).value; var valRoV = documen
 var susp = document.getElementById('sp-' + index).checked;
 var valCampo = document.getElementById('ca-' + index).value.trim();
 var valHora = document.getElementById('ho-' + index).value.trim();
-nuevosResultados[String(index)] = { suspendido: susp, golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)), golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV)), arbitro: valArb || null, campo: valCampo || null, hora: valHora || null, amarillasLocal: valAmL === '' ? 0 : parseInt(valAmL), amarillasVisitante: valAmV === '' ? 0 : parseInt(valAmV), rojasLocal: valRoL === '' ? 0 : parseInt(valRoL), rojasVisitante: valRoV === '' ? 0 : parseInt(valRoV) };
+var valFecha = document.getElementById('fe-' + index).value.trim();
+nuevosResultados[String(index)] = { suspendido: susp, golesLocal: susp ? null : (valL === '' ? null : parseInt(valL)), golesVisitante: susp ? null : (valV === '' ? null : parseInt(valV)), arbitro: valArb || null, campo: valCampo || null, hora: valHora || null, fecha: valFecha || null, amarillasLocal: valAmL === '' ? 0 : parseInt(valAmL), amarillasVisitante: valAmV === '' ? 0 : parseInt(valAmV), rojasLocal: valRoL === '' ? 0 : parseInt(valRoL), rojasVisitante: valRoV === '' ? 0 : parseInt(valRoV) };
 });
 resultados[String(jornadaNum)] = nuevosResultados;
 if (!token) { alert('❌ No hay token configurado.'); btn.textContent = '💾 Guardar'; btn.disabled = false; return; }
@@ -1942,6 +1940,7 @@ var susp = resP.suspendido === true;
 var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro;
 var campoPartido = (resP.campo !== undefined && resP.campo !== null) ? resP.campo : p.campo;
 var horaPartido = (resP.hora !== undefined && resP.hora !== null) ? resP.hora : p.hora;
+var fechaPartido = (resP.fecha !== undefined && resP.fecha !== null && resP.fecha !== '') ? resP.fecha : jornada.fecha;
 var amL = (resP.amarillasLocal !== undefined && resP.amarillasLocal !== null) ? resP.amarillasLocal : null;
 var amV = (resP.amarillasVisitante !== undefined && resP.amarillasVisitante !== null) ? resP.amarillasVisitante : null;
 var roL = (resP.rojasLocal !== undefined && resP.rojasLocal !== null) ? resP.rojasLocal : null;
@@ -1956,7 +1955,7 @@ var arbTexto = arbNombre ? ' · 👤 ' + arbNombre : '';
 html += '<div class="match-card"><div class="match-teams"><div class="match-team local"><span>' + getNombreCorto(p.local) + '</span><img src="escudos/' + getImgEquipo(p.local) + '"></div>';
 html += marcador;
 html += '<div class="match-team visitante"><img src="escudos/' + getImgEquipo(p.visitante) + '"><span>' + getNombreCorto(p.visitante) + '</span></div></div>';
-html += '<div class="match-info">📍 ' + campoPartido + ' ·  ' + horaPartido + ' ·  ' + jornada.fecha + arbTexto + '</div>';
+html += '<div class="match-info">📍 ' + campoPartido + ' ·  ' + horaPartido + ' ·  ' + fechaPartido + arbTexto + '</div>';
 if (hayTarjetas && !susp && gl !== null) {
 html += '<div class="match-cards" style="gap:8px;">';
 html += '<div style="display:flex; align-items:center; gap:3px;">';
@@ -2146,9 +2145,7 @@ document.getElementById('admin-seccion-propuestas').style.display = 'none';
 document.getElementById('modal-importar-whatsapp').style.display = 'none';
 document.getElementById('modal-importar-acta').style.display = 'none';
 document.getElementById('admin-seccion-arbitros').style.display = 'block';
-
 var statsArbitrosEquipos = {};
-
 for (var j = 0; j < calendario.length; j++) {
 var jornada = calendario[j];
 var tieneResultados = false;
@@ -2164,7 +2161,6 @@ if (gl !== null && gv !== null) { tieneResultados = true; break; }
 }
 if (!tieneResultados) continue;
 if (jornada.suspendida === true) continue;
-
 var resJ = resultados[String(jornada.jornada)] || {};
 jornada.partidos.forEach(function(p, idx) {
 var resP = resJ[String(idx)] || {};
@@ -2172,12 +2168,9 @@ var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.gole
 var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? resP.golesVisitante : p.golesVisitante;
 var susp = resP.suspendido === true;
 if (susp || gl === null || gv === null) return;
-
 var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : p.arbitro;
 if (!arbNombre) return;
-
 if (!statsArbitrosEquipos[arbNombre]) statsArbitrosEquipos[arbNombre] = {};
-
 var equipoLocal = p.local;
 if (!statsArbitrosEquipos[arbNombre][equipoLocal]) {
 statsArbitrosEquipos[arbNombre][equipoLocal] = 0;
@@ -2185,7 +2178,6 @@ statsArbitrosEquipos[arbNombre][equipoLocal] = 0;
 statsArbitrosEquipos[arbNombre][equipoLocal]++;
 });
 }
-
 var listaArbitros = [];
 for (var nombre in statsArbitrosEquipos) {
 var total = 0;
@@ -2196,7 +2188,6 @@ listaArbitros.sort(function(a, b) {
 if (b.partidos !== a.partidos) return b.partidos - a.partidos;
 return a.nombre.localeCompare(b.nombre);
 });
-
 var html = '';
 listaArbitros.forEach(function(arb) {
 var equiposLocales = statsArbitrosEquipos[arb.nombre] || {};
@@ -2205,10 +2196,8 @@ for (var eq in equiposLocales) {
 equiposArray.push({ nombre: eq, veces: equiposLocales[eq] });
 }
 equiposArray.sort(function(a, b) { return b.veces - a.veces; });
-
 html += '<div style="background-color:#173827; padding:12px; border-radius:8px; margin-bottom:12px; border-left:4px solid #1abc9c;">';
 html += '<div style="font-weight:bold; font-size:1.05rem; margin-bottom:8px; color:white;">👤 ' + arb.nombre + ' <span style="color:#a3b8af; font-size:0.85rem; font-weight:normal;">(' + arb.partidos + ' partidos)</span></div>';
-
 if (equiposArray.length === 0) {
 html += '<div style="color:#a3b8af; font-size:0.85rem;">Sin partidos registrados</div>';
 } else {
@@ -2222,7 +2211,6 @@ html += '</div>';
 }
 html += '</div>';
 });
-
 document.getElementById('dashboard-arbitros-contenido').innerHTML = html;
 }
 function numeroMotivo(motivo) {
@@ -2240,7 +2228,6 @@ var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
 if (!jornada) return;
 var partido = jornada.partidos[idxPartido];
 if (!partido) return;
-
 var resJ = resultados[String(numJornada)] || {};
 var resP = resJ[String(idxPartido)] || {};
 var gl = (resP.golesLocal !== undefined && resP.golesLocal !== null) ? resP.golesLocal : partido.golesLocal;
@@ -2248,24 +2235,20 @@ var gv = (resP.golesVisitante !== undefined && resP.golesVisitante !== null) ? r
 var arbNombre = (resP.arbitro !== undefined && resP.arbitro !== null) ? resP.arbitro : partido.arbitro;
 var campoPartido = (resP.campo !== undefined && resP.campo !== null) ? resP.campo : partido.campo;
 var horaPartido = (resP.hora !== undefined && resP.hora !== null) ? resP.hora : partido.hora;
-
 var claveActa = String(numJornada) + '_' + String(idxPartido);
 var acta = actas[claveActa] || null;
-
 var ctLocal = acta ? acta.cuerpoTecnicoLocal : { entrenador: '', delegado: '' };
 var ctVisitante = acta ? acta.cuerpoTecnicoVisitante : { entrenador: '', delegado: '' };
 var titularesLocal = acta ? (acta.local ? acta.local.jugadores.filter(function(j) { return j.condicion === 'titular'; }) : []) : [];
 var suplentesLocal = acta ? (acta.local ? acta.local.jugadores.filter(function(j) { return j.condicion === 'suplent'; }) : []) : [];
 var titularesVisitante = acta ? (acta.visitante ? acta.visitante.jugadores.filter(function(j) { return j.condicion === 'titular'; }) : []) : [];
 var suplentesVisitante = acta ? (acta.visitante ? acta.visitante.jugadores.filter(function(j) { return j.condicion === 'suplent'; }) : []) : [];
-
 var observaciones = '';
 if (acta && acta.observaciones && acta.observaciones.trim() !== '') {
 observaciones = acta.observaciones.trim();
 } else {
 observaciones = 'Sin observaciones';
 }
-
 function renderTablaJugadores(jugadores) {
 if (jugadores.length === 0) return '<tr><td colspan="4" style="text-align:center; color:#999;">Sin datos</td></tr>';
 var html = '';
@@ -2278,8 +2261,8 @@ j.tarjetas.forEach(function(t, idx) {
 if (idx > 0) tarjetasHtml += ' ';
 var minutoStr = t.minuto ? 'min ' + t.minuto : '';
 var numMotivo = numeroMotivo(t.motivo);
-var motivoStr = numMotivo ? '-' + numMotivo : '';
-var infoStr = (minutoStr || motivoStr) ? '(' + minutoStr + (motivoStr ? ' ' + motivoStr : '') + ')' : '';
+var motivoStr = numMotivo ? ' - ' + numMotivo : '';
+var infoStr = (minutoStr || motivoStr) ? '(' + minutoStr + motivoStr + ')' : '';
 if (t.tipo === 'roja') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟥';
 else if (t.tipo === 'doble_amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨🟨';
 else if (t.tipo === 'amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨';
@@ -2294,7 +2277,6 @@ html += '</tr>';
 });
 return html;
 }
-
 function renderCuerpoTecnico(ct) {
 var html = '<h4 style="color:#1a5f2a; border-bottom:2px solid #1a5f2a; padding-bottom:5px; margin-top:20px; margin-bottom:10px;">👥 CUERPO TÉCNICO</h4>';
 html += '<table style="width:100%; border-collapse:collapse; margin-bottom:15px;">';
@@ -2303,9 +2285,7 @@ html += '<tr><td style="padding:6px 8px; font-weight:bold; border:1px solid #ddd
 html += '</table>';
 return html;
 }
-
 var theadJugadores = '<thead><tr><th style="width:10%;">Dorsal</th><th style="width:45%;">Nombre</th><th style="width:10%; text-align:center;">Goles</th><th style="width:35%; text-align:center;">Tarjetas</th></tr></thead>';
-
 var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Acta - ' + partido.local + ' vs ' + partido.visitante + '</title>';
 html += '<style>';
 html += 'body { font-family: Arial, sans-serif; max-width: 900px; margin: 20px auto; padding: 20px; color: #000; }';
@@ -2346,29 +2326,23 @@ html += '.btn-print { background: #1a5f2a; color: white; border: none; padding: 
 html += '.btn-close { background: #e74c3c; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px 5px; }';
 html += '.observaciones-box { background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #1a5f2a; font-style: italic; }';
 html += '</style></head><body>';
-
 html += '<div class="no-print" style="text-align:center; margin-bottom:20px;">';
 html += '<button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>';
 html += '<button class="btn-close" onclick="window.close()">✕ Cerrar</button>';
 html += '</div>';
-
 html += '<div style="background-color:#1a5f2a; padding:12px; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:12px; margin-top:5px;">';
 html += '<img src="https://raw.githubusercontent.com/CarlosSD12345/liga-veteranos-valles/main/escudos/logo_liga.png" alt="Logo Liga" style="height:75px; background:#1a5f2a;">';
 html += '</div>';
 html += '<h2 style="text-align:center; border:none;">ACTA DEL PARTIDO</h2>';
-
 html += '<div class="info-partido">';
 html += '<p><strong>Jornada:</strong> ' + numJornada + ' · <strong>Fecha:</strong> ' + jornada.fecha + '</p>';
 html += '<p><strong>Hora:</strong> ' + horaPartido + ' · <strong>Campo:</strong> ' + campoPartido + '</p>';
 html += '<p><strong>Árbitro:</strong> ' + (arbNombre || 'No asignado') + '</p>';
 html += '</div>';
-
 html += '<div class="marcador">';
 html += getNombreCorto(partido.local) + ' ' + (gl !== null ? gl : '-') + ' - ' + (gv !== null ? gv : '-') + ' ' + getNombreCorto(partido.visitante);
 html += '</div>';
-
 html += '<div class="dos-columnas">';
-
 html += '<div>';
 var imgLocal = getImgEquipo(partido.local);
 html += '<h3 style="color:#1a5f2a; display:flex; align-items:center; justify-content:center; gap:10px; text-align:center;"><img src="https://carlossd12345.github.io/liga-veteranos-valles/escudos/' + imgLocal + '" style="width:32px; height:32px; object-fit:contain; background:#fff; border-radius:50%; padding:2px; box-shadow:0 1px 3px rgba(0,0,0,0.2);"> ' + partido.local.toUpperCase() + '</h3>';
@@ -2378,7 +2352,6 @@ html += '<h4 style="color:#1a5f2a; border-bottom:2px solid #1a5f2a; padding-bott
 html += '<table>' + theadJugadores + '<tbody>' + renderTablaJugadores(suplentesLocal) + '</tbody></table>';
 html += renderCuerpoTecnico(ctLocal);
 html += '</div>';
-
 html += '<div>';
 var imgVisitante = getImgEquipo(partido.visitante);
 html += '<h3 style="color:#c0392b; display:flex; align-items:center; justify-content:center; gap:10px; text-align:center;"><img src="https://carlossd12345.github.io/liga-veteranos-valles/escudos/' + imgVisitante + '" style="width:32px; height:32px; object-fit:contain; background:#fff; border-radius:50%; padding:2px; box-shadow:0 1px 3px rgba(0,0,0,0.2);"> ' + partido.visitante.toUpperCase() + '</h3>';
@@ -2388,7 +2361,6 @@ html += '<h4 style="color:#1a5f2a; border-bottom:2px solid #1a5f2a; padding-bott
 html += '<table>' + theadJugadores + '<tbody>' + renderTablaJugadores(suplentesVisitante) + '</tbody></table>';
 html += renderCuerpoTecnico(ctVisitante);
 html += '</div>';
-
 html += '</div>';
 html += '<h2>🟨🟥 MOTIVOS DE TARJETA</h2>';
 html += '<table style="width:100%; border-collapse:collapse; margin-bottom:15px; font-size:8px;">';
@@ -2398,14 +2370,11 @@ html += '<tr><td style="padding:2px 4px; border:1px solid #ddd;"><b>7.</b> Dista
 html += '</table>';
 html += '<h2>📝 OBSERVACIONES</h2>';
 html += '<div class="observaciones-box">' + observaciones + '</div>';
-
 html += '<div class="firma">';
 html += '<p>Firma del árbitro:</p>';
 html += '<div class="firma-linea">' + (arbNombre || '') + '</div>';
 html += '</div>';
-
 html += '</body></html>';
-
 var ventana = window.open('', '_blank');
 ventana.document.write(html);
 ventana.document.close();
