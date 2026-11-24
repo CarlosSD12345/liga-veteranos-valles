@@ -2272,14 +2272,17 @@ var golesNum = (j.goles && j.goles > 0) ? j.goles : '';
 var tarjetasHtml = '';
 if (j.tarjetas && j.tarjetas.length > 0) {
 j.tarjetas.forEach(function(t, idx) {
-if (idx > 0) tarjetasHtml += ' ';
-var minutoStr = t.minuto ? 'min ' + t.minuto : '';
-var numMotivo = numeroMotivo(t.motivo);
-var motivoStr = numMotivo ? '-' + numMotivo : '';
-var infoStr = (minutoStr || motivoStr) ? '(' + minutoStr + (motivoStr ? ' ' + motivoStr : '') + ')' : '';
-if (t.tipo === 'roja') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟥';
-else if (t.tipo === 'doble_amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨🟨';
-else if (t.tipo === 'amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨';
+if (idx > 0) eventos += ' · ';
+var minutoTexto = t.minuto ? t.minuto + "'" : '';
+var numMot = numeroMotivo(t.motivo);
+var motivoTexto = numMot ? ' - ' + numMot : '';
+if (t.tipo === 'roja') {
+eventos += '<span class="modal-tarjeta roja"></span> <span style="color:white; font-weight:bold;">' + minutoTexto + motivoTexto + '</span>';
+} else if (t.tipo === 'doble_amarilla') {
+eventos += '<span class="modal-tarjeta amarilla"></span><span class="modal-tarjeta amarilla"></span> <span style="color:white; font-weight:bold;">' + minutoTexto + motivoTexto + '</span>';
+} else if (t.tipo === 'amarilla') {
+eventos += '<span class="modal-tarjeta amarilla"></span> <span style="color:white; font-weight:bold;">' + minutoTexto + motivoTexto + '</span>';
+}
 });
 }
 html += '<tr>';
