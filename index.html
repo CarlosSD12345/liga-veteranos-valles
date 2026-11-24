@@ -158,6 +158,7 @@ header { justify-content: center; }
 @media (max-width: 600px) { .modal-acta { margin: 10px auto; padding: 15px; } .modal-header h2 { font-size: 1.1rem; } .modal-header .modal-score { font-size: 1.2rem; } .modal-tab-btn { font-size: 0.8rem; padding: 8px; } }
 </style>
 </head>
+<script src="https://cdn.counter.dev/script.js" data-id="b981d262-4374-4ae0-b843-9d64c7aff79f" data-utcoffset="1"></script>
 <body>
 <div class="container">
 <header><img src="escudos/logo_liga.png" alt="Liga Veteranos Vallès" class="header-logo"></header>
@@ -191,8 +192,14 @@ header { justify-content: center; }
 <p class="footer-lema">"Ens divertim, competim i fem amics"</p>
 <p class="footer-hashtag">#VeteransDelVallès</p>
 <div class="footer-bottom">
-<button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
-<p style="margin:0; font-size:0.8rem;">© 2026 Liga de Fútbol Veteranos del Vallès</p>
+   <button id="admin-btn" onclick="abrirAdmin()">⚙️ Admin</button>
+   <p style="margin:0; font-size:0.8rem; display: flex; align-items: center; gap: 10px;">
+     © 2026 Liga de Fútbol Veteranos del Vallès
+     <!-- hitwebcounter Code START -->
+     <img src="https://www.hitwebcounter.com/counter/counter.php?page=21529498&style=0006&nbdigits=5&type=page" alt="Visitas" decoding="async" style="border:0; height: 20px; vertical-align: middle;" />
+     <!-- hitwebcounter Code END -->
+   </p>
+   </div>
 </div>
 </footer>
 </div>
@@ -1258,7 +1265,20 @@ jugadoresVisitante.push(jugador);
 }
 }
 }
+// Capturar observaciones
+var observaciones = '';
+var matchObs = texto.match(/OBSERVACIONES[:\s]*\n?([\s\S]*?)(?:Por favor, valida esta acta|$)/i);
+if (matchObs) {
+observaciones = matchObs[1].trim();
+}
 var claveActa = String(numJornada) + '_' + String(idxPartido);
+// Capturar observaciones (busca "OBSERVACIONES:" o "OBSERVACIONS:")
+var observaciones = '';
+var matchObs = texto.match(/(?:OBSERVACIONES|OBSERVACIONS)[:\s]*\n?([\s\S]*?)(?=\n\n[A-Z]|$)/i);
+if (matchObs) {
+observaciones = matchObs[1].trim();
+}
+
 var acta = {
 jornada: numJornada,
 partido: idxPartido,
@@ -1273,6 +1293,7 @@ cuerpoTecnicoLocal: cuerpoTecnicoLocal,
 cuerpoTecnicoVisitante: cuerpoTecnicoVisitante,
 local: { jugadores: jugadoresLocal },
 visitante: { jugadores: jugadoresVisitante },
+observaciones: observaciones,
 fechaImportacion: new Date().toISOString()
 };
 resultadoDiv.style.display = 'block';
@@ -2055,16 +2076,14 @@ for (var g = 0; g < j.goles; g++) eventos += '⚽';
 }
 if (j.tarjetas && j.tarjetas.length > 0) {
 j.tarjetas.forEach(function(t) {
-var minutoTexto = t.minuto ? t.minuto + "'" : '';
-var motivoLimpio = t.motivo ? t.motivo.replace(/^\d+-\s*/, '') : '';
-var motivoTexto = motivoLimpio ? ' - ' + motivoLimpio : '';
-if (t.tipo === 'roja') {
-eventos += '<span class="modal-tarjeta roja"></span> <span style="color:white; font-weight:bold;">' + minutoTexto + motivoTexto + '</span>';
-} else if (t.tipo === 'doble_amarilla') {
-eventos += '<span class="modal-tarjeta amarilla"></span><span class="modal-tarjeta amarilla"></span> <span style="color:white; font-weight:bold;">' + minutoTexto + '</span>';
-} else if (t.tipo === 'amarilla') {
-eventos += '<span class="modal-tarjeta amarilla"></span> <span style="color:white; font-weight:bold;">' + minutoTexto + motivoTexto + '</span>';
-}
+var minutoStr = t.minuto ? 'min ' + t.minuto : '';
+var numMotivo = numeroMotivo(t.motivo);
+var motivoStr = numMotivo ? ' - ' + numMotivo : '';  // 👈 Añadido espacio antes y después del guión
+var infoStr = (minutoStr || motivoStr) ? '(' + minutoStr + motivoStr + ')' : '';  // 👈 Simplificado
+if (tarjetasHtml !== '') tarjetasHtml += ' ';  // 👈 Añadido espacio entre tarjetas
+if (t.tipo === 'roja') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟥';
+else if (t.tipo === 'doble_amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨🟨';
+else if (t.tipo === 'amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨';
 });
 }
 if (eventos) linea += '<div class="modal-eventos">' + eventos + '</div>';
@@ -2118,7 +2137,6 @@ renderizarClasificacionReal();
 initCalendario();
 cargarPropuestasPublicas();
 });
-
 function mostrarDashboardArbitros() {
 document.getElementById('admin-seccion-resultados').style.display = 'none';
 document.getElementById('admin-seccion-propuestas').style.display = 'none';
@@ -2204,6 +2222,16 @@ html += '</div>';
 
 document.getElementById('dashboard-arbitros-contenido').innerHTML = html;
 }
+function numeroMotivo(motivo) {
+if (!motivo) return '';
+var motivoLimpio = motivo.replace(/^\d+-\s*/, '').toLowerCase().trim();
+var mapa = {
+'subjectar': '1', 'empentar': '2', 'mans': '3', 'traveta': '4',
+'protestar': '5', 'desconsiderar': '6', 'distancia': '7',
+'perdre temps': '8', 'reincidir faltes': '9', 'reincidencia en faltas': '9'
+};
+return mapa[motivoLimpio] || '';
+}
 function generarPDFActa(numJornada, idxPartido) {
 var jornada = calendario.find(function(j) { return j.jornada === numJornada; });
 if (!jornada) return;
@@ -2243,11 +2271,15 @@ var dorsal = j.dorsal !== null && j.dorsal !== undefined ? j.dorsal : '-';
 var golesNum = (j.goles && j.goles > 0) ? j.goles : '';
 var tarjetasHtml = '';
 if (j.tarjetas && j.tarjetas.length > 0) {
-j.tarjetas.forEach(function(t) {
-var minutoStr = t.minuto ? '(min ' + t.minuto + ") " : "";
-if (t.tipo === 'roja') tarjetasHtml += minutoStr + '🟥';
-else if (t.tipo === 'doble_amarilla') tarjetasHtml += minutoStr + '🟨🟨';
-else if (t.tipo === 'amarilla') tarjetasHtml += minutoStr + '🟨';
+j.tarjetas.forEach(function(t, idx) {
+if (idx > 0) tarjetasHtml += ' ';
+var minutoStr = t.minuto ? 'min ' + t.minuto : '';
+var numMotivo = numeroMotivo(t.motivo);
+var motivoStr = numMotivo ? '-' + numMotivo : '';
+var infoStr = (minutoStr || motivoStr) ? '(' + minutoStr + (motivoStr ? ' ' + motivoStr : '') + ')' : '';
+if (t.tipo === 'roja') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟥';
+else if (t.tipo === 'doble_amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨🟨';
+else if (t.tipo === 'amarilla') tarjetasHtml += '<span style="font-size:7px;">' + infoStr + '</span>🟨';
 });
 }
 html += '<tr>';
@@ -2269,7 +2301,7 @@ html += '</table>';
 return html;
 }
 
-var theadJugadores = '<thead><tr><th style="width:10%;">Dorsal</th><th style="width:52%;">Nombre</th><th style="width:10%; text-align:center;">Goles</th><th style="width:28%; text-align:center;">Tarjetas</th></tr></thead>';
+var theadJugadores = '<thead><tr><th style="width:10%;">Dorsal</th><th style="width:45%;">Nombre</th><th style="width:10%; text-align:center;">Goles</th><th style="width:35%; text-align:center;">Tarjetas</th></tr></thead>';
 
 var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Acta - ' + partido.local + ' vs ' + partido.visitante + '</title>';
 html += '<style>';
@@ -2355,7 +2387,12 @@ html += renderCuerpoTecnico(ctVisitante);
 html += '</div>';
 
 html += '</div>';
-
+html += '<h2>🟨🟥 MOTIVOS DE TARJETA</h2>';
+html += '<table style="width:100%; border-collapse:collapse; margin-bottom:15px; font-size:8px;">';
+html += '<tr><td style="padding:2px 4px; border:1px solid #ddd;"><b>1.</b> Subjectar</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>2.</b> Empentar</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>3.</b> Mans</td></tr>';
+html += '<tr><td style="padding:2px 4px; border:1px solid #ddd;"><b>4.</b> Traveta</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>5.</b> Protestar</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>6.</b> Desconsiderar</td></tr>';
+html += '<tr><td style="padding:2px 4px; border:1px solid #ddd;"><b>7.</b> Distancia</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>8.</b> Perdre temps</td><td style="padding:2px 4px; border:1px solid #ddd;"><b>9.</b> Reincidir faltes</td></tr>';
+html += '</table>';
 html += '<h2>📝 OBSERVACIONES</h2>';
 html += '<div class="observaciones-box">' + observaciones + '</div>';
 
