@@ -201,6 +201,7 @@ header { justify-content: center; }
 .ficha-partido-marcador.pendiente { color: #e74c3c; font-size: 0.9rem; }
 .ficha-partido-marcador.susp { color: #3498db; font-size: 0.9rem; }
 .ficha-partido-fecha { color: #a3b8af; font-size: 0.75rem; margin-top: 4px; }
+.ficha-equipacion-img { width: 100%; max-width: 220px; height: auto; border-radius: 10px; margin: 10px auto; display: block; background: #fff; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
 .btn-tlf { display: inline-flex; align-items: center; gap: 6px; background-color: #25D366; color: white; padding: 5px 12px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.8rem; }
 .btn-tlf:hover { background-color: #1ebe5d; }
 </style>
@@ -2460,7 +2461,25 @@ var datosEquipos = {
 "C.E. Bigues i Riells": { campo: "CAMP D´ESPORTS MPAL. DE BIGUES I RIELLS", maps: "https://maps.app.goo.gl/a6yAQnc7b4H4ywiv8", responsable: "Jordi (Tuty)", tlf: "658.82.39.17" },
 "C.E. Sentmenat": { campo: "CAMP DE FUTBOL MPAL. CAN SORTS", maps: "https://maps.app.goo.gl/5EZMuwin473EPqdYA", responsable: "Eric Mas", tlf: "671.03.53.42" }
 };
-
+var equipacionEquipos = {
+"U.E. Sabadellenca": "sabadellenca.jpg",
+"A.V. Ripollet": "av-ripollet.jpg",
+"C.E. Santa Eulàlia de Ronçana": "sta-eulalia.jpg",
+"C.F. Cerdanyola": "cerdanyola.jpg",
+"V.C.F. Ripollet": "vcf-ripollet.jpg",
+"A.V. L'Ametlla del Vallés": "lametlla.jpg",
+"C.F. Barberá": "barbera.jpg",
+"Penya Decano": "decano.jpg",
+"U.E. Castellar": "castellar.jpg",
+"U.D.A. Gramanet": "gramanet.jpg",
+"U.E. Canovelles": "canovelles.jpg",
+"E.F.B Palau Solitá i Plegamans": "palau-plegamans.jpg",
+"A.V. Pallejá": "palleja.jpg",
+"C.F. Sant Feliu de Codines": "sant-feliu.jpg",
+"C.F. Can Parellada": "can-parellada.jpg",
+"C.E. Bigues i Riells": "bigues.jpg",
+"C.E. Sentmenat": "sentmenat.jpg"
+};
 function renderizarEquipos() {
   var grid = document.getElementById('equipos-grid');
   if (grid.children.length > 0) return;
@@ -2575,6 +2594,15 @@ if (datos.responsable || datos.tlf) {
   }
 } else {
   html += '<p style="color:#a3b8af; font-size:0.9rem;">Sin datos de contacto.</p>';
+}
+html += '</div>';
+html += '<div class="ficha-seccion">';
+html += '<h3>👕 EQUIPACIÓN</h3>';
+var imgEquipacion = equipacionEquipos[nombreCompleto];
+if (imgEquipacion) {
+  html += '<img src="equipaciones/' + imgEquipacion + '" alt="Equipación ' + nombreCompleto + '" class="ficha-equipacion-img" onerror="this.parentElement.style.display=\'none\';">';
+} else {
+  html += '<p style="color:#a3b8af; font-size:0.9rem;">Sin imagen de equipación.</p>';
 }
 html += '</div>';
 html += '<div class="ficha-seccion">';
