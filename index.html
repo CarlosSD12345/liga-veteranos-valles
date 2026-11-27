@@ -703,7 +703,7 @@ var equipos = [
 { nombre: "Bigues", img: "bigues.png", nombreCompleto: "C.E. Bigues i Riells" }
 ];
 function cargarCuerpoTecnicoDB() {
-fetch('https://raw.githubusercontent.com/CarlosSD12345/liga-pruebas/main/cuerpoTecnico.json?t=' + Date.now())
+fetch('https://raw.githubusercontent.com/CarlosSD12345/liga-veteranos-valles/main/cuerpoTecnico.json?t=' + Date.now())
 .then(function(r) {
 if (r.status === 404) { cuerpoTecnicoDB = {}; return; }
 return r.json();
@@ -860,7 +860,7 @@ var url = 'https://wa.me/' + numeroAdmin + '?text=' + encodeURIComponent(texto);
 window.open(url, '_blank');
 }
 function cargarJugadoresDB() {
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/jugadores.json?t=' + Date.now())
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/jugadores.json?t=' + Date.now())
 .then(function(r) {
 if (r.status === 404) { jugadoresDB = {}; return null; }
 return r.json();
@@ -873,7 +873,7 @@ jugadoresDB = data;
 } else {
 jugadoresDB = {};
 }
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json?t=' + Date.now());
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now());
 })
 .then(function(r) {
 if (!r) return;
@@ -909,7 +909,7 @@ jugadoresDB[prop.equipo].push(prop.jugador);
 .catch(function() { });
 }
 function cargarPropuestasPublicas() {
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json?t=' + Date.now())
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now())
 .then(function(r) {
 if (r.status === 404) { propuestas = {}; renderizarRankingGoleadores(); return; }
 return r.json();
@@ -1002,7 +1002,7 @@ select.appendChild(opt);
 function cargarPropuestasAdmin() {
 var token = localStorage.getItem('github_token');
 if (!token) return;
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json?t=' + Date.now(), {
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json?t=' + Date.now(), {
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
 })
 .then(function(r) {
@@ -1118,13 +1118,13 @@ estado: 'pendiente', fecha: new Date().toISOString().split('T')[0]
 });
 var token = localStorage.getItem('github_token');
 if (!token) { alert('No hay token configurado'); return; }
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json', {
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
 })
 .then(function(r) { return r.json(); })
 .then(function(data) {
 var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Importar desde WhatsApp', content: b64, sha: data.sha })
@@ -1381,13 +1381,13 @@ return;
 }
 var acta = window.actaTemporal.acta;
 actas[claveActa] = acta;
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/actas.json', {
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/actas.json', {
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
 })
 .then(function(r) {
 if (r.status === 404) {
 var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(actas, null, 2))));
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/actas.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/actas.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Crear actas.json', content: b64 })
@@ -1398,7 +1398,7 @@ return r.json();
 .then(function(data) {
 if (data && data.sha) {
 var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(actas, null, 2))));
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/actas.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/actas.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Actualizar acta J' + acta.jornada + ' P' + acta.partido, content: b64, sha: data.sha })
@@ -1407,12 +1407,12 @@ body: JSON.stringify({ message: 'Actualizar acta J' + acta.jornada + ' P' + acta
 })
 .then(function(r) {
 var b64CT = btoa(unescape(encodeURIComponent(JSON.stringify(cuerpoTecnicoDB, null, 2))));
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/cuerpoTecnico.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/cuerpoTecnico.json', {
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
 })
 .then(function(r2) {
 if (r2.status === 404) {
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/cuerpoTecnico.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/cuerpoTecnico.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Crear cuerpoTecnico.json', content: b64CT })
@@ -1422,7 +1422,7 @@ return r2.json();
 })
 .then(function(dataCT) {
 if (dataCT && dataCT.sha) {
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/cuerpoTecnico.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/cuerpoTecnico.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Actualizar cuerpoTecnico.json', content: b64CT, sha: dataCT.sha })
@@ -1498,13 +1498,13 @@ guardarPropuestas();
 function guardarPropuestas() {
 var token = localStorage.getItem('github_token');
 if (!token) { alert('No hay token'); return; }
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json', {
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
 })
 .then(function(r) { return r.json(); })
 .then(function(data) {
 var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(propuestas, null, 2))));
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/propuestas.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/propuestas.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Actualizar propuestas', content: b64, sha: data.sha })
@@ -1513,12 +1513,12 @@ body: JSON.stringify({ message: 'Actualizar propuestas', content: b64, sha: data
 .then(function(r) {
 if (r && r.ok) {
 var b64Jug = btoa(unescape(encodeURIComponent(JSON.stringify(jugadoresDB, null, 2))));
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/jugadores.json?t=' + Date.now(), {
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/jugadores.json?t=' + Date.now(), {
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
 })
 .then(function(r2) {
 if (r2.status === 404) {
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/jugadores.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/jugadores.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Crear jugadores.json', content: b64Jug })
@@ -1528,7 +1528,7 @@ return r2.json();
 })
 .then(function(dataJug) {
 if (dataJug && dataJug.sha) {
-return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/jugadores.json', {
+return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/jugadores.json', {
 method: 'PUT',
 headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Actualizar jugadores', content: b64Jug, sha: dataJug.sha })
@@ -1639,9 +1639,9 @@ nuevosResultados[String(index)] = { suspendido: susp, golesLocal: susp ? null : 
 });
 resultados[String(jornadaNum)] = nuevosResultados;
 if (!token) { alert('❌ No hay token configurado.'); btn.textContent = '💾 Guardar'; btn.disabled = false; return; }
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/resultados.json', { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } })
-.then(function(r) { if (r.status === 404) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Crear resultados.json', content: b64 }) }); } return r.json(); })
-.then(function(data) { if (data && data.sha) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha }) }); } return data; })
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } })
+.then(function(r) { if (r.status === 404) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Crear resultados.json', content: b64 }) }); } return r.json(); })
+.then(function(data) { if (data && data.sha) { var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(resultados, null, 2)))); return fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/resultados.json', { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify({ message: 'Actualización Jornada ' + jornadaNum, content: b64, sha: data.sha }) }); } return data; })
 .then(function(r) { if (r && r.ok) { alert('✅ Guardado!'); location.reload(); } else if (r && r.message) { throw new Error(r.message); } })
 .catch(function(e) { alert('❌ ' + e.message); btn.textContent = '💾 Guardar'; btn.disabled = false; });
 }
@@ -1930,7 +1930,7 @@ else if (equipo === 'C.F. Can Parellada') carpeta = 'CF-Can-Parellada';
 else if (equipo === 'A.V. Ripollet') carpeta = 'AV-Ripollet';
 else if (equipo === 'C.E. Bigues i Riells') carpeta = 'CE-Bigues';
 else return null;
-var base = 'https://raw.githubusercontent.com/CarlosSD12345/liga-pruebas/main/fotos-jugadores/' + carpeta + '/';
+var base = 'https://raw.githubusercontent.com/CarlosSD12345/liga-veteranos-valles/main/fotos-jugadores/' + carpeta + '/';
 return { jpg: base + encodeURIComponent(nombre) + '.jpg', png: base + encodeURIComponent(nombre) + '.png' };
 }
 function getDorsalJugador(nombre, equipo) {
@@ -2164,7 +2164,7 @@ if (e.key === 'Escape') cerrarModalActa();
 cargarJugadoresDB();
 cargarCuerpoTecnicoDB();
 function cargarActas() {
-fetch('https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/actas.json?t=' + Date.now())
+fetch('https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/actas.json?t=' + Date.now())
 .then(function(r) {
 if (r.status === 404) { actas = {}; return; }
 return r.json();
@@ -2510,7 +2510,7 @@ function cargarPlantillaEquipo(nombreCompleto, callback) {
     callback([]);
     return;
   }
-  var url = 'https://api.github.com/repos/CarlosSD12345/liga-pruebas/contents/fotos-jugadores/' + carpeta + '?t=' + Date.now();
+  var url = 'https://api.github.com/repos/CarlosSD12345/liga-veteranos-valles/contents/fotos-jugadores/' + carpeta + '?t=' + Date.now();
   fetch(url)
   .then(function(r) {
     if (r.status === 404) { callback([]); return; }
